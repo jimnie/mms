@@ -49,6 +49,26 @@
     background-position: -380px -120px;
 }
 
+.icon-setting {
+    background-position: -20px -100px;
+}
+
+.icon-group {
+    background-position: -300px -80px;
+}
+
+.icon-dict {
+    background-position: -200px -20px;
+}
+
+.icon-resource {
+    background-position: 0px -140px;
+}
+
+.icon-auth {
+    background-position: -0px -300px;
+}
+
 .subtitle {
     font-size: 14px;
     font-weight: bold;

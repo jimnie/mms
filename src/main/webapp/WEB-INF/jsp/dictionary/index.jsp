@@ -45,7 +45,7 @@
     <div region="center" border="false">
         <table id="dictionaries" class="easyui-datagrid" border="false" fit="true"
                rownumbers="true" pagination="true" sortName="nickname" sortOrder="asc"
-               data-options="singleSelect:true,fitColumns:true,url:'${pageContext.request.contextPath}/dict/list',method:'get',pageSize:20">
+               data-options="singleSelect:true,fitColumns:true,url:'${pageContext.request.contextPath}/dict/list',method:'get',pageSize:20,striped:true">
             <thead>
             <tr>
                 <th data-options="field:'id',hidden:true">ID</th>

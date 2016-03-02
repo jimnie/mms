@@ -1,3 +1,4 @@
+<%@ page import="com.educonsulting.mms.util.SpringUtils" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <head>
@@ -15,25 +16,35 @@
                 <tr>
                     <td>
                         <a href="javascript:void(0)" class="easyui-linkbutton"
-                           data-options="iconCls:'icon-add'" onclick="newItem()">新增</a>
+                           data-options="iconCls:'icon-add'" onclick="newItem()">
+                            <%=SpringUtils.getMessage("page.action.add")%>
+                        </a>
                         <a href="javascript:void(0)" class="easyui-linkbutton"
-                           data-options="iconCls:'icon-edit'"
-                           onclick="editItem()">修改</a>
+                           data-options="iconCls:'icon-edit'" onclick="editItem()">
+                            <%=SpringUtils.getMessage("page.action.edit")%>
+                        </a>
                         <a href="javascript:void(0)" class="easyui-linkbutton"
-                           data-options="iconCls:'icon-remove'"
-                           onclick="delItem()">删除</a>
+                           data-options="iconCls:'icon-remove'" onclick="delItem()">
+                            <%=SpringUtils.getMessage("page.action.remove")%>
+                        </a>
                         <a href="javascript:void(0)" class="easyui-linkbutton"
-                           data-options="iconCls:'icon-reload'"
-                           onclick="refresh()">刷新</a>
+                           data-options="iconCls:'icon-reload'" onclick="refresh()">
+                            <%=SpringUtils.getMessage("page.action.refresh")%>
+                        </a>
                         <a href="javascript:void(0)" class="easyui-linkbutton"
-                           data-options="iconCls:'icon-search'" onclick="assignResources()">资源配置</a>
+                           data-options="iconCls:'icon-search'" onclick="assignResource()">
+                            <%=SpringUtils.getMessage("page.action.assignResource")%>
+                        </a>
                         <a href="javascript:void(0)" class="easyui-linkbutton"
-                           data-options="iconCls:'icon-search'" onclick="assignActs()">权限配置</a>
+                           data-options="iconCls:'icon-search'" onclick="assignAuthority()">
+                            <%=SpringUtils.getMessage("page.action.assignAuthority")%>
+                        </a>
                     </td>
                     <td style="text-align:right">
                         <a href="javascript:void(0)" class="easyui-linkbutton"
-                           data-options="iconCls:'icon-search'"
-                           onclick="advanceQuery()">条件查询</a>
+                           data-options="iconCls:'icon-search'" onclick="advanceQuery()">
+                            <%=SpringUtils.getMessage("page.common.advencedQuery")%>
+                        </a>
                     </td>
                 </tr>
             </table>
@@ -43,19 +54,31 @@
     <div region="center" border="false">
         <table id="roles" class="easyui-datagrid" border="false" fit="true"
                rownumbers="true" pagination="true" sortName="sortNo" sortOrder="asc"
-               data-options="singleSelect:true,url:'${pageContext.request.contextPath}/role/list',method:'get',width:500">
+               data-options="singleSelect:true,url:'${pageContext.request.contextPath}/role/list',method:'get',width:500,striped:true">
             <thead>
             <tr>
                 <th data-options="field:'id',hidden:true"></th>
-                <th data-options="field:'name',width:100,halign:'center',sortable:true">角色名称</th>
-                <th data-options="field:'status',width:60,halign:'center',sortable:true,formatter:statusFormatter">
-                    状态
+                <th data-options="field:'name',width:100,halign:'center',align:'left',sortable:true">
+                    <%=SpringUtils.getMessage("role.datagrid.name")%>
                 </th>
-                <th data-options="field:'editable',width:60,halign:'center',sortable:true,formatter:editableFormatter">
-                    可修改
+                <th data-options="field:'createDate',width:140,halign:'center',align:'center',sortable:true">
+                    <%=SpringUtils.getMessage("page.common.createDate")%>
                 </th>
-                <th data-options="field:'sortNo',width:60,halign:'center',sortable:true">排序</th>
-                <th data-options="field:'memo',halign:'center',width:250">备注</th>
+                <th data-options="field:'modifyDate',width:140,halign:'center',align:'center',sortable:true">
+                    <%=SpringUtils.getMessage("page.common.modifyDate")%>
+                </th>
+                <th data-options="field:'status',width:80,halign:'center',align:'center',sortable:true,formatter:statusFormatter">
+                    <%=SpringUtils.getMessage("role.datagrid.status")%>
+                </th>
+                <th data-options="field:'editable',width:80,halign:'center',align:'center',sortable:true,formatter:editableFormatter">
+                    <%=SpringUtils.getMessage("role.datagrid.editable")%>
+                </th>
+                <th data-options="field:'sortNo',width:80,halign:'center',align:'right',sortable:true">
+                    <%=SpringUtils.getMessage("role.datagrid.sortNo")%>
+                </th>
+                <th data-options="field:'memo',halign:'center',width:220">
+                    <%=SpringUtils.getMessage("role.datagrid.memo")%>
+                </th>
             </tr>
             </thead>
         </table>
@@ -73,9 +96,13 @@
         </div>
         <div id="dlg-buttons" style="text-align:center;">
             <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save'"
-               onclick="saveItem()">保存</a>
+               onclick="saveItem()">
+                <%=SpringUtils.getMessage("page.action.save")%>
+            </a>
             <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"
-               onclick="javascript:$('#dlg').dialog('close')">关闭</a>
+               onclick="javascript:$('#dlg').dialog('close')">
+                <%=SpringUtils.getMessage("page.action.close")%>
+            </a>
         </div>
     </div>
 
@@ -88,9 +115,13 @@
         </form>
         <div id="auth-buttons" style="text-align:center">
             <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save'"
-               onclick="saveAssignedResources()">保存</a>
+               onclick="saveAssignedResources()">
+                <%=SpringUtils.getMessage("page.action.save")%>
+            </a>
             <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"
-               onclick="javascript:$('#auth').dialog('close')">关闭</a>
+               onclick="javascript:$('#auth').dialog('close')">
+                <%=SpringUtils.getMessage("page.action.close")%>
+            </a>
         </div>
     </div>
 
@@ -99,10 +130,13 @@
 
         <form id="authform" method="post">
             <div class="toolbar">
-                选择模块：<input class="easyui-combobox" name="moduleId" id="moduleId">
-                选择资源：<input class="easyui-combobox" name="resource" id="resource">
-                操作权限：<input class="easyui-combobox" name="act" id="act"
-                            data-options="url:'${pageContext.request.contextPath}/act/loadActs',
+                <%=SpringUtils.getMessage("role.form.choiseModel")%>
+                <input class="easyui-combobox" name="moduleId" id="moduleId">
+                <%=SpringUtils.getMessage("role.form.choiseResource")%>
+                <input class="easyui-combobox" name="resource" id="resource">
+                <%=SpringUtils.getMessage("role.form.choiseAction")%>
+                <input class="easyui-combobox" name="act" id="act"
+                       data-options="url:'${pageContext.request.contextPath}/act/loadActs',
                                 method:'get',
                                 valueField:'enName',
                                 textField:'name',
@@ -113,12 +147,17 @@
                 <input type="hidden" id="updated" name="updated">
                 <input type="hidden" id="deleted" name="deleted">
                 <a href="javascript:void(0)" class="easyui-linkbutton"
-                   data-options="iconCls:'icon-add'" onclick="addAuth()">添加</a>
+                   data-options="iconCls:'icon-add'" onclick="addAuth()">
+                    <%=SpringUtils.getMessage("page.action.add")%>
+                </a>
                 <a href="javascript:void(0)" class="easyui-linkbutton"
-                   data-options="iconCls:'icon-remove'" onclick="delAuth()">删除</a>
+                   data-options="iconCls:'icon-remove'" onclick="delAuth()">
+                    <%=SpringUtils.getMessage("page.action.remove")%>
+                </a>
             </div>
             <div>
-                <table id="authorities" class="easyui-datagrid" title="资源权限表"
+                <table id="authorities" class="easyui-datagrid"
+                       title="<%=SpringUtils.getMessage("role.form.authorities")%>"
                        border="false" rownumbers="true" width="100%"
                        data-options="singleSelect:true">
                     <thead>
@@ -127,9 +166,15 @@
                         <th data-options="field:'actAlias',hidden:true"></th>
                         <th data-options="field:'roleId',hidden:true"></th>
                         <th data-options="field:'resourceId',hidden:true"></th>
-                        <th data-options="field:'resourceName',halign:'center',width:120">资源名称</th>
-                        <th data-options="field:'actName',halign:'center',width:120">权限名称</th>
-                        <th data-options="field:'perms',halign:'center',width:180">资源权限表达式</th>
+                        <th data-options="field:'resourceName',halign:'center',width:120">
+                            <%=SpringUtils.getMessage("role.form.resourceName")%>
+                        </th>
+                        <th data-options="field:'actName',halign:'center',width:120">
+                            <%=SpringUtils.getMessage("role.form.authorityName")%>
+                        </th>
+                        <th data-options="field:'perms',halign:'center',width:180">
+                            <%=SpringUtils.getMessage("role.form.expression")%>
+                        </th>
                     </tr>
                     </thead>
                 </table>
@@ -138,9 +183,13 @@
 
         <div id="actions-buttons" style="text-align:center">
             <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save'"
-               onclick="saveResourcesAuths()">保存</a>
+               onclick="saveResourcesAuths()">
+                <%=SpringUtils.getMessage("page.action.save")%>
+            </a>
             <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"
-               onclick="javascript:$('#ac').dialog('close')">关闭</a>
+               onclick="javascript:$('#ac').dialog('close')">
+                <%=SpringUtils.getMessage("page.action.close")%>
+            </a>
         </div>
     </div>
 
@@ -151,7 +200,9 @@
         </form>
         <div id="detail-buttons" style="text-align:center">
             <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"
-               onclick="javascript:$('#detail').dialog('close')">关闭</a>
+               onclick="javascript:$('#detail').dialog('close')">
+                <%=SpringUtils.getMessage("page.action.close")%>
+            </a>
         </div>
     </div>
 </div>

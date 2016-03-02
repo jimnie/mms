@@ -51,6 +51,7 @@
                        url:'${pageContext.request.contextPath}/resource/list',
                        method:'get',
                        idField:'id',
+                       striped:true,
                        treeField:'text',
                        onBeforeLoad:function(row,param){
                             if (row) {

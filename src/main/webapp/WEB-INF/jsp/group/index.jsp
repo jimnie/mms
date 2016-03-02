@@ -20,15 +20,15 @@
                     <td>
                         <a href="javascript:void(0);" class="easyui-linkbutton"
                            data-options="iconCls:'icon-add'" onclick="newItem()">
-                            <%=SpringUtils.getMessage("group.datagrid.add")%>
+                            <%=SpringUtils.getMessage("page.action.add")%>
                         </a>
                         <a href="javascript:void(0);" class="easyui-linkbutton"
                            data-options="iconCls:'icon-edit'" onclick="editItem()">
-                            <%=SpringUtils.getMessage("group.datagrid.edit")%>
+                            <%=SpringUtils.getMessage("page.action.edit")%>
                         </a>
                         <a href="javascript:void(0);" class="easyui-linkbutton"
                            data-options="iconCls:'icon-remove'" onclick="delItem()">
-                            <%=SpringUtils.getMessage("group.datagrid.remove")%>
+                            <%=SpringUtils.getMessage("page.action.remove")%>
                         </a>
                         <a href="javascript:void(0);" class="easyui-linkbutton"
                            data-options="iconCls:'icon-man'" onclick="addUsers()">
@@ -37,10 +37,6 @@
                         <a href="javascript:void(0);" class="easyui-linkbutton"
                            data-options="iconCls:'icon-man'" onclick="addRoles()">
                             <%=SpringUtils.getMessage("group.datagrid.groupRoleRelate")%>
-                        </a>
-                        <a href="javascript:void(0);" class="easyui-linkbutton"
-                           data-options="iconCls:'icon-search'" onclick="lookGroupHaveRole()">
-                            <%=SpringUtils.getMessage("group.datagrid.viewGroupRole")%>
                         </a>
                     </td>
                 </tr>
@@ -61,7 +57,7 @@
                title="<%=SpringUtils.getMessage("group.datagrid.userinfo")%>"
                fit="true" border="false"
                pagination="true"
-               singleSelect="true" rownumbers="true" disabled="true">
+               singleSelect="true" rownumbers="true" disabled="true" data-options="striped:true">
             <thead>
             <tr>
                 <th data-options="field:'id',hidden:true">ID</th>

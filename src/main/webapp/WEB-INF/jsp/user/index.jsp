@@ -57,7 +57,7 @@
     <div region="center" border="false">
         <table id="users" class="easyui-datagrid" border="false" fit="true"
                rownumbers="true" pagination="true" sortName="username" sortOrder="asc"
-               data-options="singleSelect:true,fitColumns:true,url:'${pageContext.request.contextPath}/user/list',method:'get'">
+               data-options="singleSelect:true,fitColumns:true,url:'${pageContext.request.contextPath}/user/list',method:'get',striped:true">
             <thead>
             <tr>
                 <th data-options="field:'id',hidden:true">ID</th>
