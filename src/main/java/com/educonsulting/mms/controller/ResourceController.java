@@ -6,6 +6,7 @@ import com.educonsulting.mms.Message;
 import com.educonsulting.mms.entity.Resources;
 import com.educonsulting.mms.service.ResourceService;
 import com.educonsulting.mms.util.DateUtils;
+import com.educonsulting.mms.util.SpringUtils;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
@@ -91,7 +92,7 @@ public class ResourceController extends BaseController {
     @ResponseBody
     public Message save(Resources resource) {
         if (resourceService.isAliasNameExists(resource.getAliasName())) {
-            return Message.error("资源标识符已经存在！");
+            return Message.error(SpringUtils.getMessage("resource.head.isExist"));
         }
         resourceService.save(resource);
         return SUCCESS_MESSAGE;
@@ -100,6 +101,7 @@ public class ResourceController extends BaseController {
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
     public Message update(Resources resource) {
+        resource.setState(CommonAttributes.MENU_CLOSED);
         resourceService.update(resource);
         return SUCCESS_MESSAGE;
     }
