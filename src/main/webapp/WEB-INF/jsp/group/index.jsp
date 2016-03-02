@@ -1,3 +1,4 @@
+<%@ page import="com.educonsulting.mms.util.SpringUtils" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <head>
@@ -14,34 +15,36 @@
 
     <div region="north" border="false" style="height: 35px">
         <div class="toolbar">
-            <a href="javascript:void(0);" class="easyui-linkbutton"
-               data-options="iconCls:'icon-add'"
-               onclick="newItem()">新增组</a>
-            <a href="javascript:void(0);" class="easyui-linkbutton"
-               data-options="iconCls:'icon-edit'"
-               onclick="editItem()">修改组</a>
-            <a href="javascript:void(0);" class="easyui-linkbutton"
-               data-options="iconCls:'icon-remove'"
-               onclick="delItem()">删除组</a>
-            <a href="javascript:void(0);" class="easyui-linkbutton"
-               data-options="iconCls:'icon-search'"
-               onclick="lookItem()">查看组</a>
-            <a href="javascript:void(0);" class="easyui-linkbutton"
-               data-options="iconCls:'icon-man'"
-               onclick="addUsers()">组用户维护</a>
-            <a href="javascript:void(0);" class="easyui-linkbutton"
-               data-options="iconCls:'icon-man'"
-               onclick="addRoles()">组角色维护</a>
-            <a href="javascript:void(0);" class="easyui-linkbutton"
-               data-options="iconCls:'icon-clear'"
-               onclick="delUsers()">解除组用户</a>
-            <a href="javascript:void(0);" class="easyui-linkbutton"
-               data-options="iconCls:'icon-clear'"
-               onclick="delRoles()">解除组角色</a>
-            <a href="javascript:void(0);" class="easyui-linkbutton"
-               data-options="iconCls:'icon-search'"
-               onclick="lookGroupHaveRole()">查看组拥有的角色</a>
-
+            <table cellpadding="0" cellspacing="0" style="width:95%;">
+                <tr>
+                    <td>
+                        <a href="javascript:void(0);" class="easyui-linkbutton"
+                           data-options="iconCls:'icon-add'" onclick="newItem()">
+                            <%=SpringUtils.getMessage("group.datagrid.add")%>
+                        </a>
+                        <a href="javascript:void(0);" class="easyui-linkbutton"
+                           data-options="iconCls:'icon-edit'" onclick="editItem()">
+                            <%=SpringUtils.getMessage("group.datagrid.edit")%>
+                        </a>
+                        <a href="javascript:void(0);" class="easyui-linkbutton"
+                           data-options="iconCls:'icon-remove'" onclick="delItem()">
+                            <%=SpringUtils.getMessage("group.datagrid.remove")%>
+                        </a>
+                        <a href="javascript:void(0);" class="easyui-linkbutton"
+                           data-options="iconCls:'icon-man'" onclick="addUsers()">
+                            <%=SpringUtils.getMessage("group.datagrid.groupUserRelate")%>
+                        </a>
+                        <a href="javascript:void(0);" class="easyui-linkbutton"
+                           data-options="iconCls:'icon-man'" onclick="addRoles()">
+                            <%=SpringUtils.getMessage("group.datagrid.groupRoleRelate")%>
+                        </a>
+                        <a href="javascript:void(0);" class="easyui-linkbutton"
+                           data-options="iconCls:'icon-search'" onclick="lookGroupHaveRole()">
+                            <%=SpringUtils.getMessage("group.datagrid.viewGroupRole")%>
+                        </a>
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
 
@@ -54,21 +57,31 @@
     </div>
 
     <div region="center" border="false">
-        <table id="users" class="easyui-datagrid" title="用户信息"
+        <table id="users" class="easyui-datagrid"
+               title="<%=SpringUtils.getMessage("group.datagrid.userinfo")%>"
                fit="true" border="false"
                pagination="true"
                singleSelect="true" rownumbers="true" disabled="true">
             <thead>
             <tr>
-                <th field="username" width="100">用户名称</th>
-                <th field="position" width="50">职位</th>
-                <th field="age" width="50">年龄</th>
-                <th field="sex" width="50">性别</th>
-                <th field="education" width="100">教育情况</th>
-                <th field="address" width=100>地址</th>
-                <th field="phone" width="100">电话</th>
-                <th field="email" width="150">邮箱</th>
-                <th field="memo" width="300">备注</th>
+                <th data-options="field:'id',hidden:true">ID</th>
+                <th data-options="field:'username',width:80,halign:'center',sortable:true">
+                    <%=SpringUtils.getMessage("user.datagrid.username")%>
+                </th>
+                <th data-options="field:'isEnabled',width:80,halign:'center',align:'center',sortable:true,
+                formatter:isEnabledFormatter">
+                    <%=SpringUtils.getMessage("user.datagrid.isEnabled")%>
+                </th>
+                <th data-options="field:'isSystem',width:80,halign:'center',align:'center',sortable:true,
+                formatter:isSystemFormatter">
+                    <%=SpringUtils.getMessage("user.datagrid.isSystem")%>
+                </th>
+                <th data-options="field:'loginDate',width:160,halign:'center',align:'center',sortable:true">
+                    <%=SpringUtils.getMessage("user.datagrid.loginDate")%>
+                </th>
+                <th data-options="field:'loginIp',width:160,halign:'center',align:'left',sortable:true">
+                    <%=SpringUtils.getMessage("user.datagrid.loginIp")%>
+                </th>
             </tr>
             </thead>
         </table>
@@ -86,9 +99,13 @@
         <div style="clear:both"></div>
     </div>
     <div id="dlg-buttons" style="text-align:center">
-        <a href="#" class="easyui-linkbutton" iconCls="icon-save" onclick="saveItem()">保存</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-save" onclick="saveItem()">
+            <%=SpringUtils.getMessage("page.action.save")%>
+        </a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-cancel"
-           onclick="javascript:$('#dlg').dialog('close')">关闭</a>
+           onclick="javascript:$('#dlg').dialog('close')">
+            <%=SpringUtils.getMessage("page.action.close")%>
+        </a>
     </div>
 </div>
 <%--添加用户--%>
@@ -103,9 +120,13 @@
         <div style="clear:both"></div>
     </div>
     <div id="addUser-buttons" style="text-align:center">
-        <a href="javascript:;" class="easyui-linkbutton" iconCls="icon-save" onclick="saveUsers()">保存</a>
+        <a href="javascript:;" class="easyui-linkbutton" iconCls="icon-save" onclick="saveUsers()">
+            <%=SpringUtils.getMessage("page.action.save")%>
+        </a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-cancel"
-           onclick="javascript:$('#addUserdlg').dialog('close')">关闭</a>
+           onclick="javascript:$('#addUserdlg').dialog('close')">
+            <%=SpringUtils.getMessage("page.action.close")%>
+        </a>
     </div>
 </div>
 <%--授权角色--%>
@@ -120,9 +141,13 @@
         <div style="clear:both"></div>
     </div>
     <div id="addRoles-buttons" style="text-align:center">
-        <a href="javascript:;" class="easyui-linkbutton" iconCls="icon-save" onclick="saveRoles()">保存</a>
+        <a href="javascript:;" class="easyui-linkbutton" iconCls="icon-save" onclick="saveRoles()">
+            <%=SpringUtils.getMessage("page.action.save")%>
+        </a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-cancel"
-           onclick="javascript:$('#addRolesdlg').dialog('close')">关闭</a>
+           onclick="javascript:$('#addRolesdlg').dialog('close')">
+            <%=SpringUtils.getMessage("page.action.close")%>
+        </a>
     </div>
 </div>
 </body>

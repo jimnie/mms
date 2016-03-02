@@ -34,6 +34,31 @@
         return value;
     }
 
+    var isEnabled = {};
+    $.getJSON(base + '/dict/findDict/isEnabled', function (json) {
+        isEnabled = json;
+    });
+    function isEnabledFormatter(value) {
+        for (var i = 0; i < isEnabled.length; i++) {
+            if (isEnabled[i].value == value.toString()) {
+                return isEnabled[i].name;
+            }
+        }
+        return value;
+    }
+
+    var isSystem = {};
+    $.getJSON(base + '/dict/findDict/isSystem', function (json) {
+        isSystem = json;
+    });
+    function isSystemFormatter(value) {
+        for (var i = 0; i < isSystem.length; i++) {
+            if (isSystem[i].value == value.toString()) {
+                return isSystem[i].name;
+            }
+        }
+        return value;
+    }
     <%--var url;--%>
 
     <%--$(function () {--%>
@@ -64,7 +89,7 @@
         $('#nodeState').combobox(readonly).combobox('setValue', 'closed');
         $('#parent\\.id').combotree(readonly).combotree('setValue', '0');
         $('#status').combobox(require);
-        $('#dlg').dialog('setTitle', '新增组').dialog('open');
+        $('#dlg').dialog('setTitle', '<%=SpringUtils.getMessage("group.head.add")%>').dialog('open');
     }
 
     function editItem() {
@@ -72,8 +97,8 @@
         var node = $('#groupTree').tree('getSelected');
         if (node) {
             var id = node.id;
-            if (id == '0') {
-                $.messager.alert(title, '根节点不能修改！', 'warning');
+            if (id == parentid) {
+                $.messager.alert(title, '<%=SpringUtils.getMessage("group.head.editRootPrompt")%>', warning);
                 return;
             }
             $.each($('#addform input'), function (i) {
@@ -82,12 +107,12 @@
             $('#name').textbox(notonly).textbox(require);
             $('#tag').textbox(readonly);
             $('#nodeState').combobox(readonly).combobox('setValue', 'closed');
-            $('#parent\\.id').combotree(readonly).combotree('setValue', '0');
+            $('#parent\\.id').combotree(readonly).combotree('setValue', parentid);
             $('#status').combobox(require);
             $('#addform').form('load', node.attributes);
-            $('#dlg').dialog('setTitle', '修改组').dialog('open');
+            $('#dlg').dialog('setTitle', '<%=SpringUtils.getMessage("group.head.edit")%>').dialog('open');
         } else {
-            $.messager.alert(title, '请选择要修改的组！', 'warning');
+            $.messager.alert(title, '<%=SpringUtils.getMessage("group.head.choiseToEdit")%>', warning);
         }
         url = base + '/group/update';
     }
@@ -104,7 +129,6 @@
                 return $('#addform').form('validate');
             },
             success: function (data) {
-
                 data = eval('(' + data + ')');
                 if (data.type == 'success') {
                     $.messager.show({
@@ -116,7 +140,7 @@
                     $('#dlg').dialog('close');
                     $('#groupTree').tree('reload');
                 } else {
-                    $.messager.alert(title, data.content, 'error');
+                    $.messager.alert(title, data.content, error);
                 }
             }
         });
@@ -127,17 +151,17 @@
         if (node) {
             var id = node.id;
 
-            if (id == '0') {
-                $.messager.alert(title, '根节点不能删除', 'warning');
+            if (id == parentid) {
+                $.messager.alert(title, '<%=SpringUtils.getMessage("group.head.removeRootPrompt")%>', warning);
                 return;
             } else if (node.children) {
-                $.messager.alert(title, '请先该节点下的所有子节点', 'warning');
+                $.messager.alert(title, '<%=SpringUtils.getMessage("group.head.removeSubNodeFirst")%>', warning);
                 return;
             } else {
                 url = base + '/group/delete';
                 $('#delGroupId').attr('value', id);
             }
-            $.messager.confirm(title, '确定要删除选中的组？', function (r) {
+            $.messager.confirm(title, '<%=SpringUtils.getMessage("group.head.confirmToRemove")%>', function (r) {
                 if (r) {
                     $('#delform').form('submit', {
                         url: url,
@@ -156,55 +180,60 @@
                                 $('#groupTree').tree('reload');
                                 $('#parent\\.id').combotree('reload', base + '/group/tree');
                             } else {
-                                $.messager.alert(title, data.content, 'error');
+                                $.messager.alert(title, data.content, error);
                             }
                         }
                     });
                 }
             });
         } else {
-            $.messager.alert(title, '请选择要删除的组！', 'warning');
+            $.messager.alert(title, '<%=SpringUtils.getMessage("group.head.choiseToRemove")%>', warning);
         }
     }
 
     function addUsers() {
-        $('#addUserform').form('clear');
-        $('#selectableUsers').empty();
-        $('#selectedUsers').empty();
         var node = $('#groupTree').tree('getSelected');
-        $('#addUserdlg').dialog('setTitle', '添加用户').dialog('open');
         if (node) {
+            if (node.id == parentid) {
+                $.messager.alert(title, '<%=SpringUtils.getMessage("group.head.unexecutableOperation")%>', warning);
+                return;
+            }
+            $('#addUserform').form('clear');
+            $('#selectableUsers').empty();
+            $('#selectedUsers').empty();
+            $('#addUserdlg').dialog('setTitle', '<%=SpringUtils.getMessage("group.head.addGroupUser")%>').dialog('open');
             var id = node.id;
             $('#parent\\.id').combotree('setValue', id);
             $('#groupid').attr('value', node.id);
+            // 加载所有用户
+            $.ajax({
+                type: 'GET',
+                url: base + '/group/loadSelectableUsers/' + node.id,
+                dataType: 'json',
+                success: function (data) {
+                    for (var i = 0; i < data.length; i++)
+                        $('#selectableUsers').append('<option value="' + data[i].id + '">' + data[i].username + '</option>');
+                },
+                error: function (msg) {
+                    $.messager.alert(title, msg, error);
+                }
+            });
+            /*加载已选用户*/
+            $.ajax({
+                type: 'GET',
+                url: base + '/group/getUsers/' + node.id,
+                dataType: 'json',
+                success: function (data) {
+                    for (var i = 0; i < data.length; i++)
+                        $('#selectedUsers').append('<option value="' + data[i].id + '">' + data[i].username + '</option>');
+                },
+                error: function (msg) {
+                    $.messager.alert(title, msg, error);
+                }
+            });
+        } else {
+            $.messager.alert(title, '<%=SpringUtils.getMessage("group.head.choiseToAdd")%>', warning);
         }
-        // 加载所有用户
-        $.ajax({
-            type: 'GET',
-            url: base + '/group/loadSelectableUsers/' + node.id,
-            dataType: 'json',
-            success: function (data) {
-                for (var i = 0; i < data.length; i++)
-                    $('#selectableUsers').append('<option value="' + data[i].id + '">' + data[i].username + '</option>');
-            },
-            error: function (msg) {
-                $.messager.alert('错误提示', '操作失败！', 'error');
-            }
-        });
-        /*加载已选用户*/
-        $.ajax({
-            type: 'GET',
-            url: base + '/group/getUsers/' + node.id,
-            dataType: 'json',
-            success: function (data) {
-                for (var i = 0; i < data.length; i++)
-                    $('#selectedUsers').append('<option value="' + data[i].id + '">' + data[i].username + '</option>');
-            },
-            error: function (msg) {
-                $.messager.alert('错误提示', '操作失败！', 'error');
-            }
-        });
-
     }
 
     function saveUsers() {
@@ -235,50 +264,55 @@
                     });
                     $('#users').datagrid('reload', base + '/group/getUsers/' + $('#groupid').attr('value'));
                 } else {
-                    $.messager.alert(title, data.content, 'error');
+                    $.messager.alert(title, data.content, error);
                 }
             }
         });
     }
 
     function addRoles() {
-        $('#addRolesform').form('clear');
-        $('#selectableRoles').empty();
-        $('#selectedRoles').empty();
         var node = $('#groupTree').tree('getSelected');
-        $('#addRolesdlg').dialog('setTitle', '授权角色').dialog('open');
         if (node) {
+            if (node.id == parentid) {
+                $.messager.alert(title, '<%=SpringUtils.getMessage("group.head.unexecutableOperation")%>', warning);
+                return;
+            }
+            $('#addRolesform').form('clear');
+            $('#selectableRoles').empty();
+            $('#selectedRoles').empty();
+            $('#addRolesdlg').dialog('setTitle', '<%=SpringUtils.getMessage("group.head.addGroupRole")%>').dialog('open');
             var id = node.id;
             $('#parent\\.id').combotree('setValue', id);
             $('#groupid').attr('value', node.id);
+            // 加载所有角色
+            $.ajax({
+                type: 'GET',
+                url: base + '/group/loadSelectableRoles/' + node.id,
+                dataType: 'json',
+                success: function (data) {
+                    for (var i = 0; i < data.length; i++)
+                        $('#selectableRoles').append('<option value="' + data[i].id + '">' + data[i].name + '</option>');
+                },
+                error: function (msg) {
+                    $.messager.alert(title, msg, error);
+                }
+            });
+            /*加载已选角色*/
+            $.ajax({
+                type: 'GET',
+                url: base + '/group/getRoles/' + node.id,
+                dataType: 'json',
+                success: function (data) {
+                    for (var i = 0; i < data.length; i++)
+                        $('#selectedRoles').append('<option value="' + data[i].id + '">' + data[i].name + '</option>');
+                },
+                error: function (msg) {
+                    $.messager.alert(title, msg, error);
+                }
+            });
+        } else {
+            $.messager.alert(title, '<%=SpringUtils.getMessage("group.head.choiseToAdd")%>', warning);
         }
-        // 加载所有角色
-        $.ajax({
-            type: 'GET',
-            url: base + '/group/loadSelectableRoles/' + node.id,
-            dataType: 'json',
-            success: function (data) {
-                for (var i = 0; i < data.length; i++)
-                    $('#selectableRoles').append('<option value="' + data[i].id + '">' + data[i].name + '</option>');
-            },
-            error: function (msg) {
-                $.messager.alert('错误提示', '操作失败！', 'error');
-            }
-        });
-        /*加载已选角色*/
-        $.ajax({
-            type: 'GET',
-            url: base + '/group/getRoles/' + node.id,
-            dataType: 'json',
-            success: function (data) {
-                for (var i = 0; i < data.length; i++)
-                    $('#selectedRoles').append('<option value="' + data[i].id + '">' + data[i].name + '</option>');
-            },
-            error: function (msg) {
-                $.messager.alert('错误提示', '操作失败！', 'error');
-            }
-        });
-
     }
 
     function saveRoles() {
@@ -310,26 +344,14 @@
                     $('#groupTree').tree('reload');
                     $('#parent\\.id').combotree('reload', base + '/group/tree');
                 } else {
-                    $.messager.alert(title, data.content, 'error');
+                    $.messager.alert(title, data.content, error);
                 }
             }
         });
     }
 
-    function delRoles() {
-        $.messager.alert('提示', '未实现功能', 'info');
-    }
-
-    function delUsers() {
-        $.messager.alert('提示', '未实现功能', 'info');
-    }
-
-    function lookItem() {
-        $.messager.alert('提示', '未实现功能', 'info');
-    }
-
     function lookGroupHaveRole() {
-        $.messager.alert('提示', '未实现功能', 'info');
+        $.messager.alert(title, '未实现功能', 'info');
     }
 
     $(document).ready(function () {
@@ -348,7 +370,7 @@
                 })
             }
             else {
-                $.messager.alert('提示', '请选择要添加的用户', 'warning');
+                $.messager.alert(title, '<%=SpringUtils.getMessage("group.head.choiseToAddUser")%>', warning);
             }
         });
         // "移到左边"按钮的处理
@@ -360,7 +382,7 @@
                 })
             }
             else {
-                $.messager.alert('提示', '请选择要移除的用户', 'warning');
+                $.messager.alert(title, '<%=SpringUtils.getMessage("group.head.choiseToRemoveUser")%>', warning);
             }
 
         });
@@ -373,7 +395,7 @@
                 })
             }
             else {
-                $.messager.alert('提示', '请选择要添加的角色', 'warning');
+                $.messager.alert(title, '<%=SpringUtils.getMessage("group.head.choiseToAddRole")%>', warning);
             }
         });
         // "移到左边"按钮的处理
@@ -385,9 +407,8 @@
                 })
             }
             else {
-                $.messager.alert('提示', '请选择要移除的角色', 'warning');
+                $.messager.alert(title, '<%=SpringUtils.getMessage("group.head.choiseToRemoveRole")%>', warning);
             }
-
         });
     })
 </script>
