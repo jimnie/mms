@@ -218,7 +218,11 @@
                                     timeout: 2000,
                                     showType: 'slide'
                                 });
-                                refresh(row.parentid);
+                                var id = row.parentid;
+                                if (id == parentid) {
+                                    id = row.id;
+                                }
+                                refresh(id);
                             } else {
                                 $.messager.alert(title, data.content, error);
                             }
@@ -234,11 +238,7 @@
     function refresh(id) {
         var tg = $('#resources');
         if (id) {
-            if (id == parentid) {
-                tg.treegrid('reload');
-            } else {
-                tg.treegrid('reload', id);
-            }
+            tg.treegrid('reload', id);
         } else {
             var row = tg.treegrid('getSelected');
             if (row == null) {
