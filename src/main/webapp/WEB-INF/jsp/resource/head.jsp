@@ -83,7 +83,7 @@
     var enable = {disabled: false};
     var require = {required: true};
     var norequire = {required: false};
-    var parentid = '00000000000000000000000000000000';
+
     function newItem() {
         var row = $('#resources').treegrid('getSelected');
         if (row && row.resourceType == 'resource_03') {
