@@ -1,0 +1,53 @@
+/*��ӡҳ�����ʽ*/
+body {
+    font-family: "΢���ź�";
+    font-size: 18px;
+    line-height: 28px;
+}
+
+td {
+    border: 1px solid black;
+    border-bottom: 0;
+    border-right: 0;
+    text-align: center;
+}
+
+.alignleft {
+    text-align: left;
+}
+
+.rightest {
+    border-right: 1px solid black;
+}
+
+.lefttest {
+    border-left: 1px solid black;
+}
+
+.noLeftBorder {
+    border-left: 0px;
+}
+
+.topBorder {
+    border-top: 1px solid black;
+}
+
+.bottomBorder {
+    border-bottom: 1px solid black;
+}
+
+.noBorderTop {
+    border-top: 0px;
+}
+
+.noBorderBottom {
+    border-bottom: 0px;
+}
+
+.noBorderLeft {
+    border-left: 0px;
+}
+
+.noBorderRight {
+    border-right: 0px;
+}

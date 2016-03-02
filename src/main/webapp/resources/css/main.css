@@ -1,0 +1,149 @@
+* {
+    font-size: 12px;
+    font-family: Tahoma, Verdana, 微软雅黑, 新宋体
+}
+
+a {
+    color: Black;
+    text-decoration: none;
+}
+
+a:hover {
+    color: Red;
+    text-decoration: underline;
+}
+
+#css3menu li {
+    float: left;
+    list-style-type: none;
+}
+
+#css3menu li a {
+    color: #fff;
+    padding-right: 20px;
+    text-transform: none;
+    text-decoration: none;
+}
+
+#css3menu li a.active {
+    color: yellow;
+}
+
+#css3menu li a:hover {
+    color: yellow;
+}
+
+.head a {
+    color: white;
+    margin-left: 10px;
+    text-decoration: none;
+}
+
+.footer {
+    text-align: center;
+    color: #15428B;
+    margin: 0px;
+    padding: 0px;
+    line-height: 23px;
+    font-weight: bold;
+}
+
+span a {
+    text-decoration: none;
+}
+
+span label {
+    color: palegoldenrod;
+    font-weight: bolder;
+}
+
+.easyui-accordion ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 10px;
+}
+
+.easyui-accordion ul li {
+    padding: 0px;
+}
+
+.easyui-accordion ul li a {
+    line-height: 24px;
+}
+
+.easyui-accordion ul li div {
+    margin: 2px 0px;
+    padding-left: 10px;
+    padding-top: 2px;
+}
+
+.easyui-accordion ul li div.hover {
+    border: 1px dashed #99BBE8;
+    background: #E0ECFF;
+    cursor: pointer;
+}
+
+.easyui-accordion ul li div.hover a {
+    color: #416AA3;
+}
+
+.easyui-accordion ul li div.selected {
+    border: 1px solid #99BBE8;
+    background: #E0ECFF;
+    cursor: default;
+}
+
+.easyui-accordion ul li div.selected a {
+    color: #416AA3;
+    font-weight: bold;
+}
+
+#nav ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 10px;
+}
+
+#nav ul li {
+    padding: 0px;
+}
+
+#nav ul li a {
+    line-height: 24px;
+    text-decoration: none;
+}
+
+#nav ul li div {
+    margin: 2px 0px;
+    padding-left: 10px;
+    padding-top: 2px;
+}
+
+#nav ul li div.hover {
+    border: 1px dashed #99BBE8;
+    background: #E0ECFF;
+    cursor: pointer;
+}
+
+#nav ul li div.hover a {
+    color: #416AA3;
+    text-decoration: underline;
+}
+
+#nav ul li div.selected {
+    border: 1px solid #99BBE8;
+    background: #E0ECFF;
+    cursor: default;
+}
+
+#nav ul li div.selected a {
+    color: #416AA3;
+    font-weight: bold;
+}
+
+.textbox {
+    height: 20px;
+    margin: 0;
+    padding: 0 2px;
+    box-sizing: content-box;
+}

@@ -1,0 +1,39 @@
+.toolbar {
+    padding: 4px 5px;
+    background: #efefef;
+    border-bottom: 1px solid #92B7D0;
+}
+
+body {
+    visibility: hidden;
+}
+
+#loading-mask {
+    position: absolute;
+    background: #F2FBFF;
+    visibility: visible;
+    display: block;
+    width: 100%;
+    height: 100%;
+    filter: alpha(opacity=80);
+    opacity: 0.80;
+    z-index: 999999999;
+}
+
+#loading-msg {
+    width: 150px;
+    margin: 10px auto;
+    padding: 5px 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    color: #fff;
+    background: #aaa;
+}
+
+.textbox {
+    height: 20px;
+    margin: 0;
+    padding: 0 2px;
+    box-sizing: content-box;
+}
