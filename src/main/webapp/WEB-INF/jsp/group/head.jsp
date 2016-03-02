@@ -211,8 +211,9 @@
                 url: base + '/group/loadSelectableUsers/' + node.id,
                 dataType: 'json',
                 success: function (data) {
-                    for (var i = 0; i < data.length; i++)
+                    for (var i = 0; i < data.length; i++) {
                         $('#selectableUsers').append('<option value="' + data[i].id + '">' + data[i].username + '</option>');
+                    }
                 },
                 error: function (msg) {
                     $.messager.alert(title, msg, error);
@@ -224,8 +225,9 @@
                 url: base + '/group/getUsers/' + node.id,
                 dataType: 'json',
                 success: function (data) {
-                    for (var i = 0; i < data.length; i++)
+                    for (var i = 0; i < data.length; i++) {
                         $('#selectedUsers').append('<option value="' + data[i].id + '">' + data[i].username + '</option>');
+                    }
                 },
                 error: function (msg) {
                     $.messager.alert(title, msg, error);
@@ -290,8 +292,9 @@
                 url: base + '/group/loadSelectableRoles/' + node.id,
                 dataType: 'json',
                 success: function (data) {
-                    for (var i = 0; i < data.length; i++)
+                    for (var i = 0; i < data.length; i++) {
                         $('#selectableRoles').append('<option value="' + data[i].id + '">' + data[i].name + '</option>');
+                    }
                 },
                 error: function (msg) {
                     $.messager.alert(title, msg, error);
@@ -303,8 +306,9 @@
                 url: base + '/group/getRoles/' + node.id,
                 dataType: 'json',
                 success: function (data) {
-                    for (var i = 0; i < data.length; i++)
+                    for (var i = 0; i < data.length; i++) {
                         $('#selectedRoles').append('<option value="' + data[i].id + '">' + data[i].name + '</option>');
+                    }
                 },
                 error: function (msg) {
                     $.messager.alert(title, msg, error);

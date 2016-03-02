@@ -9,6 +9,7 @@ import com.educonsulting.mms.entity.User;
 import com.educonsulting.mms.service.GroupService;
 import com.educonsulting.mms.service.RoleService;
 import com.educonsulting.mms.service.UserService;
+import com.educonsulting.mms.util.SpringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -66,7 +67,7 @@ public class GroupController extends BaseController {
     @ResponseBody
     public Message save(Group group) {
         if (groupService.isTagNameExists(group.getTag())) {
-            return Message.error("组标识符已经存在！");
+            return Message.error(SpringUtils.getMessage("group.head.tagExist"));
         }
         groupService.save(group);
         return SUCCESS_MESSAGE;
@@ -75,7 +76,7 @@ public class GroupController extends BaseController {
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
     public Message update(Group group) {
-        groupService.update(group);
+        groupService.update(group, "children", "users", "roles");
         return SUCCESS_MESSAGE;
     }
 
