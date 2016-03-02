@@ -30,4 +30,5 @@
     var query = '<%=SpringUtils.getMessage("page.common.query")%>'
     var cancel = '<%=SpringUtils.getMessage("page.common.cancel")%>'
     var reset = '<%=SpringUtils.getMessage("page.common.reset")%>'
+    var parentid = '00000000000000000000000000000000';
 </script>
