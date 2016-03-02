@@ -26,6 +26,7 @@ public final class CommonAttributes {
     public static final String NAV_JSON_ATTR_URL = "url";
     public static final String NAV_JSON_ATTR_MENUS = "menus";
     public static final String RESOURCE_ROOT_ID = "00000000000000000000000000000000";
+    public static final String MENU_CLOSED = "closed";
 
     private CommonAttributes() {
     }
