@@ -66,6 +66,9 @@
     <script type="text/javascript" src="<%=base%>/resources/js/base64.js"></script>
     <script type="text/javascript" src="<%=base%>/resources/js/common.js"></script>
     <script type="text/javascript">
+        if (window != top) {
+            top.location.href = location.href;
+        }
         $().ready(function () {
 
             var $loginForm = $('#loginForm');
