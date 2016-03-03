@@ -50,7 +50,7 @@
         <td><%=SpringUtils.getMessage("resource.form.icon")%>
         </td>
         <td><input class="easyui-combobox" id="icon" name="icon" data-options="
-                    url:'${pageContext.request.contextPath}/dict/findDict/icon',method:'get',valueField:'value',textField:'name',panelHeight:'auto'">
+                    url:'${pageContext.request.contextPath}/dict/findDict/icon',method:'get',valueField:'value',textField:'name',panelHeight:150">
         </td>
     </tr>
 
