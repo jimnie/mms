@@ -64,7 +64,7 @@
                 <th data-options="field:'modifyDate',width:150,halign:'center',align:'center',sortable:true">
                     <%=SpringUtils.getMessage("page.common.modifyDate")%>
                 </th>
-                <th data-options="field:'type',width:100,halign:'center',align:'right'">
+                <th data-options="field:'type',width:100,halign:'center',align:'right',sortable:true">
                     <%=SpringUtils.getMessage("dict.datagrid.type")%>
                 </th>
                 <th data-options="field:'updatable',width:100,halign:'center',align:'center',formatter:updatableFormatter">
