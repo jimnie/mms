@@ -11,6 +11,8 @@ import javax.persistence.Table;
 @Table(name = "mms_sys_act")
 public class Act extends BaseEntity {
 
+    private static final long serialVersionUID = -3756910004771661894L;
+
     private String name;
 
     private String enName;

@@ -10,6 +10,8 @@ import javax.persistence.Table;
 @Table(name = "mms_sys_dict")
 public class Dictionary extends BaseEntity {
 
+    private static final long serialVersionUID = -2618018379547060997L;
+
     private String nickname;
 
     private String name;

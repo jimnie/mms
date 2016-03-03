@@ -9,6 +9,8 @@ import javax.persistence.*;
 @Table(name = "mms_sys_authority")
 public class Authority extends BaseEntity {
 
+    private static final long serialVersionUID = -7266418510327333601L;
+
     private String perms;
 
     private String roleId;

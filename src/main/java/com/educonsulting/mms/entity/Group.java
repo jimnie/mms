@@ -15,6 +15,7 @@ import java.util.List;
 @Table(name = "mms_sys_group")
 public class Group extends BaseEntity {
 
+    private static final long serialVersionUID = 6808015537361255477L;
     private String tag;
     private String memo;
     private String name;
