@@ -5,6 +5,15 @@
     var actionUrl;
     var base = '<%=request.getContextPath()%>';
 
+    $(function () {
+        $('#icon').combobox({
+            formatter: function (row) {
+                var imgCls = row.name;
+                return '<a class="icon ' + imgCls + ' item-img" /><span class="item-text">' + row.name + '</span>';
+            }
+        });
+    });
+
     var _status = {};
     $.getJSON(base + '/dict/findDict/status', function (json) {
         _status = json;
