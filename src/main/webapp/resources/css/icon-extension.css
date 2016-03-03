@@ -66,7 +66,115 @@
 }
 
 .icon-auth {
-    background-position: -0px -300px;
+    background-position: -300px 0px;
+}
+
+.icon-right {
+    background-position: 0px 0px;
+}
+
+.icon-missing {
+    background-position: -140px -120px;
+}
+
+.icon-info {
+    background-position: -180px 0px;
+}
+
+.icon-win {
+    background-position: -80px 0px;
+}
+
+.icon-addwin {
+    background-position: -100px 0px;
+}
+
+.icon-noaccess {
+    background-position: -140px 0px;
+}
+
+.icon-nosafe {
+    background-position: -200px 0px;
+}
+
+.icon-form {
+    background-position: -220px 0px;
+}
+
+.icon-upload {
+    background-position: -240px 0px;
+}
+
+.icon-goto {
+    background-position: -260px 0px;
+}
+
+.icon-home {
+    background-position: -280px 0px;
+}
+
+.icon-conn {
+    background-position: -320px 0px;
+}
+
+.icon-link {
+    background-position: -340px 0px;
+}
+
+.icon-download {
+    background-position: 0px -20px;
+}
+
+.icon-sort {
+    background-position: -20px -20px;
+}
+
+.icon-onleft {
+    background-position: -40px -20px;
+}
+
+.icon-onright {
+    background-position: -60px -20px;
+}
+
+.icon-menu {
+    background-position: -80px -20px;
+}
+
+.icon-tree {
+    background-position: -100px -20px;
+}
+
+.icon-hori {
+    background-position: -120px -20px;
+}
+
+.icon-vert {
+    background-position: -140px -20px;
+}
+
+.icon-stack {
+    background-position: -160px -20px;
+}
+
+.icon-col {
+    background-position: -180px -20px;
+}
+
+.icon-image {
+    background-position: -220px -20px;
+}
+
+.icon-review {
+    background-position: -240px -20px;
+}
+
+.icon-grid {
+    background-position: -260px -20px;
+}
+
+.icon-tile {
+    background-position: -280px -20px;
 }
 
 .subtitle {
