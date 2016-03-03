@@ -16,7 +16,7 @@ public class Dictionary extends BaseEntity {
 
     private String value;
 
-    private String type;
+    private Integer type;
 
     private String updatable;
 
@@ -52,11 +52,11 @@ public class Dictionary extends BaseEntity {
         this.value = value;
     }
 
-    public String getType() {
+    public Integer getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(Integer type) {
         this.type = type;
     }
 
