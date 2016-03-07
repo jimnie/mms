@@ -140,7 +140,6 @@
             $('#userId').val(row.id);
             $('#addform').form('load', row);
             $('#password').text('setValue', '');
-            alert(row.isEnabled.toString());
             if (row.isEnabled.toString() == 'true') {
                 $('#isEnabled').prop({checked: true});
             } else {
