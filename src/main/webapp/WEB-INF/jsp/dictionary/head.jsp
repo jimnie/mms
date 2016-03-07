@@ -88,6 +88,10 @@
 
     function editItem() {
         var row = $('#dictionaries').datagrid('getSelected');
+        if (row.updatable == 'updatable_02') {
+            $.messager.alert(title, '<%=SpringUtils.getMessage("dict.head.couldNotEdit")%>', error);
+            return;
+        }
         if (row) {
             $("#dlg-buttons a:first-child").show();
             $('#addform').form('load', row);
@@ -100,6 +104,10 @@
     function delItem() {
         var row = $('#dictionaries').datagrid('getSelected');
         if (row) {
+            if (row.updatable == 'updatable_02') {
+                $.messager.alert(title, '<%=SpringUtils.getMessage("dict.head.couldNotRemove")%>', error);
+                return;
+            }
             $.messager.confirm(title, '<%=SpringUtils.getMessage("dict.head.removePrompt")%>', function (r) {
                 if (r) {
                     $('#dictId').val(row.id);
