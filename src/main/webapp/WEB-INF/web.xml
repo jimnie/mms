@@ -28,6 +28,11 @@
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 
+    <!--加入监听器，然后再controller,dao,service里面获取-->
+    <listener>
+        <listener-class>org.springframework.web.context.request.RequestContextListener
+        </listener-class>
+    </listener>
 
     <!-- 字符编码配置 -->
     <filter>
