@@ -6,6 +6,8 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Wayne on 2016/3/3.
@@ -78,9 +80,22 @@ public class Member extends BaseEntity {
 
     private MemberRank memberRank;
 
+    private Set<ThemeActivity> activities = new HashSet<>();
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "mms_inf_member_activity",
+            joinColumns = {@JoinColumn(name = "mem_id")},
+            inverseJoinColumns = {@JoinColumn(name = "act_id")})
+    public Set<ThemeActivity> getActivities() {
+        return activities;
+    }
+
+    public void setActivities(Set<ThemeActivity> activities) {
+        this.activities = activities;
+    }
+
     @NotNull
     @Column(nullable = false, length = 50)
-
     public String getCnName() {
         return cnName;
     }
