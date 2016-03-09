@@ -31,6 +31,11 @@ public class AreaServiceImpl extends BaseServiceImpl<Area, Long> implements Area
         return areaDao.findRoots(count);
     }
 
+    @Transactional(readOnly = true)
+    public List<Area> getAresByParent(String id) {
+        return areaDao.getAresByParent(id);
+    }
+
     @Override
     @Transactional
     @CacheEvict(value = "area", allEntries = true)

@@ -24,8 +24,6 @@ public class Member extends BaseEntity {
     // 当前余额
     private BigDecimal balance;
 
-    private Boolean isEffect;
-
     private String cardNo;
 
     private Date registerDate;
@@ -79,6 +77,8 @@ public class Member extends BaseEntity {
     private String thirdKidSex;
 
     private MemberRank memberRank;
+
+    private Date joinDate;
 
     private Set<ThemeActivity> activities = new HashSet<>();
 
@@ -285,14 +285,6 @@ public class Member extends BaseEntity {
         this.thirdKidBirth = thirdKidBirth;
     }
 
-    public Boolean getEffect() {
-        return isEffect;
-    }
-
-    public void setEffect(Boolean effect) {
-        isEffect = effect;
-    }
-
     @Column
     public String getCardNo() {
         return cardNo;
@@ -381,5 +373,13 @@ public class Member extends BaseEntity {
 
     public void setThirdKidSex(String thirdKidSex) {
         this.thirdKidSex = thirdKidSex;
+    }
+
+    public Date getJoinDate() {
+        return joinDate;
+    }
+
+    public void setJoinDate(Date joinDate) {
+        this.joinDate = joinDate;
     }
 }
