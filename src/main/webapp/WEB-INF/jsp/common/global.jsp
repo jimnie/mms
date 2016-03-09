@@ -8,6 +8,41 @@
       href="<%=base%>/resources/ui/themes/icon.css">
 <link rel="stylesheet" type="text/css"
       href="<%=base%>/resources/css/icon-extension.css">
+<style type="text/css">
+    .title-bg {
+        width: 100px;
+        height: 40px;
+        border: solid #C0C0C0 1px;
+        background-color: #F1F6FF;
+        padding-left: 10px;
+    }
+
+    .domain-bg {
+        height: 40px;
+        border: solid #C0C0C0 1px;
+        background-color: #FAFCFF;
+        padding-left: 10px;
+    }
+
+    .tab-border {
+        width: 1080px;
+        border-collapse: collapse;
+        border: none;
+        padding-top: 10px;
+        vertical-align: middle;
+    }
+
+    .fieldset {
+        width: 300px;
+        border: 1px solid grey;
+    }
+
+    .legend {
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 16px;
+        font-weight: bold;
+    }
+</style>
 
 <script type="text/javascript"
         src="<%=base%>/resources/ui/jquery.min.js"></script>
