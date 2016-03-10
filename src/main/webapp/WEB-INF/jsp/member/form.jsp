@@ -4,7 +4,7 @@
 <div>
     <fieldset class="fieldset">
         <legend class="legend">
-            <%=SpringUtils.getMessage("member.form.parent")%>
+            <%=SpringUtils.getMessage("member.form.guardian")%>
         </legend>
         <table class="tab-border" style="height: 300px;">
             <tr>
@@ -130,8 +130,7 @@
                 </td>
                 <td class="domain-bg">
                     <input class="easyui-datebox" id="registerDate" name="registerDate"
-                           data-options="editable:false">
-                    <input type="hidden" id="createDate" name="createDate" value="">
+                           data-options="required:true,editable:false">
                     <input type="hidden" id="id" name="id" value="">
                 </td>
             </tr>
@@ -143,6 +142,7 @@
                     <input class="easyui-combobox" id="state" name="state"
                            data-options="panelHeight:200,
                                                 required:true,
+                                                editable:false,
                                                 missingMessage:'<%=SpringUtils.getMessage("member.form.stateRequired")%>'">
                     <%=SpringUtils.getMessage("member.form.state")%>
                     <input class="easyui-combobox" id="city" name="city"
@@ -151,6 +151,7 @@
                                                 textField:'name',
                                                 panelHeight:200,
                                                 required:true,
+                                                editable:false,
                                                 missingMessage:'<%=SpringUtils.getMessage("member.form.cityRequired")%>'">
                     <%=SpringUtils.getMessage("member.form.city")%>
                     <input class="easyui-combobox" id="district" name="district"
@@ -159,6 +160,7 @@
                                                 textField:'name',
                                                 panelHeight:200,
                                                 required:true,
+                                                editable:false,
                                                 missingMessage:'<%=SpringUtils.getMessage("member.form.districtRequired")%>'">
                     <%=SpringUtils.getMessage("member.form.district")%>
                     <input class="easyui-validatebox textbox" id="street" name="street"
@@ -172,7 +174,9 @@
 </div>
 <div style="padding-top: 20px;">
     <fieldset class="fieldset">
-        <legend class="legend">孩子基本信息</legend>
+        <legend class="legend">
+            <%=SpringUtils.getMessage("member.form.kids")%>
+        </legend>
         <table class="tab-border">
             <tr>
                 <td class="title-bg">
@@ -286,6 +290,26 @@
                                                 textField:'name',
                                                 panelHeight:'auto',
                                                 editable:false">
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+</div>
+<input type="hidden" id="activities" name="activities" value="1">
+<div style="padding-top: 20px;">
+    <fieldset class="fieldset">
+        <legend class="legend">
+            <%=SpringUtils.getMessage("member.form.others")%>
+        </legend>
+        <table class="tab-border">
+            <tr>
+                <td class="title-bg">
+                    <%=SpringUtils.getMessage("member.form.category")%>
+                </td>
+            </tr>
+            <tr>
+                <td id="ctgroup" class="domain-bg">
+
                 </td>
             </tr>
         </table>

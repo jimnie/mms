@@ -1,11 +1,13 @@
 package com.educonsulting.mms.controller;
 
-import com.educonsulting.mms.Filter;
-import com.educonsulting.mms.Message;
-import com.educonsulting.mms.Page;
-import com.educonsulting.mms.Pageable;
+import com.educonsulting.mms.*;
 import com.educonsulting.mms.entity.ThemeCategory;
 import com.educonsulting.mms.service.ThemeCategoryService;
+import com.educonsulting.mms.util.DateUtils;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+import net.sf.json.JsonConfig;
+import net.sf.json.util.CycleDetectionStrategy;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -76,5 +80,31 @@ public class ThemeCategoryController extends BaseController {
         Page<ThemeCategory> categoryPage = themeCategoryService.findPage(pageable);
         return getPageResultMap(categoryPage);
     }
+
+    @RequestMapping(value = "/findAll", method = RequestMethod.POST)
+    @ResponseBody
+    public Object findAll() {
+        List<ThemeCategory> categories = themeCategoryService.findAll();
+        Collections.reverse(categories);
+        return getJSONArrayFromAllCategories(categories);
+    }
+
+    private JSONArray getJSONArrayFromAllCategories(List<ThemeCategory> categories) {
+        String[] excludes = new String[]{"createDate", "modifyDate", "memo", "members", "themes",
+                "sortNo"};
+        JsonConfig config = new JsonConfig();
+        config.registerJsonValueProcessor(Date.class, new JsonDateValueProcessor(DateUtils
+                .DEFAULT_DATE_PATTERN));
+        config.setIgnoreDefaultExcludes(false);
+        config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
+        config.setExcludes(excludes);
+        JSONArray jsonArray = new JSONArray();
+        for (ThemeCategory category : categories) {
+            JSONObject jsonObject = JSONObject.fromObject(category, config);
+            jsonArray.add(jsonObject);
+        }
+        return jsonArray;
+    }
+
 
 }

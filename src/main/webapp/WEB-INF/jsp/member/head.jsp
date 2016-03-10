@@ -56,9 +56,44 @@
         $('#dlg').window('maximize')
         $('#addform').form('clear');
         $("#dlg-buttons a:first-child").show();
+        $.ajax({
+            url: base + '/category/findAll',
+            type: 'post',
+            cache: false,
+            dataType: 'json',
+            success: function (data) {
+                var text = '<table width="100%" height="100%"><tr>';
+                for (var i = 0; i < data.length; i++) {
+                    var b = (i + 1) % 4 == 0;
+                    text += '<td style="height: 40px"><input type="checkbox" id="' + data[i].id + '" name="' + data[i].id + '">' + data[i].name + '</td>';
+                    if (b) {
+                        text += '</tr><tr>'
+                    }
+                }
+                text += '</tr></table>';
+                $('#ctgroup').html(text);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                $.messager.alert(title, errorThrown, error);
+            }
+        });
     }
 
     function saveItem() {
+        var str = '';
+        var intr = $("input[type='checkbox']:checked");
+        var addr = $('#state').combobox('getText') + $('#city').combobox('getText') + $('#district').combobox('getText') + $('#street').val();
+        $('#address').attr('value', addr);
+        intr.each(function (index, element) {
+            if ($(element).prop('checked')) {
+                if (index < intr.length && index != 0) {
+                    str += ',';
+                }
+                str += $(element).prop('id')
+            }
+        });
+        $('#activities').val(str);
+
         url = base + '/member/save';
 
         if ($('#id').attr('value') != '') {
@@ -79,6 +114,7 @@
                         timeout: 2000,
                         showType: 'slide'
                     });
+                    $('#dlg').dialog('close');
                     $('#members').datagrid('reload');
                 } else {
                     $.messager.alert(title, data.content, error);

@@ -89,6 +89,7 @@
                                     timeout: 2000,
                                     showType: 'slide'
                                 });
+                                $('#dlg').dialog('close');
                                 $('#category').datagrid('reload')
                             } else {
                                 $.messager.alert(title, data.content, error);

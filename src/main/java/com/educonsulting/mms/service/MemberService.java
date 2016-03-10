@@ -7,7 +7,7 @@ import com.educonsulting.mms.entity.Member;
 /**
  * Created by Wayne on 2016/3/7.
  */
-public interface MemberService {
+public interface MemberService extends BaseService<Member, String> {
 
     boolean cartNoExists(String cardNo);
 

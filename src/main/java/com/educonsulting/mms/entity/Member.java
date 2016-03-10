@@ -1,7 +1,8 @@
 package com.educonsulting.mms.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
-import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
@@ -78,12 +79,11 @@ public class Member extends BaseEntity {
 
     private MemberRank memberRank;
 
-    private Date joinDate;
-
     private Set<ThemeCategory> categories = new HashSet<>();
 
     private Set<Theme> themes = new HashSet<>();
 
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "mms_inf_member_category",
             joinColumns = {@JoinColumn(name = "m_id")},
@@ -96,6 +96,7 @@ public class Member extends BaseEntity {
         this.categories = categories;
     }
 
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "members")
     public Set<Theme> getThemes() {
         return themes;
@@ -125,7 +126,8 @@ public class Member extends BaseEntity {
     }
 
     @NotNull
-    @Column
+    @Temporal(TemporalType.DATE)
+    @Column(length = 10)
     public Date getBirth() {
         return birth;
     }
@@ -239,7 +241,8 @@ public class Member extends BaseEntity {
     }
 
     @NotNull
-    @Column(nullable = false)
+    @Temporal(TemporalType.DATE)
+    @Column(nullable = false, length = 10)
     public Date getFirstKidBirth() {
         return firstKidBirth;
     }
@@ -264,6 +267,8 @@ public class Member extends BaseEntity {
         this.secondKidEnName = secondKidEnName;
     }
 
+    @Temporal(TemporalType.DATE)
+    @Column(length = 10)
     public Date getSecondKidBirth() {
         return secondKidBirth;
     }
@@ -288,6 +293,8 @@ public class Member extends BaseEntity {
         this.thirdKidEnName = thirdKidEnName;
     }
 
+    @Temporal(TemporalType.DATE)
+    @Column(length = 10)
     public Date getThirdKidBirth() {
         return thirdKidBirth;
     }
@@ -325,9 +332,6 @@ public class Member extends BaseEntity {
         this.amount = amount;
     }
 
-    @NotNull(groups = Save.class)
-    @Min(0)
-    @Digits(integer = 12, fraction = 3)
     @Column(nullable = false, precision = 12, scale = 2)
     public BigDecimal getBalance() {
         return balance;
@@ -338,7 +342,8 @@ public class Member extends BaseEntity {
     }
 
     @NotNull
-    @Column(nullable = false)
+    @Temporal(TemporalType.DATE)
+    @Column(nullable = false, length = 10)
     public Date getRegisterDate() {
         return registerDate;
     }
@@ -348,7 +353,7 @@ public class Member extends BaseEntity {
     }
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(nullable = false)
     public MemberRank getMemberRank() {
         return memberRank;
@@ -386,11 +391,4 @@ public class Member extends BaseEntity {
         this.thirdKidSex = thirdKidSex;
     }
 
-    public Date getJoinDate() {
-        return joinDate;
-    }
-
-    public void setJoinDate(Date joinDate) {
-        this.joinDate = joinDate;
-    }
 }

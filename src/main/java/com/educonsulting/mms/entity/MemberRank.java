@@ -1,5 +1,6 @@
 package com.educonsulting.mms.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -87,6 +88,7 @@ public class MemberRank extends BaseEntity {
         this.isSpecial = isSpecial;
     }
 
+    @JsonIgnore
     @OneToMany(mappedBy = "memberRank", fetch = FetchType.LAZY)
     public Set<Member> getMembers() {
         return members;
