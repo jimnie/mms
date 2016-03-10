@@ -47,7 +47,7 @@ public class RoleController extends BaseController {
     @ResponseBody
     public Message save(Role role) {
         if (roleService.isTagNameExists(role.getTag())) {
-            return Message.error("角色标识符已经存在！");
+            return Message.error("role.form.nameIsExist");
         }
         roleService.save(role);
         return SUCCESS_MESSAGE;
