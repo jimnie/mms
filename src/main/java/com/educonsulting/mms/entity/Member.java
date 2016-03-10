@@ -80,18 +80,29 @@ public class Member extends BaseEntity {
 
     private Date joinDate;
 
-    private Set<ThemeActivity> activities = new HashSet<>();
+    private Set<ThemeCategory> categories = new HashSet<>();
+
+    private Set<Theme> themes = new HashSet<>();
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "mms_inf_member_activity",
-            joinColumns = {@JoinColumn(name = "mem_id")},
-            inverseJoinColumns = {@JoinColumn(name = "act_id")})
-    public Set<ThemeActivity> getActivities() {
-        return activities;
+    @JoinTable(name = "mms_inf_member_category",
+            joinColumns = {@JoinColumn(name = "m_id")},
+            inverseJoinColumns = {@JoinColumn(name = "c_id")})
+    public Set<ThemeCategory> getCategories() {
+        return categories;
     }
 
-    public void setActivities(Set<ThemeActivity> activities) {
-        this.activities = activities;
+    public void setCategories(Set<ThemeCategory> categories) {
+        this.categories = categories;
+    }
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "members")
+    public Set<Theme> getThemes() {
+        return themes;
+    }
+
+    public void setThemes(Set<Theme> themes) {
+        this.themes = themes;
     }
 
     @NotNull
