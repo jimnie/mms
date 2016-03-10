@@ -9,6 +9,25 @@
 <link rel="stylesheet" type="text/css"
       href="<%=base%>/resources/css/icon-extension.css">
 <style type="text/css">
+    .title {
+        border: solid #C0C0C0 1px;
+        background-color: #F1F6FF;
+        padding-left: 10px;
+    }
+
+    .domain {
+        border: solid #C0C0C0 1px;
+        background-color: #FAFCFF;
+        padding-left: 10px;
+    }
+
+    .tab-form {
+        border-collapse: collapse;
+        border: none;
+        padding-top: 10px;
+        vertical-align: middle;
+    }
+
     .title-bg {
         width: 100px;
         height: 40px;
