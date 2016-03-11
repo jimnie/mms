@@ -206,9 +206,11 @@
         if (row) {
             var district = row.district;
             $("#dlg-buttons a:first-child").show();
-            $('#addform').form('load', row);
             $('#dlg').window('maximize');
             showCategory(row.categories);
+            $('#cardNo').textbox({readonly: true}).textbox('disable');
+            $('#registerDate').datebox({readonly: true}).datebox('disable');
+            $('#addform').form('load', row);
             $('#memberRank\\.id').combobox('setValue', row.memberRank.id);
             $('#dlg').dialog('setTitle', '<%=SpringUtils.getMessage("member.form.edit")%>').dialog('open');
             $('#state').combobox('select', row.state);

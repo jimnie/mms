@@ -72,9 +72,11 @@ public class MemberController extends BaseController {
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
     public Message save(Member member, @RequestParam(value = "activities") String str) {
+        //:TODO 校验已分配的会员卡号
 //        if (member.isCategoryNameExists(themeCategory.getName())) {
 //            return Message.error("category.form.nameIsExist");
 //        }
+        //:TODO 校验已存在的手机号
         String[] ids = str.split(",");
         for (String id : ids) {
             ThemeCategory themeCategory = themeCategoryService.find(id);
@@ -89,12 +91,17 @@ public class MemberController extends BaseController {
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
-    public Message update(Member member) {
+    public Message update(Member member, @RequestParam(value = "activities") String str) {
 //        if (themeCategoryService.isCategoryNameExists(themeCategory.getName(),
 //                themeCategory.getId())) {
 //            return Message.error("category.form.nameIsExist");
 //        }
-        memberService.update(member);
+        String[] ids = str.split(",");
+        for (String id : ids) {
+            ThemeCategory themeCategory = themeCategoryService.find(id);
+            member.getCategories().add(themeCategory);
+        }
+        memberService.update(member, "cartNo", "amount", "balance", "point", "registerDate");
         return SUCCESS_MESSAGE;
     }
 

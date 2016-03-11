@@ -20,7 +20,7 @@
                     <%=SpringUtils.getMessage("member.form.cardNo")%>
                 </td>
                 <td class="domain-bg">
-                    <input class="easyui-validatebox textbox" id="cardNo" name="cardNo"
+                    <input class="easyui-textbox" id="cardNo" name="cardNo"
                            data-options="required:true,
                            missingMessage:'<%=SpringUtils.getMessage("member.form.cardNoRequired")%>'">
                 </td>
@@ -132,7 +132,7 @@
                     <%=SpringUtils.getMessage("member.form.job")%>
                 </td>
                 <td class="domain-bg">
-                    <input class="easyui-validatebox textbox" id="job" name="job"
+                    <input class="easyui-textbox" id="job" name="job"
                            data-options="required:true,missingMessage:'<%=SpringUtils.getMessage("member.form.jobRequired")%>'">
                 </td>
             </tr>
