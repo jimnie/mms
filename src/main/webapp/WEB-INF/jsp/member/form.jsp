@@ -27,6 +27,24 @@
             </tr>
             <tr>
                 <td class="title-bg">
+                    <%=SpringUtils.getMessage("member.datagrid.memberRank")%>
+                </td>
+                <td class="domain-bg">
+                    <input class="easyui-combobox" id="memberRank.id" name="memberRank.id"
+                           data-options="url:'${pageContext.request.contextPath}/rank/all',
+                method:'get',valueField:'id',textField:'name',panelHeight:'auto'">
+                </td>
+                <td class="title-bg">
+                    <%=SpringUtils.getMessage("member.form.registerDate")%>
+                </td>
+                <td class="domain-bg">
+                    <input class="easyui-datebox" id="registerDate" name="registerDate"
+                           data-options="required:true,editable:false">
+                    <input type="hidden" id="id" name="id" value="">
+                </td>
+            </tr>
+            <tr>
+                <td class="title-bg">
                     <%=SpringUtils.getMessage("member.form.enName")%>
                 </td>
                 <td class="domain-bg">
@@ -126,12 +144,8 @@
                     <input class="easyui-validatebox textbox" id="email" name="email">
                 </td>
                 <td class="title-bg">
-                    <%=SpringUtils.getMessage("member.form.registerDate")%>
                 </td>
                 <td class="domain-bg">
-                    <input class="easyui-datebox" id="registerDate" name="registerDate"
-                           data-options="required:true,editable:false">
-                    <input type="hidden" id="id" name="id" value="">
                 </td>
             </tr>
             <tr>

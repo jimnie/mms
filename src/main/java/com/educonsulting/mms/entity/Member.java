@@ -79,11 +79,18 @@ public class Member extends BaseEntity {
 
     private MemberRank memberRank;
 
+    private String state;
+
+    private String city;
+
+    private String district;
+
+    private String street;
+
     private Set<ThemeCategory> categories = new HashSet<>();
 
     private Set<Theme> themes = new HashSet<>();
 
-    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "mms_inf_member_category",
             joinColumns = {@JoinColumn(name = "m_id")},
@@ -391,4 +398,38 @@ public class Member extends BaseEntity {
         this.thirdKidSex = thirdKidSex;
     }
 
+    @Column(length = 5)
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    @Column(length = 5)
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    @Column(length = 5)
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
 }

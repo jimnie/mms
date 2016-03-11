@@ -9,16 +9,32 @@
         <table cellpadding="5">
             <tr>
                 <td style="width:80px">
-                    <%=SpringUtils.getMessage("dict.query.name")%>
+                    <%=SpringUtils.getMessage("member.form.cardNo")%>
                 </td>
-                <td><input class="easyui-textbox" id="name" name="name"></td>
+                <td><input class="easyui-textbox" id="cardNo" name="cardNo"></td>
             </tr>
 
             <tr>
                 <td>
-                    <%=SpringUtils.getMessage("dict.query.creator")%>
+                    <%=SpringUtils.getMessage("member.form.kidCnName")%>
                 </td>
-                <td><input class="easyui-textbox" id="creator" name="creator"></td>
+                <td><input class="easyui-textbox" id="kidName" name="kidName"></td>
+            </tr>
+
+            <tr>
+                <td>
+                    <%=SpringUtils.getMessage("member.form.mobile")%>
+                </td>
+                <td><input class="easyui-textbox" id="mobile" name="mobile"></td>
+            </tr>
+
+            <tr>
+                <td>
+                    <%=SpringUtils.getMessage("member.datagrid.memberRank")%>
+                </td>
+                <td><input class="easyui-combobox" id="memberRankId" name="memberRankId"
+                           data-options="url:'${pageContext.request.contextPath}/rank/all',
+                method:'get',valueField:'id',textField:'name',panelHeight:'auto'"></td>
             </tr>
 
         </table>

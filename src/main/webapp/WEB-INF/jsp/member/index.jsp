@@ -44,40 +44,55 @@
 
     <div region="center" border="false">
         <table id="members" class="easyui-datagrid" border="false" fit="true"
-               rownumbers="true" pagination="true" sortName="createDate" sortOrder="asc"
-               data-options="singleSelect:true,fitColumns:true,url:'${pageContext.request.contextPath}/member/list',method:'get',pageSize:20,striped:true">
-            <thead>
+               rownumbers="true" pagination="true" sortName="registerDate" sortOrder="desc"
+               data-options="singleSelect:true,fitColumns:false,url:'${pageContext.request.contextPath}/member/list',method:'get',pageSize:20,striped:true">
+            <thead data-options="frozen:true">
             <tr>
                 <th data-options="field:'id',hidden:true"></th>
-                <th data-options="field:'firstKidCnName',width:120,halign:'center',sortable:true">
+                <th data-options="field:'state',hidden:true">state</th>
+                <th data-options="field:'city',hidden:true">city</th>
+                <th data-options="field:'district',hidden:true">district</th>
+                <th data-options="field:'street',hidden:true">street</th>
+                <th data-options="field:'categories',hidden:true">categories</th>
+                <th data-options="field:'cardNo',width:100,halign:'center',align:'center',sortable:true">
+                    <%=SpringUtils.getMessage("member.form.cardNo")%>
+                </th>
+                <th data-options="field:'firstKidCnName',width:80,halign:'center'">
                     <%=SpringUtils.getMessage("member.form.kidCnName")%>
                 </th>
-                <th data-options="field:'firstKidSex',width:60,halign:'center',align:'center',formatter:sexFormatter">
+                <th data-options="field:'firstKidSex',width:40,halign:'center',align:'center',formatter:sexFormatter">
                     <%=SpringUtils.getMessage("member.form.kidSex")%>
                 </th>
-                <th data-options="field:'firstKidBirth',width:100,halign:'center',align:'center'">
+                <th data-options="field:'firstKidBirth',width:80,halign:'center',align:'center'">
                     <%=SpringUtils.getMessage("member.form.kidBirth")%>
+                </th>
+                <th data-options="field:'memberRank',width:100,halign:'center',align:'center',sortable:true,
+                formatter:function(value,row){return row.memberRank.name;}">
+                    <%=SpringUtils.getMessage("member.datagrid.memberRank")%>
+                </th>
+                <th data-options="field:'balance',width:80,halign:'center',align:'right'">
+                    <%=SpringUtils.getMessage("member.form.balance")%>
+                </th>
+                <th data-options="field:'amount',width:120,halign:'center',align:'right',sortable:true">
+                    <%=SpringUtils.getMessage("member.form.amount")%>
                 </th>
                 <th data-options="field:'registerDate',width:100,halign:'center',align:'center',sortable:true">
                     <%=SpringUtils.getMessage("member.form.registerDate")%>
                 </th>
-                <th data-options="field:'cardNo',width:100,halign:'center',align:'center',sortable:true">
-                    <%=SpringUtils.getMessage("member.form.cardNo")%>
-                </th>
-                <th data-options="field:'memberRank',width:120,halign:'center',align:'center',sortable:true,
-                formatter:function(value,row){return row.memberRank.name;}">
-                    <%=SpringUtils.getMessage("member.datagrid.memberRank")%>
-                </th>
+            </tr>
+            </thead>
+            <thead>
+            <tr>
                 <th data-options="field:'cnName',width:120,halign:'center'">
                     <%=SpringUtils.getMessage("member.datagrid.name")%>
                 </th>
-                <th data-options="field:'relation',width:120,halign:'center',align:'left',sortable:true,formatter:relationFormatter">
+                <th data-options="field:'relation',width:120,halign:'center',align:'left',formatter:relationFormatter">
                     <%=SpringUtils.getMessage("member.form.relation")%>
                 </th>
                 <th data-options="field:'mobile',width:100,halign:'center',align:'center'">
                     <%=SpringUtils.getMessage("member.form.mobile")%>
                 </th>
-                <th data-options="field:'address',width:200,halign:'center'">
+                <th data-options="field:'address',width:300,halign:'center'">
                     <%=SpringUtils.getMessage("member.form.address")%>
                 </th>
                 <th data-options="field:'createDate',width:150,halign:'center',align:'center',sortable:true">

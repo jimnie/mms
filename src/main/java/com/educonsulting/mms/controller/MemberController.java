@@ -1,9 +1,6 @@
 package com.educonsulting.mms.controller;
 
-import com.educonsulting.mms.Filter;
-import com.educonsulting.mms.Message;
-import com.educonsulting.mms.Page;
-import com.educonsulting.mms.Pageable;
+import com.educonsulting.mms.*;
 import com.educonsulting.mms.entity.Member;
 import com.educonsulting.mms.entity.ThemeCategory;
 import com.educonsulting.mms.service.MemberRankService;
@@ -49,7 +46,10 @@ public class MemberController extends BaseController {
                        @RequestParam(value = "sort", required = false) String sort,
                        @RequestParam(value = "order", required = false) String order,
                        @RequestParam(value = "cardNo", required = false) String cardNo,
-                       @RequestParam(value = "kidName", required = false) String kidName) {
+                       @RequestParam(value = "kidName", required = false) String kidName,
+                       @RequestParam(value = "mobile", required = false) String mobile,
+                       @RequestParam(value = "memberRankId", required = false) String
+                               memberRankId) {
         Pageable pageable = getPageable(rows, page, sort, order);
         List<Filter> filters = new ArrayList<Filter>();
         if (StringUtils.isNotEmpty(cardNo)) {
@@ -57,6 +57,12 @@ public class MemberController extends BaseController {
         }
         if (StringUtils.isNotEmpty(kidName)) {
             filters.add(Filter.eq("firstKidCnName", kidName));
+        }
+        if (StringUtils.isNotEmpty(mobile)) {
+            filters.add(Filter.eq("mobile", mobile));
+        }
+        if (StringUtils.isNotEmpty(memberRankId)) {
+            filters.add(Filter.eq("memberRank", memberRankService.find(memberRankId)));
         }
         pageable.setFilters(filters);
         Page<Member> memberPage = memberService.findPage(pageable);
@@ -74,8 +80,7 @@ public class MemberController extends BaseController {
             ThemeCategory themeCategory = themeCategoryService.find(id);
             member.getCategories().add(themeCategory);
         }
-        member.setMemberRank(memberRankService.findDefault());
-        member.setPoint(0l);
+        member.setPoint(CommonAttributes.DEFAULT_MEMBER_POINT);
         member.setBalance(BigDecimal.ZERO);
         member.setAmount(BigDecimal.ZERO);
         memberService.save(member);
@@ -91,6 +96,11 @@ public class MemberController extends BaseController {
 //        }
         memberService.update(member);
         return SUCCESS_MESSAGE;
+    }
+
+    @RequestMapping(value = "/query", method = RequestMethod.GET)
+    public String query() {
+        return "/member/query";
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)

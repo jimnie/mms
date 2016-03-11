@@ -1,5 +1,7 @@
 package com.educonsulting.mms.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.HashSet;
@@ -54,6 +56,7 @@ public class ThemeCategory extends BaseEntity {
         this.sortNo = sortNo;
     }
 
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "categories")
     public Set<Member> getMembers() {
         return members;
@@ -63,6 +66,7 @@ public class ThemeCategory extends BaseEntity {
         this.members = members;
     }
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "category")
     public Set<Theme> getThemes() {
         return themes;

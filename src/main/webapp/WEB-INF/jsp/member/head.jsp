@@ -9,6 +9,7 @@
       href="${pageContext.request.contextPath}/resources/css/index.css">
 <script type="text/javascript">
     var contextPath = '<%=request.getContextPath()%>';
+
     $.parser.onComplete = function () {
         $('body').css('visibility', 'visible');
         setTimeout(function () {
@@ -19,6 +20,32 @@
         $(window).resize(function () {
             $('#mainlayout').layout('resize');
         });
+
+        $('#state').combobox({
+            url: '${pageContext.request.contextPath}/area/findRoots',
+            method: 'get',
+            valueField: 'id',
+            textField: 'name',
+            onSelect: function (r) {
+                $('#city').combobox({
+                    url: base + '/area/findArea/' + r.id
+                });
+                $('#district').combobox('clear').combobox({
+                    url: base + '/area/findArea/0'
+                });
+            }
+        });
+
+        $('#city').combobox({
+            onSelect: function (r) {
+                if (r) {
+                    $('#district').combobox({
+                        url: base + '/area/findArea/' + r.id
+                    });
+                }
+            }
+        });
+
     });
 </script>
 <script type="text/javascript">
@@ -49,13 +76,20 @@
         return value;
     }
 
+    function categoryFormatter(row, value) {
+        var ids = '';
+        for (var i = 0; i < row.length; i++) {
+            if (i != 0 && i < row.length) {
+                ids += ',';
+            }
+            ids += row[i].id
+        }
+        return ids;
+    }
+
     var actionUrl;
 
-    function newItem() {
-        $('#dlg').dialog('setTitle', '<%=SpringUtils.getMessage("member.form.add")%>').dialog('open');
-        $('#dlg').window('maximize')
-        $('#addform').form('clear');
-        $("#dlg-buttons a:first-child").show();
+    function showCategory(array) {
         $.ajax({
             url: base + '/category/findAll',
             type: 'post',
@@ -63,11 +97,31 @@
             dataType: 'json',
             success: function (data) {
                 var text = '<table width="100%" height="100%"><tr>';
-                for (var i = 0; i < data.length; i++) {
-                    var b = (i + 1) % 4 == 0;
-                    text += '<td style="height: 40px"><input type="checkbox" id="' + data[i].id + '" name="' + data[i].id + '">' + data[i].name + '</td>';
-                    if (b) {
-                        text += '</tr><tr>'
+                if (array && array.length > 0) {
+                    for (var i = 0; i < data.length; i++) {
+                        var b = (i + 1) % 4 == 0;
+                        var t = false;
+                        for (var j = 0; j < array.length; j++) {
+                            if (data[i].id == array[j].id) {
+                                t = true;
+                            }
+                        }
+                        if (t) {
+                            text += '<td style="height: 40px"><input type="checkbox" id="' + data[i].id + '" name="' + data[i].id + '" checked>' + data[i].name + '</td>';
+                        } else {
+                            text += '<td style="height: 40px"><input type="checkbox" id="' + data[i].id + '" name="' + data[i].id + '">' + data[i].name + '</td>';
+                        }
+                        if (b) {
+                            text += '</tr><tr>'
+                        }
+                    }
+                } else {
+                    for (var i = 0; i < data.length; i++) {
+                        var b = (i + 1) % 4 == 0;
+                        text += '<td style="height: 40px"><input type="checkbox" id="' + data[i].id + '" name="' + data[i].id + '">' + data[i].name + '</td>';
+                        if (b) {
+                            text += '</tr><tr>'
+                        }
                     }
                 }
                 text += '</tr></table>';
@@ -77,6 +131,30 @@
                 $.messager.alert(title, errorThrown, error);
             }
         });
+    }
+
+    function defaultMemberRank() {
+        $.ajax({
+            url: base + '/rank/default',
+            type: 'post',
+            cache: false,
+            dataType: 'json',
+            success: function (data) {
+                $('#memberRank\\.id').combobox('setValue', data.id);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                $.messager.alert(title, errorThrown, error);
+            }
+        });
+    }
+
+    function newItem() {
+        $('#dlg').dialog('setTitle', '<%=SpringUtils.getMessage("member.form.add")%>').dialog('open');
+        $('#dlg').window('maximize')
+        $('#addform').form('clear');
+        $("#dlg-buttons a:first-child").show();
+        showCategory();
+        defaultMemberRank();
     }
 
     function saveItem() {
@@ -126,23 +204,29 @@
     function editItem() {
         var row = $('#members').datagrid('getSelected');
         if (row) {
+            var district = row.district;
             $("#dlg-buttons a:first-child").show();
             $('#addform').form('load', row);
+            $('#dlg').window('maximize');
+            showCategory(row.categories);
+            $('#memberRank\\.id').combobox('setValue', row.memberRank.id);
             $('#dlg').dialog('setTitle', '<%=SpringUtils.getMessage("member.form.edit")%>').dialog('open');
-            $('#dlg').window('maximize')
+            $('#state').combobox('select', row.state);
+            $('#city').combobox({
+                url: base + '/area/findArea/' + row.state
+            }).combobox('select', row.city);
+            $('#district').combobox({
+                url: base + '/area/findArea/' + row.city
+            }).combobox('setValue', district);
         } else {
-            $.messager.alert(title, '<%=SpringUtils.getMessage("dict.head.toModifyPrompt")%>', warning);
+            $.messager.alert(title, '<%=SpringUtils.getMessage("member.form.toModifyPrompt")%>', warning);
         }
     }
 
     function delItem() {
         var row = $('#members').datagrid('getSelected');
         if (row) {
-            if (row.updatable == 'updatable_02') {
-                $.messager.alert(title, '<%=SpringUtils.getMessage("member.head.couldNotRemove")%>', error);
-                return;
-            }
-            $.messager.confirm(title, '<%=SpringUtils.getMessage("member.head.removePrompt")%>', function (r) {
+            $.messager.confirm(title, '<%=SpringUtils.getMessage("member.form.removePrompt")%>', function (r) {
                 if (r) {
                     $('#dictId').val(row.id);
                     $('#delform').form('submit', {
@@ -180,36 +264,11 @@
         showQueryDialog({
             width: 350,
             height: 300,
-            form: base + '/member/queryPage',
+            form: base + '/member/query',
             callback: function (data) {
                 $('#members').datagrid('loadData', {total: 0, rows: []});
                 $('#members').datagrid('load', data);
             }
         });
     }
-
-    $(function () {
-        $('#state').combobox({
-            url: '${pageContext.request.contextPath}/area/findRoots',
-            method: 'get',
-            valueField: 'id',
-            textField: 'name',
-            onSelect: function (r) {
-                $('#city').combobox({
-                    url: base + '/area/findArea/' + r.id
-                });
-                $('#district').combobox('clear').combobox({
-                    url: base + '/area/findArea/0'
-                });
-            }
-        });
-
-        $('#city').combobox({
-            onSelect: function (r) {
-                $('#district').combobox({
-                    url: base + '/area/findArea/' + r.id
-                });
-            }
-        });
-    });
 </script>
