@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Controller("memberRankController")
@@ -143,4 +144,17 @@ public class MemberRankController extends BaseController {
         return SUCCESS_MESSAGE;
     }
 
+    @RequestMapping(value = "/all", method = {RequestMethod.GET, RequestMethod.POST})
+    @ResponseBody
+    public Object findAll() {
+        List<MemberRank> memberRanks = memberRankService.findAll();
+        Collections.reverse(memberRanks);
+        return memberRanks;
+    }
+
+    @RequestMapping(value = "/default", method = {RequestMethod.GET, RequestMethod.POST})
+    @ResponseBody
+    public Object findDefault() {
+        return memberRankService.findDefault();
+    }
 }
