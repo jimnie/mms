@@ -16,6 +16,4 @@ public interface MemberRankService extends BaseService<MemberRank, String> {
 
     MemberRank findDefault();
 
-    MemberRank findByAmount(BigDecimal amount);
-
 }
