@@ -72,11 +72,12 @@ public class MemberController extends BaseController {
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
     public Message save(Member member, @RequestParam(value = "activities") String str) {
-        //:TODO 校验已分配的会员卡号
-//        if (member.isCategoryNameExists(themeCategory.getName())) {
-//            return Message.error("category.form.nameIsExist");
-//        }
-        //:TODO 校验已存在的手机号
+        if (memberService.isCartNoAssigned(member.getCardNo())) {
+            return Message.error("member.form.cardNoIsExist");
+        }
+        if (memberService.isMobileExisted(member.getMobile())) {
+            return Message.error("member.form.mobileExist");
+        }
         String[] ids = str.split(",");
         for (String id : ids) {
             ThemeCategory themeCategory = themeCategoryService.find(id);
@@ -92,10 +93,12 @@ public class MemberController extends BaseController {
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
     public Message update(Member member, @RequestParam(value = "activities") String str) {
-//        if (themeCategoryService.isCategoryNameExists(themeCategory.getName(),
-//                themeCategory.getId())) {
-//            return Message.error("category.form.nameIsExist");
-//        }
+        if (memberService.isCartNoAssigned(member.getCardNo())) {
+            return Message.error("member.form.cardNoIsExist");
+        }
+        if (memberService.isMobileExisted(member.getMobile())) {
+            return Message.error("member.form.mobileExist");
+        }
         String[] ids = str.split(",");
         for (String id : ids) {
             ThemeCategory themeCategory = themeCategoryService.find(id);
