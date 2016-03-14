@@ -29,7 +29,7 @@ public class MemberServiceImpl extends BaseServiceImpl<Member, String> implement
 
     @Transactional(readOnly = true)
     public boolean cartNoExists(String cardNo) {
-        return memberDao.cartNoExists(cardNo);
+        return memberDao.isCardNoAssigned(cardNo);
     }
 
     @Override
@@ -113,4 +113,13 @@ public class MemberServiceImpl extends BaseServiceImpl<Member, String> implement
         super.delete(entity);
     }
 
+    @Override
+    public boolean isCartNoAssigned(String cardNo) {
+        return memberDao.isCardNoAssigned(cardNo);
+    }
+
+    @Override
+    public boolean isMobileExisted(String mobile) {
+        return memberDao.isMobileExisted(mobile);
+    }
 }
