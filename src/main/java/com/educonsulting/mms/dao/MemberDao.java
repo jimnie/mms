@@ -7,5 +7,7 @@ import com.educonsulting.mms.entity.Member;
  */
 public interface MemberDao extends BaseDao<Member, String> {
 
-    boolean cartNoExists(String cardNo);
+    boolean isCardNoAssigned(String cardNo);
+
+    boolean isMobileExisted(String mobile);
 }
