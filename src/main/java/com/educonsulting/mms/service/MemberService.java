@@ -9,7 +9,9 @@ import com.educonsulting.mms.entity.Member;
  */
 public interface MemberService extends BaseService<Member, String> {
 
-    boolean cartNoExists(String cardNo);
+    boolean isCartNoAssigned(String cardNo);
+
+    boolean isMobileExisted(String mobile);
 
     Page<Member> findPage(Pageable pageable);
 }
