@@ -13,11 +13,19 @@ import javax.persistence.FlushModeType;
 public class MemberDaoImpl extends BaseDaoImpl<Member, String> implements MemberDao {
 
     @Override
-    public boolean cartNoExists(String cardNo) {
-        String jpql = "select count(member.cardNo) from Member member where member.cardNo = " +
+    public boolean isCardNoAssigned(String cardNo) {
+        String jpql = "select count(mem) from Member mem where mem.cardNo = " +
                 ":cardNo";
         Long count = entityManager.createQuery(jpql, Long.class).setFlushMode(FlushModeType
                 .COMMIT).setParameter("cardNo", cardNo).getSingleResult();
+        return count > 0;
+    }
+
+    @Override
+    public boolean isMobileExisted(String mobile) {
+        String jpql = "select count(mem.mobile) from Member mem where mem.mobile = :mobile";
+        Long count = entityManager.createQuery(jpql, Long.class).setFlushMode(FlushModeType.COMMIT)
+                .setParameter("mobile", mobile).getSingleResult();
         return count > 0;
     }
 }
