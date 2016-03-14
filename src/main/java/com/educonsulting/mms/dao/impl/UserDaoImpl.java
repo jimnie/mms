@@ -14,7 +14,8 @@ public class UserDaoImpl extends BaseDaoImpl<User, String> implements UserDao {
         if (username == null) {
             return false;
         }
-        String jpql = "select count(*) from User user where lower(user.username) = lower" +
+        String jpql = "select count(user.username) from User user where lower(user.username) = " +
+                "lower" +
                 "(:username)";
         Long count = entityManager.createQuery(jpql, Long.class).setFlushMode(FlushModeType
                 .COMMIT).setParameter("username", username).getSingleResult();
