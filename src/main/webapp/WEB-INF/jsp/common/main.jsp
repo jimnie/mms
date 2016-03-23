@@ -84,6 +84,37 @@
     </div>
 </div>
 
+<!-- 右键菜单 -->
+<div id="rightMenu" class="easyui-menu" style="width: 150px;">
+    <div id="tabRefresh">
+        刷新
+    </div>
+    <div class="menu-sep">
+    </div>
+    <div id="tabClose">
+        关闭
+    </div>
+    <div id="tabCloseAll">
+        全部关闭
+    </div>
+    <div id="tabCloseOther">
+        除此之外全部关闭
+    </div>
+    <div class="menu-sep">
+    </div>
+    <div id="tabCloseRight">
+        当前页右侧全部关闭
+    </div>
+    <div id="tabCloseLeft">
+        当前页左侧全部关闭
+    </div>
+    <div class="menu-sep">
+    </div>
+    <div id="tabExit">
+        退出
+    </div>
+</div>
+
 <!--修改密码窗口-->
 <div id="modifyPassword" class="easyui-window"
      title="<%=SpringUtils.getMessage("page.main.modifyPassword")%>"

@@ -135,20 +135,20 @@ function createFrame(url) {
 
 function tabDoubleClickEvent() {
     /* 双击关闭TAB选项卡 */
-    $(".tabs-inner").dblclick(function () {
-        var subtitle = $(this).children(".tabs-closable").text();
+    $('.tabs-inner').dblclick(function () {
+        var subtitle = $(this).children('.tabs-closable').text();
         $('#tabs').tabs('close', subtitle);
     });
     /* 为选项卡绑定右键 */
-    $(".tabs-inner").bind('contextmenu', function (e) {
-        $('#mm').menu('show', {
+    $('.tabs-inner').bind('contextmenu', function (e) {
+        $('#rightMenu').menu('show', {
             left: e.pageX,
             top: e.pageY
         });
 
-        var subtitle = $(this).children(".tabs-closable").text();
+        var subtitle = $(this).children('.tabs-closable').text();
 
-        $('#mm').data("currtab", subtitle);
+        $('#rightMenu').data('currtab', subtitle);
         $('#tabs').tabs('select', subtitle);
         return false;
     });
@@ -156,7 +156,7 @@ function tabDoubleClickEvent() {
 // 绑定右键菜单事件
 function tabRightClickEvent() {
     //刷新
-    $('#mm-tabupdate').click(function () {
+    $('#tabRefresh').click(function () {
         var currTab = $('#tabs').tabs('getSelected');
         var url = $(currTab.panel('options').content).attr('src');
         $('#tabs').tabs('update', {
@@ -167,24 +167,24 @@ function tabRightClickEvent() {
         })
     })
     //关闭当前
-    $('#mm-tabclose').click(function () {
-        var currtab_title = $('#mm').data("currtab");
+    $('#tabClose').click(function () {
+        var currtab_title = $('#rightMenu').data('currtab');
         $('#tabs').tabs('close', currtab_title);
     })
     //全部关闭
-    $('#mm-tabcloseall').click(function () {
+    $('#tabCloseAll').click(function () {
         $('.tabs-inner span').each(function (i, n) {
             var t = $(n).text();
             $('#tabs').tabs('close', t);
         });
     });
     //关闭除当前之外的TAB
-    $('#mm-tabcloseother').click(function () {
+    $('#tabCloseOther').click(function () {
         $('#mm-tabcloseright').click();
         $('#mm-tabcloseleft').click();
     });
     //关闭当前右侧的TAB
-    $('#mm-tabcloseright').click(function () {
+    $('#tabCloseRight').click(function () {
         var nextall = $('.tabs-selected').nextAll();
         if (nextall.length == 0) {
             return false;
@@ -196,7 +196,7 @@ function tabRightClickEvent() {
         return false;
     });
     //关闭当前左侧的TAB
-    $('#mm-tabcloseleft').click(function () {
+    $('#tabCloseLeft').click(function () {
         var prevall = $('.tabs-selected').prevAll();
         if (prevall.length == 0) {
             return false;
@@ -209,8 +209,8 @@ function tabRightClickEvent() {
     });
 
     //退出
-    $("#mm-exit").click(function () {
-        $('#mm').menu('hide');
+    $('#tabExit').click(function () {
+        $('#rightMenu').menu('hide');
     })
 }
 
