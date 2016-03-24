@@ -2,9 +2,7 @@
 <ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="http://www.ehcache.org/ehcache.xsd">
 
-    <!--
-        缓存到硬盘的路径
-    -->
+    <!-- 缓存到硬盘的路径 -->
     <diskStore path="${java.io.tmpdir}/${system.project_name}/cache"/>
     <!--
         默认设置
