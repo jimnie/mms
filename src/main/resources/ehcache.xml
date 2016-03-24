@@ -2,12 +2,28 @@
 <ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="http://www.ehcache.org/ehcache.xsd">
 
+    <!--
+        缓存到硬盘的路径
+    -->
     <diskStore path="${java.io.tmpdir}/${system.project_name}/cache"/>
-
+    <!--
+        默认设置
+        maxElementsInMemory : 在內存中最大緩存的对象数量。
+        eternal : 缓存的对象是否永远不变。
+        timeToIdleSeconds ：可以操作对象的时间。
+        timeToLiveSeconds ：缓存中对象的生命周期，时间到后查询数据会从数据库中读取。
+        overflowToDisk ：内存满了，是否要缓存到硬盘。
+    -->
+    <defaultCache maxElementsInMemory="200" eternal="false" timeToIdleSeconds="50"
+                  timeToLiveSeconds="60" overflowToDisk="true"></defaultCache>
     <cache name="authorization" maxElementsInMemory="100" timeToLiveSeconds="3600" eternal="false"
            overflowToDisk="false"/>
     <cache name="setting" maxElementsInMemory="100" eternal="true" overflowToDisk="true"/>
     <cache name="logConfig" maxElementsInMemory="100" eternal="true" overflowToDisk="true"/>
+    <!--
+        指定缓存的对象。
+        下面出现的的属性覆盖上面出现的，没出现的继承上面的。
+    -->
     <cache name="dictionary"
            eternal="false"
            maxElementsInMemory="100"
