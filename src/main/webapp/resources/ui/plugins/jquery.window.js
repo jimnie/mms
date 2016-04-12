@@ -1,7 +1,7 @@
-/**
- * jQuery EasyUI 1.4.4
+﻿/**
+ * jQuery EasyUI 1.4.5
  *
- * Copyright (c) 2009-2015 www.jeasyui.com. All rights reserved.
+ * Copyright (c) 2009-2016 www.jeasyui.com. All rights reserved.
  *
  * Licensed under the freeware license: http://www.jeasyui.com/license_freeware.php
  * To use it on other terms please contact us: info@jeasyui.com
@@ -58,9 +58,9 @@
             border: false,
             doSize: true,
             closed: true,
-            cls: "window",
-            headerCls: "window-header",
-            bodyCls: "window-body " + (_14.noheader ? "window-body-noheader" : ""),
+            cls: "window " + (!_14.border ? "window-thinborder window-noborder " : (_14.border == "thin" ? "window-thinborder " : "")) + (_14.cls || ""),
+            headerCls: "window-header " + (_14.headerCls || ""),
+            bodyCls: "window-body " + (_14.noheader ? "window-body-noheader " : " ") + (_14.bodyCls || ""),
             onBeforeDestroy: function () {
                 if (_14.onBeforeDestroy.call(_12) == false) {
                     return false;
@@ -168,7 +168,7 @@
         _1b.window.draggable({
             handle: ">div.panel-header>div.panel-title",
             disabled: _1b.options.draggable == false,
-            onStartDrag: function (e) {
+            onBeforeDrag: function (e) {
                 if (_1b.mask) {
                     _1b.mask.css("z-index", $.fn.window.defaults.zIndex++);
                 }
@@ -176,6 +176,8 @@
                     _1b.shadow.css("z-index", $.fn.window.defaults.zIndex++);
                 }
                 _1b.window.css("z-index", $.fn.window.defaults.zIndex++);
+            },
+            onStartDrag: function (e) {
                 if (!_1b.proxy) {
                     _1b.proxy = $("<div class=\"window-proxy\"></div>").insertAfter(_1b.window);
                 }
@@ -192,10 +194,12 @@
                         _1b.proxy.show();
                     }
                 }, 500);
-            }, onDrag: function (e) {
+            },
+            onDrag: function (e) {
                 _1b.proxy.css({display: "block", left: e.data.left, top: e.data.top});
                 return false;
-            }, onStopDrag: function (e) {
+            },
+            onStopDrag: function (e) {
                 _1b.options.left = e.data.left;
                 _1b.options.top = e.data.top;
                 $(_1a).window("move");
@@ -328,6 +332,7 @@
         resizable: true,
         shadow: true,
         modal: false,
+        border: true,
         inline: false,
         title: "New Window",
         collapsible: true,
