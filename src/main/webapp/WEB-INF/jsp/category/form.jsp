@@ -8,13 +8,13 @@
         <td style="width:100px" class="title-bg">
             <%=SpringUtils.getMessage("category.form.name")%>
         </td>
-        <td class="domain-bg">
+        <td style="width:180px" class="domain-bg">
             <input class="easyui-textbox" id="name" name="name"
                    data-options="required:true,missingMessage:'必须填写类别名称'">
         </td>
     </tr>
     <tr>
-        <td style="width:100px" class="title-bg">
+        <td class="title-bg">
             <%=SpringUtils.getMessage("category.form.memo")%>
         </td>
         <td class="domain-bg">

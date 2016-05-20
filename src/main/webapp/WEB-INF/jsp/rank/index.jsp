@@ -70,9 +70,9 @@
     </div>
 </div>
 
-<div id="dlg" style="width:600px;height:500px;"
+<div id="dlg" style="width:400px;height:300px;"
      class="easyui-dialog" closed="true" modal="true" buttons="#dlg-buttons">
-    <div style="padding:40px 0px 0px 150px;">
+    <div style="padding:20px 0px 0px 40px;">
         <div style="float:center">
             <form id="addform" method="post" style="margin:0;padding:0">
                 <jsp:include page="form.jsp"/>
