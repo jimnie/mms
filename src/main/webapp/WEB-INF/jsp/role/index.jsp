@@ -84,9 +84,9 @@
         </table>
     </div>
 
-    <div id="dlg" class="easyui-dialog" style="width:600px;height:500px;"
+    <div id="dlg" class="easyui-dialog" style="width:400px;height:300px;"
          closed="true" modal="true" buttons="#dlg-buttons">
-        <div style="padding:40px 0px 0px 150px;">
+        <div style="padding:20px 0px 0px 40px;">
             <div style="float:center">
                 <form id="addform" method="post">
                     <jsp:include page="form.jsp"></jsp:include>

@@ -84,9 +84,9 @@
     </div>
 </div>
 
-<div id="dlg" style="width:600px;height:500px;"
+<div id="dlg" style="width: 400px;height: 340px;"
      class="easyui-dialog" closed="true" modal="true" buttons="#dlg-buttons">
-    <div style="padding:40px 0px 0px 150px;">
+    <div style="padding:20px 0px 0px 40px;">
         <div style="float:center">
             <form id="addform" method="post">
                 <jsp:include page="form.jsp"/>
@@ -105,9 +105,9 @@
     </div>
 </div>
 <%--添加用户--%>
-<div id="addUserdlg" style="width:620px;height:450px;"
+<div id="addUserdlg" style="width:500px;height:420px;"
      class="easyui-dialog" closed="true" modal="true" buttons="#addUser-buttons">
-    <div style="padding:40px 0px 0px 100px;">
+    <div style="padding:20px 0px 0px 40px;">
         <div style="float:center">
             <form id="addUserform" method="post">
                 <jsp:include page="addUserform.jsp"/>
@@ -126,9 +126,9 @@
     </div>
 </div>
 <%--授权角色--%>
-<div id="addRolesdlg" style="width:620px;height:450px;"
+<div id="addRolesdlg" style="width:500px;height:420px;"
      class="easyui-dialog" closed="true" modal="true" buttons="#addRoles-buttons">
-    <div style="padding:40px 0px 0px 100px;">
+    <div style="padding:20px 0px 0px 40px;">
         <div style="float:center">
             <form id="addRolesform" method="post">
                 <jsp:include page="addRoleform.jsp"/>

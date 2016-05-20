@@ -5,15 +5,16 @@
 <div>
     <div class="subtitle" style="border-bottom:1px solid #ccc">请输入查询参数：</div>
     <div style="padding:10px 0 10px 30px">
-        <table cellspacing="5">
+        <table cellspacing="5" class="tab-form">
             <tr>
-                <td>角色名称：</td>
-                <td><input id="name" name="name" class="easyui-textbox">
+                <td style="width: 70px" class="title-bg">角色名称：</td>
+                <td class="domain-bg">
+                    <input id="name" name="name" class="easyui-textbox">
                 </td>
             </tr>
             <tr>
-                <td>角色状态：</td>
-                <td>
+                <td class="title-bg">角色状态：</td>
+                <td class="domain-bg">
                     <input class="easyui-combobox" id="status" name="status"
                            data-options="url:'${pageContext.request.contextPath}/dict/findDict/status',
                        method:'get',
@@ -23,12 +24,12 @@
                 </td>
             </tr>
             <tr>
-                <td>排序：</td>
-                <td><input id="sortNo" name="sortNo" class="easyui-textbox"></td>
+                <td class="title-bg">排序：</td>
+                <td class="domain-bg"><input id="sortNo" name="sortNo" class="easyui-textbox"></td>
             </tr>
             <tr>
-                <td>备注：</td>
-                <td><input id="memo" name="memo" class="easyui-textbox"></td>
+                <td class="title-bg">备注：</td>
+                <td class="domain-bg"><input id="memo" name="memo" class="easyui-textbox"></td>
             </tr>
 
         </table>

@@ -1,21 +1,22 @@
 <%@ page import="com.educonsulting.mms.util.SpringUtils" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-<table>
+<table class="tab-form">
 
     <tr>
-        <td><%=SpringUtils.getMessage("group.form.parent")%>
+        <td style="width: 100px" class="title-bg">
+            <%=SpringUtils.getMessage("group.form.parent")%>
         </td>
-        <td colspan="2">
+        <td style="width: 180px" colspan="2" class="domain-bg">
             <input class="easyui-combotree" id="parent.id" name="parent.id"
                    data-options="url:'${pageContext.request.contextPath}/group/tree',method:'get'">
         </td>
     </tr>
     <tr>
-        <td align="center" colspan="3">
+        <td align="center" colspan="3" class="domain-bg">
             <table style="width: 400px">
                 <tr>
-                    <td style="width: 40%">
+                    <td style="font-size: 12px;width: 40%">
                         <%=SpringUtils.getMessage("group.form.selectableUser")%>
                         <div id="selectable" style="width:99%;height:240px;overflow: auto">
                             <select id="selectableUsers" name="selectableUsers" size="10"
@@ -31,7 +32,7 @@
                             <%=SpringUtils.getMessage("group.form.remove")%>
                         </a>
                     </td>
-                    <td style="width: 40%">
+                    <td style="font-size: 12px;width: 40%">
                         <%=SpringUtils.getMessage("group.form.selectedUser")%>
                         <div id="selected" style="width:99%;height:240px;overflow: auto">
                             <select id="selectedUsers" name="selectedUsers" size="10"
