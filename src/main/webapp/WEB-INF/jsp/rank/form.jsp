@@ -10,7 +10,7 @@
         </td>
         <td style="width:180px" class="domain-bg">
             <input class="easyui-textbox" id="name" name="name"
-                   missingMessage="必须填写会员等级名称"
+                   missingMessage="<%=SpringUtils.getMessage("rank.form.nameRequired")%>"
                    required="true"></td>
     </tr>
     <tr>
@@ -21,7 +21,7 @@
             <input class="easyui-numberbox" id="scale" name="scale"
                    required="true" precision="2" min="0.01" max="1" value="1"
                    data-options="value:'0'"
-                   missingMessage="必须填写0到1之间的数值"/></td>
+                   missingMessage="<%=SpringUtils.getMessage("rank.form.scaleMissing")%>"/></td>
     </tr>
     <tr>
         <td class="title-bg">
@@ -30,7 +30,8 @@
         <td class="domain-bg">
             <input class="easyui-numberbox" id="amount" name="amount" precision="2" min="0"
                    max="99999999"
-                   required="true" missingMessage="必须填写会员等级的消费额度"/></td>
+                   required="true"
+                   missingMessage="<%=SpringUtils.getMessage("rank.form.amountRequired")%>"/></td>
         </td>
     </tr>
     <tr>

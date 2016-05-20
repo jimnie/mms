@@ -10,7 +10,7 @@
         </td>
         <td style="width:180px" class="domain-bg">
             <input class="easyui-textbox" id="name" name="name"
-                   data-options="required:true,missingMessage:'必须填写类别名称'">
+                   data-options="required:true,missingMessage:'<%=SpringUtils.getMessage("category.form.nameRequired")%>'">
         </td>
     </tr>
     <tr>
