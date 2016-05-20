@@ -62,14 +62,14 @@
         $('#status').combobox(notonly).combobox(require);
         $('#editable').combobox(notonly).combobox(require);
         $("#dlg-buttons a:first-child").show();
-        $('#dlg').dialog('setTitle', '添加角色').dialog('open');
+        $('#dlg').dialog('setTitle', '<%=SpringUtils.getMessage("role.form.addRoleTitle")%>').dialog('open');
     }
 
     function editItem() {
         var row = $('#roles').datagrid('getSelected');
         if (row) {
             if (row.editable == 'editable_02') {
-                $.messager.alert(title, '该角色不能修改！', warning);
+                $.messager.alert(title, '<%=SpringUtils.getMessage("role.form.roleCannotEdit")%>', warning);
                 return;
             }
             $.each($('#addform input'), function (i) {
@@ -79,9 +79,9 @@
             $('#tag').textbox(readonly);
             $('#editable').combobox(readonly).combobox('setValue', row.editable);
             $("#dlg-buttons a:first-child").show();
-            $('#dlg').dialog('setTitle', '修改角色').dialog('open');
+            $('#dlg').dialog('setTitle', '<%=SpringUtils.getMessage("role.form.editRoleTitle")%>').dialog('open');
         } else {
-            $.messager.alert(title, '请选择要修改的角色！', warning);
+            $.messager.alert(title, '<%=SpringUtils.getMessage("role.form.selectToRole")%>', warning);
         }
     }
 
@@ -89,10 +89,10 @@
         var row = $('#roles').datagrid('getSelected');
         if (row) {
             if (row.editable == 'editable_02') {
-                $.messager.alert(title, '该角色不能删除！', warning);
+                $.messager.alert(title, '<%=SpringUtils.getMessage("role.form.roleCannotDelete")%>', warning);
                 return;
             }
-            $.messager.confirm(title, '请确认删除角色？', function (r) {
+            $.messager.confirm(title, '<%=SpringUtils.getMessage("role.form.confirmToDeleteRole")%>', function (r) {
                 if (r) {
                     $('#roleId').val(row.id);
                     $('#delform').form('submit', {
@@ -116,7 +116,7 @@
                 }
             });
         } else {
-            $.messager.alert(title, '请选择要删除的角色！', warning);
+            $.messager.alert(title, '<%=SpringUtils.getMessage("role.form.selectRoleToDelete")%>', warning);
         }
     }
 
@@ -174,9 +174,9 @@
             $('#r_roleid').attr('value', row.id);
             showResourcesTree(row);
             row = JSON.stringify(row).replace(/\./g, "\\\\.");
-            $('#auth').dialog('setTitle', '资源分配').dialog('open');
+            $('#auth').dialog('setTitle', '<%=SpringUtils.getMessage("role.form.assignResource")%>').dialog('open');
         } else {
-            $.messager.alert(title, '请选择要分配资源的角色！', warning);
+            $.messager.alert(title, '<%=SpringUtils.getMessage("role.form.selectRoleToAssign")%>', warning);
         }
     }
 
@@ -250,9 +250,9 @@
             });
 //            row = JSON.stringify(row).replace(/\./g, "\\\\.");
 
-            $('#ac').dialog('setTitle', '权限分配(角色名称：' + row.name + ')').dialog('open');
+            $('#ac').dialog('setTitle', '<%=SpringUtils.getMessage("role.form.toAssignAuthRoleTitle")%>' + row.name).dialog('open');
         } else {
-            $.messager.alert(title, '请选择要分配权限的角色！', warning);
+            $.messager.alert(title, '<%=SpringUtils.getMessage("role.form.selectRoleToAssignAuth")%>', warning);
         }
     }
 
@@ -267,15 +267,15 @@
         var actAlias = $('#act').combobox('getValue');
         var actName = $('#act').combobox('getText');
         if (moduleId == '') {
-            $.messager.alert(title, '请选择模块！', warning);
+            $.messager.alert(title, '<%=SpringUtils.getMessage("role.form.selectModule")%>', warning);
             return;
         }
         if (resourceId == '') {
-            $.messager.alert(title, '请选择资源！', warning);
+            $.messager.alert(title, '<%=SpringUtils.getMessage("role.form.selectResource")%>', warning);
             return;
         }
         if (actAlias == '') {
-            $.messager.alert(title, '请选择操作项！', warning);
+            $.messager.alert(title, '<%=SpringUtils.getMessage("role.form.selectOperation")%>', warning);
             return;
         }
 
@@ -289,7 +289,7 @@
             if (authsRows[i].resourceId == resourceId
                     && authsRows[i].roleId == roleId
                     && authsRows[i].perms == perms) {
-                $.messager.alert(title, '资源权限已经被分配！', error);
+                $.messager.alert(title, '<%=SpringUtils.getMessage("role.form.resourceHasAssigned")%>', error);
                 return;
             }
         }
@@ -353,11 +353,11 @@
         var resourceId = $('#resource').combobox('getValue');
 
         if (moduleId == '') {
-            $.messager.alert(title, '请选择模块！', warning);
+            $.messager.alert(title, '<%=SpringUtils.getMessage("role.form.selectModule")%>', warning);
             return;
         }
         if (resourceId == '') {
-            $.messager.alert(title, '请选择资源！', warning);
+            $.messager.alert(title, '<%=SpringUtils.getMessage("role.form.selectResource")%>', warning);
             return;
         }
 
@@ -365,7 +365,7 @@
         if (row) {
             $('#authorities').datagrid('deleteRow', $('#authorities').datagrid('getRowIndex', row));
         } else {
-            $.messager.alert(title, '请选择要删除的权限！', warning);
+            $.messager.alert(title, '<%=SpringUtils.getMessage("role.form.selectResourceToDelete")%>', warning);
         }
     }
 </script>
