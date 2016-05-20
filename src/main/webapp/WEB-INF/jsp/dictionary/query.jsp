@@ -6,19 +6,20 @@
         <%=SpringUtils.getMessage("page.common.inputParams")%>
     </div>
     <div style="padding:10px 0 10px 30px">
-        <table cellpadding="5">
+        <table cellpadding="5" class="tab-form">
             <tr>
-                <td style="width:80px">
+                <td style="width:70px" class="title-bg">
                     <%=SpringUtils.getMessage("dict.query.name")%>
                 </td>
-                <td><input class="easyui-textbox" id="name" name="name"></td>
+                <td class="domain-bg">
+                    <input class="easyui-textbox" id="name" name="name"></td>
             </tr>
-
             <tr>
-                <td>
+                <td class="title-bg">
                     <%=SpringUtils.getMessage("dict.query.creator")%>
                 </td>
-                <td><input class="easyui-textbox" id="creator" name="creator"></td>
+                <td class="domain-bg"><input class="easyui-textbox" id="creator" name="creator">
+                </td>
             </tr>
 
         </table>

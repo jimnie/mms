@@ -2,42 +2,45 @@
 <%@ page import="com.educonsulting.mms.util.SpringUtils" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-<table cellpadding="5">
+<table class="tab-form">
+
     <tr>
-        <td style="width:80px">
+        <td style="width:100px" class="title-bg">
             <%=SpringUtils.getMessage("dict.form.nickname")%>
         </td>
-        <td><input class="easyui-textbox" id="nickname" name="nickname"
+        <td style="width:180px" class="domain-bg">
+            <input class="easyui-textbox" id="nickname" name="nickname"
                    required="true"></td>
     </tr>
     <tr>
-        <td>
+        <td class="title-bg">
             <%=SpringUtils.getMessage("dict.form.value")%>
         </td>
-        <td>
+        <td class="domain-bg">
             <input class="easyui-textbox" id="value" name="value"
                    required="true"/></td>
     </tr>
     <tr>
-        <td>
+        <td class="title-bg">
             <%=SpringUtils.getMessage("dict.form.name")%>
         </td>
-        <td>
+        <td class="domain-bg">
             <input class="easyui-textbox" id="name" name="name"
                    required="true"/></td>
         </td>
     </tr>
     <tr>
-        <td>
+        <td class="title-bg">
             <%=SpringUtils.getMessage("dict.form.type")%>
         </td>
-        <td><input class="easyui-textbox" id="type" name="type"></td>
+        <td class="domain-bg">
+            <input class="easyui-textbox" id="type" name="type"></td>
     </tr>
     <tr>
-        <td>
+        <td class="title-bg">
             <%=SpringUtils.getMessage("dict.form.updatable")%>
         </td>
-        <td>
+        <td class="domain-bg">
             <input class="easyui-combobox" id="updatable" name="updatable"
                    data-options="url:'${pageContext.request.contextPath}/dict/findDict/updatable',
                                                 method:'get',
@@ -46,10 +49,10 @@
                                                 panelHeight:'auto'">
     </tr>
     <tr>
-        <td>
+        <td class="title-bg">
             <%=SpringUtils.getMessage("dict.form.status")%>
         </td>
-        <td>
+        <td class="domain-bg">
             <input class="easyui-combobox" id="status" name="status"
                    data-options="url:'${pageContext.request.contextPath}/dict/findDict/status',
                                                 method:'get',
@@ -60,18 +63,19 @@
         </td>
     </tr>
     <tr>
-        <td>
+        <td class="title-bg">
             <%=SpringUtils.getMessage("dict.form.sortNo")%>
         </td>
-        <td>
+        <td class="domain-bg">
             <input class="easyui-textbox" id="sortNo" name="sortNo">
         </td>
     </tr>
     <tr>
-        <td>
+        <td class="title-bg">
             <%=SpringUtils.getMessage("dict.form.memo")%>
         </td>
-        <td><input class="easyui-textbox" id="memo" name="memo"></td>
+        <td class="domain-bg">
+            <input class="easyui-textbox" id="memo" name="memo"></td>
     </tr>
     <tr>
         <td></td>
