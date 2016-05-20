@@ -99,7 +99,7 @@
                 var text = '<table width="100%" height="100%"><tr>';
                 if (array && array.length > 0) {
                     for (var i = 0; i < data.length; i++) {
-                        var b = (i + 1) % 4 == 0;
+                        var b = (i + 1) % 6 == 0;
                         var t = false;
                         for (var j = 0; j < array.length; j++) {
                             if (data[i].id == array[j].id) {
@@ -107,9 +107,9 @@
                             }
                         }
                         if (t) {
-                            text += '<td style="height: 40px"><input type="checkbox" id="' + data[i].id + '" name="' + data[i].id + '" checked>' + data[i].name + '</td>';
+                            text += '<td style="width: 100px; height: 40px; font-size: 12px;"><input type="checkbox" id="' + data[i].id + '" name="' + data[i].id + '" checked>' + data[i].name + '</td>';
                         } else {
-                            text += '<td style="height: 40px"><input type="checkbox" id="' + data[i].id + '" name="' + data[i].id + '">' + data[i].name + '</td>';
+                            text += '<td style="width: 100px; height: 40px; font-size: 12px;"><input type="checkbox" id="' + data[i].id + '" name="' + data[i].id + '">' + data[i].name + '</td>';
                         }
                         if (b) {
                             text += '</tr><tr>'
@@ -117,8 +117,8 @@
                     }
                 } else {
                     for (var i = 0; i < data.length; i++) {
-                        var b = (i + 1) % 4 == 0;
-                        text += '<td style="height: 40px"><input type="checkbox" id="' + data[i].id + '" name="' + data[i].id + '">' + data[i].name + '</td>';
+                        var b = (i + 1) % 6 == 0;
+                        text += '<td style="width: 100px; height: 40px; font-size: 12px;"><input type="checkbox" id="' + data[i].id + '" name="' + data[i].id + '">' + data[i].name + '</td>';
                         if (b) {
                             text += '</tr><tr>'
                         }

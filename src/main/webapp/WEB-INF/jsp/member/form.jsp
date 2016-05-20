@@ -8,7 +8,7 @@
         </legend>
         <table class="tab-border" style="height: 300px;">
             <tr>
-                <td class="title-bg">
+                <td style="width: 100px" class="title-bg">
                     <%=SpringUtils.getMessage("member.form.cnName")%>
                 </td>
                 <td class="domain-bg">
@@ -16,7 +16,7 @@
                            data-options="required:true,
                            missingMessage:'<%=SpringUtils.getMessage("member.form.cnNameRequired")%>'">
                 </td>
-                <td class="title-bg">
+                <td style="width: 100px" class="title-bg">
                     <%=SpringUtils.getMessage("member.form.cardNo")%>
                 </td>
                 <td class="domain-bg">
@@ -26,7 +26,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="title-bg">
+                <td style="width: 100px" class="title-bg">
                     <%=SpringUtils.getMessage("member.datagrid.memberRank")%>
                 </td>
                 <td class="domain-bg">
@@ -34,7 +34,7 @@
                            data-options="url:'${pageContext.request.contextPath}/rank/all',
                 method:'get',valueField:'id',textField:'name',panelHeight:'auto'">
                 </td>
-                <td class="title-bg">
+                <td style="width: 100px" class="title-bg">
                     <%=SpringUtils.getMessage("member.form.registerDate")%>
                 </td>
                 <td class="domain-bg">
@@ -44,12 +44,12 @@
                 </td>
             </tr>
             <tr>
-                <td class="title-bg">
+                <td style="width: 100px" class="title-bg">
                     <%=SpringUtils.getMessage("member.form.enName")%>
                 </td>
                 <td class="domain-bg">
                     <input class="easyui-textbox" id="enName" name="enName"></td>
-                <td class="title-bg">
+                <td style="width: 100px" class="title-bg">
                     <%=SpringUtils.getMessage("member.form.sex")%>
                 </td>
                 <td class="domain-bg">
@@ -65,7 +65,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="title-bg">
+                <td style="width: 100px" class="title-bg">
                     <%=SpringUtils.getMessage("member.form.birth")%>
                 </td>
                 <td class="domain-bg">
@@ -75,7 +75,7 @@
                            missingMessage:'<%=SpringUtils.getMessage("member.form.birthRequired")%>'">
                 </td>
                 </td>
-                <td class="title-bg">
+                <td style="width: 100px" class="title-bg">
                     <%=SpringUtils.getMessage("member.form.relation")%>
                 </td>
                 <td class="domain-bg">
@@ -91,14 +91,14 @@
                 </td>
             </tr>
             <tr>
-                <td class="title-bg">
+                <td style="width: 100px" class="title-bg">
                     <%=SpringUtils.getMessage("member.form.mobile")%>
                 </td>
                 <td class="domain-bg">
                     <input class="easyui-validatebox textbox" id="mobile" name="mobile"
                            data-options="required:true,missingMessage:'<%=SpringUtils.getMessage("member.form.mobileRequired")%>'">
                 </td>
-                <td class="title-bg">
+                <td style="width: 100px" class="title-bg">
                     <%=SpringUtils.getMessage("member.form.eduDegree")%>
                 </td>
                 <td class="domain-bg">
@@ -114,7 +114,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="title-bg">
+                <td style="width: 100px" class="title-bg">
                     <%=SpringUtils.getMessage("member.form.industry")%>
                 </td>
                 <td class="domain-bg">
@@ -128,7 +128,7 @@
                                                 editable:false,
                                                 missingMessage:'<%=SpringUtils.getMessage("member.form.industryRequired")%>'">
                 </td>
-                <td class="title-bg">
+                <td style="width: 100px" class="title-bg">
                     <%=SpringUtils.getMessage("member.form.job")%>
                 </td>
                 <td class="domain-bg">
@@ -137,19 +137,19 @@
                 </td>
             </tr>
             <tr>
-                <td class="title-bg">
+                <td style="width: 100px" class="title-bg">
                     <%=SpringUtils.getMessage("member.form.email")%>
                 </td>
                 <td class="domain-bg">
                     <input class="easyui-validatebox textbox" id="email" name="email">
                 </td>
-                <td class="title-bg">
+                <td style="width: 100px" class="title-bg">
                 </td>
                 <td class="domain-bg">
                 </td>
             </tr>
             <tr>
-                <td class="title-bg">
+                <td style="width: 100px" class="title-bg">
                     <%=SpringUtils.getMessage("member.form.address")%>
                 </td>
                 <td colspan="3" class="domain-bg">
@@ -193,7 +193,7 @@
         </legend>
         <table class="tab-border">
             <tr>
-                <td class="title-bg">
+                <td style="width: 100px" class="title-bg">
                     <%=SpringUtils.getMessage("member.form.kidCnName")%>
                 </td>
                 <td class="domain-bg">
@@ -201,7 +201,7 @@
                            name="firstKidCnName"
                            data-options="required:true,missingMessage:'<%=SpringUtils.getMessage("member.form.kidCnNameRequired")%>'">
                 </td>
-                <td class="title-bg">
+                <td style="width: 100px" class="title-bg">
                     <%=SpringUtils.getMessage("member.form.kidEnName")%>
                 </td>
                 <td class="domain-bg">
@@ -209,7 +209,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="title-bg">
+                <td style="width: 100px" class="title-bg">
                     <%=SpringUtils.getMessage("member.form.kidBirth")%>
                 </td>
                 <td class="domain-bg">
@@ -217,7 +217,7 @@
                            name="firstKidBirth"
                            data-options="required:true,editable:false,missingMessage:'<%=SpringUtils.getMessage("member.form.kidBirthRequired")%>'">
                 </td>
-                <td class="title-bg">
+                <td style="width: 100px" class="title-bg">
                     <%=SpringUtils.getMessage("member.form.kidSex")%>
                 </td>
                 <td class="domain-bg">
@@ -233,14 +233,14 @@
                 </td>
             </tr>
             <tr>
-                <td class="title-bg">
+                <td style="width: 100px" class="title-bg">
                     <%=SpringUtils.getMessage("member.form.kidCnName")%>
                 </td>
                 <td class="domain-bg">
                     <input class="textbox" id="secondKidCnName"
                            name="secondKidCnName">
                 </td>
-                <td class="title-bg">
+                <td style="width: 100px" class="title-bg">
                     <%=SpringUtils.getMessage("member.form.kidEnName")%>
                 </td>
                 <td class="domain-bg">
@@ -248,7 +248,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="title-bg">
+                <td style="width: 100px" class="title-bg">
                     <%=SpringUtils.getMessage("member.form.kidBirth")%>
                 </td>
                 <td class="domain-bg">
@@ -256,7 +256,7 @@
                            name="secondKidBirth"
                            data-options="editable:false">
                 </td>
-                <td class="title-bg">
+                <td style="width: 100px" class="title-bg">
                     <%=SpringUtils.getMessage("member.form.kidSex")%>
                 </td>
                 <td class="domain-bg">
@@ -270,14 +270,14 @@
                 </td>
             </tr>
             <tr>
-                <td class="title-bg">
+                <td style="width: 100px" class="title-bg">
                     <%=SpringUtils.getMessage("member.form.kidCnName")%>
                 </td>
                 <td class="domain-bg">
                     <input class="textbox" id="thirdKidCnName"
                            name="thirdKidCnName">
                 </td>
-                <td class="title-bg">
+                <td style="width: 100px" class="title-bg">
                     <%=SpringUtils.getMessage("member.form.kidEnName")%>
                 </td>
                 <td class="domain-bg">
@@ -285,7 +285,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="title-bg">
+                <td style="width: 100px" class="title-bg">
                     <%=SpringUtils.getMessage("member.form.kidBirth")%>
                 </td>
                 <td class="domain-bg">
@@ -293,7 +293,7 @@
                            name="secondKidBirth"
                            data-options="editable:false">
                 </td>
-                <td class="title-bg">
+                <td style="width: 100px" class="title-bg">
                     <%=SpringUtils.getMessage("member.form.kidSex")%>
                 </td>
                 <td class="domain-bg">

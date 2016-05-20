@@ -29,15 +29,16 @@
     }
 
     .title-bg {
-        width: 100px;
-        height: 40px;
+        height: 30px;
+        font-size: 12px;
         border: solid #C0C0C0 1px;
         background-color: #F1F6FF;
         padding-left: 10px;
     }
 
     .domain-bg {
-        height: 40px;
+        height: 30px;
+        font-size: 12px;
         border: solid #C0C0C0 1px;
         background-color: #FAFCFF;
         padding-left: 10px;
@@ -58,7 +59,7 @@
 
     .legend {
         font-family: Verdana, Arial, Helvetica, sans-serif;
-        font-size: 16px;
+        font-size: 14px;
         font-weight: bold;
     }
 </style>
