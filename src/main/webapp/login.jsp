@@ -131,62 +131,57 @@
 </head>
 
 <body>
-<div class="login">
+<h1>后台登录模板下载<sup>V2014</sup></h1>
+
+<div class="login" style="margin-top:50px;">
+
     <div class="header">
-        <div class="header-title">
-            <%=SpringUtils.getMessage("sys.login.title")%>
+        <div class="switch" id="switch">
+            <span class="login_title">快速登录</span>
         </div>
     </div>
-    <div class="middle">
-        <form id="loginForm" action="login.jsp" method="post">
-            <input type="hidden" id="enPassword" name="enPassword"/>
-            <table cellpadding="5" cellspacing="0">
-                <tr>
-                    <td>
-                        <%=SpringUtils.getMessage("sys.login.username")%>:
-                    </td>
-                    <td>
-                        <input type="text" id="username" name="username" class="easyui-textbox"
-                               maxlength="20"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <%=SpringUtils.getMessage("sys.login.password")%>:
-                    </td>
-                    <td>
-                        <input type="password" id="password" class="easyui-textbox" maxlength="20"
-                               autocomplete="off"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        &nbsp;
-                    </td>
-                    <td>
-                        <label>
-                            <input type="checkbox" id="rememberMe" value="true"/>
-                            <%=SpringUtils.getMessage("sys.login.rememberUsername")%>
-                        </label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        &nbsp;
-                    </td>
-                    <td>
-                        <a id="loginButton" href="javascript:void(0);" class="easyui-linkbutton"
-                           style="width: 60px; font-size: large;">
-                            <%=SpringUtils.getMessage("sys.login.login")%>
-                        </a>
-                    </td>
-                </tr>
-            </table>
-        </form>
+
+    <div class="web_qr_login" id="web_qr_login" style="display: block; height: 235px;">
+        <div class="web_login" id="web_login">
+            <div class="login-box">
+                <div class="login_form">
+                    <form id="loginForm" accept-charset="utf-8" action="login.jsp" method="post">
+                        <input type="hidden" id="enPassword" name="enPassword"/>
+
+                        <div class="uinArea" id="uinArea">
+                            <label class="input-tips">
+                                <%=SpringUtils.getMessage("sys.login.username")%>:
+                            </label>
+                            <div class="inputOuter" id="uArea">
+                                <input type="text" id="username" name="username"
+                                       class="inputstyle"/>
+                            </div>
+                        </div>
+
+                        <div class="pwdArea" id="pwdArea">
+                            <label class="input-tips">
+                                <%=SpringUtils.getMessage("sys.login.password")%>:
+                            </label>
+                            <div class="inputOuter" id="pArea">
+                                <input type="password" id="password" name="password"
+                                       class="inputstyle"/>
+                            </div>
+                        </div>
+
+                        <div style="padding-left:50px;margin-top:20px;">
+                            <input type="submit"
+                                   value="<%=SpringUtils.getMessage("sys.login.login")%>"
+                                   style="width:150px;"
+                                   class="button_blue"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="footer">
-        <%=SpringUtils.getMessage("sys.login.powered")%>
-    </div>
+
+</div>
+<div class="jianyi"><%=SpringUtils.getMessage("sys.login.powered")%>
 </div>
 </body>
 </html>

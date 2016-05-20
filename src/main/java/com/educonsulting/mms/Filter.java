@@ -10,27 +10,40 @@ public class Filter implements Serializable {
     private static final long serialVersionUID = -8712382358441065075L;
 
     public enum Operator {
+
         eq,
+
         ne,
+
         gt,
+
         lt,
+
         ge,
+
         le,
-        dateGt,//日期类型比较
-        dateLt,
-        dateGe,
-        dateLe,
-        //		stringGt,//字符串类型比较
-//		stringLt,
-//		stringGe,
-//		stringLe,
+
         like,
+
         in,
+
         isNull,
+
         isNotNull;
 
         public static Operator fromString(String value) {
             return Operator.valueOf(value.toLowerCase());
+        }
+    }
+
+    public enum Logic {
+
+        and,
+
+        or;
+
+        public static Logic fromString(String value) {
+            return Logic.valueOf(value.toLowerCase());
         }
     }
 
@@ -42,6 +55,8 @@ public class Filter implements Serializable {
 
     private Object value;
 
+    private Logic logic;
+
     private Boolean ignoreCase = DEFAULT_IGNORE_CASE;
 
     public Filter() {
@@ -51,6 +66,14 @@ public class Filter implements Serializable {
         this.property = property;
         this.operator = operator;
         this.value = value;
+        this.logic = Logic.and;
+    }
+
+    public Filter(String property, Operator operator, Logic logic, Object... value) {
+        this.property = property;
+        this.operator = operator;
+        this.value = value;
+        this.logic = logic;
     }
 
     public Filter(String property, Operator operator, Object value, boolean ignoreCase) {
@@ -58,6 +81,7 @@ public class Filter implements Serializable {
         this.operator = operator;
         this.value = value;
         this.ignoreCase = ignoreCase;
+        this.logic = Logic.and;
     }
 
     public static Filter eq(String property, Object value) {
@@ -91,39 +115,6 @@ public class Filter implements Serializable {
     public static Filter le(String property, Object value) {
         return new Filter(property, Operator.le, value);
     }
-
-    //添加日期和字符串类型比较
-    public static Filter dateGt(String property, Object value) {
-        return new Filter(property, Operator.dateGt, value);
-    }
-
-    public static Filter dateLt(String property, Object value) {
-        return new Filter(property, Operator.dateLt, value);
-    }
-
-    public static Filter dateGe(String property, Object value) {
-        return new Filter(property, Operator.dateGe, value);
-    }
-
-    public static Filter dateLe(String property, Object value) {
-        return new Filter(property, Operator.dateLe, value);
-    }
-
-//	public static Filter stringGt(String property, Object value) {
-//		return new Filter(property, Operator.stringGt, value);
-//	}
-//
-//	public static Filter stringLt(String property, Object value) {
-//		return new Filter(property, Operator.stringLt, value);
-//	}
-//
-//	public static Filter stringGe(String property, Object value) {
-//		return new Filter(property, Operator.stringGe, value);
-//	}
-//
-//	public static Filter stringLe(String property, Object value) {
-//		return new Filter(property, Operator.stringLe, value);
-//	}
 
     public static Filter like(String property, Object value) {
         return new Filter(property, Operator.like, value);
@@ -190,12 +181,14 @@ public class Filter implements Serializable {
             return true;
         }
         Filter other = (Filter) obj;
-        return new EqualsBuilder().append(getProperty(), other.getProperty()).append(getOperator(), other.getOperator()).append(getValue(), other.getValue()).isEquals();
+        return new EqualsBuilder().append(getProperty(), other.getProperty()).append(getOperator
+                (), other.getOperator()).append(getValue(), other.getValue()).isEquals();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder(17, 37).append(getProperty()).append(getOperator()).append(getValue()).toHashCode();
+        return new HashCodeBuilder(17, 37).append(getProperty()).append(getOperator()).append
+                (getValue()).toHashCode();
     }
 
 }
