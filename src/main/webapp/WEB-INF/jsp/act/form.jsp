@@ -49,4 +49,4 @@
         <td class="domain-bg"><input id="memo" name="memo" class="easyui-textbox"></td>
     </tr>
 </table>
-<input type="hidden" id="id" name="id" value=""></td>
+<input type="hidden" id="id" name="id" value="">

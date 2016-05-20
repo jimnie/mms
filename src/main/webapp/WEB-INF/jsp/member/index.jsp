@@ -30,6 +30,10 @@
                            data-options="iconCls:'icon-reload'" onclick="refresh()">
                             <%=SpringUtils.getMessage("page.action.refresh")%>
                         </a>
+                        <a href="javascript:void(0)" class="easyui-linkbutton"
+                           data-options="iconCls:'icon-redo'" onclick="charge()">
+                            <%=SpringUtils.getMessage("member.form.charge")%>
+                        </a>
                     </td>
                     <td style="text-align:right">
                         <a href="javascript:void(0)" class="easyui-linkbutton"
@@ -122,6 +126,28 @@
         </a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-cancel"
            onclick="javascript:$('#dlg').dialog('close')">
+            <%=SpringUtils.getMessage("page.action.close")%>
+        </a>
+    </div>
+</div>
+
+<div id="chargeDlg" class="easyui-dialog" style="width:400px;height:300px;"
+     closed="true" modal="true" buttons="#charge-dlg-buttons">
+    <div style="padding:20px 0px 0px 40px;">
+        <div style="float:center">
+            <form id="chargeform" method="post">
+                <jsp:include page="charge.jsp"></jsp:include>
+            </form>
+        </div>
+        <div style="clear:both"></div>
+    </div>
+    <div id="charge-dlg-buttons" style="text-align:center;">
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save'"
+           onclick="saveItem()">
+            <%=SpringUtils.getMessage("page.action.save")%>
+        </a>
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"
+           onclick="javascript:$('#chargeDlg').dialog('close')">
             <%=SpringUtils.getMessage("page.action.close")%>
         </a>
     </div>

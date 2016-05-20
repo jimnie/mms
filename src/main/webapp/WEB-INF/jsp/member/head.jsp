@@ -273,4 +273,19 @@
             }
         });
     }
+
+    function charge() {
+        $('#chargeform').form('clear');
+        var row = $('#members').datagrid('getSelected');
+        if (row) {
+            $.each($('#chargeform input'), function (i) {
+                $(this).removeAttr("readonly");
+            });
+            $('#chargeform').form('load', row);
+            $('#status').combobox('setValue', row.status);
+            $('#chargeDlg').dialog('setTitle', '<%=SpringUtils.getMessage("member.form.chargeTitle")%>').dialog('open');
+        } else {
+            $.messager.alert(title, '<%=SpringUtils.getMessage("member.form.selectMemberToCharge")%>', warning);
+        }
+    }
 </script>

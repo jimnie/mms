@@ -189,7 +189,7 @@
 <div style="padding-top: 20px;">
     <fieldset class="fieldset">
         <legend class="legend">
-            <%=SpringUtils.getMessage("member.form.kids")%>
+            <%=SpringUtils.getMessage("member.form.firstKid")%>
         </legend>
         <table class="tab-border">
             <tr>
@@ -232,6 +232,15 @@
                                                 missingMessage:'<%=SpringUtils.getMessage("member.form.kidSexRequired")%>'">
                 </td>
             </tr>
+        </table>
+    </fieldset>
+</div>
+<div style="padding-top: 20px;">
+    <fieldset class="fieldset">
+        <legend class="legend">
+            <%=SpringUtils.getMessage("member.form.secondKid")%>
+        </legend>
+        <table class="tab-border">
             <tr>
                 <td style="width: 100px" class="title-bg">
                     <%=SpringUtils.getMessage("member.form.kidCnName")%>
@@ -269,6 +278,15 @@
                                                 editable:false">
                 </td>
             </tr>
+        </table>
+    </fieldset>
+</div>
+<div style="padding-top: 20px;">
+    <fieldset class="fieldset">
+        <legend class="legend">
+            <%=SpringUtils.getMessage("member.form.thirdKid")%>
+        </legend>
+        <table class="tab-border">
             <tr>
                 <td style="width: 100px" class="title-bg">
                     <%=SpringUtils.getMessage("member.form.kidCnName")%>
