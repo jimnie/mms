@@ -7,6 +7,8 @@ import com.educonsulting.mms.Pageable;
 import com.educonsulting.mms.dao.ThemeCategoryDao;
 import com.educonsulting.mms.entity.ThemeCategory;
 import com.educonsulting.mms.service.ThemeCategoryService;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -28,6 +30,7 @@ public class ThemeCategoryServiceImpl extends BaseServiceImpl<ThemeCategory, Str
     }
 
     @Override
+    @CacheEvict(value = "themeCategory", allEntries = true)
     public void delete(ThemeCategory entity) {
         super.delete(entity);
     }
@@ -38,6 +41,8 @@ public class ThemeCategoryServiceImpl extends BaseServiceImpl<ThemeCategory, Str
     }
 
     @Override
+    @Cacheable(value = "themeCategory")
+
     public List<ThemeCategory> findAll() {
         return super.findAll();
     }
@@ -59,6 +64,7 @@ public class ThemeCategoryServiceImpl extends BaseServiceImpl<ThemeCategory, Str
     }
 
     @Override
+    @Cacheable(value = "themeCategory")
     public Page<ThemeCategory> findPage(Pageable pageable) {
         return super.findPage(pageable);
     }
@@ -84,26 +90,31 @@ public class ThemeCategoryServiceImpl extends BaseServiceImpl<ThemeCategory, Str
     }
 
     @Override
+    @CacheEvict(value = "themeCategory", allEntries = true)
     public void save(ThemeCategory entity) {
         super.save(entity);
     }
 
     @Override
+    @CacheEvict(value = "themeCategory", allEntries = true)
     public ThemeCategory update(ThemeCategory entity) {
         return super.update(entity);
     }
 
     @Override
+    @CacheEvict(value = "themeCategory", allEntries = true)
     public ThemeCategory update(ThemeCategory entity, String... ignoreProperties) {
         return super.update(entity, ignoreProperties);
     }
 
     @Override
+    @CacheEvict(value = "themeCategory", allEntries = true)
     public void delete(String id) {
         super.delete(id);
     }
 
     @Override
+    @CacheEvict(value = "themeCategory", allEntries = true)
     public void delete(String... ids) {
         super.delete(ids);
     }

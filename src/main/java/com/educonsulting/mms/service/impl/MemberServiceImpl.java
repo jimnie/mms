@@ -7,6 +7,8 @@ import com.educonsulting.mms.Pageable;
 import com.educonsulting.mms.dao.MemberDao;
 import com.educonsulting.mms.entity.Member;
 import com.educonsulting.mms.service.MemberService;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,16 +35,6 @@ public class MemberServiceImpl extends BaseServiceImpl<Member, String> implement
     }
 
     @Override
-    public Member find(String id) {
-        return super.find(id);
-    }
-
-    @Override
-    public List<Member> findAll() {
-        return super.findAll();
-    }
-
-    @Override
     public List<Member> findList(String... ids) {
         return super.findList(ids);
     }
@@ -56,11 +48,6 @@ public class MemberServiceImpl extends BaseServiceImpl<Member, String> implement
     public List<Member> findList(Integer first, Integer count, List<Filter> filters, List<Order>
             orders) {
         return super.findList(first, count, filters, orders);
-    }
-
-    @Override
-    public Page<Member> findPage(Pageable pageable) {
-        return super.findPage(pageable);
     }
 
     @Override
@@ -83,32 +70,55 @@ public class MemberServiceImpl extends BaseServiceImpl<Member, String> implement
         return super.exists(filters);
     }
 
-    @Transactional
+    @Override
+    public Member find(String id) {
+        return super.find(id);
+    }
+
+    @Override
+    @Cacheable(value = "member")
+    public List<Member> findAll() {
+        return super.findAll();
+    }
+
+    @Override
+    @Cacheable(value = "member")
+    public Page<Member> findPage(Pageable pageable) {
+        return super.findPage(pageable);
+    }
+
+    @Override
+    @CacheEvict(value = "member", allEntries = true)
     public void save(Member entity) {
         super.save(entity);
     }
 
-    @Transactional
+    @Override
+    @CacheEvict(value = "member", allEntries = true)
     public Member update(Member entity) {
         return super.update(entity);
     }
 
-    @Transactional
+    @Override
+    @CacheEvict(value = "member", allEntries = true)
     public Member update(Member entity, String... ignoreProperties) {
         return super.update(entity, ignoreProperties);
     }
 
-    @Transactional
+    @Override
+    @CacheEvict(value = "member", allEntries = true)
     public void delete(String id) {
         super.delete(id);
     }
 
-    @Transactional
+    @Override
+    @CacheEvict(value = "member", allEntries = true)
     public void delete(String... ids) {
         super.delete(ids);
     }
 
-    @Transactional
+    @Override
+    @CacheEvict(value = "member", allEntries = true)
     public void delete(Member entity) {
         super.delete(entity);
     }
