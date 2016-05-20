@@ -46,7 +46,7 @@
                     <td style="text-align:right">
                         <a href="javascript:void(0)" class="easyui-linkbutton"
                            data-options="iconCls:'icon-search'" onclick="advanceQuery();">
-                            <%=SpringUtils.getMessage("page.action.query")%>
+                            <%=SpringUtils.getMessage("page.common.advencedQuery")%>
                         </a>
                     </td>
                 </tr>
@@ -100,9 +100,9 @@
     </div>
 </div>
 
-<div id="dlg" style="width:500px;height:300px;"
+<div id="dlg" style="width:400px;height:220px;"
      class="easyui-dialog" closed="true" modal="true" buttons="#dlg-buttons">
-    <div style="padding:20px 0px 0px 90px;">
+    <div style="padding:20px 0px 0px 40px;">
         <div style="float:center">
             <form id="addform" method="post">
                 <jsp:include page="form.jsp"/>

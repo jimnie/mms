@@ -11,7 +11,7 @@
                 <td style="width:70px" class="title-bg">
                     <%=SpringUtils.getMessage("dict.query.name")%>
                 </td>
-                <td class="domain-bg">
+                <td style="width:180px" class="domain-bg">
                     <input class="easyui-textbox" id="name" name="name"></td>
             </tr>
             <tr>

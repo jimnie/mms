@@ -34,7 +34,7 @@
                     <td style="text-align:right">
                         <a href="javascript:void(0)" class="easyui-linkbutton"
                            data-options="iconCls:'icon-search'" onclick="advanceQuery()">
-                            <%=SpringUtils.getMessage("page.action.query")%>
+                            <%=SpringUtils.getMessage("page.common.advencedQuery")%>
                         </a>
                     </td>
                 </tr>

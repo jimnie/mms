@@ -33,7 +33,8 @@
         font-size: 12px;
         border: solid #C0C0C0 1px;
         background-color: #F1F6FF;
-        padding-left: 10px;
+        padding-right: 10px;
+        text-align: right;
     }
 
     .domain-bg {

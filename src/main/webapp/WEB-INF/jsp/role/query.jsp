@@ -8,7 +8,7 @@
         <table cellspacing="5" class="tab-form">
             <tr>
                 <td style="width: 70px" class="title-bg">角色名称：</td>
-                <td class="domain-bg">
+                <td style="width:180px" class="domain-bg">
                     <input id="name" name="name" class="easyui-textbox">
                 </td>
             </tr>

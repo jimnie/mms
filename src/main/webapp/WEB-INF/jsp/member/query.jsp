@@ -11,7 +11,8 @@
                 <td style="width:70px" class="title-bg">
                     <%=SpringUtils.getMessage("member.form.cardNo")%>
                 </td>
-                <td class="domain-bg"><input class="easyui-textbox" id="cardNo" name="cardNo"></td>
+                <td style="width:180px" class="domain-bg">
+                    <input class="easyui-textbox" id="cardNo" name="cardNo"></td>
             </tr>
 
             <tr>

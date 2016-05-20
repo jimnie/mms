@@ -7,11 +7,14 @@
         <%=SpringUtils.getMessage("page.common.inputParams")%>
     </div>
     <div style="padding:10px 0 10px 30px">
-        <table cellspacing="5">
+        <table cellspacing="5" class="tab-form">
             <tr>
-                <td style="width:80px"><%=SpringUtils.getMessage("user.query.username")%>
+                <td style="width:70px" class="title-bg">
+                    <%=SpringUtils.getMessage("user.query.username")%>
                 </td>
-                <td><input class="easyui-textbox" id="username" name="username"></td>
+                <td style="width:180px" class="domain-bg">
+                    <input class="easyui-textbox" id="username" name="username">
+                </td>
             </tr>
         </table>
     </div>
