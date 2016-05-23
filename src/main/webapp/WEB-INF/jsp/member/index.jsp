@@ -4,14 +4,11 @@
 <head>
     <jsp:include page="head.jsp"></jsp:include>
 </head>
-<body style="margin:0px;">
-<form id="delform" method="post">
-    <input type="hidden" id="memberId" name="memberId">
-</form>
+<body style="margin: 0px">
 <div class="easyui-layout" fit="true">
     <div region="north" border="false" style="height: 35px">
         <div class="toolbar">
-            <table cellpadding="0" cellspacing="0" style="width:95%;">
+            <table cellpadding="0" cellspacing="0" style="width: 95%">
                 <tr>
                     <td>
                         <a href="javascript:void(0)" class="easyui-linkbutton"
@@ -112,9 +109,9 @@
 </div>
 
 <div id="dlg" class="easyui-dialog" closed="true" modal="true" buttons="#dlg-buttons">
-    <div style="padding:20px 0px 0px 60px;">
-        <div style="width:1080px;height:630px;float:center">
-            <form id="addform" method="post" style="margin:0;padding:0">
+    <div style="padding:20px 0px 0px 60px">
+        <div style="width: 1080px;height: 630px;float: center">
+            <form id="addform" method="post" style="margin: 0;padding: 0">
                 <jsp:include page="form.jsp"/>
             </form>
         </div>
@@ -131,9 +128,9 @@
     </div>
 </div>
 
-<div id="chargeDlg" class="easyui-dialog" style="width:400px;height:300px;"
+<div id="chargeDlg" class="easyui-dialog" style="width: 400px;height: 300px"
      closed="true" modal="true" buttons="#charge-dlg-buttons">
-    <div style="padding:20px 0px 0px 40px;">
+    <div style="padding:20px 0px 0px 40px">
         <div style="float:center">
             <form id="chargeform" method="post">
                 <jsp:include page="charge.jsp"></jsp:include>
@@ -142,9 +139,9 @@
         <div style="clear:both"></div>
     </div>
     <div id="charge-dlg-buttons" style="text-align:center;">
-        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save'"
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'"
            onclick="saveItem()">
-            <%=SpringUtils.getMessage("page.action.save")%>
+            <%=SpringUtils.getMessage("page.action.ok")%>
         </a>
         <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"
            onclick="javascript:$('#chargeDlg').dialog('close')">
@@ -152,5 +149,9 @@
         </a>
     </div>
 </div>
-
+<div style="display: none">
+    <form id="delform" method="post">
+        <input type="hidden" id="memberId" name="memberId">
+    </form>
+</div>
 </body>

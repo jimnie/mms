@@ -5,9 +5,7 @@
     <jsp:include page="head.jsp"></jsp:include>
 </head>
 <body style="margin:0px;">
-<form id="delform" method="post">
-    <input type="hidden" id="categoryId" name="categoryId" value=""/>
-</form>
+
 <div class="easyui-layout" fit="true">
     <div region="north" border="false" style="height: 35px">
         <div class="toolbar">
@@ -80,6 +78,12 @@
             <%=SpringUtils.getMessage("page.action.close")%>
         </a>
     </div>
+</div>
+
+<div style="display: none">
+    <form id="delform" method="post">
+        <input type="hidden" id="categoryId" name="categoryId" value=""/>
+    </form>
 </div>
 
 </body>

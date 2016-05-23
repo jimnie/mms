@@ -5,9 +5,7 @@
     <jsp:include page="head.jsp"></jsp:include>
 </head>
 <body style="margin:0px;">
-<form id="delform" method="post">
-    <input type="hidden" id="rankId" name="rankId" value=""/>
-</form>
+
 <div class="easyui-layout" fit="true">
     <div region="north" border="false" style="height: 35px">
         <div class="toolbar">
@@ -80,7 +78,7 @@
         </div>
         <div style="clear:both"></div>
     </div>
-    <div id="dlg-buttons" style="text-align:center;">
+    <div id="dlg-buttons" style="text-align: center;">
         <a href="#" class="easyui-linkbutton" iconCls="icon-save" onclick="saveItem()">
             <%=SpringUtils.getMessage("page.action.save")%>
         </a>
@@ -89,6 +87,12 @@
             <%=SpringUtils.getMessage("page.action.close")%>
         </a>
     </div>
+</div>
+
+<div style="display: none">
+    <form id="delform" method="post">
+        <input type="hidden" id="rankId" name="rankId" value=""/>
+    </form>
 </div>
 
 </body>

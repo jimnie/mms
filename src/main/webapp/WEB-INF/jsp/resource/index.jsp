@@ -10,9 +10,7 @@
           href="${pageContext.request.contextPath}/resources/css/index.css">
 </head>
 <body style="margin:0px;">
-<form id="delform" method="post">
-    <input type="hidden" id="resid" name="resid" value=""/>
-</form>
+
 <div class="easyui-layout" fit="true">
 
     <div region="north" border="false" style="height: 35px">
@@ -117,4 +115,11 @@
         </a>
     </div>
 </div>
+
+<div style="display: none">
+    <form id="delform" method="post">
+        <input type="hidden" id="resid" name="resid" value=""/>
+    </form>
+</div>
+
 </body>

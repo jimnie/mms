@@ -5,12 +5,7 @@
     <jsp:include page="head.jsp"></jsp:include>
 </head>
 <body style="margin:0px;">
-<form id="groupForm">
-    <input type="hidden" id="groupid" name="groupid" value="">
-</form>
-<form id="delform">
-    <input type="hidden" id="delGroupId" name="delGroupId" value="">
-</form>
+
 <div class="easyui-layout" fit="true">
 
     <div region="north" border="false" style="height: 35px">
@@ -146,4 +141,17 @@
         </a>
     </div>
 </div>
+
+<div style="display: none">
+    <form id="groupForm">
+        <input type="hidden" id="groupid" name="groupid" value="">
+    </form>
+</div>
+
+<div style="display: none">
+    <form id="delform">
+        <input type="hidden" id="delGroupId" name="delGroupId" value="">
+    </form>
+</div>
+
 </body>

@@ -3,7 +3,8 @@
          pageEncoding="UTF-8" %>
 <%@include file="../common/global.jsp" %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title><%=SpringUtils.getMessage("sys.main.projectName")%>
+<title>
+    <%=SpringUtils.getMessage("sys.main.projectName")%>
 </title>
 <link rel="stylesheet" type="text/css"
       href="${pageContext.request.contextPath}/resources/css/index.css">
@@ -107,9 +108,9 @@
                             }
                         }
                         if (t) {
-                            text += '<td style="width: 100px; height: 40px; font-size: 12px;"><input type="checkbox" id="' + data[i].id + '" name="' + data[i].id + '" checked>' + data[i].name + '</td>';
+                            text += '<td style="width: 100px;height: 40px;font-size: 12px"><input type="checkbox" id="' + data[i].id + '" name="' + data[i].id + '" checked>' + data[i].name + '</td>';
                         } else {
-                            text += '<td style="width: 100px; height: 40px; font-size: 12px;"><input type="checkbox" id="' + data[i].id + '" name="' + data[i].id + '">' + data[i].name + '</td>';
+                            text += '<td style="width: 100px;height: 40px;font-size: 12px"><input type="checkbox" id="' + data[i].id + '" name="' + data[i].id + '">' + data[i].name + '</td>';
                         }
                         if (b) {
                             text += '</tr><tr>'
@@ -118,7 +119,7 @@
                 } else {
                     for (var i = 0; i < data.length; i++) {
                         var b = (i + 1) % 6 == 0;
-                        text += '<td style="width: 100px; height: 40px; font-size: 12px;"><input type="checkbox" id="' + data[i].id + '" name="' + data[i].id + '">' + data[i].name + '</td>';
+                        text += '<td style="width: 100px;height: 40px;font-size: 12px"><input type="checkbox" id="' + data[i].id + '" name="' + data[i].id + '">' + data[i].name + '</td>';
                         if (b) {
                             text += '</tr><tr>'
                         }
@@ -181,7 +182,7 @@
         $('#addform').form('submit', {
             url: url,
             onSubmit: function () {
-                return $('#myform').form('validate');
+                return $('#addform').form('validate');
             },
             success: function (data) {
                 data = eval('(' + data + ')');
@@ -196,6 +197,36 @@
                     $('#members').datagrid('reload');
                 } else {
                     $.messager.alert(title, data.content, error);
+                }
+            }
+        });
+
+        var chargeUrl = base + '/member/charge';
+
+        $('#chargeform').form('submit', {
+            url: chargeUrl,
+            onSubmit: function () {
+                $.messager.confirm(title, '请确认充值金额为：' + $('#chargeAmount').numberbox(), function (r) {
+                    if (r) {
+                        return $('chargeform').form('validate');
+                    } else {
+                        return false;
+                    }
+                });
+            },
+            success: function (data) {
+                data = eval('(' + data + ')');
+                if (data.type == 'success') {
+                    $.messager.show({
+                        title: title,
+                        msg: data.content,
+                        timeout: 2000,
+                        showType: 'slide'
+                    });
+                    $('#dlg').dialog('close');
+                    $('#members').datagrid('reload');
+                } else {
+                    $.messager.alert(title, '会员充值完成！', error);
                 }
             }
         });
@@ -281,8 +312,15 @@
             $.each($('#chargeform input'), function (i) {
                 $(this).removeAttr("readonly");
             });
-            $('#chargeform').form('load', row);
-            $('#status').combobox('setValue', row.status);
+            $('#c_cardNo').textbox({readonly: true}).textbox('disable');
+            $('#c_cnName').textbox({readonly: true}).textbox('disable');
+            $('#c_mobile').textbox({readonly: true}).textbox('disable');
+            $('#memberRank').textbox({readonly: true}).textbox('disable');
+            $('#c_id').attr('value', row.id);
+            $('#c_cardNo').textbox('setValue', row.cardNo);
+            $('#c_cnName').textbox('setValue', row.cnName);
+            $('#c_mobile').textbox('setValue', row.mobile);
+            $('#memberRank').textbox('setValue', row.memberRank.name);
             $('#chargeDlg').dialog('setTitle', '<%=SpringUtils.getMessage("member.form.chargeTitle")%>').dialog('open');
         } else {
             $.messager.alert(title, '<%=SpringUtils.getMessage("member.form.selectMemberToCharge")%>', warning);

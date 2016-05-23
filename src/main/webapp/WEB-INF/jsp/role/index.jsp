@@ -4,10 +4,8 @@
 <head>
     <jsp:include page="head.jsp"></jsp:include>
 </head>
-<body style="margin:0px;">
-<form id="delform" method="post">
-    <input type="hidden" id="roleId" name="roleId" value=""/>
-</form>
+<body style="margin: 0px">
+
 <div class="easyui-layout" fit="true">
 
     <div region="north" border="false" style="height: 35px">
@@ -206,4 +204,11 @@
         </div>
     </div>
 </div>
+
+<div style="display: none">
+    <form id="delform" method="post">
+        <input type="hidden" id="roleId" name="roleId" value=""/>
+    </form>
+</div>
+
 </body>

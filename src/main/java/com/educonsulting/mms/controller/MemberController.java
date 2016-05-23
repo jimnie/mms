@@ -119,4 +119,31 @@ public class MemberController extends BaseController {
         memberService.delete(id);
         return SUCCESS_MESSAGE;
     }
+
+    @RequestMapping(value = "/charge", method = RequestMethod.POST)
+    @ResponseBody
+    public Message charge(@RequestParam(value = "c_id") String id,
+                          @RequestParam(value = "c_cardNo") String cardNo,
+                          @RequestParam(value = "c_cnName") String cnName,
+                          @RequestParam(value = "c_mobile") String mobile,
+                          @RequestParam(value = "chargeAmount") Long amount) {
+        Member member = memberService.find(id);
+        member.setAmount(member.getAmount().add(BigDecimal.valueOf(amount)));
+        member.setBalance(member.getAmount().add(BigDecimal.valueOf(amount)));
+        member.setPoint(member.getPoint() + amount.longValue());
+        return SUCCESS_MESSAGE;
+    }
+
+    @RequestMapping(value = "/uncharge", method = RequestMethod.POST)
+    @ResponseBody
+    public Message uncharge(@RequestParam(value = "c_id") String id,
+                            @RequestParam(value = "c_cardNo") String cardNo,
+                            @RequestParam(value = "c_cnName") String cnName,
+                            @RequestParam(value = "c_mobile") String mobile,
+                            @RequestParam(value = "chargeAmount") Long amount) {
+        Member member = memberService.find(id);
+        member.setBalance(member.getAmount().subtract(BigDecimal.valueOf(amount)));
+        member.setPoint(member.getPoint() + amount);
+        return SUCCESS_MESSAGE;
+    }
 }
