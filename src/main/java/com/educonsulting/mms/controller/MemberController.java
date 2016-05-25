@@ -2,10 +2,10 @@ package com.educonsulting.mms.controller;
 
 import com.educonsulting.mms.*;
 import com.educonsulting.mms.entity.Member;
+import com.educonsulting.mms.entity.RechargeLog;
+import com.educonsulting.mms.entity.RechargeLog.Type;
 import com.educonsulting.mms.entity.ThemeCategory;
-import com.educonsulting.mms.service.MemberRankService;
-import com.educonsulting.mms.service.MemberService;
-import com.educonsulting.mms.service.ThemeCategoryService;
+import com.educonsulting.mms.service.*;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -31,8 +32,14 @@ public class MemberController extends BaseController {
     @Resource(name = "memberRankServiceImpl")
     private MemberRankService memberRankService;
 
+    @Resource(name = "userServiceImpl")
+    private UserService userService;
+
     @Resource(name = "themeCategoryServiceImpl")
     private ThemeCategoryService themeCategoryService;
+
+    @Resource(name = "rechargeLogServiceImpl")
+    private RechargeLogService rechargeLogService;
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String index() {
@@ -120,30 +127,38 @@ public class MemberController extends BaseController {
         return SUCCESS_MESSAGE;
     }
 
-    @RequestMapping(value = "/charge", method = RequestMethod.POST)
+    @RequestMapping(value = "/recharge", method = RequestMethod.POST)
     @ResponseBody
-    public Message charge(@RequestParam(value = "c_id") String id,
-                          @RequestParam(value = "c_cardNo") String cardNo,
-                          @RequestParam(value = "c_cnName") String cnName,
-                          @RequestParam(value = "c_mobile") String mobile,
-                          @RequestParam(value = "chargeAmount") Long amount) {
+    public Message recharge(@RequestParam(value = "c_id") String id,
+                            @RequestParam(value = "rechargeAmount") String amount) {
         Member member = memberService.find(id);
-        member.setAmount(member.getAmount().add(BigDecimal.valueOf(amount)));
-        member.setBalance(member.getAmount().add(BigDecimal.valueOf(amount)));
-        member.setPoint(member.getPoint() + amount.longValue());
+        member.setRechargeAmount(BigDecimal.valueOf(Double.valueOf(amount)));
+        member.setAmount(member.getAmount().add(member.getRechargeAmount()));
+        member.setBalance(member.getBalance().add(member.getRechargeAmount()));
+        member.setPoint(member.getPoint() + member.getRechargeAmount().longValue());
+
+        RechargeLog rechargeLog = new RechargeLog();
+        rechargeLog.setMemberid(member.getId());
+        rechargeLog.setCardNo(member.getCardNo());
+        rechargeLog.setMobile(member.getMobile());
+        rechargeLog.setName(member.getCnName());
+        rechargeLog.setOperator(userService.getCurrent().getUsername());
+        rechargeLog.setType(Type.recharge);
+        rechargeLog.setAmount(member.getAmount());
+        rechargeLog.setCreateDate(new Date(System.currentTimeMillis()));
+
+        rechargeLogService.save(rechargeLog);
+        memberService.update(member);
         return SUCCESS_MESSAGE;
     }
 
     @RequestMapping(value = "/uncharge", method = RequestMethod.POST)
     @ResponseBody
     public Message uncharge(@RequestParam(value = "c_id") String id,
-                            @RequestParam(value = "c_cardNo") String cardNo,
-                            @RequestParam(value = "c_cnName") String cnName,
-                            @RequestParam(value = "c_mobile") String mobile,
-                            @RequestParam(value = "chargeAmount") Long amount) {
+                            @RequestParam(value = "rechargeAmount") String amount) {
         Member member = memberService.find(id);
-        member.setBalance(member.getAmount().subtract(BigDecimal.valueOf(amount)));
-        member.setPoint(member.getPoint() + amount);
+        member.setRechargeAmount(BigDecimal.valueOf(Double.valueOf(amount)).negate());
+        memberService.update(member, userService.getCurrent(), Type.recharge);
         return SUCCESS_MESSAGE;
     }
 }

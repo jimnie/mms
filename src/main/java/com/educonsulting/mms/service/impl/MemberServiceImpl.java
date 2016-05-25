@@ -5,14 +5,19 @@ import com.educonsulting.mms.Order;
 import com.educonsulting.mms.Page;
 import com.educonsulting.mms.Pageable;
 import com.educonsulting.mms.dao.MemberDao;
+import com.educonsulting.mms.dao.RechargeLogDao;
 import com.educonsulting.mms.entity.Member;
+import com.educonsulting.mms.entity.RechargeLog.Type;
+import com.educonsulting.mms.entity.User;
 import com.educonsulting.mms.service.MemberService;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -23,6 +28,9 @@ public class MemberServiceImpl extends BaseServiceImpl<Member, String> implement
 
     @Resource(name = "memberDaoImpl")
     private MemberDao memberDao;
+
+    @Resource(name = "rechargeLogDaoImpl")
+    private RechargeLogDao rechargeLogDao;
 
     @Resource(name = "memberDaoImpl")
     public void setBaseDao(MemberDao memberDao) {
@@ -131,5 +139,12 @@ public class MemberServiceImpl extends BaseServiceImpl<Member, String> implement
     @Override
     public boolean isMobileExisted(String mobile) {
         return memberDao.isMobileExisted(mobile);
+    }
+
+    @Transactional
+    public void update(Member member, User user, Type type) {
+        Assert.notNull(member);
+        BigDecimal rechargeAmount = member.getRechargeAmount();
+
     }
 }

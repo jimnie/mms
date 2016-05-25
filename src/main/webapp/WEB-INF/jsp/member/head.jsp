@@ -201,35 +201,6 @@
             }
         });
 
-        var chargeUrl = base + '/member/charge';
-
-        $('#chargeform').form('submit', {
-            url: chargeUrl,
-            onSubmit: function () {
-                $.messager.confirm(title, '请确认充值金额为：' + $('#chargeAmount').numberbox(), function (r) {
-                    if (r) {
-                        return $('chargeform').form('validate');
-                    } else {
-                        return false;
-                    }
-                });
-            },
-            success: function (data) {
-                data = eval('(' + data + ')');
-                if (data.type == 'success') {
-                    $.messager.show({
-                        title: title,
-                        msg: data.content,
-                        timeout: 2000,
-                        showType: 'slide'
-                    });
-                    $('#dlg').dialog('close');
-                    $('#members').datagrid('reload');
-                } else {
-                    $.messager.alert(title, '会员充值完成！', error);
-                }
-            }
-        });
     }
 
     function editItem() {
@@ -261,7 +232,7 @@
         if (row) {
             $.messager.confirm(title, '<%=SpringUtils.getMessage("member.form.removePrompt")%>', function (r) {
                 if (r) {
-                    $('#dictId').val(row.id);
+                    $('#memberId').val(row.id);
                     $('#delform').form('submit', {
                         url: base + '/member/delete',
                         success: function (data) {
@@ -305,11 +276,11 @@
         });
     }
 
-    function charge() {
-        $('#chargeform').form('clear');
+    function recharge() {
+        $('#rechargeform').form('clear');
         var row = $('#members').datagrid('getSelected');
         if (row) {
-            $.each($('#chargeform input'), function (i) {
+            $.each($('#rechargeform input'), function (i) {
                 $(this).removeAttr("readonly");
             });
             $('#c_cardNo').textbox({readonly: true}).textbox('disable');
@@ -321,9 +292,53 @@
             $('#c_cnName').textbox('setValue', row.cnName);
             $('#c_mobile').textbox('setValue', row.mobile);
             $('#memberRank').textbox('setValue', row.memberRank.name);
-            $('#chargeDlg').dialog('setTitle', '<%=SpringUtils.getMessage("member.form.chargeTitle")%>').dialog('open');
+            $('#rechargeDlg').dialog('setTitle', '<%=SpringUtils.getMessage("member.form.chargeTitle")%>').dialog('open');
         } else {
             $.messager.alert(title, '<%=SpringUtils.getMessage("member.form.selectMemberToCharge")%>', warning);
         }
+    }
+
+    function saveRecharge() {
+        $.messager.confirm(title, '请确认充值金额为：' + $('#rechargeAmount').numberbox('getValue'), function (r) {
+            if (r) {
+                $('#rechargeform').form('submit', {
+                    url: base + '/member/recharge',
+                    onSubmit: function () {
+                        return $('#rechargeform').form('validate');
+                    },
+                    success: function (data) {
+                        data = eval('(' + data + ')');
+                        if (data.type == 'success') {
+                            $.messager.show({
+                                title: title,
+                                msg: '会员充值完成！',
+                                timeout: 2000,
+                                showType: 'slide'
+                            });
+                            $('#rechargeDlg').dialog('close');
+                            $('#members').datagrid('reload');
+                        } else {
+                            $.messager.alert(title, data.content, error);
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+    function formatCurrency(num, row) {
+        num = num.toString().replace(/\$|\,/g, '');
+        if (isNaN(num))
+            num = "0";
+        sign = (num == (num = Math.abs(num)));
+        num = Math.floor(num * 100 + 0.50000000001);
+        cents = num % 100;
+        num = Math.floor(num / 100).toString();
+        if (cents < 10)
+            cents = "0" + cents;
+        for (var i = 0; i < Math.floor((num.length - (1 + i)) / 3); i++)
+            num = num.substring(0, num.length - (4 * i + 3)) + ',' +
+                    num.substring(num.length - (4 * i + 3));
+        return (((sign) ? '' : '-') + num + '.' + cents);
     }
 </script>

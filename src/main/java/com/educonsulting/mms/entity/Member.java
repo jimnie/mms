@@ -25,6 +25,8 @@ public class Member extends BaseEntity {
     // 当前余额
     private BigDecimal balance;
 
+    private BigDecimal rechargeAmount;
+
     private String cardNo;
 
     private Date registerDate;
@@ -431,5 +433,14 @@ public class Member extends BaseEntity {
 
     public void setStreet(String street) {
         this.street = street;
+    }
+
+    @Transient
+    public BigDecimal getRechargeAmount() {
+        return rechargeAmount;
+    }
+
+    public void setRechargeAmount(BigDecimal rechargeAmount) {
+        this.rechargeAmount = rechargeAmount;
     }
 }

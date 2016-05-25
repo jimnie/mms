@@ -28,9 +28,10 @@
                             <%=SpringUtils.getMessage("page.action.refresh")%>
                         </a>
                         <a href="javascript:void(0)" class="easyui-linkbutton"
-                           data-options="iconCls:'icon-redo'" onclick="charge()">
+                           data-options="iconCls:'icon-redo'" onclick="recharge()">
                             <%=SpringUtils.getMessage("member.form.charge")%>
                         </a>
+
                     </td>
                     <td style="text-align:right">
                         <a href="javascript:void(0)" class="easyui-linkbutton"
@@ -71,10 +72,10 @@
                 formatter:function(value,row){return row.memberRank.name;}">
                     <%=SpringUtils.getMessage("member.datagrid.memberRank")%>
                 </th>
-                <th data-options="field:'balance',width:80,halign:'center',align:'right'">
+                <th data-options="field:'balance',width:120,halign:'center',align:'right',formatter:formatCurrency">
                     <%=SpringUtils.getMessage("member.form.balance")%>
                 </th>
-                <th data-options="field:'amount',width:120,halign:'center',align:'right',sortable:true">
+                <th data-options="field:'amount',width:120,halign:'center',align:'right',sortable:true,formatter:formatCurrency">
                     <%=SpringUtils.getMessage("member.form.amount")%>
                 </th>
                 <th data-options="field:'registerDate',width:100,halign:'center',align:'center',sortable:true">
@@ -128,23 +129,23 @@
     </div>
 </div>
 
-<div id="chargeDlg" class="easyui-dialog" style="width: 400px;height: 300px"
+<div id="rechargeDlg" class="easyui-dialog" style="width: 400px;height: 300px"
      closed="true" modal="true" buttons="#charge-dlg-buttons">
     <div style="padding:20px 0px 0px 40px">
-        <div style="float:center">
-            <form id="chargeform" method="post">
-                <jsp:include page="charge.jsp"></jsp:include>
+        <div style="float: center">
+            <form id="rechargeform" method="post">
+                <jsp:include page="recharge.jsp"></jsp:include>
             </form>
         </div>
         <div style="clear:both"></div>
     </div>
-    <div id="charge-dlg-buttons" style="text-align:center;">
+    <div id="charge-dlg-buttons" style="text-align: center">
         <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'"
-           onclick="saveItem()">
+           onclick="saveRecharge()">
             <%=SpringUtils.getMessage("page.action.ok")%>
         </a>
         <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"
-           onclick="javascript:$('#chargeDlg').dialog('close')">
+           onclick="javascript:$('#rechargeDlg').dialog('close')">
             <%=SpringUtils.getMessage("page.action.close")%>
         </a>
     </div>
