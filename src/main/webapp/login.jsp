@@ -67,7 +67,7 @@
     <script type="text/javascript" src="<%=base%>/resources/js/common.js"></script>
     <script type="text/javascript">
         if (window != top) {
-            top.location.href = location.href;
+            top.location.href = '<%=base%>/common/main';
         }
         $().ready(function () {
 

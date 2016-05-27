@@ -144,7 +144,7 @@ public class MemberController extends BaseController {
         rechargeLog.setName(member.getCnName());
         rechargeLog.setOperator(userService.getCurrent().getUsername());
         rechargeLog.setType(Type.recharge);
-        rechargeLog.setAmount(member.getAmount());
+        rechargeLog.setAmount(member.getRechargeAmount());
         rechargeLog.setCreateDate(new Date(System.currentTimeMillis()));
 
         rechargeLogService.save(rechargeLog);
@@ -152,13 +152,30 @@ public class MemberController extends BaseController {
         return SUCCESS_MESSAGE;
     }
 
-    @RequestMapping(value = "/uncharge", method = RequestMethod.POST)
+    @RequestMapping(value = "/unrecharge", method = RequestMethod.POST)
     @ResponseBody
-    public Message uncharge(@RequestParam(value = "c_id") String id,
-                            @RequestParam(value = "rechargeAmount") String amount) {
+    public Message unrecharge(@RequestParam(value = "b_id") String id,
+                              @RequestParam(value = "unrechargeAmount") String amount,
+                              @RequestParam(value = "cause") String cause) {
         Member member = memberService.find(id);
         member.setRechargeAmount(BigDecimal.valueOf(Double.valueOf(amount)).negate());
-        memberService.update(member, userService.getCurrent(), Type.recharge);
+        member.setAmount(member.getAmount().add(member.getRechargeAmount()));
+        member.setBalance(member.getBalance().add(member.getRechargeAmount()));
+        member.setPoint(member.getPoint() + member.getRechargeAmount().longValue());
+
+        RechargeLog rechargeLog = new RechargeLog();
+        rechargeLog.setMemberid(member.getId());
+        rechargeLog.setCardNo(member.getCardNo());
+        rechargeLog.setMobile(member.getMobile());
+        rechargeLog.setName(member.getCnName());
+        rechargeLog.setOperator(userService.getCurrent().getUsername());
+        rechargeLog.setType(Type.hedging);
+        rechargeLog.setMemo(cause);
+        rechargeLog.setAmount(member.getRechargeAmount());
+        rechargeLog.setCreateDate(new Date(System.currentTimeMillis()));
+
+        rechargeLogService.save(rechargeLog);
+        memberService.update(member);
         return SUCCESS_MESSAGE;
     }
 }

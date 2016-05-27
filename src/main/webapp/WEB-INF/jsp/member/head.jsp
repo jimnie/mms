@@ -245,7 +245,7 @@
                                     timeout: 2000,
                                     showType: 'slide'
                                 });
-                                $('#dictionaries').datagrid('reload')
+                                $('#members').datagrid('reload')
                             } else {
                                 $.messager.alert(title, data.content, error);
                             }

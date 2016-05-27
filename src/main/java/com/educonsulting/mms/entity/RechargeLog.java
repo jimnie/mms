@@ -1,8 +1,10 @@
 package com.educonsulting.mms.entity;
 
+import com.educonsulting.mms.JsonDateSerializer;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -58,6 +60,9 @@ public class RechargeLog {
         this.id = id;
     }
 
+    @JsonProperty
+    @JsonSerialize(using = JsonDateSerializer.class)
+    @Column(nullable = false, updatable = false)
     public Date getCreateDate() {
         return createDate;
     }
@@ -66,6 +71,7 @@ public class RechargeLog {
         this.createDate = createDate;
     }
 
+    @JsonProperty
     @Column(nullable = false)
     public String getCardNo() {
         return cardNo;
@@ -75,6 +81,7 @@ public class RechargeLog {
         this.cardNo = cardNo;
     }
 
+    @JsonProperty
     @Column(nullable = false)
     public String getName() {
         return name;
@@ -84,6 +91,7 @@ public class RechargeLog {
         this.name = name;
     }
 
+    @JsonProperty
     @Column(nullable = false)
     public String getMobile() {
         return mobile;
@@ -93,6 +101,7 @@ public class RechargeLog {
         this.mobile = mobile;
     }
 
+    @JsonProperty
     @Column(nullable = false)
     public String getMemberid() {
         return memberid;
@@ -102,6 +111,7 @@ public class RechargeLog {
         this.memberid = memberid;
     }
 
+    @JsonProperty
     @Column(nullable = false)
     public BigDecimal getAmount() {
         return amount;
@@ -111,6 +121,7 @@ public class RechargeLog {
         this.amount = amount;
     }
 
+    @JsonProperty
     @Column(nullable = false)
     public String getOperator() {
         return operator;
@@ -120,6 +131,7 @@ public class RechargeLog {
         this.operator = operator;
     }
 
+    @JsonProperty
     @Column(nullable = false, length = 1)
     public Type getType() {
         return type;
@@ -129,6 +141,7 @@ public class RechargeLog {
         this.type = type;
     }
 
+    @JsonProperty
     public String getMemo() {
         return memo;
     }
