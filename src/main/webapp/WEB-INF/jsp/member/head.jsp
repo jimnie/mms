@@ -298,8 +298,31 @@
         }
     }
 
+    function unrecharge() {
+        $('#unrechargeform').form('clear');
+        var row = $('#members').datagrid('getSelected');
+        if (row) {
+            $.each($('#unrechargeform input'), function (i) {
+                $(this).removeAttr("readonly");
+            });
+            $('#b_cardNo').textbox({readonly: true}).textbox('disable');
+            $('#b_cnName').textbox({readonly: true}).textbox('disable');
+            $('#b_mobile').textbox({readonly: true}).textbox('disable');
+            $('#b_memberRank').textbox({readonly: true}).textbox('disable');
+            $('#b_id').attr('value', row.id);
+            $('#b_balance').attr('value', row.balance);
+            $('#b_cardNo').textbox('setValue', row.cardNo);
+            $('#b_cnName').textbox('setValue', row.cnName);
+            $('#b_mobile').textbox('setValue', row.mobile);
+            $('#b_memberRank').textbox('setValue', row.memberRank.name);
+            $('#unrechargeDlg').dialog('setTitle', '<%=SpringUtils.getMessage("member.form.chargeTitle")%>').dialog('open');
+        } else {
+            $.messager.alert(title, '<%=SpringUtils.getMessage("member.form.selectMemberToCharge")%>', warning);
+        }
+    }
+
     function saveRecharge() {
-        $.messager.confirm(title, '请确认充值金额为：' + $('#rechargeAmount').numberbox('getValue'), function (r) {
+        $.messager.confirm(title, '<%=SpringUtils.getMessage("member.form.rechargeSaveConfirm")%>' + $('#rechargeAmount').numberbox('getValue'), function (r) {
             if (r) {
                 $('#rechargeform').form('submit', {
                     url: base + '/member/recharge',
@@ -311,7 +334,7 @@
                         if (data.type == 'success') {
                             $.messager.show({
                                 title: title,
-                                msg: '会员充值完成！',
+                                msg: '<%=SpringUtils.getMessage("member.form.rechargeComplete")%>',
                                 timeout: 2000,
                                 showType: 'slide'
                             });
@@ -324,6 +347,45 @@
                 });
             }
         });
+    }
+
+    function saveUnrecharge() {
+        $.messager.confirm(title, '<%=SpringUtils.getMessage("member.form.unrechargeSaveConfirm")%>' + $('#unrechargeAmount').numberbox('getValue'), function (r) {
+            if (r) {
+                if (validateUnrechargeAmount()) {
+                    $.messager.alert(title, '<%=SpringUtils.getMessage("member.form.unrechargeWarning")%>', warning);
+                    return;
+                } else {
+                    $('#unrechargeform').form('submit', {
+                        url: base + '/member/unrecharge',
+                        onSubmit: function () {
+                            return $('#unrechargeform').form('validate');
+                        },
+                        success: function (data) {
+                            data = eval('(' + data + ')');
+                            if (data.type == 'success') {
+                                $.messager.show({
+                                    title: title,
+                                    msg: '<%=SpringUtils.getMessage("member.form.unrechargeComplete")%>',
+                                    timeout: 2000,
+                                    showType: 'slide'
+                                });
+                                $('#unrechargeDlg').dialog('close');
+                                $('#members').datagrid('reload');
+                            } else {
+                                $.messager.alert(title, data.content, error);
+                            }
+                        }
+                    });
+                }
+            }
+        });
+    }
+
+    function validateUnrechargeAmount() {
+        var amount = $('#unrechargeAmount').numberbox('getValue');
+        var balance = $('#b_balance').attr('value');
+        return parseFloat(amount) > parseFloat(balance);
     }
 
     function formatCurrency(num, row) {

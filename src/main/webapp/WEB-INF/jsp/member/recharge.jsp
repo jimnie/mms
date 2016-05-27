@@ -9,7 +9,7 @@
         </td>
         <td style="width: 180px" class="domain-bg">
             <input id="rechargeAmount" name="rechargeAmount" class="easyui-numberbox" value="0"
-                   data-options="precision:2,groupSeparator:',',decimalSeparator:'.',prefix:'¥'">
+                   data-options="precision:2,groupSeparator:',',decimalSeparator:'.',prefix:'¥',required:true">
         </td>
     </tr>
 

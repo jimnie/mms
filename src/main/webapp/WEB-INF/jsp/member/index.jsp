@@ -31,7 +31,10 @@
                            data-options="iconCls:'icon-redo'" onclick="recharge()">
                             <%=SpringUtils.getMessage("member.form.charge")%>
                         </a>
-
+                        <a href="javascript:void(0)" class="easyui-linkbutton"
+                           data-options="iconCls:'icon-undo'" onclick="unrecharge()">
+                            <%=SpringUtils.getMessage("member.form.unrecharge")%>
+                        </a>
                     </td>
                     <td style="text-align:right">
                         <a href="javascript:void(0)" class="easyui-linkbutton"
@@ -130,7 +133,7 @@
 </div>
 
 <div id="rechargeDlg" class="easyui-dialog" style="width: 400px;height: 300px"
-     closed="true" modal="true" buttons="#charge-dlg-buttons">
+     closed="true" modal="true" buttons="#recharge-dlg-buttons">
     <div style="padding:20px 0px 0px 40px">
         <div style="float: center">
             <form id="rechargeform" method="post">
@@ -139,7 +142,7 @@
         </div>
         <div style="clear:both"></div>
     </div>
-    <div id="charge-dlg-buttons" style="text-align: center">
+    <div id="recharge-dlg-buttons" style="text-align: center">
         <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'"
            onclick="saveRecharge()">
             <%=SpringUtils.getMessage("page.action.ok")%>
@@ -150,6 +153,29 @@
         </a>
     </div>
 </div>
+
+<div id="unrechargeDlg" class="easyui-dialog" style="width: 400px;height: 380px"
+     closed="true" modal="true" buttons="#unrecharge-dlg-buttons">
+    <div style="padding:20px 0px 0px 40px">
+        <div style="float: center">
+            <form id="unrechargeform" method="post">
+                <jsp:include page="unrecharge.jsp"></jsp:include>
+            </form>
+        </div>
+        <div style="clear:both"></div>
+    </div>
+    <div id="unrecharge-dlg-buttons" style="text-align: center">
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'"
+           onclick="saveUnrecharge()">
+            <%=SpringUtils.getMessage("page.action.ok")%>
+        </a>
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"
+           onclick="javascript:$('#unrechargeDlg').dialog('close')">
+            <%=SpringUtils.getMessage("page.action.close")%>
+        </a>
+    </div>
+</div>
+
 <div style="display: none">
     <form id="delform" method="post">
         <input type="hidden" id="memberId" name="memberId">
