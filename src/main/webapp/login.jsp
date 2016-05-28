@@ -91,11 +91,11 @@
             // 表单验证、记住用户名
             $loginForm.submit(function () {
                 if ($username.val() == '') {
-                    $.messager.alert('警告', '<%=SpringUtils.getMessage("sys.login.usernameRequired")%>', 'warning');
+                    $.messager.alert(title, '<%=SpringUtils.getMessage("sys.login.usernameRequired")%>', 'warning');
                     return false;
                 }
                 if ($password.val() == '') {
-                    $.messager.alert('警告', '<%=SpringUtils.getMessage("sys.login.passwordRequired")%>', 'warning');
+                    $.messager.alert(title, '<%=SpringUtils.getMessage("sys.login.passwordRequired")%>', 'warning');
                     return false;
                 }
 
@@ -112,7 +112,7 @@
             });
 
             <%if (message != null) {%>
-            $.messager.alert('错误', '<%=SpringUtils.getMessage(message, setting.getAccountLockCount())%>', 'error');
+            $.messager.alert(title, '<%=SpringUtils.getMessage(message, setting.getAccountLockCount())%>', 'error');
             <%}%>
 
             $loginButton.click(function () {
@@ -122,7 +122,9 @@
         });
     </script>
     <%} else {%>
-    <title>提示信息</title>
+    <title>
+        <%=SpringUtils.getMessage("sys.login.atemptInfo")%>
+    </title>
     <meta http-equiv="expires" content="0"/>
     <meta http-equiv="Pragma" content="no-cache"/>
     <meta http-equiv="Cache-Control" content="no-cache"/>
@@ -137,7 +139,9 @@
 
     <div class="header">
         <div class="switch" id="switch">
-            <span class="login_title">快速登录</span>
+            <span class="login_title">
+                <%=SpringUtils.getMessage("sys.login.logintitle")%>
+            </span>
         </div>
     </div>
 
