@@ -34,11 +34,8 @@
         <property name="minPoolSize" value="${connection_pools.min_pool_size}"/>
         <property name="maxPoolSize" value="${connection_pools.max_pool_size}"/>
         <property name="maxIdleTime" value="${connection_pools.max_idle_time}"/>
-        <property name="acquireIncrement" value="${connection_pools.acquire_increment}"/>
         <property name="checkoutTimeout" value="${connection_pools.checkout_timeout}"/>
         <property name="maxStatements" value="${connection_pools.max_statements}"/>
-        <property name="idleConnectionTestPeriod"
-                  value="${connection_pools.idle_connection_test_period}"/>
         <property name="preferredTestQuery" value="${connection_pools.preferred_test_query}"/>
         <property name="breakAfterAcquireFailure"
                   value="${connection_pools.break_after_acquire_failure}"/>
@@ -46,6 +43,15 @@
                   value="${connection_pools.unreturned_connection_timeout}"/>
         <property name="debugUnreturnedConnectionStackTraces"
                   value="${connection_pools.debug_unreturned_connection_stack_traces}"/>
+        <property name="acquireIncrement" value="${connection_pools.acquire_increment}"/>
+        <property name="acquireRetryAttempts" value="${connection_pools.acquire_retry_attempts}"/>
+        <property name="acquireRetryDelay" value="${connection_pools.acquire_retry_delay}"/>
+        <property name="testConnectionOnCheckin"
+                  value="${connection_pools.test_connection_on_checkin}"/>
+        <property name="automaticTestTable" value="${connection_pools.automatic_test_table}"/>
+        <property name="idleConnectionTestPeriod"
+                  value="${connection_pools.idle_connection_test_period}"/>
+
     </bean>
 
     <!-- 实体对象管理 -->
