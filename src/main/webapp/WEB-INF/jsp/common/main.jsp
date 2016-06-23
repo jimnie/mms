@@ -1,7 +1,7 @@
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <%@page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8" %>
 <%@include file="global.jsp" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -30,7 +30,7 @@
 </noscript>
 
 <!-- 页头 -->
-<div data-options="region:'north',split:true,border:false,fit:true"
+<div data-options="region:'north',split:true,border:false"
      style="overflow: hidden; height: 40px;
              background: url(<%=base%>/resources/images/layout-browser-hd-bg.gif) #7f99be repeat-x center 50%;
              line-height: 30px; color: #fff; font-family: Verdana, 微软雅黑,黑体">
@@ -60,7 +60,7 @@
 </div>
 
 <!-- 导航菜单 -->
-<div id="west" data-options="region:'west',split:true,fit:true"
+<div id="west" data-options="region:'west',split:true"
      title="<%=SpringUtils.getMessage("sys.main.nevigatioin")%>"
      style="width: 180px;">
     <div id="nav" class="easyui-accordion" data-options="fit:true,border:false,">
@@ -69,8 +69,7 @@
 </div>
 
 <!-- 内容 -->
-<div id="mainPanle" data-options="region:'center',fit:true"
-     style="background: #eee; overflow-y: hidden">
+<div id="mainPanle" data-options="region:'center'" style="background: #eee; overflow-y: hidden">
     <div id="tabs" class="easyui-tabs" data-options="fit:true,border:false">
         <div id="home" title="<%=SpringUtils.getMessage("sys.main.welcomeToUse")%>"
              style="padding: 20px; overflow: hidden;">
@@ -80,7 +79,7 @@
 </div>
 
 <!-- 页脚 -->
-<div data-options="region:'south',split:true,fit:true" style="height: 30px; background: #D2E0F2;">
+<div data-options="region:'south',split:true" style="height: 30px; background: #D2E0F2;">
     <div class="footer"><%=SpringUtils.getMessage("sya.main.footerInfo")%>
     </div>
 </div>
