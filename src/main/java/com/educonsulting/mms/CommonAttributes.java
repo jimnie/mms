@@ -2,10 +2,6 @@ package com.educonsulting.mms;
 
 public final class CommonAttributes {
 
-    public static final String[] DATE_PATTERNS = new String[]{"yyyy", "yyyy-MM", "yyyyMM",
-            "yyyy/MM", "yyyy-MM-dd", "yyyyMMdd", "yyyy/MM/dd", "yyyy-MM-dd HH:mm:ss",
-            "yyyyMMddHHmmss", "yyyy/MM/dd HH:mm:ss"};
-
     public static final String SETTING_XML_PATH = "/setting.xml";
     public static final String CONF_PROPERTIES_PATH = "/conf.properties";
     public static final String SETTING_NODE_PATH = "/config/setting";
@@ -30,9 +26,5 @@ public final class CommonAttributes {
     public static final long DEFAULT_MEMBER_POINT = 0L;
 
     private CommonAttributes() {
-    }
-
-    public static String getDatePattern(Integer index) {
-        return DATE_PATTERNS[index];
     }
 }
