@@ -89,7 +89,7 @@ public final class SettingUtils {
         };
 
         DateConverter dateConverter = new DateConverter();
-        dateConverter.setPatterns(CommonAttributes.DATE_PATTERNS);
+        dateConverter.setPatterns(DateUtils.getDatePatterns());
         convertUtilsBean.register(dateConverter, Date.class);
         beanUtils = new BeanUtilsBean(convertUtilsBean);
     }

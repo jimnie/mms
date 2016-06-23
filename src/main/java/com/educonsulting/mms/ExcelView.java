@@ -1,5 +1,7 @@
 package com.educonsulting.mms;
 
+import com.educonsulting.mms.util.DatePattern;
+import com.educonsulting.mms.util.DateUtils;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.beanutils.Converter;
@@ -15,6 +17,7 @@ import org.springframework.web.servlet.view.document.AbstractXlsView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.net.URLEncoder;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Map;
@@ -41,7 +44,8 @@ public class ExcelView extends AbstractXlsView {
 
     static {
         DateConverter dateConverter = new DateConverter();
-        dateConverter.setPattern(DEFAULT_DATE_PATTERN);
+        dateConverter.setPattern(DateUtils.getDateStringByPattern(Calendar.getInstance().getTime(),
+                DatePattern.TIME_WITH_MINUS));
         ConvertUtils.register(dateConverter, Date.class);
     }
 

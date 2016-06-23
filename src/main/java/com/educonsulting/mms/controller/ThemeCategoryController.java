@@ -3,6 +3,7 @@ package com.educonsulting.mms.controller;
 import com.educonsulting.mms.*;
 import com.educonsulting.mms.entity.ThemeCategory;
 import com.educonsulting.mms.service.ThemeCategoryService;
+import com.educonsulting.mms.util.DatePattern;
 import com.educonsulting.mms.util.DateUtils;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -15,10 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Wayne on 2016/3/10.
@@ -94,7 +92,8 @@ public class ThemeCategoryController extends BaseController {
                 "sortNo"};
         JsonConfig config = new JsonConfig();
         config.registerJsonValueProcessor(Date.class, new JsonDateValueProcessor(DateUtils
-                .DEFAULT_DATE_PATTERN));
+                .getDateStringByPattern(Calendar.getInstance().getTime(),
+                        DatePattern.TIME_WITH_MINUS)));
         config.setIgnoreDefaultExcludes(false);
         config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
         config.setExcludes(excludes);

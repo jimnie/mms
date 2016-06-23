@@ -5,6 +5,7 @@ import com.educonsulting.mms.JsonDateValueProcessor;
 import com.educonsulting.mms.Message;
 import com.educonsulting.mms.entity.Resources;
 import com.educonsulting.mms.service.ResourceService;
+import com.educonsulting.mms.util.DatePattern;
 import com.educonsulting.mms.util.DateUtils;
 import com.educonsulting.mms.util.SpringUtils;
 import net.sf.json.JSONArray;
@@ -15,10 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Wayne on 2015/7/12.
@@ -68,7 +66,8 @@ public class ResourceController extends BaseController {
             excludes) {
         JsonConfig config = new JsonConfig();
         config.registerJsonValueProcessor(Date.class, new JsonDateValueProcessor(DateUtils
-                .DEFAULT_DATE_PATTERN));
+                .getDateStringByPattern(Calendar.getInstance().getTime(),
+                        DatePattern.TIME_WITH_MINUS)));
         config.setIgnoreDefaultExcludes(false);
         config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
         config.setExcludes(excludes);

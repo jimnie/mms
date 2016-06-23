@@ -41,7 +41,8 @@ public class DateEditor extends PropertyEditorSupport {
                 setValue(null);
             } else {
                 try {
-                    setValue(DateUtils.parseDate(value, CommonAttributes.DATE_PATTERNS));
+                    setValue(DateUtils.parseDate(value, com.educonsulting.mms.util.DateUtils
+                            .getDatePatterns()));
                 } catch (ParseException e) {
                     setValue(null);
                 }

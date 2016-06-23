@@ -9,8 +9,8 @@ import com.educonsulting.mms.util.SettingUtils;
 import com.educonsulting.mms.util.SpringUtils;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -25,7 +25,7 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController extends BaseController {
 
-    private static Log log = LogFactory.getLog(UserController.class);
+    private static Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @Resource(name = "userServiceImpl")
     private UserService userService;

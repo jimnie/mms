@@ -3,6 +3,7 @@ package com.educonsulting.mms.controller;
 import com.educonsulting.mms.JsonDateValueProcessor;
 import com.educonsulting.mms.entity.Area;
 import com.educonsulting.mms.service.AreaService;
+import com.educonsulting.mms.util.DatePattern;
 import com.educonsulting.mms.util.DateUtils;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -50,7 +52,8 @@ public class AreaController extends BaseController {
         String[] excludes = new String[]{"children", "parent", "fullName", "treePath", "fullName"};
         JsonConfig config = new JsonConfig();
         config.registerJsonValueProcessor(Date.class, new JsonDateValueProcessor(DateUtils
-                .DEFAULT_DATE_PATTERN));
+                .getDateStringByPattern(Calendar.getInstance().getTime(),
+                        DatePattern.TIME_WITH_MINUS)));
         config.setIgnoreDefaultExcludes(false);
         config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
         config.setExcludes(excludes);
