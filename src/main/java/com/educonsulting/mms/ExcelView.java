@@ -8,8 +8,9 @@ import org.apache.commons.beanutils.converters.DateConverter;
 import org.apache.commons.lang.StringUtils;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.hssf.util.HSSFColor;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.util.Assert;
-import org.springframework.web.servlet.view.document.AbstractExcelView;
+import org.springframework.web.servlet.view.document.AbstractXlsView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,7 +19,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Map;
 
-public class ExcelView extends AbstractExcelView {
+public class ExcelView extends AbstractXlsView {
 
     private static final String DEFAULT_DATE_PATTERN = "yyyy-MM-dd HH:mm:ss";
 
@@ -75,15 +76,17 @@ public class ExcelView extends AbstractExcelView {
         this.data = data;
     }
 
-    public void buildExcelDocument(Map<String, Object> model, HSSFWorkbook workbook,
-                                   HttpServletRequest request, HttpServletResponse response)
+    @Override
+    protected void buildExcelDocument(Map<String, Object> model, Workbook workbook,
+                                      HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         Assert.notEmpty(properties);
         HSSFSheet sheet;
+        HSSFWorkbook wb = (HSSFWorkbook) workbook;
         if (StringUtils.isNotEmpty(sheetName)) {
-            sheet = workbook.createSheet(sheetName);
+            sheet = wb.createSheet(sheetName);
         } else {
-            sheet = workbook.createSheet();
+            sheet = wb.createSheet();
         }
         int rowNumber = 0;
         if (titles != null && titles.length > 0) {
@@ -91,12 +94,12 @@ public class ExcelView extends AbstractExcelView {
             header.setHeight((short) 400);
             for (int i = 0; i < properties.length; i++) {
                 HSSFCell cell = header.createCell(i);
-                HSSFCellStyle cellStyle = workbook.createCellStyle();
+                HSSFCellStyle cellStyle = wb.createCellStyle();
                 cellStyle.setFillForegroundColor(HSSFColor.LIGHT_CORNFLOWER_BLUE.index);
                 cellStyle.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
                 cellStyle.setAlignment(HSSFCellStyle.ALIGN_CENTER);
                 cellStyle.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
-                HSSFFont font = workbook.createFont();
+                HSSFFont font = wb.createFont();
                 font.setFontHeightInPoints((short) 11);
                 font.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
                 cellStyle.setFont(font);
@@ -156,8 +159,8 @@ public class ExcelView extends AbstractExcelView {
             for (String content : contents) {
                 HSSFRow row = sheet.createRow(rowNumber);
                 HSSFCell cell = row.createCell(0);
-                HSSFCellStyle cellStyle = workbook.createCellStyle();
-                HSSFFont font = workbook.createFont();
+                HSSFCellStyle cellStyle = wb.createCellStyle();
+                HSSFFont font = wb.createFont();
                 font.setColor(HSSFColor.GREY_50_PERCENT.index);
                 cellStyle.setFont(font);
                 cell.setCellStyle(cellStyle);
@@ -237,5 +240,6 @@ public class ExcelView extends AbstractExcelView {
     public void setContents(String[] contents) {
         this.contents = contents;
     }
+
 
 }
