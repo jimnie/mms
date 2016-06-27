@@ -7,11 +7,11 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "mms_sys_log")
-public class Log extends BaseEntity {
+public class UsageLog extends BaseEntity {
 
     private static final long serialVersionUID = -4494144902110236826L;
 
-    public static final String LOG_CONTENT_ATTRIBUTE_NAME = Log.class.getName() + ".CONTENT";
+    public static final String LOG_CONTENT_ATTRIBUTE_NAME = UsageLog.class.getName() + ".CONTENT";
 
     private String operation;
 

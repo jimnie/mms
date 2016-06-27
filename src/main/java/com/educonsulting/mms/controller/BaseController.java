@@ -1,7 +1,7 @@
 package com.educonsulting.mms.controller;
 
 import com.educonsulting.mms.*;
-import com.educonsulting.mms.entity.Log;
+import com.educonsulting.mms.entity.UsageLog;
 import com.educonsulting.mms.util.SettingUtils;
 import com.educonsulting.mms.util.SpringUtils;
 import org.apache.commons.lang.StringUtils;
@@ -86,7 +86,7 @@ public class BaseController {
     protected void addLog(String content) {
         if (content != null) {
             RequestAttributes requestAttributes = RequestContextHolder.currentRequestAttributes();
-            requestAttributes.setAttribute(Log.LOG_CONTENT_ATTRIBUTE_NAME, content,
+            requestAttributes.setAttribute(UsageLog.LOG_CONTENT_ATTRIBUTE_NAME, content,
                     RequestAttributes.SCOPE_REQUEST);
         }
     }

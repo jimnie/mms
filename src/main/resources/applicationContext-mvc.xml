@@ -52,7 +52,8 @@
         </mvc:interceptor>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
-            <bean id="logInterceptor" class="com.educonsulting.mms.interceptor.LogInterceptor"/>
+            <bean id="usageLogInterceptor"
+                  class="com.educonsulting.mms.interceptor.UsageLogInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
 

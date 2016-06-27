@@ -1,9 +1,9 @@
 package com.educonsulting.mms.interceptor;
 
 import com.educonsulting.mms.LogConfig;
-import com.educonsulting.mms.entity.Log;
+import com.educonsulting.mms.entity.UsageLog;
 import com.educonsulting.mms.service.LogConfigService;
-import com.educonsulting.mms.service.LogService;
+import com.educonsulting.mms.service.UsageLogService;
 import com.educonsulting.mms.service.UserService;
 import org.apache.commons.lang.ArrayUtils;
 import org.springframework.util.AntPathMatcher;
@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-public class LogInterceptor extends HandlerInterceptorAdapter {
+public class UsageLogInterceptor extends HandlerInterceptorAdapter {
 
     private static final String[] DEFAULT_IGNORE_PARAMETERS = new String[]{"password",
             "rePassword", "currentPassword"};
@@ -28,8 +28,8 @@ public class LogInterceptor extends HandlerInterceptorAdapter {
 
     @Resource(name = "logConfigServiceImpl")
     private LogConfigService logConfigService;
-    @Resource(name = "logServiceImpl")
-    private LogService logService;
+    @Resource(name = "usageLogServiceImpl")
+    private UsageLogService logService;
     @Resource(name = "userServiceImpl")
     private UserService userService;
 
@@ -44,9 +44,10 @@ public class LogInterceptor extends HandlerInterceptorAdapter {
                     String username = userService.getCurrentUsername();
                     String operation = logConfig.getOperation();
                     String operator = username;
-                    String content = (String) request.getAttribute(Log.LOG_CONTENT_ATTRIBUTE_NAME);
+                    String content = (String) request.getAttribute(UsageLog
+                            .LOG_CONTENT_ATTRIBUTE_NAME);
                     String ip = request.getRemoteAddr();
-                    request.removeAttribute(Log.LOG_CONTENT_ATTRIBUTE_NAME);
+                    request.removeAttribute(UsageLog.LOG_CONTENT_ATTRIBUTE_NAME);
                     StringBuffer parameter = new StringBuffer();
                     Map<String, String[]> parameterMap = request.getParameterMap();
                     if (parameterMap != null) {
@@ -63,13 +64,13 @@ public class LogInterceptor extends HandlerInterceptorAdapter {
                             }
                         }
                     }
-                    Log log = new Log();
-                    log.setOperation(operation);
-                    log.setOperator(operator);
-                    log.setContent(content);
-                    log.setParameter(parameter.toString());
-                    log.setIp(ip);
-                    logService.save(log);
+                    UsageLog usageLog = new UsageLog();
+                    usageLog.setOperation(operation);
+                    usageLog.setOperator(operator);
+                    usageLog.setContent(content);
+                    usageLog.setParameter(parameter.toString());
+                    usageLog.setIp(ip);
+                    logService.save(usageLog);
                     break;
                 }
             }
