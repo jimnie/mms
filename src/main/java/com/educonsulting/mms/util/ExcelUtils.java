@@ -12,7 +12,7 @@ import java.util.List;
  * Date ：2015/11/14.
  * Time ：17:30.
  */
-public class ExcelUtil {
+public class ExcelUtils {
     /**
      * 创建excel文档，
      *

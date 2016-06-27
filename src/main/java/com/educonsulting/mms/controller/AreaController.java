@@ -4,7 +4,7 @@ import com.educonsulting.mms.JsonDateValueProcessor;
 import com.educonsulting.mms.entity.Area;
 import com.educonsulting.mms.service.AreaService;
 import com.educonsulting.mms.util.DatePattern;
-import com.educonsulting.mms.util.DateUtils;
+import com.educonsulting.mms.util.DateTimeUtils;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
@@ -51,7 +51,7 @@ public class AreaController extends BaseController {
     private JSONArray getJsonArrayWithIgnoreFields(List<Area> areas) {
         String[] excludes = new String[]{"children", "parent", "fullName", "treePath", "fullName"};
         JsonConfig config = new JsonConfig();
-        config.registerJsonValueProcessor(Date.class, new JsonDateValueProcessor(DateUtils
+        config.registerJsonValueProcessor(Date.class, new JsonDateValueProcessor(DateTimeUtils
                 .getDateStringByPattern(Calendar.getInstance().getTime(),
                         DatePattern.TIME_WITH_MINUS)));
         config.setIgnoreDefaultExcludes(false);

@@ -1,7 +1,7 @@
 package com.educonsulting.mms;
 
 import com.educonsulting.mms.util.DatePattern;
-import com.educonsulting.mms.util.DateUtils;
+import com.educonsulting.mms.util.DateTimeUtils;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.beanutils.Converter;
@@ -44,7 +44,8 @@ public class ExcelView extends AbstractXlsView {
 
     static {
         DateConverter dateConverter = new DateConverter();
-        dateConverter.setPattern(DateUtils.getDateStringByPattern(Calendar.getInstance().getTime(),
+        dateConverter.setPattern(DateTimeUtils.getDateStringByPattern(Calendar.getInstance()
+                        .getTime(),
                 DatePattern.TIME_WITH_MINUS));
         ConvertUtils.register(dateConverter, Date.class);
     }

@@ -4,7 +4,7 @@ import com.educonsulting.mms.*;
 import com.educonsulting.mms.entity.ThemeCategory;
 import com.educonsulting.mms.service.ThemeCategoryService;
 import com.educonsulting.mms.util.DatePattern;
-import com.educonsulting.mms.util.DateUtils;
+import com.educonsulting.mms.util.DateTimeUtils;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
@@ -91,7 +91,7 @@ public class ThemeCategoryController extends BaseController {
         String[] excludes = new String[]{"createDate", "modifyDate", "memo", "members", "themes",
                 "sortNo"};
         JsonConfig config = new JsonConfig();
-        config.registerJsonValueProcessor(Date.class, new JsonDateValueProcessor(DateUtils
+        config.registerJsonValueProcessor(Date.class, new JsonDateValueProcessor(DateTimeUtils
                 .getDateStringByPattern(Calendar.getInstance().getTime(),
                         DatePattern.TIME_WITH_MINUS)));
         config.setIgnoreDefaultExcludes(false);

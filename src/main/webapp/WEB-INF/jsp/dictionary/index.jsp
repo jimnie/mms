@@ -109,7 +109,7 @@
 
 <div style="display: none">
     <form id="delform" method="post">
-        <input type="hidden" id="categoryId" name="categoryId" value=""/>
+        <input type="hidden" id="dictId" name="dictId" value=""/>
     </form>
 </div>
 

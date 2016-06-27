@@ -1,6 +1,7 @@
 package com.educonsulting.mms;
 
 import com.educonsulting.mms.util.DatePattern;
+import com.educonsulting.mms.util.DateTimeUtils;
 import org.apache.commons.lang.time.DateUtils;
 
 import java.beans.PropertyEditorSupport;
@@ -12,7 +13,7 @@ public class DateEditor extends PropertyEditorSupport {
 
     private boolean emptyAsNull;
 
-    private String dateFormat = com.educonsulting.mms.util.DateUtils.getDatePattern(DatePattern
+    private String dateFormat = DateTimeUtils.getDatePattern(DatePattern
             .TIME_IN_24H.getValue());
 
     public DateEditor(boolean emptyAsNull) {
@@ -40,7 +41,7 @@ public class DateEditor extends PropertyEditorSupport {
                 setValue(null);
             } else {
                 try {
-                    setValue(DateUtils.parseDate(value, com.educonsulting.mms.util.DateUtils
+                    setValue(DateUtils.parseDate(value, DateTimeUtils
                             .getDatePatterns()));
                 } catch (ParseException e) {
                     setValue(null);

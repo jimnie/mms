@@ -15,4 +15,10 @@
     <setting name="cnzzSiteId" value=""/>
     <setting name="cnzzPassword" value=""/>
     <setting name="defaultNewPassword" value="123456"/>
+
+    <logConfig operation="添加会员" urlPattern="/member/save"/>
+    <logConfig operation="修改会员" urlPattern="/member/update"/>
+    <logConfig operation="添加系统词典" urlPattern="/dict/save"/>
+    <logConfig operation="修改系统词典" urlPattern="/dict/update"/>
+    <logConfig operation="删除系统词典" urlPattern="/dict/delete"/>
 </config>

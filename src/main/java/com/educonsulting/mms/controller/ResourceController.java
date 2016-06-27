@@ -6,7 +6,7 @@ import com.educonsulting.mms.Message;
 import com.educonsulting.mms.entity.Resources;
 import com.educonsulting.mms.service.ResourceService;
 import com.educonsulting.mms.util.DatePattern;
-import com.educonsulting.mms.util.DateUtils;
+import com.educonsulting.mms.util.DateTimeUtils;
 import com.educonsulting.mms.util.SpringUtils;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -65,7 +65,7 @@ public class ResourceController extends BaseController {
     private JSONArray getJsonArrayWithIgnoreFields(List<Resources> resources, String...
             excludes) {
         JsonConfig config = new JsonConfig();
-        config.registerJsonValueProcessor(Date.class, new JsonDateValueProcessor(DateUtils
+        config.registerJsonValueProcessor(Date.class, new JsonDateValueProcessor(DateTimeUtils
                 .getDateStringByPattern(Calendar.getInstance().getTime(),
                         DatePattern.TIME_WITH_MINUS)));
         config.setIgnoreDefaultExcludes(false);

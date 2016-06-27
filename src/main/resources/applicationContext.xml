@@ -98,7 +98,7 @@
     </bean>
 
     <!-- 启用事务注解功能 -->
-    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="false"/>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <!-- 支持缓存注解 -->
     <cache:annotation-driven cache-manager="cacheManager"/>

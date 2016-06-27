@@ -133,7 +133,7 @@
 </head>
 
 <body>
-<h1>后台登录模板下载<sup>V2014</sup></h1>
+<h1><%=SpringUtils.getMessage("sys.login.title")%><sup>v1.0</sup></h1>
 
 <div class="login" style="margin-top:50px;">
 

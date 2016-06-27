@@ -6,9 +6,9 @@ import java.util.Date;
 /**
  * Created by Wayne on 2016/5/26.
  */
-public class DateUtils {
+public final class DateTimeUtils {
 
-    private DateUtils() {
+    private DateTimeUtils() {
     }
 
     private static final String[] DATE_PATTERNS = new String[]{"yyyy", "yyyy-MM", "yyyyMM",
