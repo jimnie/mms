@@ -33,17 +33,29 @@
                   diskPersistent="false"
                   diskExpiryThreadIntervalSeconds="120"
                   memoryStoreEvictionPolicy="LRU"/>
-    <cache name="authorization" maxElementsInMemory="100" timeToLiveSeconds="3600" eternal="false"
+
+    <cache name="authorization"
+           maxElementsInMemory="100"
+           timeToLiveSeconds="3600"
+           eternal="false"
            overflowToDisk="false"/>
-    <cache name="setting" maxElementsInMemory="100" eternal="true" overflowToDisk="true"/>
-    <cache name="logConfig" maxElementsInMemory="100" eternal="true" overflowToDisk="true"/>
+
+    <cache name="setting"
+           maxElementsInMemory="100"
+           eternal="true"
+           overflowToDisk="true"/>
+
+    <cache name="logConfig"
+           maxElementsInMemory="100"
+           eternal="true"
+           overflowToDisk="true"/>
 
     <!--
         指定缓存的对象。
         下面出现的的属性覆盖上面出现的，没出现的继承上面的。
     -->
     <cache name="shiro-activeSessionCache"
-           maxElementsInMemory="10000"
+           maxElementsInMemory="2000"
            overflowToDisk="true"
            eternal="true"
            timeToLiveSeconds="0"
@@ -52,7 +64,7 @@
            diskExpiryThreadIntervalSeconds="600"/>
 
     <cache name="shiro-kickout-session"
-           maxEntriesLocalHeap="2000"
+           maxEntriesLocalHeap="1000"
            eternal="false"
            timeToIdleSeconds="3600"
            timeToLiveSeconds="0"
