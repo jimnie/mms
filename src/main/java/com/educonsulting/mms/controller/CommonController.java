@@ -69,4 +69,8 @@ public class CommonController implements ServletContextAware {
         return "/common/unauthorized";
     }
 
+    @RequestMapping("/invalidSession")
+    public String invalidSession() {
+        return "/common/invalidSession";
+    }
 }
