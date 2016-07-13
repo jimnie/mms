@@ -1,5 +1,9 @@
 package com.educonsulting.mms;
 
+import org.apache.commons.codec.binary.Base64;
+
+import java.io.UnsupportedEncodingException;
+
 public final class CommonAttributes {
 
     public static final String SETTING_XML_PATH = "/setting.xml";
@@ -26,5 +30,10 @@ public final class CommonAttributes {
     public static final long DEFAULT_MEMBER_POINT = 0L;
 
     private CommonAttributes() {
+    }
+
+    public static void main(String[] args) throws UnsupportedEncodingException {
+        System.out.println(new String(Base64.encodeBase64("PoweredBy".getBytes("utf-8")), "utf-8"));
+        System.out.println(new String(Base64.decodeBase64("UG93ZXJlZEJ5"), "utf-8"));
     }
 }
