@@ -5,7 +5,7 @@ import com.educonsulting.mms.entity.Resources;
 /**
  * Created by Wayne on 2015/7/12.
  */
-public interface ResourceService extends BaseService<Resources, String> {
+public interface ResourceService extends BaseService<Resources, Long> {
 
     Object getTree();
 

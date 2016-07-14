@@ -18,7 +18,7 @@ import java.util.List;
  * Created by Wayne on 2016/3/10.
  */
 @Service("themeCategoryServiceImpl")
-public class ThemeCategoryServiceImpl extends BaseServiceImpl<ThemeCategory, String> implements
+public class ThemeCategoryServiceImpl extends BaseServiceImpl<ThemeCategory, Long> implements
         ThemeCategoryService {
 
     @Resource(name = "themeCategoryDaoImpl")
@@ -36,7 +36,7 @@ public class ThemeCategoryServiceImpl extends BaseServiceImpl<ThemeCategory, Str
     }
 
     @Override
-    public ThemeCategory find(String id) {
+    public ThemeCategory find(Long id) {
         return super.find(id);
     }
 
@@ -48,7 +48,7 @@ public class ThemeCategoryServiceImpl extends BaseServiceImpl<ThemeCategory, Str
     }
 
     @Override
-    public List<ThemeCategory> findList(String... ids) {
+    public List<ThemeCategory> findList(Long... ids) {
         return super.findList(ids);
     }
 
@@ -80,7 +80,7 @@ public class ThemeCategoryServiceImpl extends BaseServiceImpl<ThemeCategory, Str
     }
 
     @Override
-    public boolean exists(String id) {
+    public boolean exists(Long id) {
         return super.exists(id);
     }
 
@@ -109,13 +109,13 @@ public class ThemeCategoryServiceImpl extends BaseServiceImpl<ThemeCategory, Str
 
     @Override
     @CacheEvict(value = "themeCategory", allEntries = true)
-    public void delete(String id) {
+    public void delete(Long id) {
         super.delete(id);
     }
 
     @Override
     @CacheEvict(value = "themeCategory", allEntries = true)
-    public void delete(String... ids) {
+    public void delete(Long... ids) {
         super.delete(ids);
     }
 
@@ -125,7 +125,7 @@ public class ThemeCategoryServiceImpl extends BaseServiceImpl<ThemeCategory, Str
     }
 
     @Override
-    public boolean isCategoryNameExists(String categoryName, String id) {
+    public boolean isCategoryNameExists(String categoryName, Long id) {
         return themeCategoryDao.isCategoryNameExists(categoryName, id);
     }
 }

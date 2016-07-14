@@ -11,7 +11,7 @@ import javax.annotation.Resource;
  * Created by Wayne on 2015/7/20.
  */
 @Service("authorityServiceImpl")
-public class AuthorityServiceImpl extends BaseServiceImpl<Authority, String> implements
+public class AuthorityServiceImpl extends BaseServiceImpl<Authority, Long> implements
         AuthorityService {
 
     @Resource(name = "authorityDaoImpl")

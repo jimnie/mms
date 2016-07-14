@@ -18,7 +18,7 @@ import java.util.List;
  * Created by Wayne on 2015/7/4.
  */
 @Service("dictionaryServiceImpl")
-public class DictionaryServiceImpl extends BaseServiceImpl<Dictionary, String> implements
+public class DictionaryServiceImpl extends BaseServiceImpl<Dictionary, Long> implements
         DictionaryService {
 
     @Resource(name = "dictionaryDaoImpl")
@@ -48,7 +48,7 @@ public class DictionaryServiceImpl extends BaseServiceImpl<Dictionary, String> i
 
     @Override
     @Cacheable(value = "dictionary")
-    public Dictionary find(String id) {
+    public Dictionary find(Long id) {
         return super.find(id);
     }
 
@@ -66,13 +66,13 @@ public class DictionaryServiceImpl extends BaseServiceImpl<Dictionary, String> i
 
     @Override
     @CacheEvict(value = "dictionary", allEntries = true)
-    public void delete(String... ids) {
+    public void delete(Long... ids) {
         super.delete(ids);
     }
 
     @Override
     @CacheEvict(value = "dictionary", allEntries = true)
-    public void delete(String id) {
+    public void delete(Long id) {
         super.delete(id);
     }
 

@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service("userServiceImpl")
-public class UserServiceImpl extends BaseServiceImpl<User, String> implements UserService {
+public class UserServiceImpl extends BaseServiceImpl<User, Long> implements UserService {
 
     @Resource(name = "userDaoImpl")
     private UserDao userDao;
@@ -36,7 +36,7 @@ public class UserServiceImpl extends BaseServiceImpl<User, String> implements Us
     }
 
     @Transactional(readOnly = true)
-    public List<String> findAuthorities(String id) {
+    public List<String> findAuthorities(Long id) {
         List<String> authorities = new ArrayList<String>();
         User user = userDao.find(id);
         if (user != null) {
@@ -110,14 +110,14 @@ public class UserServiceImpl extends BaseServiceImpl<User, String> implements Us
     @Override
     @Transactional
     @CacheEvict(value = "authorization", allEntries = true)
-    public void delete(String id) {
+    public void delete(Long id) {
         super.delete(id);
     }
 
     @Override
     @Transactional
     @CacheEvict(value = "authorization", allEntries = true)
-    public void delete(String... ids) {
+    public void delete(Long... ids) {
         super.delete(ids);
     }
 

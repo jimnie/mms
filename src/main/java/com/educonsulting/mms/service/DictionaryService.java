@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by Wayne on 2015/7/4.
  */
-public interface DictionaryService extends BaseService<Dictionary, String> {
+public interface DictionaryService extends BaseService<Dictionary, Long> {
 
     List<Dictionary> findDict(String fieldName);
 }

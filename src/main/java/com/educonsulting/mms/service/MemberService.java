@@ -9,7 +9,7 @@ import com.educonsulting.mms.entity.User;
 /**
  * Created by Wayne on 2016/3/7.
  */
-public interface MemberService extends BaseService<Member, String> {
+public interface MemberService extends BaseService<Member, Long> {
 
     boolean isCartNoAssigned(String cardNo);
 

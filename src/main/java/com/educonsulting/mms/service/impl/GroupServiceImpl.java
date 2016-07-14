@@ -21,7 +21,7 @@ import java.util.List;
  * Created by Wayne on 2015/7/7.
  */
 @Service("groupServiceImpl")
-public class GroupServiceImpl extends BaseServiceImpl<Group, String> implements GroupService {
+public class GroupServiceImpl extends BaseServiceImpl<Group, Long> implements GroupService {
 
     @Resource(name = "groupDaoImpl")
     private GroupDao groupDao;
@@ -118,7 +118,7 @@ public class GroupServiceImpl extends BaseServiceImpl<Group, String> implements 
     }
 
     @Override
-    public Group find(String id) {
+    public Group find(Long id) {
         return super.find(id);
     }
 
@@ -154,13 +154,13 @@ public class GroupServiceImpl extends BaseServiceImpl<Group, String> implements 
 
     @Override
     @CacheEvict(value = "group", allEntries = true)
-    public void delete(String id) {
+    public void delete(Long id) {
         super.delete(id);
     }
 
     @Override
     @CacheEvict(value = "group", allEntries = true)
-    public void delete(String... ids) {
+    public void delete(Long... ids) {
         super.delete(ids);
     }
 

@@ -24,7 +24,7 @@ import java.util.List;
  * Created by Wayne on 2016/3/8.
  */
 @Service("memberServiceImpl")
-public class MemberServiceImpl extends BaseServiceImpl<Member, String> implements MemberService {
+public class MemberServiceImpl extends BaseServiceImpl<Member, Long> implements MemberService {
 
     @Resource(name = "memberDaoImpl")
     private MemberDao memberDao;
@@ -43,7 +43,7 @@ public class MemberServiceImpl extends BaseServiceImpl<Member, String> implement
     }
 
     @Override
-    public List<Member> findList(String... ids) {
+    public List<Member> findList(Long... ids) {
         return super.findList(ids);
     }
 
@@ -69,7 +69,7 @@ public class MemberServiceImpl extends BaseServiceImpl<Member, String> implement
     }
 
     @Override
-    public boolean exists(String id) {
+    public boolean exists(Long id) {
         return super.exists(id);
     }
 
@@ -79,7 +79,7 @@ public class MemberServiceImpl extends BaseServiceImpl<Member, String> implement
     }
 
     @Override
-    public Member find(String id) {
+    public Member find(Long id) {
         return super.find(id);
     }
 
@@ -115,13 +115,13 @@ public class MemberServiceImpl extends BaseServiceImpl<Member, String> implement
 
     @Override
     @CacheEvict(value = "member", allEntries = true)
-    public void delete(String id) {
+    public void delete(Long id) {
         super.delete(id);
     }
 
     @Override
     @CacheEvict(value = "member", allEntries = true)
-    public void delete(String... ids) {
+    public void delete(Long... ids) {
         super.delete(ids);
     }
 

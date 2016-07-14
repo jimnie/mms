@@ -4,7 +4,7 @@ import com.educonsulting.mms.entity.MemberRank;
 
 import java.math.BigDecimal;
 
-public interface MemberRankService extends BaseService<MemberRank, String> {
+public interface MemberRankService extends BaseService<MemberRank, Long> {
 
     boolean nameExists(String name);
 

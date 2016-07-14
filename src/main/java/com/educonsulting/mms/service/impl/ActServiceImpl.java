@@ -18,7 +18,7 @@ import java.util.List;
  * Created by Wayne on 2015/7/16.
  */
 @Service("actServiceImpl")
-public class ActServiceImpl extends BaseServiceImpl<Act, String> implements ActService {
+public class ActServiceImpl extends BaseServiceImpl<Act, Long> implements ActService {
 
     @Resource(name = "actDaoImpl")
     private ActDao actDao;
@@ -34,7 +34,7 @@ public class ActServiceImpl extends BaseServiceImpl<Act, String> implements ActS
 
     @Override
     @Cacheable(value = "act")
-    public Act find(String id) {
+    public Act find(Long id) {
         return super.find(id);
     }
 
@@ -46,7 +46,7 @@ public class ActServiceImpl extends BaseServiceImpl<Act, String> implements ActS
 
     @Override
     @Cacheable(value = "act")
-    public List<Act> findList(String... ids) {
+    public List<Act> findList(Long... ids) {
         return super.findList(ids);
     }
 
@@ -89,13 +89,13 @@ public class ActServiceImpl extends BaseServiceImpl<Act, String> implements ActS
 
     @Override
     @CacheEvict(value = "act", allEntries = true)
-    public void delete(String id) {
+    public void delete(Long id) {
         super.delete(id);
     }
 
     @Override
     @CacheEvict(value = "act", allEntries = true)
-    public void delete(String... ids) {
+    public void delete(Long... ids) {
         super.delete(ids);
     }
 

@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Service("memberRankServiceImpl")
-public class MemberRankServiceImpl extends BaseServiceImpl<MemberRank, String> implements
+public class MemberRankServiceImpl extends BaseServiceImpl<MemberRank, Long> implements
         MemberRankService {
 
     @Resource(name = "memberRankDaoImpl")
@@ -74,7 +74,7 @@ public class MemberRankServiceImpl extends BaseServiceImpl<MemberRank, String> i
     }
 
     @Override
-    public MemberRank find(String id) {
+    public MemberRank find(Long id) {
         return super.find(id);
     }
 
@@ -110,13 +110,13 @@ public class MemberRankServiceImpl extends BaseServiceImpl<MemberRank, String> i
 
     @Override
     @CacheEvict(value = "memberRank", allEntries = true)
-    public void delete(String id) {
+    public void delete(Long id) {
         super.delete(id);
     }
 
     @Override
     @CacheEvict(value = "memberRank", allEntries = true)
-    public void delete(String... ids) {
+    public void delete(Long... ids) {
         super.delete(ids);
     }
 

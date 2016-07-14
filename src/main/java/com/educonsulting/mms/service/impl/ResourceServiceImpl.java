@@ -17,7 +17,7 @@ import java.util.List;
  * Created by Wayne on 2015/7/12.
  */
 @Service("resourceServiceImpl")
-public class ResourceServiceImpl extends BaseServiceImpl<Resources, String> implements
+public class ResourceServiceImpl extends BaseServiceImpl<Resources, Long> implements
         ResourceService {
 
     @Resource(name = "resourceDaoImpl")
@@ -52,7 +52,7 @@ public class ResourceServiceImpl extends BaseServiceImpl<Resources, String> impl
     }
 
     @Override
-    public Resources find(String id) {
+    public Resources find(Long id) {
         return super.find(id);
     }
 
@@ -146,13 +146,13 @@ public class ResourceServiceImpl extends BaseServiceImpl<Resources, String> impl
 
     @Override
     @CacheEvict(value = "resource", allEntries = true)
-    public void delete(String id) {
+    public void delete(Long id) {
         super.delete(id);
     }
 
     @Override
     @CacheEvict(value = "resource", allEntries = true)
-    public void delete(String... ids) {
+    public void delete(Long... ids) {
         super.delete(ids);
     }
 

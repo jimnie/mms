@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 
 @Service("roleServiceImpl")
-public class RoleServiceImpl extends BaseServiceImpl<Role, String> implements RoleService {
+public class RoleServiceImpl extends BaseServiceImpl<Role, Long> implements RoleService {
 
     @Resource(name = "roleDaoImpl")
     private RoleDao roleDao;
@@ -49,14 +49,14 @@ public class RoleServiceImpl extends BaseServiceImpl<Role, String> implements Ro
     @Override
     @Transactional
     @CacheEvict(value = "authorization", allEntries = true)
-    public void delete(String id) {
+    public void delete(Long id) {
         super.delete(id);
     }
 
     @Override
     @Transactional
     @CacheEvict(value = "authorization", allEntries = true)
-    public void delete(String... ids) {
+    public void delete(Long... ids) {
         super.delete(ids);
     }
 
