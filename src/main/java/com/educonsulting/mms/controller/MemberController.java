@@ -69,7 +69,8 @@ public class MemberController extends BaseController {
             filters.add(Filter.eq("mobile", mobile));
         }
         if (StringUtils.isNotEmpty(memberRankId)) {
-            filters.add(Filter.eq("memberRank", memberRankService.find(memberRankId)));
+            filters.add(Filter.eq("memberRank", memberRankService.find(Long.getLong(memberRankId)
+            )));
         }
         pageable.setFilters(filters);
         Page<Member> memberPage = memberService.findPage(pageable);
@@ -87,7 +88,7 @@ public class MemberController extends BaseController {
         }
         String[] ids = str.split(",");
         for (String id : ids) {
-            ThemeCategory themeCategory = themeCategoryService.find(id);
+            ThemeCategory themeCategory = themeCategoryService.find(Long.getLong(id));
             member.getCategories().add(themeCategory);
         }
         member.setPoint(CommonAttributes.DEFAULT_MEMBER_POINT);
@@ -108,7 +109,7 @@ public class MemberController extends BaseController {
         }
         String[] ids = str.split(",");
         for (String id : ids) {
-            ThemeCategory themeCategory = themeCategoryService.find(id);
+            ThemeCategory themeCategory = themeCategoryService.find(Long.getLong(id));
             member.getCategories().add(themeCategory);
         }
         memberService.update(member, "cartNo", "amount", "balance", "point", "registerDate");
@@ -123,7 +124,7 @@ public class MemberController extends BaseController {
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
     public Message delete(@RequestParam(value = "memberId") String id) {
-        memberService.delete(id);
+        memberService.delete(Long.getLong(id));
         return SUCCESS_MESSAGE;
     }
 

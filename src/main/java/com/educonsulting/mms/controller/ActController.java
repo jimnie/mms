@@ -71,7 +71,7 @@ public class ActController extends BaseController {
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
     public Message delete(@RequestParam(value = "actid") String id) {
-        actService.delete(id);
+        actService.delete(Long.getLong(id));
         return SUCCESS_MESSAGE;
     }
 

@@ -83,7 +83,11 @@ public class DictionaryController extends BaseController {
         if (ids.length >= dictionaryService.count()) {
             return Message.error("sys.common.deleteAllNotAllowed");
         }
-        dictionaryService.delete(ids);
+        Long[] longs = new Long[ids.length];
+        for (int i = 0; i < longs.length; i++) {
+            longs[i] = Long.getLong(ids[i]);
+        }
+        dictionaryService.delete(longs);
         return SUCCESS_MESSAGE;
     }
 
