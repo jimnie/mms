@@ -10,7 +10,7 @@ import javax.persistence.FlushModeType;
  * Created by Wayne on 2016/3/8.
  */
 @Repository("memberDaoImpl")
-public class MemberDaoImpl extends BaseDaoImpl<Member, String> implements MemberDao {
+public class MemberDaoImpl extends BaseDaoImpl<Member, Long> implements MemberDao {
 
     @Override
     public boolean isCardNoAssigned(String cardNo) {

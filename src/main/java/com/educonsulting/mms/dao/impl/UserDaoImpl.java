@@ -8,7 +8,7 @@ import javax.persistence.FlushModeType;
 import javax.persistence.NoResultException;
 
 @Repository("userDaoImpl")
-public class UserDaoImpl extends BaseDaoImpl<User, String> implements UserDao {
+public class UserDaoImpl extends BaseDaoImpl<User, Long> implements UserDao {
 
     public boolean usernameExists(String username) {
         if (username == null) {

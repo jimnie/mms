@@ -10,7 +10,7 @@ import javax.persistence.FlushModeType;
  * Created by Wayne on 2016/3/10.
  */
 @Repository("themeCategoryDaoImpl")
-public class ThemeCategoryDaoImpl extends BaseDaoImpl<ThemeCategory, String> implements
+public class ThemeCategoryDaoImpl extends BaseDaoImpl<ThemeCategory, Long> implements
         ThemeCategoryDao {
 
     @Override
@@ -27,7 +27,7 @@ public class ThemeCategoryDaoImpl extends BaseDaoImpl<ThemeCategory, String> imp
     }
 
     @Override
-    public boolean isCategoryNameExists(String categoryName, String id) {
+    public boolean isCategoryNameExists(String categoryName, Long id) {
         if (categoryName == null) {
             return false;
         }

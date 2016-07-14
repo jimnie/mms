@@ -10,7 +10,7 @@ import javax.persistence.FlushModeType;
  * Created by Wayne on 2015/7/12.
  */
 @Repository("resourceDaoImpl")
-public class ResourceDaoImpl extends BaseDaoImpl<Resources, String> implements ResourceDao {
+public class ResourceDaoImpl extends BaseDaoImpl<Resources, Long> implements ResourceDao {
 
     public Resources findParents() {
         String jpql = "select resources from Resources resources where resources.parent is null ";

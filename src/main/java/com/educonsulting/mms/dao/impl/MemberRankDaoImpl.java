@@ -10,7 +10,7 @@ import javax.persistence.NoResultException;
 import java.math.BigDecimal;
 
 @Repository("memberRankDaoImpl")
-public class MemberRankDaoImpl extends BaseDaoImpl<MemberRank, String> implements MemberRankDao {
+public class MemberRankDaoImpl extends BaseDaoImpl<MemberRank, Long> implements MemberRankDao {
 
     public boolean nameExists(String name) {
         if (name == null) {

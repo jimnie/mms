@@ -5,7 +5,7 @@ import com.educonsulting.mms.entity.Group;
 /**
  * Created by Wayne on 2015/7/7.
  */
-public interface GroupDao extends BaseDao<Group, String> {
+public interface GroupDao extends BaseDao<Group, Long> {
     Group findRoot();
 
     boolean isTagNameExists(String tag);

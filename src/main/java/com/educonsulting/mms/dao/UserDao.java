@@ -2,7 +2,7 @@ package com.educonsulting.mms.dao;
 
 import com.educonsulting.mms.entity.User;
 
-public interface UserDao extends BaseDao<User, String> {
+public interface UserDao extends BaseDao<User, Long> {
 
     boolean usernameExists(String username);
 

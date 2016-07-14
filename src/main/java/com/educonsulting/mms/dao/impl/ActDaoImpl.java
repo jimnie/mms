@@ -10,7 +10,7 @@ import javax.persistence.FlushModeType;
  * Created by Wayne on 2015/7/16.
  */
 @Repository("actDaoImpl")
-public class ActDaoImpl extends BaseDaoImpl<Act, String> implements ActDao {
+public class ActDaoImpl extends BaseDaoImpl<Act, Long> implements ActDao {
 
     public boolean isAliasExists(String tag) {
         if (tag == null) {

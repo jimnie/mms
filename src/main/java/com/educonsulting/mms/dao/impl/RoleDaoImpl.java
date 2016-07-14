@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.FlushModeType;
 
 @Repository("roleDaoImpl")
-public class RoleDaoImpl extends BaseDaoImpl<Role, String> implements RoleDao {
+public class RoleDaoImpl extends BaseDaoImpl<Role, Long> implements RoleDao {
     public boolean isTagNameExists(String tag) {
         if (tag == null) {
             return false;

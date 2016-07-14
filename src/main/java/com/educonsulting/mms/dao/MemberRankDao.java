@@ -4,7 +4,7 @@ import com.educonsulting.mms.entity.MemberRank;
 
 import java.math.BigDecimal;
 
-public interface MemberRankDao extends BaseDao<MemberRank, String> {
+public interface MemberRankDao extends BaseDao<MemberRank, Long> {
 
     boolean nameExists(String name);
 

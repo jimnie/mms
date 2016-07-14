@@ -10,7 +10,7 @@ import javax.persistence.FlushModeType;
  * Created by Wayne on 2015/7/7.
  */
 @Repository("groupDaoImpl")
-public class GroupDaoImpl extends BaseDaoImpl<Group, String> implements GroupDao {
+public class GroupDaoImpl extends BaseDaoImpl<Group, Long> implements GroupDao {
     public Group findRoot() {
         String jpql = "select group from Group group where group.parent is null ";
         return entityManager.createQuery(jpql, Group.class).setFlushMode(FlushModeType.COMMIT)
