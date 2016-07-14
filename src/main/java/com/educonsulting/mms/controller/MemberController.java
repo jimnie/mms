@@ -131,7 +131,7 @@ public class MemberController extends BaseController {
     @ResponseBody
     public Message recharge(@RequestParam(value = "c_id") String id,
                             @RequestParam(value = "rechargeAmount") String amount) {
-        Member member = memberService.find(id);
+        Member member = memberService.find(Long.getLong(id));
         member.setRechargeAmount(BigDecimal.valueOf(Double.valueOf(amount)));
         member.setAmount(member.getAmount().add(member.getRechargeAmount()));
         member.setBalance(member.getBalance().add(member.getRechargeAmount()));
@@ -157,7 +157,7 @@ public class MemberController extends BaseController {
     public Message unrecharge(@RequestParam(value = "b_id") String id,
                               @RequestParam(value = "unrechargeAmount") String amount,
                               @RequestParam(value = "cause") String cause) {
-        Member member = memberService.find(id);
+        Member member = memberService.find(Long.getLong(id));
         member.setRechargeAmount(BigDecimal.valueOf(Double.valueOf(amount)).negate());
         member.setAmount(member.getAmount().add(member.getRechargeAmount()));
         member.setBalance(member.getBalance().add(member.getRechargeAmount()));
