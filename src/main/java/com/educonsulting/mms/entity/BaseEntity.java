@@ -4,7 +4,6 @@ import com.educonsulting.mms.JsonDateSerializer;
 import com.educonsulting.mms.listener.EntityListener;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.groups.Default;
@@ -31,7 +30,7 @@ public abstract class BaseEntity implements Serializable {
 
     }
 
-    private String id;
+    private Long id;
 
     private Date createDate;
 
@@ -40,13 +39,14 @@ public abstract class BaseEntity implements Serializable {
     @JsonProperty
     @Id
     @Column(length = 32, nullable = false)
-    @GeneratedValue(generator = "uuidGenerator") //指定生成器名称
-    @GenericGenerator(name = "uuidGenerator", strategy = "uuid") //生成器名称，uuid生成类
-    public String getId() {
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    /*@GeneratedValue(generator = "uuidGenerator") //指定生成器名称
+    @GenericGenerator(name = "uuidGenerator", strategy = "uuid") //生成器名称，uuid生成类*/
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
