@@ -179,7 +179,7 @@ public class AuthenticationRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         Principal principal = (Principal) principals.fromRealm(getName()).iterator().next();
         if (principal != null) {
-            List<String> authorities = userService.findAuthorities(Long.getLong(principal.getId()));
+            List<String> authorities = userService.findAuthorities(Long.valueOf(principal.getId()));
             if (authorities != null) {
                 SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
                 authorizationInfo.addStringPermissions(authorities);

@@ -69,7 +69,7 @@ public class MemberController extends BaseController {
             filters.add(Filter.eq("mobile", mobile));
         }
         if (StringUtils.isNotEmpty(memberRankId)) {
-            filters.add(Filter.eq("memberRank", memberRankService.find(Long.getLong(memberRankId)
+            filters.add(Filter.eq("memberRank", memberRankService.find(Long.valueOf(memberRankId)
             )));
         }
         pageable.setFilters(filters);
@@ -88,7 +88,7 @@ public class MemberController extends BaseController {
         }
         String[] ids = str.split(",");
         for (String id : ids) {
-            ThemeCategory themeCategory = themeCategoryService.find(Long.getLong(id));
+            ThemeCategory themeCategory = themeCategoryService.find(Long.valueOf(id));
             member.getCategories().add(themeCategory);
         }
         member.setPoint(CommonAttributes.DEFAULT_MEMBER_POINT);
@@ -109,7 +109,7 @@ public class MemberController extends BaseController {
         }
         String[] ids = str.split(",");
         for (String id : ids) {
-            ThemeCategory themeCategory = themeCategoryService.find(Long.getLong(id));
+            ThemeCategory themeCategory = themeCategoryService.find(Long.valueOf(id));
             member.getCategories().add(themeCategory);
         }
         memberService.update(member, "cartNo", "amount", "balance", "point", "registerDate");
@@ -124,7 +124,7 @@ public class MemberController extends BaseController {
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
     public Message delete(@RequestParam(value = "memberId") String id) {
-        memberService.delete(Long.getLong(id));
+        memberService.delete(Long.valueOf(id));
         return SUCCESS_MESSAGE;
     }
 
@@ -132,7 +132,7 @@ public class MemberController extends BaseController {
     @ResponseBody
     public Message recharge(@RequestParam(value = "c_id") String id,
                             @RequestParam(value = "rechargeAmount") String amount) {
-        Member member = memberService.find(Long.getLong(id));
+        Member member = memberService.find(Long.valueOf(id));
         member.setRechargeAmount(BigDecimal.valueOf(Double.valueOf(amount)));
         member.setAmount(member.getAmount().add(member.getRechargeAmount()));
         member.setBalance(member.getBalance().add(member.getRechargeAmount()));
@@ -158,7 +158,7 @@ public class MemberController extends BaseController {
     public Message unrecharge(@RequestParam(value = "b_id") String id,
                               @RequestParam(value = "unrechargeAmount") String amount,
                               @RequestParam(value = "cause") String cause) {
-        Member member = memberService.find(Long.getLong(id));
+        Member member = memberService.find(Long.valueOf(id));
         member.setRechargeAmount(BigDecimal.valueOf(Double.valueOf(amount)).negate());
         member.setAmount(member.getAmount().add(member.getRechargeAmount()));
         member.setBalance(member.getBalance().add(member.getRechargeAmount()));

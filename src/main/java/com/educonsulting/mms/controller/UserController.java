@@ -82,7 +82,7 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/find/{id}", method = RequestMethod.GET)
     @ResponseBody
     public String find(@PathVariable("id") String id) {
-        User user = userService.find(Long.getLong(id));
+        User user = userService.find(Long.valueOf(id));
         return JsonUtils.toJson(user);
     }
 
@@ -119,7 +119,7 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/unlock", method = RequestMethod.POST)
     @ResponseBody
     public Message unlock(@RequestParam(value = "userId") String id) {
-        User user = userService.find(Long.getLong(id));
+        User user = userService.find(Long.valueOf(id));
         user.setIsLocked(false);
         user.setLockedDate(null);
         user.setLoginFailureCount(0);
@@ -130,7 +130,7 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/lock", method = RequestMethod.POST)
     @ResponseBody
     public Message lock(@RequestParam(value = "userId") String id) {
-        User user = userService.find(Long.getLong(id));
+        User user = userService.find(Long.valueOf(id));
         user.setIsLocked(true);
         user.setLockedDate(new Date());
         userService.update(user);
@@ -140,7 +140,7 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
     public String edit(String id, ModelMap model) {
         model.addAttribute("roles", roleService.findAll());
-        model.addAttribute("user", userService.find(Long.getLong(id)));
+        model.addAttribute("user", userService.find(Long.valueOf(id)));
         return "/user/edit";
     }
 
@@ -174,7 +174,7 @@ public class UserController extends BaseController {
         }
         Long[] longs = new Long[ids.length];
         for (int i = 0; i < longs.length; i++) {
-            longs[i] = Long.getLong(ids[i]);
+            longs[i] = Long.valueOf(ids[i]);
         }
         userService.delete(longs);
         return SUCCESS_MESSAGE;
@@ -183,7 +183,7 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/reset", method = RequestMethod.POST)
     @ResponseBody
     public Message reset(@RequestParam(value = "userId") String id) {
-        User user = userService.find(Long.getLong(id));
+        User user = userService.find(Long.valueOf(id));
         Setting setting = SettingUtils.get();
         user.setPassword(DigestUtils.md5Hex(setting.getDefaultNewPassword()));
         userService.update(user);

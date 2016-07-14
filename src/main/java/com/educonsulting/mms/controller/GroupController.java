@@ -60,7 +60,7 @@ public class GroupController extends BaseController {
     @RequestMapping(value = "/find/{id}", method = RequestMethod.POST)
     @ResponseBody
     public Object find(@PathVariable("id") String id) {
-        return groupService.find(Long.getLong(id));
+        return groupService.find(Long.valueOf(id));
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
@@ -83,21 +83,21 @@ public class GroupController extends BaseController {
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
     @ResponseBody
     public Message delete(@RequestParam(value = "delGroupId") String id) {
-        groupService.delete(Long.getLong(id));
+        groupService.delete(Long.valueOf(id));
         return SUCCESS_MESSAGE;
     }
 
     @RequestMapping(value = "/findParent/{id}", method = RequestMethod.GET)
     @ResponseBody
     public Object findParent(@PathVariable("id") String id) {
-        Group group = groupService.find(Long.getLong(id));
+        Group group = groupService.find(Long.valueOf(id));
         return group.getParent();
     }
 
     @RequestMapping(value = "/getUsers/{id}", method = {RequestMethod.GET, RequestMethod.POST})
     @ResponseBody
     public Object getUsers(@PathVariable("id") String id) {
-        Group group = groupService.find(Long.getLong(id));
+        Group group = groupService.find(Long.valueOf(id));
         return group.getUsers();
     }
 
@@ -106,13 +106,13 @@ public class GroupController extends BaseController {
     @ResponseBody
     public Message saveUsers(@PathVariable("users") String usersIds,
                              @PathVariable("groupid") String groupid) {
-        Group persistGroup = groupService.find(Long.getLong(groupid));
+        Group persistGroup = groupService.find(Long.valueOf(groupid));
         persistGroup.getUsers().clear();
         if (!usersIds.equals("clear")) {
             String[] uids = usersIds.split(",");
             // TODO:要处理users为空字串的情况，没有办法解除全部的用户
             for (String uid : uids) {
-                User persistUser = userService.find(Long.getLong(uid));
+                User persistUser = userService.find(Long.valueOf(uid));
                 persistGroup.getUsers().add(persistUser);
             }
         }
@@ -137,7 +137,7 @@ public class GroupController extends BaseController {
         if (!rolesIds.equals("clear")) {
             String[] rids = rolesIds.split(","); // TODO:要处理roles为空字串的情况，没有办法解除全部角色
             for (String rid : rids) {
-                Role persistRole = roleService.find(Long.getLong(rid));
+                Role persistRole = roleService.find(Long.valueOf(rid));
                 persistGroup.getRoles().add(persistRole);
             }
 
@@ -150,7 +150,7 @@ public class GroupController extends BaseController {
     @ResponseBody
     public Object loadSelectableUsers(@PathVariable("groupid") String id) {
         List<User> allUsers = userService.findAll();
-        Group group = groupService.find(Long.getLong(id));
+        Group group = groupService.find(Long.valueOf(id));
         List<User> selectedUsers = group.getUsers();
         List<User> selectableUsers = new ArrayList<User>();
         for (User user : allUsers) {

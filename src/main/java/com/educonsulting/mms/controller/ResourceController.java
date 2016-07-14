@@ -49,7 +49,7 @@ public class ResourceController extends BaseController {
     @RequestMapping(value = "/query/{id}", method = RequestMethod.GET)
     @ResponseBody
     private Object query(@PathVariable String id) {
-        Resources resource = resourceService.find(Long.getLong(id));
+        Resources resource = resourceService.find(Long.valueOf(id));
         String[] excludes = new String[]{"children", "parent", "authorities"};
         List<Resources> list = resource.getChildren();
         for (Resources res : list) {
@@ -108,7 +108,7 @@ public class ResourceController extends BaseController {
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
     public Message delete(@RequestParam(value = "resid") String id) {
-        resourceService.delete(Long.getLong(id));
+        resourceService.delete(Long.valueOf(id));
         return SUCCESS_MESSAGE;
     }
 }

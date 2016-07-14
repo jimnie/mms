@@ -85,7 +85,7 @@ public class DictionaryController extends BaseController {
         }
         Long[] longs = new Long[ids.length];
         for (int i = 0; i < longs.length; i++) {
-            longs[i] = Long.getLong(ids[i]);
+            longs[i] = Long.valueOf(ids[i]);
         }
         dictionaryService.delete(longs);
         return SUCCESS_MESSAGE;

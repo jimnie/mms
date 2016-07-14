@@ -130,7 +130,7 @@ public class MemberRankController extends BaseController {
     @ResponseBody
     public Message delete(@RequestParam(value = "rankId") String id) {
         if (StringUtils.isNotEmpty(id)) {
-            Long aLong = Long.getLong(id);
+            Long aLong = Long.valueOf(id);
             MemberRank memberRank = memberRankService.find(aLong);
             if (memberRank != null && memberRank.getIsDefault()) {
                 return Message.error("rank.form.deleteDefaultNotAllowed");

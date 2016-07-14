@@ -62,7 +62,7 @@ public class ThemeCategoryController extends BaseController {
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
     public Message delete(@RequestParam(value = "categoryId") String id) {
-        themeCategoryService.delete(Long.getLong(id));
+        themeCategoryService.delete(Long.valueOf(id));
         return SUCCESS_MESSAGE;
     }
 

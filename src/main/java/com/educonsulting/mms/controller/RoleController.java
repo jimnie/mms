@@ -83,7 +83,7 @@ public class RoleController extends BaseController {
     @RequestMapping(value = "delete", method = RequestMethod.POST)
     @ResponseBody
     public Message delete(@RequestParam(value = "roleId") String id) {
-        roleService.delete(Long.getLong(id));
+        roleService.delete(Long.valueOf(id));
         return SUCCESS_MESSAGE;
     }
 
@@ -91,11 +91,11 @@ public class RoleController extends BaseController {
     @ResponseBody
     public Message saveRoleResources(@RequestParam(value = "r_roleid") String roleId,
                                      @RequestParam("r_resources") String resourceIds) {
-        Role persistRole = roleService.find(Long.getLong(roleId));
+        Role persistRole = roleService.find(Long.valueOf(roleId));
         persistRole.getResources().clear();
         if (StringUtils.isNotEmpty(resourceIds)) {
             for (String resourceId : resourceIds.split(",")) {
-                Resources res = resourceService.find(Long.getLong(resourceId));
+                Resources res = resourceService.find(Long.valueOf(resourceId));
                 persistRole.getResources().add(res);
             }
         }
@@ -109,7 +109,7 @@ public class RoleController extends BaseController {
         List<TreeNode> tree = (List<TreeNode>) resourceService.getTree();
         List<TreeNode> cloneTree = new ArrayList<TreeNode>(tree);
         Collections.copy(cloneTree, tree);
-        Role persistRole = roleService.find(Long.getLong(id));
+        Role persistRole = roleService.find(Long.valueOf(id));
         if (CollectionUtils.isNotEmpty(persistRole.getResources())) {
             for (Resources resource : persistRole.getResources()) {
                 setTreeNodeChecked(String.valueOf(resource.getId()), (List<TreeNode>) cloneTree);
@@ -135,7 +135,7 @@ public class RoleController extends BaseController {
     @ResponseBody
     public Object findResources(@PathVariable(value = "roleId") String id,
                                 @PathVariable(value = "typeStr") String type) {
-        Role role = roleService.find(Long.getLong(id));
+        Role role = roleService.find(Long.valueOf(id));
         Set<Resources> ownedResources = new HashSet<Resources>();
         for (Resources resource : role.getResources()) {
             if (resource.getResourceType().equals(type)) {
@@ -151,7 +151,7 @@ public class RoleController extends BaseController {
     public Object findResources(@PathVariable(value = "roleId") String id,
                                 @PathVariable(value = "typeStr") String type,
                                 @PathVariable(value = "pid") String pid) {
-        Role role = roleService.find(Long.getLong(id));
+        Role role = roleService.find(Long.valueOf(id));
         Set<Resources> ownedResources = new HashSet<Resources>();
         for (Resources resource : role.getResources()) {
             if (pid != null) {
