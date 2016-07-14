@@ -120,7 +120,8 @@ public class AuthenticationRealm extends AuthorizingRealm {
             session.setAttribute(CommonAttributes.MAIN_PAGE_NAVS_KEY, navsJsonObject.toString());
             session.setAttribute(CommonAttributes.NAVS_MODULES_MAPPING_KEY, mappingJsonObject
                     .toString());
-            session.setAttribute(User.PRINCIPAL_ATTRIBUTE_NAME, new Principal(user.getId(),
+            session.setAttribute(User.PRINCIPAL_ATTRIBUTE_NAME, new Principal(String.valueOf(user
+                    .getId()),
                     username));
 
             user.setLoginIp(ip);
@@ -128,7 +129,8 @@ public class AuthenticationRealm extends AuthorizingRealm {
             user.setLoginFailureCount(0);
             userService.update(user);
 //            WebUtils.addCookie(request, response, User.USERNAME_COOKIE_NAME, user.getUsername());
-            return new SimpleAuthenticationInfo(new Principal(user.getId(), username), password,
+            return new SimpleAuthenticationInfo(new Principal(String.valueOf(user.getId()),
+                    username), password,
                     getName());
         }
         throw new UnknownAccountException();
@@ -177,7 +179,7 @@ public class AuthenticationRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         Principal principal = (Principal) principals.fromRealm(getName()).iterator().next();
         if (principal != null) {
-            List<String> authorities = userService.findAuthorities(principal.getId());
+            List<String> authorities = userService.findAuthorities(Long.getLong(principal.getId()));
             if (authorities != null) {
                 SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
                 authorizationInfo.addStringPermissions(authorities);
