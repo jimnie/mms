@@ -120,11 +120,14 @@ public class AuthenticationRealm extends AuthorizingRealm {
             session.setAttribute(CommonAttributes.MAIN_PAGE_NAVS_KEY, navsJsonObject.toString());
             session.setAttribute(CommonAttributes.NAVS_MODULES_MAPPING_KEY, mappingJsonObject
                     .toString());
+            session.setAttribute(User.PRINCIPAL_ATTRIBUTE_NAME, new Principal(user.getId(),
+                    username));
 
             user.setLoginIp(ip);
             user.setLoginDate(new Date());
             user.setLoginFailureCount(0);
             userService.update(user);
+//            WebUtils.addCookie(request, response, User.USERNAME_COOKIE_NAME, user.getUsername());
             return new SimpleAuthenticationInfo(new Principal(user.getId(), username), password,
                     getName());
         }

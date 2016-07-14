@@ -36,11 +36,11 @@ public abstract class BaseEntity implements Serializable {
 
     private Date modifyDate;
 
-    @JsonProperty
     @Id
-    @Column(length = 32, nullable = false)
+    @JsonProperty
     @GeneratedValue(strategy = GenerationType.AUTO)
-    /*@GeneratedValue(generator = "uuidGenerator") //指定生成器名称
+    /*@Column(length = 32, nullable = false)
+    @GeneratedValue(generator = "uuidGenerator") //指定生成器名称
     @GenericGenerator(name = "uuidGenerator", strategy = "uuid") //生成器名称，uuid生成类*/
     public Long getId() {
         return id;

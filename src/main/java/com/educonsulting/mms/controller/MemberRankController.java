@@ -129,8 +129,9 @@ public class MemberRankController extends BaseController {
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
     public Message delete(@RequestParam(value = "rankId") String id) {
-        if (id != null) {
-            MemberRank memberRank = memberRankService.find(id);
+        if (StringUtils.isNotEmpty(id)) {
+            Long aLong = Long.getLong(id);
+            MemberRank memberRank = memberRankService.find(aLong);
             if (memberRank != null && memberRank.getIsDefault()) {
                 return Message.error("rank.form.deleteDefaultNotAllowed");
             }
@@ -139,7 +140,7 @@ public class MemberRankController extends BaseController {
                 return Message.error("rank.form.deleteExistNotAllowed", memberRank
                         .getName());
             }
-            memberRankService.delete(id);
+            memberRankService.delete(aLong);
         }
         return SUCCESS_MESSAGE;
     }

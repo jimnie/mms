@@ -1,24 +1,18 @@
 package com.educonsulting.mms.entity;
 
-import com.educonsulting.mms.JsonDateSerializer;
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.math.BigDecimal;
-import java.util.Date;
 
 /**
  * Created by Wayne on 2016/5/23.
  */
 @Entity
 @Table(name = "mms_inf_rechargelog")
-@JsonAutoDetect(fieldVisibility = Visibility.NONE, getterVisibility = Visibility.NONE,
-        setterVisibility = Visibility.NONE, isGetterVisibility = Visibility.NONE,
-        creatorVisibility = Visibility.NONE)
-public class RechargeLog {
+public class RechargeLog extends BaseEntity {
 
     private static final long serialVersionUID = -349226521498067664L;
 
@@ -29,17 +23,13 @@ public class RechargeLog {
         hedging
     }
 
-    private Long id;
-
-    private Date createDate;
-
     private String cardNo;
 
     private String name;
 
     private String mobile;
 
-    private String memberid;
+    private Long memberid;
 
     private BigDecimal amount;
 
@@ -48,28 +38,6 @@ public class RechargeLog {
     private Type type;
 
     private String memo;
-
-    @Id
-    @JsonProperty
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @JsonProperty
-    @JsonSerialize(using = JsonDateSerializer.class)
-    @Column(nullable = false, updatable = false)
-    public Date getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
 
     @JsonProperty
     @Column(nullable = false)
@@ -103,11 +71,11 @@ public class RechargeLog {
 
     @JsonProperty
     @Column(nullable = false)
-    public String getMemberid() {
+    public Long getMemberid() {
         return memberid;
     }
 
-    public void setMemberid(String memberid) {
+    public void setMemberid(Long memberid) {
         this.memberid = memberid;
     }
 

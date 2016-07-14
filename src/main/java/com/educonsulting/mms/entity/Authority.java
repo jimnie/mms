@@ -13,9 +13,9 @@ public class Authority extends BaseEntity {
 
     private String perms;
 
-    private String roleId;
+    private Long roleId;
 
-    private String resourceId;
+    private Long resourceId;
 
     private String resourceName;
 
@@ -60,19 +60,19 @@ public class Authority extends BaseEntity {
         this.role = role;
     }
 
-    public String getRoleId() {
+    public Long getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(String roleId) {
+    public void setRoleId(Long roleId) {
         this.roleId = roleId;
     }
 
-    public String getResourceId() {
+    public Long getResourceId() {
         return resourceId;
     }
 
-    public void setResourceId(String resourceId) {
+    public void setResourceId(Long resourceId) {
         this.resourceId = resourceId;
     }
 

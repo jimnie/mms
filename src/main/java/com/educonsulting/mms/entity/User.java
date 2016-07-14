@@ -20,6 +20,11 @@ public class User extends BaseEntity {
 
     private static final long serialVersionUID = -7519486823153844426L;
 
+    public static final String
+            PRINCIPAL_ATTRIBUTE_NAME = UserInterceptor.class.getName() + ".PRINCIPAL";
+
+    public static final String USERNAME_COOKIE_NAME = "username";
+
     private String username;
 
     private String password;
@@ -37,11 +42,6 @@ public class User extends BaseEntity {
     private Date loginDate;
 
     private String loginIp;
-
-    public static final String PRINCIPAL_ATTRIBUTE_NAME = UserInterceptor.class.getName() + "" +
-            ".PRINCIPAL";
-
-    public static final String USERNAME_COOKIE_NAME = "username";
 
     private Set<Group> groups = new HashSet<Group>();
 
