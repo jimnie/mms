@@ -12,6 +12,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.net.URLEncoder;
 
 public class UserInterceptor extends HandlerInterceptorAdapter {
 
@@ -46,7 +47,15 @@ public class UserInterceptor extends HandlerInterceptorAdapter {
                 response.sendError(HttpServletResponse.SC_FORBIDDEN);
                 return false;
             } else {
-                response.sendRedirect(request.getContextPath() + loginUrl);
+                if (request.getMethod().equalsIgnoreCase("GET")) {
+                    String redirectUrl = request.getQueryString() != null ? request.getRequestURI
+                            () + "?" + request.getQueryString() : request.getRequestURI();
+                    response.sendRedirect(request.getContextPath() + loginUrl + "?" +
+                            REDIRECT_URL_PARAMETER_NAME + "=" + URLEncoder.encode(redirectUrl,
+                            urlEscapingCharset));
+                } else {
+                    response.sendRedirect(request.getContextPath() + loginUrl);
+                }
                 return false;
             }
         }
