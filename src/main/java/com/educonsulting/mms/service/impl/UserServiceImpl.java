@@ -68,7 +68,7 @@ public class UserServiceImpl extends BaseServiceImpl<User, Long> implements User
         if (subject != null) {
             Principal principal = (Principal) subject.getPrincipal();
             if (principal != null) {
-                return userDao.find(principal.getId());
+                return userDao.find(Long.getLong(principal.getId()));
             }
         }
         return null;
