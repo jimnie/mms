@@ -1,9 +1,7 @@
 package com.educonsulting.mms.entity;
 
-import com.educonsulting.mms.JsonDateSerializer;
 import com.educonsulting.mms.listener.EntityListener;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import javax.persistence.*;
 import javax.validation.groups.Default;
@@ -14,7 +12,7 @@ import java.util.Date;
 @MappedSuperclass
 public abstract class BaseEntity implements Serializable {
 
-    private static final long serialVersionUID = -67188388306700736L;
+    private static final long serialVersionUID = 3315461997989549810L;
 
     public static final String ID_PROPERTY_NAME = "id";
 
@@ -36,6 +34,8 @@ public abstract class BaseEntity implements Serializable {
 
     private Date modifyDate;
 
+    // MySQL/SQLServer: @GeneratedValue(strategy = GenerationType.AUTO)
+    // Oracle: @GeneratedValue(strategy = GenerationType.AUTO, generator = "sequenceGenerator")
     @Id
     @JsonProperty
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -51,7 +51,6 @@ public abstract class BaseEntity implements Serializable {
     }
 
     @JsonProperty
-    @JsonSerialize(using = JsonDateSerializer.class)
     @Column(nullable = false, updatable = false)
     public Date getCreateDate() {
         return createDate;
@@ -62,7 +61,6 @@ public abstract class BaseEntity implements Serializable {
     }
 
     @JsonProperty
-    @JsonSerialize(using = JsonDateSerializer.class)
     @Column(nullable = false)
     public Date getModifyDate() {
         return modifyDate;
@@ -93,4 +91,5 @@ public abstract class BaseEntity implements Serializable {
         hashCode += null == getId() ? 0 : getId().hashCode() * 31;
         return hashCode;
     }
+
 }
