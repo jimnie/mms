@@ -90,7 +90,8 @@ public class GroupServiceImpl extends BaseServiceImpl<Group, Long> implements Gr
         return node;
     }
 
-    public Group findGroup(String id) {
+    @Transactional(readOnly = true)
+    public Group findGroup(Long id) {
         Group root = groupDao.findRoot();
         for (Group group : root.getChildren()) {
             if (group.getId().equals(id)) {
