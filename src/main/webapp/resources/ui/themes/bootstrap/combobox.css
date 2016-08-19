@@ -11,12 +11,10 @@
 .combobox-gitem {
   padding-left: 10px;
 }
-
 .combobox-group,
 .combobox-stick {
   font-weight: bold;
 }
-
 .combobox-stick {
   position: absolute;
   top: 1px;
@@ -32,7 +30,6 @@
   background-color: #0081c2;
   color: #fff;
 }
-
 .combobox-icon {
   display: inline-block;
   width: 16px;

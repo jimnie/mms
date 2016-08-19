@@ -1,6 +1,6 @@
 ﻿/**
- * jQuery EasyUI 1.4.5
- *
+ * jQuery EasyUI 1.5
+ * 
  * Copyright (c) 2009-2016 www.jeasyui.com. All rights reserved.
  *
  * Licensed under the freeware license: http://www.jeasyui.com/license_freeware.php
@@ -67,7 +67,7 @@
         }
         var _d = $.data(e.data.target, "draggable");
         var _e = _d.options;
-        var _f = $(".droppable").filter(function () {
+        var _f = $(".droppable:visible").filter(function () {
             return e.data.target != this;
         }).filter(function () {
             var _10 = $.data(this, "droppable").options.accept;
@@ -267,6 +267,8 @@
                     top: _27.top,
                     startX: e.pageX,
                     startY: e.pageY,
+                    width: $(e.data.target).outerWidth(),
+                    height: $(e.data.target).outerHeight(),
                     offsetWidth: (e.pageX - _28.left),
                     offsetHeight: (e.pageY - _28.top),
                     target: e.data.target,

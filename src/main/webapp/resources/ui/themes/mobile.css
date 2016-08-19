@@ -333,6 +333,10 @@
 	position: absolute;
 }
 
+.textbox .textbox-text {
+	padding: 8px 4px;
+}
+
 .calendar-header, .calendar-title {
 	height: 30px;
 }
