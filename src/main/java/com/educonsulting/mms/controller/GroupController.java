@@ -123,7 +123,7 @@ public class GroupController extends BaseController {
     @RequestMapping(value = "/getRoles/{id}", method = {RequestMethod.GET, RequestMethod.POST})
     @ResponseBody
     public Object getRoles(@PathVariable("id") String id) {
-        Group group = groupService.findGroup(id);
+        Group group = groupService.findGroup(Long.valueOf(id));
         return group.getRoles();
     }
 
@@ -132,7 +132,7 @@ public class GroupController extends BaseController {
     @ResponseBody
     public Message saveRoles(@PathVariable("roles") String rolesIds,
                              @PathVariable("groupid") String groupid) {
-        Group persistGroup = groupService.findGroup(groupid);
+        Group persistGroup = groupService.findGroup(Long.valueOf(groupid));
         persistGroup.getRoles().clear();
         if (!rolesIds.equals("clear")) {
             String[] rids = rolesIds.split(","); // TODO:要处理roles为空字串的情况，没有办法解除全部角色
@@ -176,7 +176,7 @@ public class GroupController extends BaseController {
     @ResponseBody
     public Object loadSelectableRoles(@PathVariable("groupid") String id) {
         List<Role> allRoles = roleService.findAll();
-        Group group = groupService.findGroup(id);
+        Group group = groupService.findGroup(Long.valueOf(id));
 
         List<Role> selectedRoles = group.getRoles();
         List<Role> selectableRoles = new ArrayList<Role>();
