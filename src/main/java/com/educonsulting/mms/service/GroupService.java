@@ -11,7 +11,7 @@ public interface GroupService extends BaseService<Group, Long> {
 
     Group findRoot();
 
-    Group findGroup(String id);
+    Group findGroup(Long id);
 
     boolean isTagNameExists(String tag);
 }
