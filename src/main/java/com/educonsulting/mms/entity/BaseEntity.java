@@ -1,6 +1,7 @@
 package com.educonsulting.mms.entity;
 
 import com.educonsulting.mms.listener.EntityListener;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -52,6 +53,7 @@ public abstract class BaseEntity implements Serializable {
 
     @JsonProperty
     @Column(nullable = false, updatable = false)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     public Date getCreateDate() {
         return createDate;
     }
@@ -62,6 +64,7 @@ public abstract class BaseEntity implements Serializable {
 
     @JsonProperty
     @Column(nullable = false)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     public Date getModifyDate() {
         return modifyDate;
     }
