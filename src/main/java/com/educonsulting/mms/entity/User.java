@@ -1,9 +1,8 @@
 package com.educonsulting.mms.entity;
 
-import com.educonsulting.mms.JsonDateSerializer;
 import com.educonsulting.mms.interceptor.UserInterceptor;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -106,7 +105,7 @@ public class User extends BaseEntity {
         this.loginFailureCount = loginFailureCount;
     }
 
-    @JsonSerialize(using = JsonDateSerializer.class)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     public Date getLockedDate() {
         return lockedDate;
     }
@@ -115,7 +114,7 @@ public class User extends BaseEntity {
         this.lockedDate = lockedDate;
     }
 
-    @JsonSerialize(using = JsonDateSerializer.class)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     public Date getLoginDate() {
         return loginDate;
     }
