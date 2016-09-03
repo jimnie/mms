@@ -34,7 +34,7 @@ public class AreaController extends BaseController {
             .POST})
     @ResponseBody
     public Object findArea(@PathVariable String id) {
-        List<Area> areas = areaService.getAresByParent(id);
+        List<Area> areas = areaService.getAresByParent(Long.valueOf(id));
         JSONArray jsonArray = getJsonArrayWithIgnoreFields(areas);
         return jsonArray;
     }
