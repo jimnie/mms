@@ -36,17 +36,6 @@
                 });
             }
         });
-
-        $('#city').combobox({
-            onSelect: function (r) {
-                if (r) {
-                    $('#district').combobox({
-                        url: base + '/area/findArea/' + r.id
-                    });
-                }
-            }
-        });
-
     });
 </script>
 <script type="text/javascript">
@@ -153,6 +142,23 @@
         $('#dlg').dialog('setTitle', '<%=SpringUtils.getMessage("member.form.add")%>').dialog('open');
         $('#dlg').window('maximize')
         $('#addform').form('clear');
+        $('#cardNo').textbox({readonly: false}).textbox('enable');
+        $('#state').combobox('reload');
+        $('#district').combobox('clear').combobox({
+            url: base + '/area/findArea/0'
+        });
+        $('#city').combobox('clear').combobox({
+            url: base + '/area/findArea/0'
+        }).combobox({
+            onSelect: function (r) {
+                if (r) {
+                    $('#district').combobox({
+                        url: base + '/area/findArea/' + r.id
+                    });
+                }
+            }
+        });
+        $('#registerDate').datebox({readonly: false}).datebox('enable');
         $("#dlg-buttons a:first-child").show();
         showCategory();
         defaultMemberRank();
@@ -217,11 +223,15 @@
             $('#dlg').dialog('setTitle', '<%=SpringUtils.getMessage("member.form.edit")%>').dialog('open');
             $('#state').combobox('select', row.state);
             $('#city').combobox({
-                url: base + '/area/findArea/' + row.state
+                url: base + '/area/findArea/' + row.state,
+                onSelect: function (r) {
+                    if (r) {
+                        $('#district').combobox({
+                            url: base + '/area/findArea/' + r.id
+                        }).combobox('select', district);
+                    }
+                }
             }).combobox('select', row.city);
-            $('#district').combobox({
-                url: base + '/area/findArea/' + row.city
-            }).combobox('setValue', district);
         } else {
             $.messager.alert(title, '<%=SpringUtils.getMessage("member.form.toModifyPrompt")%>', warning);
         }
