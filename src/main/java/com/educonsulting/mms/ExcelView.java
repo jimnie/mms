@@ -246,5 +246,4 @@ public class ExcelView extends AbstractXlsView {
         this.contents = contents;
     }
 
-
 }

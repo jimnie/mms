@@ -64,7 +64,7 @@
         </td>
         <td class="domain-bg"><input class="easyui-combobox" id="status" name="status"
                                      data-options="
-                    url:'${pageContext.request.contextPath}/dict/findDict/status',method:'get',valueField:'value',textField:'name',panelHeight:'auto'">
+                    url:'${pageContext.request.contextPath}/dict/findDict/status',method:'get',valueField:'value',textField:'name',panelHeight:'auto',editable:false">
         </td>
     </tr>
 
@@ -73,7 +73,7 @@
         </td>
         <td class="domain-bg"><input class="easyui-combobox" id="editable" name="editable"
                                      data-options="
-                    url:'${pageContext.request.contextPath}/dict/findDict/editable',method:'get',valueField:'value',textField:'name',panelHeight:'auto'">
+                    url:'${pageContext.request.contextPath}/dict/findDict/editable',method:'get',valueField:'value',textField:'name',panelHeight:'auto',editable:false">
         </td>
     </tr>
 

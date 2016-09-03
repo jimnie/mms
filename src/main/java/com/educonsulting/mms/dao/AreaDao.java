@@ -8,5 +8,5 @@ public interface AreaDao extends BaseDao<Area, Long> {
 
     List<Area> findRoots(Integer count);
 
-    List<Area> getAresByParent(String id);
+    List<Area> getAresByParent(Long id);
 }

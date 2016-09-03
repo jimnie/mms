@@ -22,7 +22,7 @@ public class AreaDaoImpl extends BaseDaoImpl<Area, Long> implements AreaDao {
         return query.getResultList();
     }
 
-    public List<Area> getAresByParent(String id) {
+    public List<Area> getAresByParent(Long id) {
         String jpql = "select area from Area area where area.parent.id = :id";
         TypedQuery<Area> query = entityManager.createQuery(jpql, Area.class).setFlushMode
                 (FlushModeType.COMMIT).setParameter("id", id);

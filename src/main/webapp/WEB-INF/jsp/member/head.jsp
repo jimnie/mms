@@ -23,7 +23,7 @@
         });
 
         $('#state').combobox({
-            url: '${pageContext.request.contextPath}/area/findRoots',
+            url: base + '/area/findRoots',
             method: 'get',
             valueField: 'id',
             textField: 'name',

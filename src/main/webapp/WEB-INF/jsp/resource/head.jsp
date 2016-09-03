@@ -156,21 +156,24 @@
             $('#isLeaf').combobox({editable: false, readonly: true});
             $('#icon').combobox({editable: false, readonly: true});
             $('#parent\\.id').combotree({editable: false, readonly: true});
+            $('#editable').combobox({editable: false});
+            $('#status').combobox({editable: false});
             $('#addform').form('load', row);
             var resourceType = $('#resourceType').combobox('getValue');
             $('#parent\\.id').combotree('setValue', row.parentid);
+
             if (resourceType == 'resource_01') {
-                $('#url').textbox('disable');
-                $('#icon').combobox('disable');
-                $('#aliasName').textbox({readonly: true});
+                $('#url').textbox(disable);
+                $('#icon').combobox(disable);
+                $('#aliasName').textbox(readonly);
             } else if (resourceType == 'resource_02') {
-                $('#url').textbox('disable');
-                $('#icon').combobox(enable).combobox('setValue', row.icon);
-                $('#aliasName').textbox({readonly: true});
+                $('#url').textbox(disable);
+                $('#icon').combobox({readonly: false}).combobox('setValue', row.icon);
+                $('#aliasName').textbox(readonly);
             } else if (resourceType == 'resource_03') {
-                $('#url').textbox('enable').textbox(require);
-                $('#icon').combobox('enable').combobox('setValue', row.icon);
-                $('#aliasName').textbox({readonly: true});
+                $('#url').textbox(enable).textbox(require);
+                $('#icon').combobox({readonly: false}).combobox('setValue', row.icon);
+                $('#aliasName').textbox(readonly);
             }
             $('#dlg').dialog('setTitle', '<%=SpringUtils.getMessage("resource.head.edit")%>').dialog('open');
         } else {

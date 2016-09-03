@@ -32,7 +32,7 @@ public class AreaServiceImpl extends BaseServiceImpl<Area, Long> implements Area
     }
 
     @Transactional(readOnly = true)
-    public List<Area> getAresByParent(String id) {
+    public List<Area> getAresByParent(Long id) {
         return areaDao.getAresByParent(id);
     }
 

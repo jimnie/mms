@@ -10,6 +10,6 @@ public interface AreaService extends BaseService<Area, Long> {
 
     List<Area> findRoots(Integer count);
 
-    List<Area> getAresByParent(String id);
+    List<Area> getAresByParent(Long id);
 
 }
