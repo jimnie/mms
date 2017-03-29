@@ -39,7 +39,6 @@
   border-style: solid;
   display: none;
 }
-
 .datagrid-empty {
   position: absolute;
   left: 0;
@@ -228,12 +227,12 @@
 .datagrid-header,
 .datagrid-td-rownumber {
   background-color: #efefef;
-  background: -webkit-linear-gradient(top, #F9F9F9 0, #efefef 100%);
-  background: -moz-linear-gradient(top, #F9F9F9 0, #efefef 100%);
-  background: -o-linear-gradient(top, #F9F9F9 0, #efefef 100%);
-  background: linear-gradient(to bottom, #F9F9F9 0, #efefef 100%);
+    background: -webkit-linear-gradient(top, #F9F9F9 0, #efefef 100%);
+    background: -moz-linear-gradient(top, #F9F9F9 0, #efefef 100%);
+    background: -o-linear-gradient(top, #F9F9F9 0, #efefef 100%);
+    background: linear-gradient(to bottom, #F9F9F9 0, #efefef 100%);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#F9F9F9, endColorstr=#efefef, GradientType=0);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#F9F9F9, endColorstr=#efefef, GradientType=0);
 }
 .datagrid-cell-rownumber {
   color: #000000;

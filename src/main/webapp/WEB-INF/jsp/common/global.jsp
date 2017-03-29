@@ -1,4 +1,4 @@
-<%@ page import="com.educonsulting.mms.util.SpringUtils" %>
+<%@ page import="com.rcbank.mms.util.SpringUtils" %>
 <%
     String base = request.getContextPath();
 %>

@@ -19,7 +19,7 @@
                                   ignore-unresolvable="true"/>
 
     <!-- 扫描包下的注解类 -->
-    <context:component-scan base-package="com.educonsulting.mms">
+    <context:component-scan base-package="com.rcbank.mms">
         <context:exclude-filter type="annotation"
                                 expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
@@ -61,7 +61,7 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="persistenceXmlLocation" value="classpath*:/META-INF/persistence.xml"/>
         <property name="persistenceUnitName" value="persistenceUnit"/>
-        <property name="packagesToScan" value="com.educonsulting.mms.entity"/>
+        <property name="packagesToScan" value="com.rcbank.mms.entity"/>
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
                 <property name="showSql" value="false"/>

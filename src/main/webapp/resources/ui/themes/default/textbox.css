@@ -50,25 +50,21 @@
   -webkit-border-radius: 0 0 0 0;
   border-radius: 0 0 0 0;
 }
-
 .textbox .textbox-button-right,
 .textbox .textbox-button-right:hover {
   right: 0;
   border-width: 0 0 0 1px;
 }
-
 .textbox .textbox-button-left,
 .textbox .textbox-button-left:hover {
   left: 0;
   border-width: 0 1px 0 0;
 }
-
 .textbox .textbox-button-top,
 .textbox .textbox-button-top:hover {
   left: 0;
   border-width: 0 0 1px 0;
 }
-
 .textbox .textbox-button-bottom,
 .textbox .textbox-button-bottom:hover {
   top: auto;
@@ -80,7 +76,6 @@
   position: absolute;
   top: 0;
 }
-
 .textbox-label {
   display: inline-block;
   width: 80px;
@@ -93,18 +88,15 @@
   margin: 0;
   padding-right: 5px;
 }
-
 .textbox-label-after {
   padding-left: 5px;
   padding-right: 0;
 }
-
 .textbox-label-top {
   display: block;
   width: auto;
   padding: 0;
 }
-
 .textbox-disabled,
 .textbox-label-disabled {
   opacity: 0.6;

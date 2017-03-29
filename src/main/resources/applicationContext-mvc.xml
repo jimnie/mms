@@ -16,22 +16,23 @@
 
     <!-- 对静态资源文件的访问，交给default servlet handler处理 -->
     <mvc:default-servlet-handler/>
-    <mvc:resources location="/resources/" mapping="/resources/**"/>
+    <mvc:resources location="/resources/" mapping="/resources/**" cache-period="31536000"/>
 
     <!-- 自动扫描且只扫描@Controller -->
-    <context:component-scan base-package="com.educonsulting.mms" use-default-filters="false">
+    <context:component-scan base-package="com.rcbank.mms" use-default-filters="false">
         <context:include-filter type="annotation"
                                 expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
     <aop:aspectj-autoproxy proxy-target-class="true"/>
 
+    <!-- 自动扫描且只扫描@Controller -->
+    <context:component-scan base-package="com.rcbank.mms" use-default-filters="false">
+        <context:include-filter type="annotation"
+                                expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
     <mvc:interceptors>
-        <mvc:interceptor>
-            <mvc:mapping path="/**"/>
-            <bean id="executeTimeInterceptor"
-                  class="com.educonsulting.mms.interceptor.ExecuteTimeInterceptor"/>
-        </mvc:interceptor>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
             <bean id="webContentInterceptor"
@@ -48,13 +49,21 @@
         </mvc:interceptor>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
-            <bean id="listInterceptor" class="com.educonsulting.mms.interceptor.ListInterceptor"/>
+            <bean id="logInterceptor" class="com.rcbank.mms.interceptor.LogInterceptor"/>
         </mvc:interceptor>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
-            <bean id="usageLogInterceptor"
-                  class="com.educonsulting.mms.interceptor.UsageLogInterceptor"/>
+            <mvc:exclude-mapping path="/**"/>
+            <bean id="tokenInterceptor" class="com.rcbank.mms.interceptor.TokenInterceptor"/>
         </mvc:interceptor>
+        <!--<mvc:interceptor>
+            <mvc:mapping path="/**" />
+            <bean id="executeTimeInterceptor" class="ExecuteTimeInterceptor" />
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean id="listInterceptor" class="ListInterceptor"/>
+        </mvc:interceptor>-->
     </mvc:interceptors>
 
     <bean id="validator"
@@ -98,8 +107,9 @@
         <property name="defaultEncoding" value="UTF-8"/>
         <!-- one of the properties available; the maximum file size in bytes -->
         <property name="maxUploadSize">
-            <value>5242880</value>
+            <value>10485760</value>
         </property>
+        <property name="resolveLazily" value="true"/>
     </bean>
 
     <!-- 默认的注解映射的支持 -->
@@ -115,30 +125,46 @@
         </property>
     </bean>
 
-    <bean id="exceptionResolver"
-          class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+    <!--<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
         <property name="defaultErrorView" value="/common/error"/>
-    </bean>
-
-    <!-- 定时发送邮件 -->
-    <!--<bean id="timingEmailController" class="com.educonsulting.mms.controller.TimingEmailController"/>
-    <bean id="sendEmail"
-          class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-        <property name="targetObject" ref="timingEmailController"/>
-        <property name="targetMethod" value="sendEmail"/>
-        <property name="concurrent" value="false"/>
-    </bean>
-
-    <bean id="emailTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
-        <property name="jobDetail" ref="sendEmail"/>
-        &lt;!&ndash;每月26号凌晨1点  "0 0 1 26 * ?" 每十秒 "0/10 * * * * ?"&ndash;&gt;
-        <property name="cronExpression" value="0 0 1 26 * ?"/>
     </bean>-->
+    <!--
 
-    <!--总调度用于启动Spring定时器-->
+        &lt;!&ndash;Spring4 .定时任务配置&ndash;&gt;
+        &lt;!&ndash;特批编制定时任务&ndash;&gt;
+        <bean id="timingSpecialController" class="com.tccb.sse.controller.TimingSpecialController"/>
+        <bean id="upData"
+              class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+            <property name="targetObject" ref="timingSpecialController"/>
+            <property name="targetMethod" value="upData"/>
+            <property name="concurrent" value="false"/>
+        </bean>
+        <bean id="specialTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+            <property name="jobDetail" ref="upData"/>
+            &lt;!&ndash; 每天凌晨2点  "0 0 2 * * ?"&ndash;&gt; &lt;!&ndash;每十秒 "0/10 * * * * ?"&ndash;&gt;
+            <property name="cronExpression" value="0 0 2 * * ?"/>
+        </bean>
+
+        &lt;!&ndash;定时发送邮件&ndash;&gt;
+        <bean id="timingEmailController" class="com.tccb.sse.controller.TimingEmailController"/>
+        <bean id="sendEmail"
+              class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+            <property name="targetObject" ref="timingEmailController"/>
+            <property name="targetMethod" value="sendEmail"/>
+            <property name="concurrent" value="false"/>
+        </bean>
+        <bean id="emailTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+            <property name="jobDetail" ref="sendEmail"/>
+            &lt;!&ndash; 每月26号凌晨1点  "0 0 1 26 * ?"&ndash;&gt; &lt;!&ndash;每十秒 "0/10 * * * * ?"&ndash;&gt;
+            <property name="cronExpression" value="0 0 1 26 * ?"/>
+        </bean>
+    -->
+
+    <!-- 总调度用于启动Spring定时器 -->
     <!-- <bean id="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
          <property name="triggers">
              <list>
+                 <ref bean="specialTrigger"/>
                  <ref bean="emailTrigger"/>
              </list>
          </property>

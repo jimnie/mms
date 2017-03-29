@@ -1,5 +1,5 @@
-﻿/**
- * jQuery EasyUI 1.5
+/**
+ * jQuery EasyUI 1.5.1
  * 
  * Copyright (c) 2009-2016 www.jeasyui.com. All rights reserved.
  *
@@ -219,7 +219,7 @@
                 return false;
             },
             onStopDrag: function (e) {
-                _26(e);
+                _26(e, "move");
             }
         });
         _23.window.resizable({
@@ -229,7 +229,7 @@
                 _25(e);
                 return false;
             }, onStopResize: function (e) {
-                _26(e);
+                _26(e, "resize");
             }
         });
         function _24(e) {
@@ -273,9 +273,9 @@
             _23.proxy._outerWidth(e.data.width);
             _23.proxy._outerHeight(e.data.height);
         };
-        function _26(e) {
+        function _26(e, _27) {
             $.extend(e.data, _19.call(_22, e.data.left, e.data.top, e.data.width + 0.1, e.data.height + 0.1));
-            $(_22).window("resize", e.data);
+            $(_22).window(_27, e.data);
             _23.pmask.remove();
             _23.pmask = null;
             _23.proxy.remove();
@@ -292,23 +292,23 @@
             });
         }
     });
-    $.fn.window = function (_27, _28) {
-        if (typeof _27 == "string") {
-            var _29 = $.fn.window.methods[_27];
-            if (_29) {
-                return _29(this, _28);
+    $.fn.window = function (_28, _29) {
+        if (typeof _28 == "string") {
+            var _2a = $.fn.window.methods[_28];
+            if (_2a) {
+                return _2a(this, _29);
             } else {
-                return this.panel(_27, _28);
+                return this.panel(_28, _29);
             }
         }
-        _27 = _27 || {};
+        _28 = _28 || {};
         return this.each(function () {
-            var _2a = $.data(this, "window");
-            if (_2a) {
-                $.extend(_2a.options, _27);
+            var _2b = $.data(this, "window");
+            if (_2b) {
+                $.extend(_2b.options, _28);
             } else {
-                _2a = $.data(this, "window", {options: $.extend({}, $.fn.window.defaults, $.fn.window.parseOptions(this), _27)});
-                if (!_2a.options.inline) {
+                _2b = $.data(this, "window", {options: $.extend({}, $.fn.window.defaults, $.fn.window.parseOptions(this), _28)});
+                if (!_2b.options.inline) {
                     document.body.appendChild(this);
                 }
             }
@@ -318,19 +318,19 @@
     };
     $.fn.window.methods = {
         options: function (jq) {
-            var _2b = jq.panel("options");
-            var _2c = $.data(jq[0], "window").options;
-            return $.extend(_2c, {
-                closed: _2b.closed,
-                collapsed: _2b.collapsed,
-                minimized: _2b.minimized,
-                maximized: _2b.maximized
+            var _2c = jq.panel("options");
+            var _2d = $.data(jq[0], "window").options;
+            return $.extend(_2d, {
+                closed: _2c.closed,
+                collapsed: _2c.collapsed,
+                minimized: _2c.minimized,
+                maximized: _2c.maximized
             });
         }, window: function (jq) {
             return $.data(jq[0], "window").window;
-        }, move: function (jq, _2d) {
+        }, move: function (jq, _2e) {
             return jq.each(function () {
-                _1(this, _2d);
+                _1(this, _2e);
             });
         }, hcenter: function (jq) {
             return jq.each(function () {
@@ -348,9 +348,9 @@
             });
         }
     };
-    $.fn.window.getMaskSize = function (_2e) {
-        var _2f = $(_2e).data("window");
-        if (_2f && _2f.options.inline) {
+    $.fn.window.getMaskSize = function (_2f) {
+        var _30 = $(_2f).data("window");
+        if (_30 && _30.options.inline) {
             return {};
         } else {
             if ($._positionFixed) {
@@ -360,8 +360,8 @@
             }
         }
     };
-    $.fn.window.parseOptions = function (_30) {
-        return $.extend({}, $.fn.panel.parseOptions(_30), $.parser.parseOptions(_30, [{
+    $.fn.window.parseOptions = function (_31) {
+        return $.extend({}, $.fn.panel.parseOptions(_31), $.parser.parseOptions(_31, [{
             draggable: "boolean",
             resizable: "boolean",
             shadow: "boolean",

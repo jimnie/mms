@@ -37,14 +37,14 @@
         acts = json;
     });
 
-    var editable = {};
+    var _editable = {};
     $.getJSON(base + '/dict/findDict/editable', function (json) {
-        editable = json
+        _editable = json;
     });
 
     function editableFormatter(value) {
-        for (var i = 0; i < editable.length; i++) {
-            if (editable[i].value == value) return editable[i].name;
+        for (var i = 0; i < _editable.length; i++) {
+            if (_editable[i].value == value) return _editable[i].name;
         }
         return value;
     }
@@ -250,7 +250,7 @@
             });
 //            row = JSON.stringify(row).replace(/\./g, "\\\\.");
 
-            $('#ac').dialog('setTitle', '<%=SpringUtils.getMessage("role.form.toAssignAuthRoleTitle")%>' + row.name).dialog('open');
+            $('#ac').dialog('setTitle', '<%=SpringUtils.getMessage("role.form.assignAuth")%>（' + row.name + '）').dialog('open');
         } else {
             $.messager.alert(title, '<%=SpringUtils.getMessage("role.form.selectRoleToAssignAuth")%>', warning);
         }
@@ -287,8 +287,8 @@
 
         for (var i = 0; i < authsRows.length; i++) {
             if (authsRows[i].resourceId == resourceId
-                    && authsRows[i].roleId == roleId
-                    && authsRows[i].perms == perms) {
+                && authsRows[i].roleId == roleId
+                && authsRows[i].perms == perms) {
                 $.messager.alert(title, '<%=SpringUtils.getMessage("role.form.resourceHasAssigned")%>', error);
                 return;
             }

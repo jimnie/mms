@@ -1,4 +1,4 @@
-<%@ page import="com.educonsulting.mms.util.SpringUtils" %>
+<%@ page import="com.rcbank.mms.util.SpringUtils" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <head>
@@ -125,7 +125,6 @@
 
     <div id="ac" class="easyui-dialog" style="width:900px;height:500px;"
          closed="true" modal="true" buttons="#actions-buttons">
-
         <form id="authform" method="post">
             <div class="toolbar">
                 <%=SpringUtils.getMessage("role.form.choiseModel")%>

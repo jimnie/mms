@@ -1,9 +1,9 @@
 <%@page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8" %>
 <%@include file="/WEB-INF/jsp/common/global.jsp" %>
-<%@page import="com.educonsulting.mms.Setting" %>
-<%@page import="com.educonsulting.mms.Setting.AccountLockType" %>
-<%@page import="com.educonsulting.mms.service.RSAService" %>
-<%@page import="com.educonsulting.mms.util.SettingUtils" %>
+<%@page import="com.rcbank.mms.Setting" %>
+<%@page import="com.rcbank.mms.Setting.AccountLockType" %>
+<%@page import="com.rcbank.mms.service.RSAService" %>
+<%@page import="com.rcbank.mms.util.SettingUtils" %>
 <%@page import="org.apache.commons.codec.binary.Base64" %>
 <%@page import="org.apache.commons.lang.ArrayUtils" %>
 <%@page import="org.apache.shiro.web.filter.authc.FormAuthenticationFilter" %>

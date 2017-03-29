@@ -106,9 +106,15 @@
     </servlet>
 
     <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>/resources/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+
 
     <!-- 容器级别的Session配置 -->
     <!--<session-config>

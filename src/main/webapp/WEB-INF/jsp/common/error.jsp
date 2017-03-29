@@ -1,5 +1,5 @@
 <%@page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8" %>
-<%@page import="com.educonsulting.mms.util.SpringUtils" %>
+<%@page import="com.rcbank.mms.util.SpringUtils" %>
 <%
     String base = request.getContextPath();
 %>
