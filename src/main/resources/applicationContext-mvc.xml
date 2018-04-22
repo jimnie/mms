@@ -15,7 +15,8 @@
     <description>Spring MVC配置</description>
 
     <!-- 对静态资源文件的访问，交给default servlet handler处理 -->
-    <mvc:resources location="/resources/" mapping="/resources/**"/>
+    <mvc:default-servlet-handler/>
+    <!--<mvc:resources location="/resources/" mapping="/resources/**"/>-->
     <!-- or  <mvc:default-servlet-handler/> 与上面mvc:resources标签选其一即可,这里如果配置，必须配置<mvc:annotation-driven/>其他controller才可正常工作-->
 
     <!-- 自动扫描且只扫描@Controller -->
