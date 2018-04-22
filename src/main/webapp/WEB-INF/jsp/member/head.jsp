@@ -7,7 +7,7 @@
     <%=SpringUtils.getMessage("sys.main.projectName")%>
 </title>
 <link rel="stylesheet" type="text/css"
-      href="${pageContext.request.contextPath}/resources/css/index.css">
+      href="${pageContext.request.contextPath}/css/index.css">
 <script type="text/javascript">
     var contextPath = '<%=request.getContextPath()%>';
 

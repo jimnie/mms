@@ -12,9 +12,9 @@
     <title>
         <%=SpringUtils.getMessage("sys.error.page")%>
     </title>
-    <link href="<%=base%>/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <script type="text/javascript" src="<%=base%>/resources/ui/jquery.min.js"></script>
-    <script type="text/javascript" src="<%=base%>/resources/bootstrap/js/bootstrap.min.js"></script>
+    <link href="<%=base%>/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" src="<%=base%>/ui/jquery.min.js"></script>
+    <script type="text/javascript" src="<%=base%>/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
 <div class="container-fluid" style="margin-top: 15px">

@@ -3,11 +3,11 @@
     String base = request.getContextPath();
 %>
 <link rel="stylesheet" type="text/css"
-      href="<%=base%>/resources/ui/themes/default/easyui.css">
+      href="<%=base%>/ui/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css"
-      href="<%=base%>/resources/ui/themes/icon.css">
+      href="<%=base%>/ui/themes/icon.css">
 <link rel="stylesheet" type="text/css"
-      href="<%=base%>/resources/css/icon-extension.css">
+      href="<%=base%>/css/icon-extension.css">
 <style type="text/css">
     .title {
         border: solid #C0C0C0 1px;
@@ -66,15 +66,15 @@
 </style>
 
 <script type="text/javascript"
-        src="<%=base%>/resources/ui/jquery.min.js"></script>
+        src="<%=base%>/ui/jquery.min.js"></script>
 <script type="text/javascript"
-        src="<%=base%>/resources/ui/jquery.easyui.min.js"></script>
+        src="<%=base%>/ui/jquery.easyui.min.js"></script>
 <script type="text/javascript"
-        src="<%=base%>/resources/ui/locale/easyui-lang-zh_CN.js"></script>
+        src="<%=base%>/ui/locale/easyui-lang-zh_CN.js"></script>
 
-<script type="text/javascript" src="<%=base%>/resources/js/json2.js"></script>
-<script type="text/javascript" src="<%=base%>/resources/js/query.string.js"></script>
-<script type="text/javascript" src="<%=base%>/resources/js/common.js"></script>
+<script type="text/javascript" src="<%=base%>/js/json2.js"></script>
+<script type="text/javascript" src="<%=base%>/js/query.string.js"></script>
+<script type="text/javascript" src="<%=base%>/js/common.js"></script>
 <script type="text/javascript">
     var base = '<%=base%>';
     var title = '<%=SpringUtils.getMessage("page.messager.title")%>';

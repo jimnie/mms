@@ -7,17 +7,17 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title><%=SpringUtils.getMessage("sys.main.projectName")%>
     </title>
-    <link rel="shortcut icon" href="<%=base%>/resources/images/favorite.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="<%=base%>/images/favorite.ico" type="image/x-icon"/>
     <link rel="stylesheet" type="text/css"
-          href="${pageContext.request.contextPath}/resources/css/main.css">
+          href="${pageContext.request.contextPath}/css/main.css">
     <link rel="stylesheet" type="text/css"
-          href="${pageContext.request.contextPath}/resources/css/icon-extension.css">
+          href="${pageContext.request.contextPath}/css/icon-extension.css">
     <script type="text/javascript">
         var navsJson = ${sessionScope.navs};
         var modsJson = ${sessionScope.mods};
     </script>
     <script type="text/javascript"
-            src="${pageContext.request.contextPath}/resources/js/main.js"></script>
+            src="${pageContext.request.contextPath}/js/main.js"></script>
 </head>
 
 <body class="easyui-layout" scroll="no">
@@ -32,11 +32,11 @@
 <!-- 页头 -->
 <div data-options="region:'north',split:true,border:false"
      style="overflow: hidden; height: 40px;
-             background: url(<%=base%>/resources/images/layout-browser-hd-bg.gif) #7f99be repeat-x center 50%;
+             background: url(<%=base%>/images/layout-browser-hd-bg.gif) #7f99be repeat-x center 50%;
              line-height: 30px; color: #fff; font-family: Verdana, 微软雅黑,黑体">
 
     <span style="padding-left: 10px; font-size: 16px; float: left;">
-        <img src="<%=base%>/resources/images/blocks.gif" width="20" height="20" align="absmiddle"/>
+        <img src="<%=base%>/images/blocks.gif" width="20" height="20" align="absmiddle"/>
         <%=SpringUtils.getMessage("sys.main.systemName")%>
     </span>
 

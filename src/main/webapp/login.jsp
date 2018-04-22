@@ -27,7 +27,7 @@
 <html>
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <link rel="shortcut icon" href="<%=base%>/resources/images/favorite.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="<%=base%>/images/favorite.ico" type="image/x-icon"/>
     <%
         if (applicationContext != null) {
             RSAService rsaService = SpringUtils.getBean("rsaServiceImpl", RSAService.class);
@@ -58,13 +58,13 @@
     <title>
         <%=SpringUtils.getMessage("sys.main.projectName")%>
     </title>
-    <link href="<%=base%>/resources/css/login.css" rel="stylesheet" type="text/css"/>
-    <script type="text/javascript" src="<%=base%>/resources/js/jsbn.js"></script>
-    <script type="text/javascript" src="<%=base%>/resources/js/prng4.js"></script>
-    <script type="text/javascript" src="<%=base%>/resources/js/rng.js"></script>
-    <script type="text/javascript" src="<%=base%>/resources/js/rsa.js"></script>
-    <script type="text/javascript" src="<%=base%>/resources/js/base64.js"></script>
-    <script type="text/javascript" src="<%=base%>/resources/js/common.js"></script>
+    <link href="<%=base%>/css/login.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="<%=base%>/js/jsbn.js"></script>
+    <script type="text/javascript" src="<%=base%>/js/prng4.js"></script>
+    <script type="text/javascript" src="<%=base%>/js/rng.js"></script>
+    <script type="text/javascript" src="<%=base%>/js/rsa.js"></script>
+    <script type="text/javascript" src="<%=base%>/js/base64.js"></script>
+    <script type="text/javascript" src="<%=base%>/js/common.js"></script>
     <script type="text/javascript">
         if (window != top) {
             top.location.href = '<%=base%>/common/main';
@@ -128,7 +128,7 @@
     <meta http-equiv="expires" content="0"/>
     <meta http-equiv="Pragma" content="no-cache"/>
     <meta http-equiv="Cache-Control" content="no-cache"/>
-    <link href="<%=base%>/resources/css/login.css" rel="stylesheet" type="text/css"/>
+    <link href="<%=base%>/css/login.css" rel="stylesheet" type="text/css"/>
     <%}%>
 </head>
 

@@ -2,7 +2,6 @@ package com.educonsulting.mms.aspect;
 
 import com.educonsulting.mms.annotation.SystemControllerLog;
 import com.educonsulting.mms.annotation.SystemServiceLog;
-import com.educonsulting.mms.service.UsageLogService;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.lang.reflect.Method;
@@ -28,10 +26,6 @@ public class SystemLogAspect {
 
     //本地异常日志记录对象
     private static final Logger logger = LoggerFactory.getLogger(SystemLogAspect.class);
-
-    //注入Service用于把日志保存数据库
-    @Resource(name = "usageLogServiceImpl")
-    private UsageLogService logService;
 
     //Service层切点
     @Pointcut("@annotation(com.educonsulting.mms.annotation.SystemServiceLog)")
