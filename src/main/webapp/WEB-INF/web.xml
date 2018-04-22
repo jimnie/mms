@@ -110,6 +110,14 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.js</url-pattern>
+        <url-pattern>*.css</url-pattern>
+        <url-pattern>*.png</url-pattern>
+        <url-pattern>*.gif</url-pattern>
+        <url-pattern>/images/*</url-pattern>
+    </servlet-mapping>
     <!-- 容器级别的Session配置 -->
     <!--<session-config>
         &lt;!&ndash; Session过期时间(单位：分) &ndash;&gt;
