@@ -1,7 +1,7 @@
-﻿/**
- * jQuery EasyUI 1.5
- * 
- * Copyright (c) 2009-2016 www.jeasyui.com. All rights reserved.
+/**
+ * EasyUI for jQuery 1.5.5
+ *
+ * Copyright (c) 2009-2018 www.jeasyui.com. All rights reserved.
  *
  * Licensed under the freeware license: http://www.jeasyui.com/license_freeware.php
  * To use it on other terms please contact us: info@jeasyui.com
@@ -14,6 +14,7 @@
         $(_2).numberbox($.extend({}, _3, {doSize: false})).spinner(_3);
         $(_2).numberbox("setValue", _3.value);
     };
+
     function _4(_5, _6) {
         var _7 = $.data(_5, "numberspinner").options;
         var v = parseFloat($(_5).numberbox("getValue") || _7.value) || 0;

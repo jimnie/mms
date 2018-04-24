@@ -1,6 +1,6 @@
 /**
- * EasyUI for jQuery 1.5.4.5
- *
+ * EasyUI for jQuery 1.5.5
+ * 
  * Copyright (c) 2009-2018 www.jeasyui.com. All rights reserved.
  *
  * Licensed under the freeware license: http://www.jeasyui.com/license_freeware.php
@@ -2747,7 +2747,7 @@
         scrollOnSelect: true,
         scrollbarSize: 18,
         rownumberWidth: 30,
-        editorHeight: 24,
+        editorHeight: 31,
         headerEvents: {
             mouseover: _82(true),
             mouseout: _82(false),

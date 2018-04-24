@@ -1,6 +1,6 @@
 /**
- * EasyUI for jQuery 1.5.4.5
- *
+ * EasyUI for jQuery 1.5.5
+ * 
  * Copyright (c) 2009-2018 www.jeasyui.com. All rights reserved.
  *
  * Licensed under the freeware license: http://www.jeasyui.com/license_freeware.php
@@ -192,7 +192,7 @@
         return $.extend({}, $.fn.combo.parseOptions(_2f), $.parser.parseOptions(_2f, ["sharedCalendar"]));
     };
     $.fn.datebox.defaults = $.extend({}, $.fn.combo.defaults, {
-        panelWidth: 180, panelHeight: "auto", sharedCalendar: null, keyHandler: {
+        panelWidth: 250, panelHeight: "auto", sharedCalendar: null, keyHandler: {
             up: function (e) {
             }, down: function (e) {
             }, left: function (e) {

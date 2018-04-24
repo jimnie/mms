@@ -7,48 +7,38 @@
     -webkit-border-radius: 0 0 0 0;
     border-radius: 0 0 0 0;
 }
-
 .panel-header,
 .panel-body {
     border-width: 1px;
     border-style: solid;
 }
-
 .panel-header {
     padding: 5px;
     position: relative;
 }
-
 .panel-title {
     background: url('images/blank.gif') no-repeat;
 }
-
 .panel-header-noborder {
     border-width: 0 0 1px 0;
 }
-
 .panel-body {
     overflow: auto;
     border-top-width: 0;
     padding: 0;
 }
-
 .panel-body-noheader {
     border-top-width: 1px;
 }
-
 .panel-body-noborder {
     border-width: 0px;
 }
-
 .panel-body-nobottom {
     border-bottom-width: 0;
 }
-
 .panel-with-icon {
     padding-left: 18px;
 }
-
 .panel-icon,
 .panel-tool {
     position: absolute;
@@ -57,17 +47,14 @@
     height: 16px;
     overflow: hidden;
 }
-
 .panel-icon {
     left: 5px;
     width: 16px;
 }
-
 .panel-tool {
     right: 5px;
     width: auto;
 }
-
 .panel-tool a {
     display: inline-block;
     width: 16px;
@@ -77,7 +64,6 @@
     margin: 0 0 0 2px;
     vertical-align: top;
 }
-
 .panel-tool a:hover {
     opacity: 1;
     filter: alpha(opacity=100);
@@ -86,15 +72,12 @@
     -webkit-border-radius: 3px 3px 3px 3px;
     border-radius: 3px 3px 3px 3px;
 }
-
 .panel-loading {
     padding: 11px 0px 10px 30px;
 }
-
 .panel-noscroll {
     overflow: hidden;
 }
-
 .panel-fit,
 .panel-fit body {
     height: 100%;
@@ -103,40 +86,31 @@
     border: 0;
     overflow: hidden;
 }
-
 .panel-loading {
     background: url('images/loading.gif') no-repeat 10px 10px;
 }
-
 .panel-tool-close {
     background: url('images/panel_tools.png') no-repeat -16px 0px;
 }
-
 .panel-tool-min {
     background: url('images/panel_tools.png') no-repeat 0px 0px;
 }
-
 .panel-tool-max {
     background: url('images/panel_tools.png') no-repeat 0px -16px;
 }
-
 .panel-tool-restore {
     background: url('images/panel_tools.png') no-repeat -16px -16px;
 }
-
 .panel-tool-collapse {
     background: url('images/panel_tools.png') no-repeat -32px 0;
 }
-
 .panel-tool-expand {
     background: url('images/panel_tools.png') no-repeat -32px -16px;
 }
-
 .panel-header,
 .panel-body {
     border-color: #000;
 }
-
 .panel-header {
     background-color: #3d3d3d;
     background: -webkit-linear-gradient(top, #454545 0, #383838 100%);
@@ -146,31 +120,26 @@
     background-repeat: repeat-x;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#454545, endColorstr=#383838, GradientType=0);
 }
-
 .panel-body {
     background-color: #666;
     color: #fff;
-    font-size: 12px;
+    font-size: 14px;
 }
-
 .panel-title {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: bold;
     color: #fff;
-    height: 16px;
-    line-height: 16px;
+    height: 20px;
+    line-height: 20px;
 }
-
 .panel-footer {
     border: 1px solid #000;
     overflow: hidden;
     background: #555;
 }
-
 .panel-footer-noborder {
     border-width: 1px 0 0 0;
 }
-
 .panel-hleft,
 .panel-hright {
     position: relative;
@@ -255,13 +224,15 @@
 .panel-hright > .panel-header .panel-icon {
     margin-top: 0;
     top: 5px;
+    left: 50%;
+    margin-left: -8px;
 }
 
 .panel-hleft > .panel-header .panel-title,
 .panel-hright > .panel-header .panel-title {
     position: absolute;
     min-width: 16px;
-    left: 21px;
+    left: 25px;
     top: 5px;
     bottom: auto;
     white-space: nowrap;
@@ -282,7 +253,7 @@
     min-width: 16px;
     left: 21px;
     top: auto;
-    bottom: 5px;
+    bottom: 0px;
     text-align: right;
     white-space: nowrap;
     word-wrap: normal;
