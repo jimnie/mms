@@ -1,7 +1,7 @@
-﻿/**
- * jQuery EasyUI 1.5
- * 
- * Copyright (c) 2009-2016 www.jeasyui.com. All rights reserved.
+/**
+ * EasyUI for jQuery 1.5.5.1
+ *
+ * Copyright (c) 2009-2018 www.jeasyui.com. All rights reserved.
  *
  * Licensed under the freeware license: http://www.jeasyui.com/license_freeware.php
  * To use it on other terms please contact us: info@jeasyui.com
@@ -110,6 +110,7 @@ break;
 return {left:_12,top:top};
 };
 };
+
     function _15(_16, e) {
         var _17 = $.data(_16, "tooltip");
         var _18 = _17.options;
@@ -136,7 +137,8 @@ tip.show();
             _1a.css(bc, tip.css(bc));
             _1b.css(bc, tip.css("backgroundColor"));
         }, _18.showDelay);
-};
+    };
+
     function _1c(_1d, e) {
         var _1e = $.data(_1d, "tooltip");
         if (_1e && _1e.tip) {
@@ -147,19 +149,21 @@ tip.show();
             }, _1e.options.hideDelay);
 }
 };
+
     function _19(_1f, _20) {
         var _21 = $.data(_1f, "tooltip");
         var _22 = _21.options;
         if (_20) {
             _22.content = _20;
-}
+        }
         if (!_21.tip) {
 return;
 }
         var cc = typeof _22.content == "function" ? _22.content.call(_1f) : _22.content;
         _21.tip.children(".tooltip-content").html(cc);
         _22.onUpdate.call(_1f, cc);
-};
+    };
+
     function _23(_24) {
         var _25 = $.data(_24, "tooltip");
         if (_25) {
@@ -167,10 +171,10 @@ return;
             var _26 = _25.options;
             if (_25.tip) {
                 _25.tip.remove();
-}
+            }
             if (_26._title) {
                 $(_24).attr("title", _26._title);
-}
+            }
             $.removeData(_24, "tooltip");
             $(_24).unbind(".tooltip").removeClass("tooltip-f");
             _26.onDestroy.call(_24);
@@ -179,7 +183,7 @@ return;
     $.fn.tooltip = function (_27, _28) {
         if (typeof _27 == "string") {
             return $.fn.tooltip.methods[_27](this, _28);
-}
+        }
         _27 = _27 || {};
 return this.each(function(){
     var _29 = $.data(this, "tooltip");
@@ -207,7 +211,7 @@ return jq.each(function(){
 return jq.each(function(){
     _1c(this, e);
 });
-}, update: function (jq, _2a) {
+    }, update: function (jq, _2a) {
 return jq.each(function(){
     _19(this, _2a);
 });
@@ -232,12 +236,12 @@ return jq.each(function(){
 t.attr("title","");
         if (!_2c.content) {
             _2c.content = _2c._title;
-}
+        }
         return _2c;
 };
 $.fn.tooltip.defaults={position:"bottom",content:null,trackMouse:false,deltaX:0,deltaY:0,showEvent:"mouseenter",hideEvent:"mouseleave",showDelay:200,hideDelay:100,onShow:function(e){
 },onHide:function(e){
-},
+    },
     onUpdate: function (_2d) {
     },
     onPosition: function (_2e, top) {

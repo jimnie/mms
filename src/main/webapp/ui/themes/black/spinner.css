@@ -28,11 +28,9 @@
     outline-style: none;
     background-color: #3d3d3d;
 }
-
 .spinner-button-updown {
     opacity: 1.0;
 }
-
 .spinner-button-updown .spinner-button-top,
 .spinner-button-updown .spinner-button-bottom {
     position: relative;
@@ -40,7 +38,6 @@
     width: 100%;
     height: 50%;
 }
-
 .spinner-button-updown .spinner-arrow-up,
 .spinner-button-updown .spinner-arrow-down {
     opacity: 1.0;
@@ -54,20 +51,17 @@
     margin-left: -8px;
     position: absolute;
 }
-
 .spinner-button-updown .spinner-button-top,
 .spinner-button-updown .spinner-button-bottom {
     cursor: pointer;
     opacity: 0.6;
     filter: alpha(opacity=60);
 }
-
 .spinner-button-updown .spinner-button-top:hover,
 .spinner-button-updown .spinner-button-bottom:hover {
     opacity: 1.0;
     filter: alpha(opacity=100);
 }
-
 .spinner-button-updown .spinner-arrow-up,
 .spinner-button-updown .spinner-arrow-down,
 .spinner-button-updown .spinner-arrow-up:hover,

@@ -39,15 +39,12 @@
 .accordion .accordion-header-selected .panel-title {
   color: #fff;
 }
-
 .accordion .panel-last > .accordion-header {
     border-bottom-color: #F2F2F2;
 }
-
 .accordion .panel-last > .accordion-body {
     border-bottom-color: #ffffff;
 }
-
 .accordion .panel-last > .accordion-header-selected,
 .accordion .panel-last > .accordion-header-border {
     border-bottom-color: #D4D4D4;

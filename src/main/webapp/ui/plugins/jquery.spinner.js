@@ -1,7 +1,7 @@
-﻿/**
- * jQuery EasyUI 1.5
- * 
- * Copyright (c) 2009-2016 www.jeasyui.com. All rights reserved.
+/**
+ * EasyUI for jQuery 1.5.5.1
+ *
+ * Copyright (c) 2009-2018 www.jeasyui.com. All rights reserved.
  *
  * Licensed under the freeware license: http://www.jeasyui.com/license_freeware.php
  * To use it on other terms please contact us: info@jeasyui.com
@@ -16,7 +16,7 @@ var _5=$.extend(true,[],_4.icons);
         _4.spinArrow = true;
         _4.iconAlign = _4.spinAlign;
         var _6 = {
-            iconCls: "spinner-arrow", handler: function (e) {
+            iconCls: "spinner-button-updown", handler: function (e) {
                 var _7 = $(e.target).closest(".spinner-arrow-up,.spinner-arrow-down");
                 _13(e.data.target, _7.hasClass("spinner-arrow-down"));
             }
@@ -71,9 +71,8 @@ $(_2).attr("spinnerName",$(_2).attr("textboxName"));
 _3.spinner=$(_2).next();
 _3.spinner.addClass("spinner");
     if (_4.spinArrow) {
-        var _10 = _3.spinner.find(".spinner-arrow");
-        _10.append("<a href=\"javascript:void(0)\" class=\"spinner-arrow-up\" tabindex=\"-1\"></a>");
-        _10.append("<a href=\"javascript:void(0)\" class=\"spinner-arrow-down\" tabindex=\"-1\"></a>");
+        var _10 = _3.spinner.find(".spinner-button-updown");
+        _10.append("<span class=\"spinner-arrow spinner-button-top\">" + "<span class=\"spinner-arrow-up\"></span>" + "</span>" + "<span class=\"spinner-arrow spinner-button-bottom\">" + "<span class=\"spinner-arrow-down\"></span>" + "</span>");
     } else {
         var _11 = $("<a href=\"javascript:;\" class=\"textbox-button spinner-button\"></a>").addClass(_4.clsLeft).appendTo(_3.spinner);
         var _12 = $("<a href=\"javascript:;\" class=\"textbox-button spinner-button\"></a>").addClass(_4.clsRight).appendTo(_3.spinner);
@@ -91,13 +90,14 @@ _3.spinner.addClass("spinner");
         });
         if (_4.disabled) {
             $(_2).spinner("disable");
-}
+        }
         if (_4.readonly) {
             $(_2).spinner("readonly");
-}
+        }
     }
     $(_2).spinner("resize");
 };
+
     function _13(_14, _15) {
         var _16 = $(_14).spinner("options");
         _16.spin.call(_14, _15);
@@ -111,8 +111,8 @@ _3.spinner.addClass("spinner");
                 return _19(this, _18);
 }else{
                 return this.textbox(_17, _18);
-}
-}
+            }
+        }
         _17 = _17 || {};
 return this.each(function(){
     var _1a = $.data(this, "spinner");
@@ -125,21 +125,22 @@ _1(this);
 });
 };
 $.fn.spinner.methods={options:function(jq){
-    var _1b = jq.textbox("options");
-    return $.extend($.data(jq[0], "spinner").options, {
-        width: _1b.width,
-        value: _1b.value,
-        originalValue: _1b.originalValue,
-        disabled: _1b.disabled,
-        readonly: _1b.readonly
-    });
-}};
+        var _1b = jq.textbox("options");
+        return $.extend($.data(jq[0], "spinner").options, {
+            width: _1b.width,
+            value: _1b.value,
+            originalValue: _1b.originalValue,
+            disabled: _1b.disabled,
+            readonly: _1b.readonly
+        });
+    }
+};
     $.fn.spinner.parseOptions = function (_1c) {
         return $.extend({}, $.fn.textbox.parseOptions(_1c), $.parser.parseOptions(_1c, ["min", "max", "spinAlign", {
             increment: "number",
             reversed: "boolean"
         }]));
-};
+    };
     $.fn.spinner.defaults = $.extend({}, $.fn.textbox.defaults, {
         min: null,
         max: null,
