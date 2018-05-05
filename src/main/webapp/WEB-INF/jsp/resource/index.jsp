@@ -13,7 +13,7 @@
 
 <div class="easyui-layout" fit="true">
 
-    <div region="north" border="false" style="height: 35px">
+    <div region="north" border="false" style="height: 39px">
         <div class="toolbar">
             <table cellpadding="0" cellspacing="0" style="width:95%;">
                 <tr>
