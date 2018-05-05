@@ -18,4 +18,6 @@ public interface UserService extends BaseService<User, Long> {
 
     String getCurrentUsername();
 
+    boolean isPermitted(String permission);
+
 }

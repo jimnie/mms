@@ -75,6 +75,16 @@ public class UserServiceImpl extends BaseServiceImpl<User, Long> implements User
     }
 
     @Transactional(readOnly = true)
+    public boolean isPermitted(String permission) {
+        Subject subject = SecurityUtils.getSubject();
+        if (subject != null && subject.isPermitted(permission)) {
+            return true;
+        }
+        return false;
+    }
+
+
+    @Transactional(readOnly = true)
     public String getCurrentUsername() {
         Subject subject = SecurityUtils.getSubject();
         if (subject != null) {
