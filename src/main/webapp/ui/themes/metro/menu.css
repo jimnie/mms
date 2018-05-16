@@ -71,7 +71,7 @@
 }
 .menu-text,
 .menu-text span {
-  font-size: 12px;
+  font-size: 14px;
 }
 .menu-shadow {
   position: absolute;
@@ -82,7 +82,7 @@
   -moz-box-shadow: 2px 2px 3px #ededed;
   -webkit-box-shadow: 2px 2px 3px #ededed;
   box-shadow: 2px 2px 3px #ededed;
-  filter: progid:DXImageTransform.Microsoft.Blur(pixelRadius=2, MakeShadow=false, ShadowOpacity=0.2);
+  filter: progid:DXImageTransform.Microsoft.Blur(pixelRadius=2,MakeShadow=false,ShadowOpacity=0.2);
 }
 .menu-rightarrow {
   background: url('images/menu_arrows.png') no-repeat -32px center;
