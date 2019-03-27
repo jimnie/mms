@@ -25,43 +25,43 @@
     </context:component-scan>
 
     <!-- 数据源配置 -->
-    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+    <!--<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
           init-method="init" destroy-method="close">
         <property name="driverClassName" value="${jdbc.driver}"/>
         <property name="url" value="${jdbc.url}"/>
         <property name="username" value="${jdbc.username}"/>
         <property name="password" value="${jdbc.password}"/>
 
-        <!-- 配置初始化大小、最小、最大 -->
+        &lt;!&ndash; 配置初始化大小、最小、最大 &ndash;&gt;
         <property name="initialSize" value="1"/>
         <property name="minIdle" value="1"/>
         <property name="maxActive" value="10"/>
 
-        <!-- 配置获取连接等待超时的时间 -->
+        &lt;!&ndash; 配置获取连接等待超时的时间 &ndash;&gt;
         <property name="maxWait" value="10000"/>
 
-        <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+        &lt;!&ndash; 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 &ndash;&gt;
         <property name="timeBetweenEvictionRunsMillis" value="60000"/>
 
-        <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+        &lt;!&ndash; 配置一个连接在池中最小生存的时间，单位是毫秒 &ndash;&gt;
         <property name="minEvictableIdleTimeMillis" value="300000"/>
 
         <property name="testWhileIdle" value="true"/>
 
-        <!-- 这里建议配置为TRUE，防止取到的连接不可用 -->
+        &lt;!&ndash; 这里建议配置为TRUE，防止取到的连接不可用 &ndash;&gt;
         <property name="testOnBorrow" value="true"/>
         <property name="testOnReturn" value="false"/>
 
-        <!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+        &lt;!&ndash; 打开PSCache，并且指定每个连接上PSCache的大小 &ndash;&gt;
         <property name="poolPreparedStatements" value="true"/>
         <property name="maxPoolPreparedStatementPerConnectionSize"
                   value="20"/>
 
-        <!-- 这里配置提交方式，默认就是TRUE，可以不用配置 -->
+        &lt;!&ndash; 这里配置提交方式，默认就是TRUE，可以不用配置 &ndash;&gt;
 
         <property name="defaultAutoCommit" value="true"/>
 
-        <!-- 验证连接有效与否的SQL，不同的数据配置不同 -->
+        &lt;!&ndash; 验证连接有效与否的SQL，不同的数据配置不同 &ndash;&gt;
         <property name="validationQuery" value="select 1 "/>
         <property name="filters" value="stat"/>
         <property name="proxyFilters">
@@ -73,6 +73,40 @@
 
     <bean id="logFilter" class="com.alibaba.druid.filter.logging.Slf4jLogFilter">
         <property name="statementExecutableSqlLogEnable" value="false"/>
+    </bean>-->
+    <!-- 数据源配置 -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+          destroy-method="close">
+        <property name="driverClass" value="${jdbc.driver}"/>
+        <property name="jdbcUrl" value="${jdbc.url}"/>
+        <property name="user" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="initialPoolSize" value="${connection_pools.initial_pool_size}"/>
+        <property name="minPoolSize" value="${connection_pools.min_pool_size}"/>
+        <property name="maxPoolSize" value="${connection_pools.max_pool_size}"/>
+        <property name="maxIdleTime" value="${connection_pools.max_idle_time}"/>
+        <property name="checkoutTimeout" value="${connection_pools.checkout_timeout}"/>
+        <property name="maxStatements" value="${connection_pools.max_statements}"/>
+        <property name="preferredTestQuery"
+                  value="${connection_pools.preferred_test_query}"/>
+        <property name="breakAfterAcquireFailure"
+                  value="${connection_pools.break_after_acquire_failure}"/>
+        <property name="unreturnedConnectionTimeout"
+                  value="${connection_pools.unreturned_connection_timeout}"/>
+        <property name="debugUnreturnedConnectionStackTraces"
+                  value="${connection_pools.debug_unreturned_connection_stack_traces}"/>
+        <property name="acquireIncrement" value="${connection_pools.acquire_increment}"/>
+        <property name="acquireRetryAttempts"
+                  value="${connection_pools.acquire_retry_attempts}"/>
+        <property name="acquireRetryDelay"
+                  value="${connection_pools.acquire_retry_delay}"/>
+        <property name="testConnectionOnCheckin"
+                  value="${connection_pools.test_connection_on_checkin}"/>
+        <property name="automaticTestTable"
+                  value="${connection_pools.automatic_test_table}"/>
+        <property name="idleConnectionTestPeriod"
+                  value="${connection_pools.idle_connection_test_period}"/>
+
     </bean>
 
     <!-- 实体对象管理 -->
@@ -85,7 +119,7 @@
         <property name="packagesToScan" value="com.educonsulting.mms.entity"/>
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-                <property name="showSql" value="false"/>
+                <property name="showSql" value="true"/>
                 <property name="generateDdl" value="true"/>
             </bean>
         </property>
@@ -106,12 +140,15 @@
                 </prop>
                 <prop key="hibernate.jdbc.fetch_size">${hibernate.jdbc.fetch_size}</prop>
                 <prop key="hibernate.jdbc.batch_size">${hibernate.jdbc.batch_size}</prop>
-                <prop key="hibernate.connection.isolation">2</prop>
+                <prop key="hibernate.connection.isolation">
+                    ${hibernate.connection.isolation}
+                </prop>
                 <prop key="javax.persistence.validation.mode">none</prop>
-                <prop key="hibernate.show_sql">true</prop>
-                <prop key="hibernate.format_sql">true</prop>
-                <prop key="hibernate.use_sql_comments">true</prop>
-                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+                <prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+                <prop key="hibernate.use_sql_comments">${hibernate.use_sql_comments}
+                </prop>
+                <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
             </props>
         </property>
     </bean>
