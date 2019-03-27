@@ -1,12 +1,13 @@
-package com.jiaye.pa.controller;
+package com.educonsulting.mms.controller;
 
-import com.jiaye.pa.*;
-import com.jiaye.pa.entity.Authority;
-import com.jiaye.pa.entity.Resources;
-import com.jiaye.pa.entity.Role;
-import com.jiaye.pa.service.AuthorityService;
-import com.jiaye.pa.service.ResourceService;
-import com.jiaye.pa.service.RoleService;
+
+import com.educonsulting.mms.*;
+import com.educonsulting.mms.entity.Authority;
+import com.educonsulting.mms.entity.Resources;
+import com.educonsulting.mms.entity.Role;
+import com.educonsulting.mms.service.AuthorityService;
+import com.educonsulting.mms.service.ResourceService;
+import com.educonsulting.mms.service.RoleService;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.apache.commons.collections.CollectionUtils;
