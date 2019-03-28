@@ -33,6 +33,7 @@ body {
 
 .textbox {
     height: 28px;
+    width: 198px;
     margin: 0;
     padding: 0 2px;
     box-sizing: content-box;
