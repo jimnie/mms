@@ -14,20 +14,20 @@
     </tr>
     <tr>
         <td class="title-bg">
-            <%=SpringUtils.getMessage("dict.form.value")%>
-        </td>
-        <td class="domain-bg">
-            <input class="easyui-textbox" id="value" name="value"
-                   required="true"/></td>
-    </tr>
-    <tr>
-        <td class="title-bg">
             <%=SpringUtils.getMessage("dict.form.name")%>
         </td>
         <td class="domain-bg">
             <input class="easyui-textbox" id="name" name="name"
                    required="true"/></td>
         </td>
+    </tr>
+    <tr>
+        <td class="title-bg">
+            <%=SpringUtils.getMessage("dict.form.value")%>
+        </td>
+        <td class="domain-bg">
+            <input class="easyui-textbox" id="value" name="value"
+                   required="true"/></td>
     </tr>
     <tr>
         <td class="title-bg">
