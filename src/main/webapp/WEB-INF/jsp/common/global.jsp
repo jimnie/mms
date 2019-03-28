@@ -29,8 +29,8 @@
     }
 
     .title-bg {
-        height: 30px;
-        font-size: 12px;
+        height: 40px;
+        font-size: 14px;
         border: solid #C0C0C0 1px;
         background-color: #F1F6FF;
         padding-right: 10px;
@@ -38,8 +38,8 @@
     }
 
     .domain-bg {
-        height: 30px;
-        font-size: 12px;
+        height: 40px;
+        font-size: 14px;
         border: solid #C0C0C0 1px;
         background-color: #FAFCFF;
         padding-left: 10px;
