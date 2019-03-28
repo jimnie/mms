@@ -50,11 +50,11 @@
                 <th data-options="field:'nickname',width:100,halign:'center',sortable:true">
                     <%=SpringUtils.getMessage("dict.datagrid.nickname")%>
                 </th>
-                <th data-options="field:'value',width:100,halign:'center',sortable:true">
-                    <%=SpringUtils.getMessage("dict.datagrid.value")%>
-                </th>
                 <th data-options="field:'name',width:100,halign:'center'">
                     <%=SpringUtils.getMessage("dict.datagrid.name")%>
+                </th>
+                <th data-options="field:'value',width:100,halign:'center',sortable:true">
+                    <%=SpringUtils.getMessage("dict.datagrid.value")%>
                 </th>
                 <th data-options="field:'createDate',width:150,halign:'center',align:'center',sortable:true">
                     <%=SpringUtils.getMessage("page.common.createDate")%>
