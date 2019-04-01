@@ -1,5 +1,7 @@
 package com.educonsulting.mms.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -16,17 +18,17 @@ public class Deposit extends BaseEntity {
     // 逝者姓名
     private String dpName;
     // 逝者性别
-    private int dpSex;
+    private Integer dpSex;
     // 逝者年龄
-    private int dpAge;
+    private Integer dpAge;
     // 逝者证件类型
-    private int dpCertType;
+    private Integer dpCertType;
     // 逝者证件号
     private String dpCertNo;
     // 承办人姓名
     private String utName;
     // 承办人证件类型
-    private int utCertType;
+    private Integer utCertType;
     // 承办人证件号
     private String utCertNo;
     // 存入时间
@@ -34,15 +36,15 @@ public class Deposit extends BaseEntity {
     // 存放位置
     private String position;
     // 急取
-    private int urgent;
+    private Integer urgent;
     // 外观
-    private int facade;
+    private Integer facade;
     // 取出时间
     private Date drawDate;
     // 备注
     private String memo;
     // 存放状态，0：存放 1：领取
-    private int status;
+    private Integer status;
 
     @NotNull
     @Column(nullable = false, length = 11)
@@ -66,31 +68,31 @@ public class Deposit extends BaseEntity {
 
     @NotNull
     @Column(nullable = false, length = 1)
-    public int getDpSex() {
+    public Integer getDpSex() {
         return dpSex;
     }
 
-    public void setDpSex(int dpSex) {
+    public void setDpSex(Integer dpSex) {
         this.dpSex = dpSex;
     }
 
     @NotNull
-    @Column(nullable = false, length = 3)
-    public int getDpAge() {
+    @Column(nullable = false)
+    public Integer getDpAge() {
         return dpAge;
     }
 
-    public void setDpAge(int dpAge) {
+    public void setDpAge(Integer dpAge) {
         this.dpAge = dpAge;
     }
 
     @NotNull
     @Column(nullable = false, length = 1)
-    public int getDpCertType() {
+    public Integer getDpCertType() {
         return dpCertType;
     }
 
-    public void setDpCertType(int dpCertType) {
+    public void setDpCertType(Integer dpCertType) {
         this.dpCertType = dpCertType;
     }
 
@@ -116,11 +118,11 @@ public class Deposit extends BaseEntity {
 
     @NotNull
     @Column(nullable = false, length = 1)
-    public int getUtCertType() {
+    public Integer getUtCertType() {
         return utCertType;
     }
 
-    public void setUtCertType(int utCertType) {
+    public void setUtCertType(Integer utCertType) {
         this.utCertType = utCertType;
     }
 
@@ -136,6 +138,7 @@ public class Deposit extends BaseEntity {
 
     @NotNull
     @Column(nullable = false)
+    @JsonFormat(pattern = "yyyy-MM-dd")
     public Date getDepositDate() {
         return depositDate;
     }
@@ -156,26 +159,27 @@ public class Deposit extends BaseEntity {
 
     @NotNull
     @Column(nullable = false, length = 1)
-    public int getUrgent() {
+    public Integer getUrgent() {
         return urgent;
     }
 
-    public void setUrgent(int urgent) {
+    public void setUrgent(Integer urgent) {
         this.urgent = urgent;
     }
 
     @NotNull
     @Column(nullable = false, length = 1)
-    public int getFacade() {
+    public Integer getFacade() {
         return facade;
     }
 
-    public void setFacade(int facade) {
+    public void setFacade(Integer facade) {
         this.facade = facade;
     }
 
     @NotNull
     @Column(nullable = false)
+    @JsonFormat(pattern = "yyyy-MM-dd")
     public Date getDrawDate() {
         return drawDate;
     }
@@ -194,11 +198,11 @@ public class Deposit extends BaseEntity {
 
     @NotNull
     @Column(nullable = false, length = 1)
-    public int getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 }

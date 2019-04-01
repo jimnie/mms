@@ -141,6 +141,11 @@ public class MemberServiceImpl extends BaseServiceImpl<Member, Long> implements 
         return memberDao.isMobileExisted(mobile);
     }
 
+    @Override
+    public Page<Member> findpage(Pageable pageable) {
+        return null;
+    }
+
     @Transactional
     public void update(Member member, User user, Type type) {
         Assert.notNull(member);

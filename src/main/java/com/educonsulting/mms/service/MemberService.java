@@ -15,7 +15,7 @@ public interface MemberService extends BaseService<Member, Long> {
 
     boolean isMobileExisted(String mobile);
 
-    Page<Member> findPage(Pageable pageable);
+    Page<Member> findpage(Pageable pageable);
 
     void update(Member member, User user, RechargeLog.Type type);
 
