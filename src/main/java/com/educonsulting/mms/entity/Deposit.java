@@ -147,8 +147,8 @@ public class Deposit extends BaseEntity {
     }
 
     @NotNull
-    @Column(nullable = false, columnDefinition = "datetime")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+    @Column(name = "deposit_date", nullable = false, columnDefinition = "date")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     public Date getDepositDate() {
         return depositDate;
     }
@@ -188,7 +188,7 @@ public class Deposit extends BaseEntity {
     }
 
     @NotNull
-    @Column(columnDefinition = "datetime")
+    @Column(name = "draw_date", columnDefinition = "datetime")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     public Date getDrawDate() {
         return drawDate;
