@@ -25,12 +25,16 @@ public class Deposit extends BaseEntity {
     private Integer dpCertType;
     // 逝者证件号
     private String dpCertNo;
+    // 逝者住址
+    private String dpAddr;
     // 承办人姓名
     private String utName;
     // 承办人证件类型
     private Integer utCertType;
     // 承办人证件号
     private String utCertNo;
+    // 承办人电话
+    private String phone;
     // 存入时间
     private Date depositDate;
     // 存放位置
@@ -39,15 +43,21 @@ public class Deposit extends BaseEntity {
     private Integer urgent;
     // 外观
     private Integer facade;
-    // 取出时间
+    // 实际取出时间
     private Date drawDate;
+    // 预计取出日期
+    private Date preDrawDate;
     // 备注
     private String memo;
     // 存放状态，0：存放 1：领取
     private Integer status;
+    // 存放经办人
+    private String createdBy;
+    // 领取经办人
+    private String updatedBy;
 
     @NotNull
-    @Column(nullable = false, length = 11)
+    @Column(name = "service_no", nullable = false, unique = true, length = 11)
     public String getServiceNo() {
         return serviceNo;
     }
@@ -57,7 +67,7 @@ public class Deposit extends BaseEntity {
     }
 
     @NotNull
-    @Column(nullable = false, length = 20)
+    @Column(name = "dp_name", nullable = false, length = 50)
     public String getDpName() {
         return dpName;
     }
@@ -67,7 +77,7 @@ public class Deposit extends BaseEntity {
     }
 
     @NotNull
-    @Column(nullable = false, length = 1)
+    @Column(name = "dp_sex")
     public Integer getDpSex() {
         return dpSex;
     }
@@ -77,7 +87,7 @@ public class Deposit extends BaseEntity {
     }
 
     @NotNull
-    @Column(nullable = false)
+    @Column(name = "dp_age")
     public Integer getDpAge() {
         return dpAge;
     }
@@ -87,7 +97,7 @@ public class Deposit extends BaseEntity {
     }
 
     @NotNull
-    @Column(nullable = false, length = 1)
+    @Column(name = "dp_cert_type")
     public Integer getDpCertType() {
         return dpCertType;
     }
@@ -97,7 +107,7 @@ public class Deposit extends BaseEntity {
     }
 
     @NotNull
-    @Column(nullable = false, length = 18)
+    @Column(name = "dp_cert_no", nullable = false, length = 18)
     public String getDpCertNo() {
         return dpCertNo;
     }
@@ -107,7 +117,7 @@ public class Deposit extends BaseEntity {
     }
 
     @NotNull
-    @Column(nullable = false, length = 20)
+    @Column(name = "ut_name", nullable = false, length = 20)
     public String getUtName() {
         return utName;
     }
@@ -117,7 +127,7 @@ public class Deposit extends BaseEntity {
     }
 
     @NotNull
-    @Column(nullable = false, length = 1)
+    @Column(name = "ut_cert_type")
     public Integer getUtCertType() {
         return utCertType;
     }
@@ -127,7 +137,7 @@ public class Deposit extends BaseEntity {
     }
 
     @NotNull
-    @Column(nullable = false, length = 18)
+    @Column(name = "ut_cert_no", nullable = false, length = 18)
     public String getUtCertNo() {
         return utCertNo;
     }
@@ -137,8 +147,8 @@ public class Deposit extends BaseEntity {
     }
 
     @NotNull
-    @Column(nullable = false)
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @Column(nullable = false, columnDefinition = "datetime")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     public Date getDepositDate() {
         return depositDate;
     }
@@ -148,7 +158,7 @@ public class Deposit extends BaseEntity {
     }
 
     @NotNull
-    @Column(nullable = false, length = 20)
+    @Column(name = "position", nullable = false, length = 20)
     public String getPosition() {
         return position;
     }
@@ -158,7 +168,7 @@ public class Deposit extends BaseEntity {
     }
 
     @NotNull
-    @Column(nullable = false, length = 1)
+    @Column(name = "urgent")
     public Integer getUrgent() {
         return urgent;
     }
@@ -168,7 +178,7 @@ public class Deposit extends BaseEntity {
     }
 
     @NotNull
-    @Column(nullable = false, length = 1)
+    @Column(name = "facade")
     public Integer getFacade() {
         return facade;
     }
@@ -178,8 +188,8 @@ public class Deposit extends BaseEntity {
     }
 
     @NotNull
-    @Column(nullable = false)
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @Column(columnDefinition = "datetime")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     public Date getDrawDate() {
         return drawDate;
     }
@@ -188,6 +198,7 @@ public class Deposit extends BaseEntity {
         this.drawDate = drawDate;
     }
 
+    @Column(name = "memo", columnDefinition = "text")
     public String getMemo() {
         return memo;
     }
@@ -197,12 +208,62 @@ public class Deposit extends BaseEntity {
     }
 
     @NotNull
-    @Column(nullable = false, length = 1)
+    @Column(name = "status")
     public Integer getStatus() {
         return status;
     }
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    @NotNull
+    @Column(name = "phone", nullable = false, length = 20)
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    @NotNull
+    @Column(name = "dp_addr", nullable = false, length = 255)
+    public String getDpAddr() {
+        return dpAddr;
+    }
+
+    public void setDpAddr(String dpAddr) {
+        this.dpAddr = dpAddr;
+    }
+
+    @NotNull
+    @Column(name = "pre_draw_date", nullable = false, columnDefinition = "date")
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    public Date getPreDrawDate() {
+        return preDrawDate;
+    }
+
+    public void setPreDrawDate(Date preDrawDate) {
+        this.preDrawDate = preDrawDate;
+    }
+
+    @NotNull
+    @Column(name = "created_by", nullable = false, length = 20)
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    @Column(name = "updated_by", nullable = false, length = 20)
+    public String getUpdatedBy() {
+        return updatedBy;
+    }
+
+    public void setUpdatedBy(String updatedBy) {
+        this.updatedBy = updatedBy;
     }
 }
