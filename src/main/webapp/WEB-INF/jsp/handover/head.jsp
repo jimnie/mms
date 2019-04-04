@@ -1,8 +1,8 @@
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+         pageEncoding="utf-8" %>
 <%@include file="../common/global.jsp" %>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>
     <%=SpringUtils.getMessage("sys.main.projectName")%>
 </title>
@@ -22,7 +22,13 @@
         $(window).resize(function () {
             $('#mainlayout').layout('resize');
         });
-
+        $('#handOverList').datagrid({
+            onDblClickRow: function (index, row) {
+                $('#view-dialog').window('maximize');
+                $('#viewform').form('load', row);
+                $('#view-dialog').dialog('setTitle', '查看交接记录').dialog('open');
+            }
+        });
     });
 </script>
 <script type="text/javascript">
@@ -63,15 +69,29 @@
         $('#dlg').window('maximize')
         $('#addform').form('clear');
         $('#depositDate').datebox('setValue', formatterDate(new Date()));
+        $('#position').combobox('reload', '${pageContext.request.contextPath}/shelf/list');
         $.getJSON(base + '/shelf/idel/', function (json) {
-            console.log('shelf:' + json);
-            // if (json == undefined || json == null) {
-            //     $.messager.alert(title, '当前没有空闲货架', warning);
-            // } else {
-            $('#position').combobox('setValue', json.code);
-            // }
+            if (json.length == 0) {
+                $.messager.alert(title, '当前没有可用的存放位置', warning);
+            } else {
+                $('#position').combobox('setValue', json[0].code);
+            }
         });
-
+        $('#serviceNo').textbox({
+            onChange: function (newValue, oldValue) {
+                $.getJSON(base + '/deposit/findDepositByServiceNo/' + newValue, function (json) {
+                    if (json.length == 0) {
+                        $.messager.alert(title, '没有找到匹配的寄存登记信息', warning);
+                    } else {
+                        $('#dpName').textbox('setValue', json[0].dpName);
+                        $('#dpSex').combobox('setValue', json[0].dpSex);
+                        $('#dpAge').numberspinner('setValue', json[0].dpAge);
+                    }
+                });
+            }
+        });
+        // TODO: 为方便扫码使用,新增对话框显示后将焦点放到服务编号域
+        $('#serviceNo').textbox().next('span').find('input').focus();
     }
 
     // 保存新增的存放信息
@@ -115,6 +135,18 @@
             $('#dlg').dialog('setTitle', '修改交接记录').dialog('open');
         } else {
             $.messager.alert(title, '请选择需要修改的交接记录', warning);
+        }
+    }
+
+    // 查看存放信息对话框
+    function viewHandover() {
+        var row = $('#handOverList').datagrid('getSelected');
+        if (row) {
+            $('#view-dialog').window('maximize');
+            $('#viewform').form('load', row);
+            $('#view-dialog').dialog('setTitle', '查看交接记录').dialog('open');
+        } else {
+            $.messager.alert(title, '请选择需要查看的交接记录', warning);
         }
     }
 

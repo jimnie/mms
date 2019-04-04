@@ -14,9 +14,7 @@
                     <input type="hidden" id="id" name="id" value="">
                     <input class="easyui-textbox" id="serviceNo"
                            name="serviceNo" style="width:198px"
-                           data-options="required:true,
-                           missingMessage:'请扫码或填入服务编号',
-                           validType:'serviceNo'">
+                           data-options="disabled:true">
                 </td>
                 <td style="width: 100px" class="title-bg">
                     姓名
@@ -24,9 +22,7 @@
                 <td class="domain-bg">
                     <input class="easyui-textbox" id="dpName" name="dpName"
                            style="width:198px"
-                           data-options="required:true,
-                           missingMessage:'请填入逝者姓名',
-                           validType:['chinese','length[2,5]']">
+                           data-options="disabled:true">
                 </td>
             </tr>
             <tr>
@@ -38,12 +34,9 @@
                            style="width:198px"
                            data-options="url:'${pageContext.request.contextPath}/dict/findDict/sex',
                                                 method:'get',
-                                                editable:false,
                                                 valueField:'value',
                                                 textField:'name',
-                                                panelHeight:'auto',
-                                                required:true,
-                                                missingMessage:'请选择逝者性别'">
+                                                disabled:true">
                 </td>
                 <td style="width: 100px" class="title-bg">
                     年龄
@@ -51,7 +44,7 @@
                 <td class="domain-bg">
                     <input class="easyui-numberspinner" id="dpAge" name="dpAge"
                            style="width:198px"
-                           data-options="required:true,panelHeight:'auto',min:0,max:150,missingMessage:'请填入逝者年龄',validType:'age'">
+                           data-options="disabled:true">
                 </td>
             </tr>
         </table>
@@ -71,13 +64,10 @@
                     <input class="easyui-combobox" id="position" name="position"
                            style="width:198px;" data-options="
                     url: '${pageContext.request.contextPath}/shelf/list',
-                    editable: false,
                     method: 'get',
                     valueField: 'code',
                     textField: 'code',
-                    panelHeight: 'auto',
-                    required:true,
-                    missingMessage:'请选择存放位置'">
+                    disabled:true">
                 </td>
             </tr>
         </table>
