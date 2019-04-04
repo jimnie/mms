@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
   个人中心jsp
 --%>
-<%@page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8" %>
+<%@page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <div style="text-align: center">
     <div>
         <form id="perForm">

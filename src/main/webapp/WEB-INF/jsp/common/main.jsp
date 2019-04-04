@@ -1,10 +1,10 @@
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
-<%@page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8" %>
+<%@page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <%@include file="global.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title><%=SpringUtils.getMessage("sys.main.projectName")%>
     </title>
     <link rel="shortcut icon" href="<%=base%>/images/favorite.ico" type="image/x-icon"/>
@@ -119,7 +119,7 @@
 <div id="modifyPassword" class="easyui-window"
      title="<%=SpringUtils.getMessage("page.main.modifyPassword")%>"
      data-options="iconCls:'icon-save',collapsible:false,minimizable:false,maximizable:false,modal:true,closed:true"
-     style="width: 300px; height: 150px; padding: 5px;
+     style="width: 350px; height: 200px; padding: 5px;
         background: #fafafa;">
     <div class="easyui-layout" data-options="fit:true">
         <div data-options="region:'center',border:false"

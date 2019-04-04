@@ -95,14 +95,9 @@
             mobile: {//value值为文本框中的值
                 validator: function (value) {
                     var reg = /^1[3|4|5|7|8|9]\d{9}$/;
-                    var reg2 = /^((0\d{2,3})-)(\d{7,8})(-(\d{3,}))?$/;
-                    if (reg.test(value) || reg2.test(value)) {
-                        return true;
-                    } else {
-                        return false;
-                    }
+                    return reg.test(value);
                 },
-                message: '联系电话格式不正确'
+                message: '联系电话格式不正确，'
             },
             // 中文输入验证
             chinese: {
@@ -157,6 +152,13 @@
                     return len <= param[0];
                 },
                 message: '证件号码字符长度必须小于{0}'
+            },
+            memoLen: {
+                validator: function (value, param) {
+                    var len = $.trim(value).length;
+                    return len <= param[0];
+                },
+                message: '备注字符长度必须小于{0}'
             }
         });
 
