@@ -7,7 +7,7 @@
 
     <display-name>Member Management System</display-name>
 
-    <description>会员管理系统</description>
+    <description>综合业务系统</description>
 
     <!-- 加载Spring配置文件 -->
     <context-param>
