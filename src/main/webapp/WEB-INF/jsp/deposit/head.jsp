@@ -1,8 +1,8 @@
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+         pageEncoding="utf-8" %>
 <%@include file="../common/global.jsp" %>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>
     <%=SpringUtils.getMessage("sys.main.projectName")%>
 </title>
@@ -40,6 +40,16 @@
     $.getJSON(base + '/dict/findDict/state', function (json) {
         state = json;
     });
+    // 骨灰盒状况
+    var facade = {};
+    $.getJSON(base + '/dict/findDict/facade', function (json) {
+        facade = json;
+    });
+
+    var urgent = {};
+    $.getJSON(base + '/dict/findDict/isUrgent', function (json) {
+        urgent = json;
+    });
 
     // 对性别列值显示的值做格式化
     function sexFormatter(value) {
@@ -71,55 +81,109 @@
         return value;
     }
 
+    // 对骨灰盒状况列值显示的值做格式化
+    function facadeFormatter(value) {
+        for (var i = 0; i < sex.length; i++) {
+            if (facade[i].value == value) {
+                return facade[i].name;
+            }
+        }
+        return value;
+    }
+
+    function urgentFormatter(value) {
+        for (var i = 0; i < sex.length; i++) {
+            if (urgent[i].value == value) {
+                return urgent[i].name;
+            }
+        }
+        return value;
+    }
+
     // 显示新增存放对话框
     function addDeposit() {
         $('#dlg').dialog('setTitle', '新增存放记录').dialog('open');
         $('#dlg').window('maximize')
         $('#addform').form('clear');
+        // TODO: 为方便扫码使用,新增对话框显示后将焦点放到服务编号域
+        $('#serviceNo').textbox().next('span').find('input').focus();
         $('#depositDate').datebox('setValue', formatterDate(new Date()));
-        // 修改逝者证件类型
+        // 修改逝者证件类型,动态添加输入验证规则
         $('#dpCertType').combobox({
             onChange: function (newValue, oldValue) {
+                // 清空证件号码域
                 $('#dpCertNo').textbox('setValue', '');
+                if (newValue == 0) {
+                    $('#dpCertNo').textbox({
+                        validType: ['certNo', 'certNoLen[18]']
+                    });
+                } else {
+                    $('#dpCertNo').textbox({
+                        validType: 'certNoLen[20]'
+                    });
+                }
             }
         });
-        // 修改承办人证件类型
+        // 修改承办人证件类型,动态添加输入验证规则
         $('#utCertType').combobox({
             onChange: function (newValue, oldValue) {
+                // 清空证件号码域
                 $('#utCertNo').textbox('setValue', '');
+                if (newValue == 0) {
+                    $('#utCertNo').textbox({
+                        validType: ['certNo', 'certNoLen[18]']
+                    });
+                } else {
+                    $('#utCertNo').textbox({
+                        validType: 'certNoLen[20]'
+                    });
+                }
             }
         });
+        // 急取设置领取日期为当天,非急取为当天+2
+        $('#urgent').combobox({
+            onChange: function (newValue, oldValue) {
+                var date = new Date();
+                if (newValue == 0) {
+                    $('#preDrawDate').datebox('setValue', formatterDate(addDate(date, 2)));
+                } else if (newValue == 1) {
+                    $('#preDrawDate').datebox('setValue', formatterDate(date));
+                }
+            }
+        }).combobox('setValue', '0');
+        // 设置默认为有残
+        $('#facade').combobox('setValue', '0');
         // 读取逝者身份证信息
         $('#readDpIdCard').bind('click', function () {
             var openState;
             var readState;
             var closeState;
+
             openState = rdcard.openport();
             if (openState == 0) {
                 // $.messager.alert('提示', '开启端口成功', 'info');
             } else {
-                $.messager.alert('操作提示', '开启端口失败: ' + openState, 'error');
+                $.messager.alert(title, '开启端口失败: ' + openState, error);
                 return;
             }
-
+            // 调用readcard操作之后就可以从rdcard对象取出身份证信息
             readState = rdcard.readcard();
             if (readState == 0) {
-                // $.messager.alert('提示', '读二代证成功', 'info');
-                // $.messager.alert('操作提示', '读二代证成功: \r' + rdcard.CardNo + '\r' + rdcard.NameL + '\r' + rdcard.Sex + '\r' + rdcard.Born, 'info');
                 $('#dpCertType').combobox('setValue', '0');
                 $('#dpCertNo').textbox('setValue', rdcard.CardNo);
                 $('#dpName').textbox('setValue', rdcard.NameL);
                 $('#dpSex').combobox('setValue', rdcard.Sex);
                 $('#dpAge').numberspinner('setValue', getDpAge(rdcard.Born));
+                $('#dpAddr').textbox('setValue', rdcard.Address);
             } else {
-                $.messager.alert('操作提示', '读二代证失败: ' + readState, 'error');
+                $.messager.alert(title, '读二代证失败: ' + readState, error);
             }
 
             closeState = rdcard.closeport();
             if (closeState == 0) {
                 // $.messager.alert('提示', '关闭端口成功', 'info');
             } else {
-                $.messager.alert('操作提示', '关闭端口失败: ' + closeState, 'error');
+                $.messager.alert(title, '关闭端口失败: ' + closeState, error);
                 return;
             }
         });
@@ -128,31 +192,29 @@
             var openState;
             var readState;
             var closeState;
-            openState = rdcard.openport();
-            //alert(pp);
+
+            openState = rdcard.openport(); // 打开端口
             if (openState == 0) {
                 // $.messager.alert('提示', '开启端口成功', 'info');
             } else {
-                $.messager.alert('操作提示', '开启端口失败: ' + openState, 'error');
+                $.messager.alert(title, '开启端口失败: ' + openState, error);
                 return;
             }
 
-            readState = rdcard.readcard();
+            readState = rdcard.readcard(); // 调用readcard操作之后就可以从rdcard对象取出身份证信息
             if (readState == 0) {
-                // $.messager.alert('提示', '读二代证成功', 'info');
-                // $.messager.alert('操作提示', '读二代证成功: \r' + rdcard.CardNo + '\r' + rdcard.NameL + '\r' + rdcard.Sex + '\r' + rdcard.Born, 'info');
                 $('#utCertType').combobox('setValue', '0');
                 $('#utCertNo').textbox('setValue', rdcard.CardNo);
                 $('#utName').textbox('setValue', rdcard.NameL);
             } else {
-                $.messager.alert('操作提示', '读二代证失败: ' + readState, 'error');
+                $.messager.alert(title, '读二代证失败: ' + readState, error);
             }
 
-            closeState = rdcard.closeport();
+            closeState = rdcard.closeport(); // 关闭端口
             if (closeState == 0) {
                 // $.messager.alert('提示', '关闭端口成功', 'info');
             } else {
-                $.messager.alert('操作提示', '关闭端口失败: ' + closeState, 'error');
+                $.messager.alert(title, '关闭端口失败: ' + closeState, error);
                 return;
             }
         });
@@ -194,15 +256,9 @@
     function editDeposit() {
         var row = $('#deposits').datagrid('getSelected');
         if (row) {
-            // var district = row.district;
-            // $("#dlg-buttons a:first-child").show();
             $('#dlg').window('maximize');
-            // showCategory(row.categories);
-            // $('#cardNo').textbox({readonly: true}).textbox('disable');
-            // $('#registerDate').datebox({readonly: true}).datebox('disable');
             $('#addform').form('load', row);
             $('#dlg').dialog('setTitle', '修改存放记录').dialog('open');
-            // $('#state').combobox('select', row.state);
         } else {
             $.messager.alert(title, '请选择需要修改的存放记录', warning);
         }
@@ -226,28 +282,15 @@
     }
 
     function formatterDate(date) {
-        var day = date.getDate() > 9 ? date.getDate() : "0" + date.getDate();
-        var month = (date.getMonth() + 1) > 9 ? (date.getMonth() + 1) : "0"
-            + (date.getMonth() + 1);
-        return date.getFullYear() + '/' + month + '/' + day;
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        return date.getFullYear() + '-' + month + '-' + day;
     }
 
-    function unload() {
-        myclose_onclick();
-        //alert("Page is Close");
-    }
-
-    function myclose_onclick() {
-        var pp
-        pp = rdcard.closeport();
-        if (pp == 0) {
-            $.messager.alert('提示', 'closeport成功', 'info');
-            // document.getElementsByName("tResult")[0].value = "readcard成功";
-            //showjpg_onclick();
-        } else {
-            $.messager.alert('提示', 'closeport失败:' + pp, 'error');
-            // document.getElementsByName("tResult")[0].value = "readcard失败: " + pp;
-        }
+    function addDate(date, days) {
+        var d = new Date(date);
+        d.setDate(d.getDate() + days);
+        return d;
     }
 
     function getDpAge(born) {
@@ -255,16 +298,4 @@
         var currYear = date.getFullYear();
         return parseInt(currYear) - parseInt(born.substring(0, 4));
     }
-</script>
-<script for=idcard event="Readed()">
-    //alert('Readed');
-    getinfo_onclick();
-</script>
-
-<script for=idcard event="Closed()">
-    //window.close();
-</script>
-
-<script for=idcard event="Opened()">
-    //window.close();
 </script>

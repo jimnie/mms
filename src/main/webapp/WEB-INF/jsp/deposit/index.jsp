@@ -1,10 +1,10 @@
 <%@ page import="com.educonsulting.mms.util.SpringUtils" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+         pageEncoding="utf-8" %>
 <head>
     <jsp:include page="head.jsp"></jsp:include>
 </head>
-<body style="margin: 0px" onbeforeunload="unload()">
+<body style="margin: 0px">
 <div class="easyui-layout" fit="true">
     <div region="north" border="false" style="height: 39px">
         <div class="toolbar">
@@ -50,7 +50,7 @@
                 <th data-options="field:'dpAge',width:100,halign:'center',align:'center'">
                     逝者年龄
                 </th>
-                <th data-options="field:'position',width:150,halign:'center',align:'center'">
+                <th data-options="field:'position',width:150,halign:'center',align:'center',formatter:facadeFormatter">
                     存放位置
                 </th>
                 <th data-options="field:'depositDate',width:120,halign:'center',align:'center',sortable:true">
@@ -70,7 +70,7 @@
 
 <div id="dlg" class="easyui-dialog" closed="true" modal="true" buttons="#dlg-buttons">
     <div style="padding:20px 0px 0px 60px">
-        <div style="width: 1080px;height: 540px;float: center">
+        <div style="width: 1080px;height: 550px;float: center">
             <form id="addform" method="post" style="margin: 0;padding: 0">
                 <jsp:include page="form.jsp"/>
             </form>
