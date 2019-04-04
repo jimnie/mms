@@ -265,11 +265,11 @@ function initNavBar() {
 function openPasswordChangingDialog() {
     $('#modifyPassword').window({
         title: '修改密码',
-        width: 300,
+        width: 350,
         modal: true,
         shadow: true,
         closed: true,
-        height: 160,
+        height: 210,
         resizable: false
     });
 }
