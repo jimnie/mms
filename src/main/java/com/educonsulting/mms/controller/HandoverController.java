@@ -8,10 +8,12 @@ import com.educonsulting.mms.entity.Handover;
 import com.educonsulting.mms.entity.Shelf;
 import com.educonsulting.mms.service.HandoverService;
 import com.educonsulting.mms.service.ShelfService;
+import com.educonsulting.mms.service.UserService;
 import org.apache.commons.lang.StringUtils;
 import org.joda.time.DateTime;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,6 +33,9 @@ public class HandoverController extends BaseController {
     @Resource(name = "shelfServiceImpl")
     private ShelfService shelfService;
 
+    @Resource(name = "userServiceImpl")
+    private UserService userService;
+
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String index() {
@@ -40,6 +45,11 @@ public class HandoverController extends BaseController {
     @RequestMapping(value = "/query", method = RequestMethod.GET)
     public String query() {
         return "/handover/query";
+    }
+
+    @RequestMapping(value = "/view", method = RequestMethod.GET)
+    public String view() {
+        return "/handover/view";
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -69,6 +79,7 @@ public class HandoverController extends BaseController {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
+    @Transactional
     public Message save(Handover handover) {
         DateTime dateTime = new DateTime();
         Shelf persShelf = shelfService.findShelfByCode(handover.getPosition());// 获取货架编号
@@ -76,8 +87,8 @@ public class HandoverController extends BaseController {
         BeanUtils.copyProperties(persShelf, shelf);
         shelf.setStatus(1);
 
-        handover.setRcpDate(dateTime.toDate());
-        handover.setRcpAgent("admin");
+        handover.setRcpDate(dateTime.toDateTime().toDate()); // 设置交接日期
+        handover.setRcpAgent(userService.getCurrent().getName()); // 设置交接人
         handover.setStatus(0);
         handoverService.save(handover);
         shelfService.update(shelf);

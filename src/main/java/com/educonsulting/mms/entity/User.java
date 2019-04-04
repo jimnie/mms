@@ -107,7 +107,7 @@ public class User extends BaseEntity {
         this.loginFailureCount = loginFailureCount;
     }
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     public Date getLockedDate() {
         return lockedDate;
     }
@@ -116,7 +116,7 @@ public class User extends BaseEntity {
         this.lockedDate = lockedDate;
     }
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     public Date getLoginDate() {
         return loginDate;
     }

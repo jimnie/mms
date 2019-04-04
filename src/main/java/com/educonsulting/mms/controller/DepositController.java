@@ -9,10 +9,7 @@ import com.educonsulting.mms.service.DepositService;
 import com.educonsulting.mms.service.UserService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -87,5 +84,12 @@ public class DepositController extends BaseController {
     public Message update(Deposit deposit) {
         depositService.update(deposit, "cartNo", "amount", "balance", "point", "registerDate");
         return SUCCESS_MESSAGE;
+    }
+
+    @RequestMapping(value = "/findDepositByServiceNo/{serviceNo}", method = RequestMethod.GET)
+    @ResponseBody
+    public Object findDepositByServiceNo(@PathVariable String serviceNo) {
+        List<Deposit> list = depositService.findDepositByServiceNo(serviceNo);
+        return list;
     }
 }

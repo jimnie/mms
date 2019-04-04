@@ -53,7 +53,7 @@ public abstract class BaseEntity implements Serializable {
 
     @JsonProperty
     @Column(nullable = false, updatable = false)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     public Date getCreateDate() {
         return createDate;
     }
@@ -64,7 +64,7 @@ public abstract class BaseEntity implements Serializable {
 
     @JsonProperty
     @Column(nullable = false)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     public Date getModifyDate() {
         return modifyDate;
     }

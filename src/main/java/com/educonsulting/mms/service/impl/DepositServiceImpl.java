@@ -8,12 +8,18 @@ import com.educonsulting.mms.service.DepositService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service("depositServiceImpl")
 public class DepositServiceImpl extends BaseServiceImpl<Deposit, Long> implements DepositService {
 
     @Resource(name = "depositDaoImpl")
     private DepositDao depositDao;
+
+    @Override
+    public List<Deposit> findDepositByServiceNo(String serviceNo) {
+        return depositDao.findDepositByServiceNo(serviceNo);
+    }
 
     @Resource(name = "depositDaoImpl")
     public void setBaseDao(DepositDao depositDao) {

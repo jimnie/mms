@@ -22,7 +22,7 @@ public class ShelfController extends BaseController {
     @ResponseBody
     public Object findIdelShelf() {
         List<Shelf> shelfList = shelfService.findIdelShelf(0);
-        return shelfList.get(0);
+        return shelfList;
     }
 
     @RequestMapping(value = "/usableShelf", method = RequestMethod.GET)

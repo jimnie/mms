@@ -23,9 +23,9 @@ public class Handover extends BaseEntity {
     private Integer dpAge;
     // 接收状态
     private Integer status;
-    // 接收经办人
+    // 交接经办人
     private String rcpAgent;
-    // 接收经办日期
+    // 交接经办日期
     private Date rcpDate;
     // 领取经办人
     private String drawAgent;
@@ -35,7 +35,7 @@ public class Handover extends BaseEntity {
     private String position;
 
     @NotNull
-    @Column(nullable = false, length = 11)
+    @Column(name = "service_no", nullable = false, unique = true, length = 11)
     public String getServiceNo() {
         return serviceNo;
     }
@@ -45,7 +45,7 @@ public class Handover extends BaseEntity {
     }
 
     @NotNull
-    @Column(nullable = false, length = 20)
+    @Column(name = "dp_name", nullable = false, length = 20)
     public String getDpName() {
         return dpName;
     }
@@ -55,7 +55,7 @@ public class Handover extends BaseEntity {
     }
 
     @NotNull
-    @Column(nullable = false)
+    @Column(name = "dp_sex")
     public Integer getDpSex() {
         return dpSex;
     }
@@ -64,6 +64,8 @@ public class Handover extends BaseEntity {
         this.dpSex = dpSex;
     }
 
+    @NotNull
+    @Column(name = "dp_age")
     public Integer getDpAge() {
         return dpAge;
     }
@@ -73,7 +75,7 @@ public class Handover extends BaseEntity {
     }
 
     @NotNull
-    @Column(nullable = false, length = 1)
+    @Column(name = "status")
     public Integer getStatus() {
         return status;
     }
@@ -83,7 +85,7 @@ public class Handover extends BaseEntity {
     }
 
     @NotNull
-    @Column(nullable = false, length = 20)
+    @Column(name = "rcp_agent", nullable = false, length = 20)
     public String getRcpAgent() {
         return rcpAgent;
     }
@@ -93,8 +95,8 @@ public class Handover extends BaseEntity {
     }
 
     @NotNull
-    @Column(nullable = false)
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @Column(name = "rcp_date", nullable = false, columnDefinition = "datetime")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm", locale = "zh", timezone = "GMT+8")
     public Date getRcpDate() {
         return rcpDate;
     }
@@ -103,7 +105,7 @@ public class Handover extends BaseEntity {
         this.rcpDate = rcpDate;
     }
 
-    @Column(length = 20)
+    @Column(name = "draw_agent", length = 20)
     public String getDrawAgent() {
         return drawAgent;
     }
@@ -112,7 +114,8 @@ public class Handover extends BaseEntity {
         this.drawAgent = drawAgent;
     }
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @Column(name = "draw_date", columnDefinition = "datetime")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm", locale = "zh", timezone = "GMT+8")
     public Date getDrawDate() {
         return drawDate;
     }
@@ -122,7 +125,7 @@ public class Handover extends BaseEntity {
     }
 
     @NotNull
-    @Column(nullable = false, length = 20)
+    @Column(name = "position", nullable = false, length = 20)
     public String getPosition() {
         return position;
     }
