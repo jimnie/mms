@@ -1,4 +1,4 @@
-<%@page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8" %>
+<%@page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <%@include file="/WEB-INF/jsp/common/global.jsp" %>
 <%@page import="com.educonsulting.mms.Setting" %>
 <%@page import="com.educonsulting.mms.Setting.AccountLockType" %>
