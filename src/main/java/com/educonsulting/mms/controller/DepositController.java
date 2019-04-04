@@ -6,6 +6,7 @@ import com.educonsulting.mms.Page;
 import com.educonsulting.mms.Pageable;
 import com.educonsulting.mms.entity.Deposit;
 import com.educonsulting.mms.service.DepositService;
+import com.educonsulting.mms.service.UserService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +25,9 @@ public class DepositController extends BaseController {
     @Resource(name = "depositServiceImpl")
     private DepositService depositService;
 
+    @Resource(name = "userServiceImpl")
+    private UserService userService;
+
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String index() {
         return "/deposit/index";
@@ -32,6 +36,11 @@ public class DepositController extends BaseController {
     @RequestMapping(value = "/query", method = RequestMethod.GET)
     public String query() {
         return "/deposit/query";
+    }
+
+    @RequestMapping(value = "/view", method = RequestMethod.GET)
+    public String view() {
+        return "/deposit/view";
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -67,6 +76,7 @@ public class DepositController extends BaseController {
         }
         deposit.setStatus(0); // 收存状态为已收存
         // TODO: 收存操作员
+        deposit.setCreatedBy(userService.getCurrent().getName());
         // TODO: 领取操作员
         depositService.save(deposit);
         return SUCCESS_MESSAGE;
