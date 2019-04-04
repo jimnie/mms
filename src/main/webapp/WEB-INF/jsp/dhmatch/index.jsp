@@ -37,29 +37,29 @@
                 <th data-options="field:'hId',hidden:true">id</th>
                 <th data-options="field:'utCertType',hidden:true">id</th>
                 <th data-options="field:'utCertNo',hidden:true">id</th>
-                <th data-options="field:'serviceNo',width:150,halign:'center',align:'center'">
+                <th data-options="field:'serviceNo',width:100,halign:'center',align:'center'">
                     服务编号
                 </th>
-                <th data-options="field:'dpName',width:120,halign:'center',align:'center'">
+                <th data-options="field:'dpName',width:100,halign:'center',align:'center'">
                     逝者姓名
                 </th>
-                <th data-options="field:'dpSex',width:100,halign:'center',align:'center',formatter:sexFormatter">
-                    逝者性别
+                <th data-options="field:'dpSex',width:80,halign:'center',align:'center',formatter:sexFormatter">
+                    性别
                 </th>
-                <th data-options="field:'dpAge',width:100,halign:'center',align:'center'">
-                    逝者年龄
+                <th data-options="field:'dpAge',width:80,halign:'center',align:'center'">
+                    年龄
                 </th>
-                <th data-options="field:'dpCertType',width:180,halign:'center',align:'center', formatter:certTypeFormatter">
-                    逝者证件类型
+                <th data-options="field:'dpCertType',width:100,halign:'center',align:'center', formatter:certTypeFormatter">
+                    证件类型
                 </th>
-                <th data-options="field:'dpCertNo',width:180,halign:'center',align:'center'">
-                    逝者证件号码
+                <th data-options="field:'dpCertNo',width:140,halign:'center',align:'center'">
+                    证件号码
                 </th>
                 <th data-options="field:'dPosition',width:150,halign:'center',align:'center'">
-                    骨灰盒位置
+                    盒存放位置
                 </th>
                 <th data-options="field:'hPosition',width:150,halign:'center',align:'center'">
-                    骨灰位置
+                    骨灰存放位置
                 </th>
             </tr>
             </thead>
