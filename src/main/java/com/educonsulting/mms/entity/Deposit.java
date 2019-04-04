@@ -258,7 +258,7 @@ public class Deposit extends BaseEntity {
         this.createdBy = createdBy;
     }
 
-    @Column(name = "updated_by", nullable = false, length = 20)
+    @Column(name = "updated_by", length = 20)
     public String getUpdatedBy() {
         return updatedBy;
     }
