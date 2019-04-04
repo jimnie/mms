@@ -22,6 +22,14 @@
         $(window).resize(function () {
             $('#mainlayout').layout('resize');
         });
+
+        $('#deposits').datagrid({
+            onDblClickRow: function (index, row) {
+                $('#view-dialog').window('maximize');
+                $('#viewform').form('load', row);
+                $('#view-dialog').dialog('setTitle', '查看存放记录').dialog('open');
+            }
+        });
     });
 </script>
 <script type="text/javascript">
@@ -264,6 +272,18 @@
         }
     }
 
+    // 查看存放信息对话框
+    function viewDeposit() {
+        var row = $('#deposits').datagrid('getSelected');
+        if (row) {
+            $('#view-dialog').window('maximize');
+            $('#viewform').form('load', row);
+            $('#view-dialog').dialog('setTitle', '查看存放记录').dialog('open');
+        } else {
+            $.messager.alert(title, '请选择需要查看的存放记录', warning);
+        }
+    }
+
     function refresh() {
         $('#deposits').datagrid('loadData', {total: 0, rows: []});
         $('#deposits').datagrid('load', {});
@@ -297,5 +317,8 @@
         var date = new Date;
         var currYear = date.getFullYear();
         return parseInt(currYear) - parseInt(born.substring(0, 4));
+    }
+
+    function viewPdf() {
     }
 </script>
