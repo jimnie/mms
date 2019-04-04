@@ -42,6 +42,8 @@ public class User extends BaseEntity {
 
     private String loginIp;
 
+    private String name;
+
     private Set<Group> groups = new HashSet<Group>();
 
     @JsonIgnore
@@ -139,4 +141,12 @@ public class User extends BaseEntity {
         this.isSystem = isSystem;
     }
 
+    @Column(name = "name", length = 30)
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
