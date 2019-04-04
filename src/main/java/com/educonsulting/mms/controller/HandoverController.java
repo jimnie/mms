@@ -36,7 +36,6 @@ public class HandoverController extends BaseController {
     @Resource(name = "userServiceImpl")
     private UserService userService;
 
-
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String index() {
         return "/handover/index";
