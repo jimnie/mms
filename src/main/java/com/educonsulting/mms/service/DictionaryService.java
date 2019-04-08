@@ -10,4 +10,6 @@ import java.util.List;
 public interface DictionaryService extends BaseService<Dictionary, Long> {
 
     List<Dictionary> findDict(String fieldName);
+
+    String findDictNameByValue(String fieldName, String name);
 }
