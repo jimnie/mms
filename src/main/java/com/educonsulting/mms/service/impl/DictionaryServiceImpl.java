@@ -90,4 +90,16 @@ public class DictionaryServiceImpl extends BaseServiceImpl<Dictionary, Long> imp
         entity.setCreator(username);
         super.save(entity);
     }
+
+    @Override
+    public String findDictNameByValue(String fieldName, String value) {
+        List<Dictionary> dList = dictionaryDao.findDict(fieldName);
+        String name = null;
+        for (Dictionary dictionary : dList) {
+            if (dictionary.getValue().equals(value)) {
+                name = dictionary.getName();
+            }
+        }
+        return name;
+    }
 }
