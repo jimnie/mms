@@ -30,6 +30,47 @@
                 $('#view-dialog').dialog('setTitle', '查看存放记录').dialog('open');
             }
         });
+
+        // 读取逝者身份证信息
+        $('#readDpIdCard').bind('click', function () {
+            // 调用readcard操作之后就可以从rdcard对象取出身份证信息
+            var readState = rdcard.readcard();
+            if (readState == 0) {
+                $('#dpCertType').combobox('setValue', '0');
+                $('#dpCertNo').textbox('setValue', rdcard.CardNo);
+                $('#dpName').textbox('setValue', rdcard.NameL);
+                $('#dpSex').combobox('setValue', rdcard.Sex);
+                $('#dpAge').numberspinner('setValue', getDpAge(rdcard.Born));
+                $('#dpAddr').textbox('setValue', rdcard.Address);
+                return;
+            } else {
+                if (readState == -7) {
+                    $.messager.alert(title, '验证卡失败，没有找到卡或者需要将卡拿离验证区重新读卡', error);
+                } else {
+                    $.messager.alert(title, '读二代证失败: ' + readState, error);
+                }
+                readState = null;
+                return;
+            }
+        });
+        // 读取承办人身份证信息
+        $('#readUtIdCard').bind('click', function () {
+            var readState = rdcard.readcard(); // 调用readcard操作之后就可以从rdcard对象取出身份证信息
+            if (readState == 0) {
+                $('#utCertType').combobox('setValue', '0');
+                $('#utCertNo').textbox('setValue', rdcard.CardNo);
+                $('#utName').textbox('setValue', rdcard.NameL);
+                return;
+            } else {
+                if (readState == -7) {
+                    $.messager.alert(title, '验证卡失败，没有找到卡或者需要将卡拿离验证区重新读卡', error);
+                } else {
+                    $.messager.alert(title, '读二代证失败: ' + readState, error);
+                }
+                readState = null;
+                return;
+            }
+        });
     });
 </script>
 <script type="text/javascript">
@@ -110,6 +151,13 @@
 
     // 显示新增存放对话框
     function addDeposit() {
+        var openState = rdcard.openport();
+        if (openState == 0) {
+            // $.messager.alert('提示', '开启端口成功', 'info');
+        } else {
+            $.messager.alert(title, '开启端口失败: ' + openState, error);
+            return;
+        }
         $('#dlg').dialog('setTitle', '新增存放记录').dialog('open');
         $('#dlg').window('maximize')
         $('#addform').form('clear');
@@ -161,71 +209,7 @@
         }).combobox('setValue', '0');
         // 设置默认为有残
         $('#facade').combobox('setValue', '0');
-        // 读取逝者身份证信息
-        $('#readDpIdCard').bind('click', function () {
-            var openState;
-            var readState;
-            var closeState;
 
-            openState = rdcard.openport();
-            if (openState == 0) {
-                // $.messager.alert('提示', '开启端口成功', 'info');
-            } else {
-                $.messager.alert(title, '开启端口失败: ' + openState, error);
-                return;
-            }
-            // 调用readcard操作之后就可以从rdcard对象取出身份证信息
-            readState = rdcard.readcard();
-            if (readState == 0) {
-                $('#dpCertType').combobox('setValue', '0');
-                $('#dpCertNo').textbox('setValue', rdcard.CardNo);
-                $('#dpName').textbox('setValue', rdcard.NameL);
-                $('#dpSex').combobox('setValue', rdcard.Sex);
-                $('#dpAge').numberspinner('setValue', getDpAge(rdcard.Born));
-                $('#dpAddr').textbox('setValue', rdcard.Address);
-            } else {
-                $.messager.alert(title, '读二代证失败: ' + readState, error);
-            }
-
-            closeState = rdcard.closeport();
-            if (closeState == 0) {
-                // $.messager.alert('提示', '关闭端口成功', 'info');
-            } else {
-                $.messager.alert(title, '关闭端口失败: ' + closeState, error);
-                return;
-            }
-        });
-        // 读取承办人身份证信息
-        $('#readUtIdCard').bind('click', function () {
-            var openState;
-            var readState;
-            var closeState;
-
-            openState = rdcard.openport(); // 打开端口
-            if (openState == 0) {
-                // $.messager.alert('提示', '开启端口成功', 'info');
-            } else {
-                $.messager.alert(title, '开启端口失败: ' + openState, error);
-                return;
-            }
-
-            readState = rdcard.readcard(); // 调用readcard操作之后就可以从rdcard对象取出身份证信息
-            if (readState == 0) {
-                $('#utCertType').combobox('setValue', '0');
-                $('#utCertNo').textbox('setValue', rdcard.CardNo);
-                $('#utName').textbox('setValue', rdcard.NameL);
-            } else {
-                $.messager.alert(title, '读二代证失败: ' + readState, error);
-            }
-
-            closeState = rdcard.closeport(); // 关闭端口
-            if (closeState == 0) {
-                // $.messager.alert('提示', '关闭端口成功', 'info');
-            } else {
-                $.messager.alert(title, '关闭端口失败: ' + closeState, error);
-                return;
-            }
-        });
     }
 
     // 保存新增的存放信息
@@ -284,6 +268,22 @@
         }
     }
 
+    function previewDeposit() {
+        var row = $('#deposits').datagrid('getSelected');
+        // url = base + '/deposit/update';
+        if (row) {
+            var pdf = {};
+            $.getJSON(base + '/deposit/viewpdf/' + row.serviceNo, function (json) {
+                pdf = json;
+            });
+            $('#preview-dialog').window('maximize');
+            $('#viewform').form('load', row);
+            $('#view-dialog').dialog('setTitle', '查看存放记录打印预览').dialog('open');
+        } else {
+            $.messager.alert(title, '请选择需要预览的存放记录', warning);
+        }
+    }
+
     function refresh() {
         $('#deposits').datagrid('loadData', {total: 0, rows: []});
         $('#deposits').datagrid('load', {});
@@ -320,5 +320,17 @@
     }
 
     function viewPdf() {
+    }
+
+    function closeAddDialog() {
+        var closeState;
+        closeState = rdcard.closeport(); // 关闭端口
+        if (closeState == 0) {
+            // $.messager.alert('提示', '关闭端口成功', 'info');
+        } else {
+            $.messager.alert(title, '关闭端口失败: ' + closeState, error);
+            return;
+        }
+        $('#dlg').dialog('close');
     }
 </script>
