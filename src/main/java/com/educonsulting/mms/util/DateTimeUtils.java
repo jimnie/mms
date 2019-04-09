@@ -13,7 +13,7 @@ public final class DateTimeUtils {
 
     private static final String[] DATE_PATTERNS = new String[]{"yyyy", "yyyy-MM", "yyyyMM",
             "yyyy/MM", "yyyy-MM-dd", "yyyyMMdd", "yyyy/MM/dd", "yyyy-MM-dd HH:mm:ss",
-            "yyyyMMddHHmmss", "yyyy/MM/dd HH:mm:ss", "yyyyMMddHHmmss"};
+            "yyyyMMddHHmmss", "yyyy/MM/dd HH:mm:ss", "yyyyMMddHHmmss", "yyyy-MM-dd HH:mm", "yyyy年MM月dd日", "yyyy年MM月dd日 HH时mm分"};
 
     public static String getDateStringByPattern(Date date, DatePattern pattern) {
         SimpleDateFormat format = new SimpleDateFormat(getDatePattern(pattern.getValue()));
