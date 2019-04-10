@@ -55,6 +55,8 @@ public class Deposit extends BaseEntity {
     private String createdBy;
     // 领取经办人
     private String updatedBy;
+    // 签字图片名称
+    private String signPic;
 
     @NotNull
     @Column(name = "service_no", nullable = false, unique = true, length = 11)
@@ -265,5 +267,15 @@ public class Deposit extends BaseEntity {
 
     public void setUpdatedBy(String updatedBy) {
         this.updatedBy = updatedBy;
+    }
+
+    @NotNull
+    @Column(name = "sign_pic", nullable = false, length = 50)
+    public String getSignPic() {
+        return signPic;
+    }
+
+    public void setSignPic(String signPic) {
+        this.signPic = signPic;
     }
 }
