@@ -58,7 +58,7 @@
                     交接时间
                 </th>
                 <th data-options="field:'position',width:100,halign:'center',align:'center'">
-                    存放位置
+                    骨灰存放位置
                 </th>
                 <th data-options="field:'drawDate',width:130,halign:'center',align:'center'">
                     领取时间
