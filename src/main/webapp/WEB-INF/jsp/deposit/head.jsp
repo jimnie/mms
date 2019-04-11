@@ -11,6 +11,16 @@
 <script type="text/javascript">
     var contextPath = '<%=request.getContextPath()%>';
 
+    var signPanel;
+
+    // 页面加载成后设置签字区域属性
+    window.onload = function () {
+        signPanel = document.getElementById("HWPenSign");
+        signPanel.HWSetBkColor(0xE0F8E0); // 设置签名区背景颜色
+        signPanel.HWSetCtlFrame(2, 0x000000); // 设置边框宽度和颜色
+        //  signPanel.HWSetSeparatorLine(lineNum , 0x000000); // 设置分行线的行数和颜色
+    }
+
     $.parser.onComplete = function () {
         $('body').css('visibility', 'visible');
         setTimeout(function () {
@@ -71,6 +81,7 @@
                 return;
             }
         });
+
     });
 </script>
 <script type="text/javascript">
@@ -110,7 +121,7 @@
         return value;
     }
 
-    //
+    // 证件类型描述格式化
     function certTypeFormatter(value) {
         for (var i = 0; i < certType.length; i++) {
             if (certType[i].value == value) {
@@ -140,6 +151,7 @@
         return value;
     }
 
+    // index页面是否急取描述格式化
     function urgentFormatter(value) {
         for (var i = 0; i < sex.length; i++) {
             if (urgent[i].value == value) {
@@ -156,7 +168,6 @@
             // $.messager.alert('提示', '开启端口成功', 'info');
         } else {
             $.messager.alert(title, '开启端口失败: ' + openState, error);
-            return;
         }
         $('#dlg').dialog('setTitle', '新增存放记录').dialog('open');
         $('#dlg').window('maximize')
@@ -272,13 +283,7 @@
         var row = $('#deposits').datagrid('getSelected');
         // url = base + '/deposit/update';
         if (row) {
-            var pdf = {};
-            $.getJSON(base + '/deposit/viewpdf/' + row.serviceNo, function (json) {
-                pdf = json;
-            });
-            $('#preview-dialog').window('maximize');
-            $('#viewform').form('load', row);
-            $('#view-dialog').dialog('setTitle', '查看存放记录打印预览').dialog('open');
+            window.open(base + '/deposit/viewPDF/' + row.serviceNo);
         } else {
             $.messager.alert(title, '请选择需要预览的存放记录', warning);
         }
@@ -289,6 +294,7 @@
         $('#deposits').datagrid('load', {});
     }
 
+    // 条件查询窗口
     function advanceQuery() {
         showQueryDialog({
             width: 350,
@@ -307,12 +313,14 @@
         return date.getFullYear() + '-' + month + '-' + day;
     }
 
+    // 自动增加日期计算
     function addDate(date, days) {
         var d = new Date(date);
         d.setDate(d.getDate() + days);
         return d;
     }
 
+    // 通过出生日期计算年龄
     function getDpAge(born) {
         var date = new Date;
         var currYear = date.getFullYear();
@@ -322,6 +330,7 @@
     function viewPdf() {
     }
 
+    // 关闭新增寄存窗口时关闭读卡器端口
     function closeAddDialog() {
         var closeState;
         closeState = rdcard.closeport(); // 关闭端口
@@ -329,8 +338,56 @@
             // $.messager.alert('提示', '关闭端口成功', 'info');
         } else {
             $.messager.alert(title, '关闭端口失败: ' + closeState, error);
-            return;
+        }
+        var handPadState;
+        handPadState = signPanel.HWCloseC(); // 关闭手写板
+        if (handPadState == 0) {
+            signPanel.HWClearPenSign();
+        } else {
+            $.messager.alert(title, '关闭手写板设备失败: ' + closeState, error);
         }
         $('#dlg').dialog('close');
     }
+
+    /*以下部分为签名功能*/
+    function startSign() {
+        var res;
+        signPanel.HWRegisterJSButtonCall(2, "clearButton;finishButton;", "clearSign;finishSign;");
+        signPanel.HWMonitorWndEnable(0, 0, 800, 450);
+        res = signPanel.HWInitC();
+        switch (res) {
+            case 0:
+                signPanel.HWSwitchMonitor(1, 1);
+                break;
+            case -1:
+                $.messager.alert(title, '未找到对应的汉王手写设备', error);
+                break;
+            case -2:
+                $.messager.alert(title, '手写模块加载失败', error);
+                break;
+            case -3:
+                $.messager.alert(title, '手写模块初始化失败', error);
+                break;
+            default:
+                $.messager.alert(title, '手写模块未知错误', error);
+        }
+    }
+
+    function clearSign() {
+        signPanel.HWClearPenSign();
+    }
+
+    function finishSign() {
+        var res;
+        res = signPanel.HWIsNeedSave();
+        if (res == 1) {
+            signPanel.HWMouseEnable(0);
+            signPanel.HWSwitchMonitor(0, 1);
+            $('#signPic').val(signPanel.HWGetBase64Stream(1));
+        }
+    }
 </script>
+<OBJECT classid="clsid:F1317711-6BDE-4658-ABAA-39E31D3704D3"
+        codebase="SDRdCard.cab#version=2,0,1,0" width="0"
+        height="0" align="center" hspace="0" vspace="0" id="idcard" name="rdcard">
+</OBJECT>

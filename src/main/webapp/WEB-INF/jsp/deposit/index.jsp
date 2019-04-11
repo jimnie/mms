@@ -23,6 +23,10 @@
                            data-options="iconCls:'icon-more'" onclick="viewDeposit()">
                             <%=SpringUtils.getMessage("page.action.view")%>
                         </a>
+                        <a href="javascript:void(0)" class="easyui-linkbutton"
+                           data-options="iconCls:'icon-print'" onclick="previewDeposit()">
+                            <%=SpringUtils.getMessage("page.action.preview")%>
+                        </a>
                     </td>
                     <td style="text-align:right">
                         <a href="javascript:void(0)" class="easyui-linkbutton"
@@ -92,7 +96,7 @@
             <%=SpringUtils.getMessage("page.action.save")%>
         </a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-cancel"
-           onclick="javascript:$('#dlg').dialog('close')">
+           onclick="closeAddDialog()">
             <%=SpringUtils.getMessage("page.action.close")%>
         </a>
     </div>
@@ -109,17 +113,32 @@
         <div style="clear:both"></div>
     </div>
     <div id="view-buttons" style="text-align:center;">
-        <a href="#" class="easyui-linkbutton" iconCls="icon-print" onclick="viewPdf()">
-            打印预览
-        </a>
+        <%--<a href="#" class="easyui-linkbutton" iconCls="icon-print" onclick="viewPdf()">--%>
+        <%--打印预览--%>
+        <%--</a>--%>
         <a href="#" class="easyui-linkbutton" iconCls="icon-cancel"
            onclick="javascript:$('#view-dialog').dialog('close')">
             关闭
         </a>
     </div>
 </div>
+
+<div id="preview-dialog" class="easyui-dialog" closed="true" modal="true"
+     buttons="#preview-buttons">
+    <div style="padding:20px 0px 0px 60px">
+        <div style="width: 1080px;height: 550px;float: center">
+            <iframe id="pdfPrev" src=""></iframe>
+        </div>
+        <div style="clear:both"></div>
+    </div>
+    <div id="preview-buttons" style="text-align:center;">
+        <a href="#" class="easyui-linkbutton" iconCls="icon-print" onclick="viewPdf()">
+            打印预览
+        </a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-cancel"
+           onclick="javascript:$('#preview-dialog').dialog('close')">
+            关闭
+        </a>
+    </div>
+</div>
 </body>
-<OBJECT classid="clsid:F1317711-6BDE-4658-ABAA-39E31D3704D3"
-        codebase="SDRdCard.cab#version=2,0,1,0" width="0"
-        height="0" align="center" hspace="0" vspace="0" id="idcard" name="rdcard">
-</OBJECT>

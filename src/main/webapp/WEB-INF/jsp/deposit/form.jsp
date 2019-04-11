@@ -245,3 +245,42 @@
         </table>
     </fieldset>
 </div>
+
+<div style="padding-top: 20px;">
+    <fieldset class="fieldset" style="width:1103px">
+        <legend class="legend">
+            确认签名
+        </legend>
+        <table class="tab-border">
+            <tr>
+                <td class="domain-bg">
+                    <a href="javascript:void(0)" class="easyui-linkbutton"
+                       data-options="iconCls:'icon-edit'" onclick="startSign()">
+                        签名
+                    </a>
+                    <a href="javascript:void(0)" class="easyui-linkbutton"
+                       id="clearButton"
+                       data-options="iconCls:'icon-undo'" onclick="clearSign()">
+                        重签
+                    </a>
+                    <a href="javascript:void(0)" class="easyui-linkbutton"
+                       id="finishButton"
+                       data-options="iconCls:'icon-ok'" onclick="finishSign()">
+                        完成
+                    </a>
+                    <input id="signPic" name="signPic" type="hidden" value=""/>
+                </td>
+            </tr>
+            <tr>
+                <td class="domain-bg">
+                    <object id="HWPenSign"
+                            name="HWPenSign"
+                            classid="clsid:56C162AE-04DC-48E2-A5FC-D12D18B74240"
+                            width="100%"
+                            height="385">
+                    </object>
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+</div>
