@@ -62,10 +62,10 @@ public class DepositServiceImpl extends BaseServiceImpl<Deposit, Long> implement
     public String buildPdf(String serviceNo) {
         String webRoot = System.getProperty("webapp.root");
         String jasperPath = webRoot + Constants.JASPER_FILE_PATH;
-        String outputPath = webRoot + Constants.GENERATE_PDF_PATH + serviceNo + "\\" + Constants.DEPOSIT_INVOICE;
+        String outputPath = webRoot + Constants.GENERATE_PDF_PATH + serviceNo + "\\" + Constants.DEPOSIT_INVOICE_PDF;
         File pdf = new File(outputPath);
         if (!pdf.exists()) {
-            String jasper = "deposit_template.jasper";
+            String jasper = Constants.DEPOSIT_INVOICE_JASPER;
             File jasperFile = new File(jasperPath + jasper);
             List<Deposit> list = findDepositByServiceNo(serviceNo);
 
@@ -95,7 +95,7 @@ public class DepositServiceImpl extends BaseServiceImpl<Deposit, Long> implement
                 parameters.put("depositDate", DateTimeUtils.getDateStringByPattern(deposit.getDepositDate(), DatePattern.YEAR_MONTH_DAY_IN_CHN));
                 parameters.put("preDrawDate", DateTimeUtils.getDateStringByPattern(deposit.getPreDrawDate(), DatePattern.YEAR_MONTH_DAY_IN_CHN));
                 parameters.put("memo", StringUtils.isNotEmpty(deposit.getMemo()) ? deposit.getMemo() : "");
-                parameters.put("createDate", DateTimeUtils.getDateStringByPattern(deposit.getCreateDate(), DatePattern.YEAR_MONTH_DAY_WITH_HH_MM));
+                parameters.put("createDate", DateTimeUtils.getDateStringByPattern(deposit.getCreateDate(), DatePattern.YEAR_MONTH_DAY_IN_CHN));
                 parameters.put("signPic", webRoot + Constants.GENERATE_PIC_PATH + deposit.getSignPic());
 
                 try {
