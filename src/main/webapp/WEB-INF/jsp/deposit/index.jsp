@@ -25,7 +25,7 @@
                         </a>
                         <a href="javascript:void(0)" class="easyui-linkbutton"
                            data-options="iconCls:'icon-print'" onclick="previewDeposit()">
-                            <%=SpringUtils.getMessage("page.action.preview")%>
+                            寄存通知单
                         </a>
                     </td>
                     <td style="text-align:right">
@@ -123,22 +123,4 @@
     </div>
 </div>
 
-<div id="preview-dialog" class="easyui-dialog" closed="true" modal="true"
-     buttons="#preview-buttons">
-    <div style="padding:20px 0px 0px 60px">
-        <div style="width: 1080px;height: 550px;float: center">
-            <iframe id="pdfPrev" src=""></iframe>
-        </div>
-        <div style="clear:both"></div>
-    </div>
-    <div id="preview-buttons" style="text-align:center;">
-        <a href="#" class="easyui-linkbutton" iconCls="icon-print" onclick="viewPdf()">
-            打印预览
-        </a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-cancel"
-           onclick="javascript:$('#preview-dialog').dialog('close')">
-            关闭
-        </a>
-    </div>
-</div>
 </body>
