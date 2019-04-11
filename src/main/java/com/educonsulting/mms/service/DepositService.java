@@ -13,4 +13,6 @@ public interface DepositService extends BaseService<Deposit, Long> {
     Page<Deposit> findpage(Pageable pageable);
 
     List<Deposit> findDepositByServiceNo(String serviceNo);
+
+    String buildPdf(String serviceNo);
 }
