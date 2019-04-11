@@ -37,7 +37,6 @@
                                                 method:'get',
                                                 valueField:'value',
                                                 textField:'name',
-                                                panelHeight:'auto',
                                                 readonly:true">
                 </td>
                 <td style="width: 100px" class="title-bg">
@@ -59,9 +58,7 @@
                                                 method:'get',
                                                 valueField:'value',
                                                 textField:'name',
-                                                panelHeight:'auto',
-                                                required:true,
-                                                missingMessage:'请选择承办人证件类型'">
+                                                readonly:true">
             </td>
             <td style="width: 100px" class="title-bg">
                 证件号码
@@ -69,7 +66,7 @@
             <td class="domain-bg">
                 <input class="easyui-textbox" id="dpCertNo" name="dpCertNo"
                        style="width:198px"
-                       data-options="required:true,missingMessage:'请填入逝者证件号码'">
+                       data-options="readonly:true">
             </td>
             <tr>
                 <td style="width: 100px" class="title-bg">
@@ -130,7 +127,8 @@
                     <input class="easyui-textbox" id="utName" name="utName"
                            style="width:198px"
                            data-options="required:true,
-                           missingMessage:'请填入承办人姓名'">
+                           missingMessage:'请填入承办人姓名',
+                           validType:['chinese','length[2,5]']">
                 </td>
                 <td style="width: 100px" class="title-bg">
                     联系电话
@@ -139,11 +137,15 @@
                     <input class="easyui-textbox" id="phone" name="phone"
                            style="width:198px"
                            data-options="required:true,
-                           missingMessage:'请填入承办人联系电话'">
+                           missingMessage:'请填入承办人联系电话',
+                           validType:'mobile'">
                 </td>
             </tr>
             <tr>
                 <td align="right" colspan="4">
+                    <a id="clearUtInfo" href="#" class="easyui-linkbutton"
+                       data-options="iconCls:'icon-cancel'"
+                       style="width:135px;margin-top:2px;">清除承办人信息</a>
                     <a id="readUtIdCard" href="#" class="easyui-linkbutton"
                        data-options="iconCls:'icon-man'"
                        style="width:135px;margin-top:2px;">读承办人身份证</a>
@@ -172,6 +174,7 @@
                                                 textField:'name',
                                                 panelHeight:'auto',
                                                 required:true,
+                                                editable:false,
                                                 missingMessage:'请选择磁卡状况'">
                 </td>
                 <td style="width: 100px" class="title-bg">
@@ -186,6 +189,7 @@
                                                 textField:'name',
                                                 panelHeight:'auto',
                                                 required:true,
+                                                editable:false,
                                                 missingMessage:'请选择单据状况'">
                 </td>
             </tr>
@@ -200,6 +204,64 @@
                 <td style="width: 100px" class="title-bg">
                 </td>
                 <td class="domain-bg">
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+</div>
+
+<div style="padding-top: 20px;">
+    <fieldset class="fieldset" style="width:1103px">
+        <legend class="legend">
+            骨灰装置服务确认
+        </legend>
+        <table class="tab-border">
+            <tr>
+                <td class="domain-bg">
+                    <p>
+                        <br/>
+                        本人
+                        <lable id="cUtName"
+                               style="font-weight: bold;text-decoration:underline"></lable>
+                        为逝者<label id="cDpName1"
+                                  style="font-weight: bold;text-decoration:underline"></label>的亲属代表，逝者亲属一致同意，由礼仪服务公司服务员代为装置逝者<label
+                            id="cDpName2"
+                            style="font-weight: bold;text-decoration:underline"></label>的骨灰，并安放于骨灰盒内。本人确认所填写（出示）的证明材料真实有效。
+                        <br/>
+                        本确认书的内容完全符合家属的真实意愿，对由此产生的一切后果，本人愿意承担一切责任。
+                        <br/>
+                        说明：丧事承办人再确认信息无误后，应在《领取业务证明单》“确认签名”处签名，并将信息磁卡及业务单据交于业务员。
+                        <br/>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td class="domain-bg">
+                    <a href="javascript:void(0)" class="easyui-linkbutton"
+                       data-options="iconCls:'icon-edit'" onclick="startSign()">
+                        签名
+                    </a>
+                    <a href="javascript:void(0)" class="easyui-linkbutton"
+                       id="clearButton"
+                       data-options="iconCls:'icon-undo'" onclick="clearSign()">
+                        重签
+                    </a>
+                    <a href="javascript:void(0)" class="easyui-linkbutton"
+                       id="finishButton"
+                       data-options="iconCls:'icon-ok'" onclick="finishSign()">
+                        完成
+                    </a>
+                    <input id="signPic" name="signPic" type="hidden" value=""/>
+                </td>
+            </tr>
+            <tr>
+                <td class="domain-bg">
+                    <object id="HWPenSign"
+                            name="HWPenSign"
+                            classid="clsid:56C162AE-04DC-48E2-A5FC-D12D18B74240"
+                            width="100%"
+                            height="385">
+                    </object>
                 </td>
             </tr>
         </table>

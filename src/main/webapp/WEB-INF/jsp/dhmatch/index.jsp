@@ -29,7 +29,7 @@
 
     <div region="center" border="false">
         <table id="dhMatchList" class="easyui-datagrid" border="false" fit="true"
-               rownumbers="true" pagination="false" sortName="serviceNo" sortOrder="asc"
+               rownumbers="true" pagination="true" sortName="serviceNo" sortOrder="asc"
                data-options="singleSelect:true,fitColumns:true,url:'${pageContext.request.contextPath}/dhmatch/list',method:'get',pageSize:20,striped:true">
             <thead data-options="frozen:true">
             <tr>
@@ -37,6 +37,7 @@
                 <th data-options="field:'hId',hidden:true">id</th>
                 <th data-options="field:'utCertType',hidden:true">id</th>
                 <th data-options="field:'utCertNo',hidden:true">id</th>
+                <th data-options="field:'phone',hidden:true">id</th>
                 <th data-options="field:'serviceNo',width:100,halign:'center',align:'center'">
                     服务编号
                 </th>
@@ -86,10 +87,4 @@
         </a>
     </div>
 </div>
-
-<%--<div style="display: none">--%>
-<%--<form id="delform" method="post">--%>
-<%--<input type="hidden" id="memberId" name="memberId">--%>
-<%--</form>--%>
-<%--</div>--%>
 </body>
