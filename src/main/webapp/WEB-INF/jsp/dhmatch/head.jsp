@@ -160,7 +160,7 @@
                         showType: 'slide'
                     });
                     $('#dlg').dialog('close');
-                    $('#handOverList').datagrid('reload');
+                    $('#dhMatchList').datagrid('reload');
                 } else {
                     $.messager.alert(title, data.content, error);
                 }
