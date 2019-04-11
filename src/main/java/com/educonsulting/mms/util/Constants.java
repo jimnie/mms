@@ -15,11 +15,19 @@ public class Constants {
 
     public static final String PIC_TYPE_JPG = ".jpg";
 
-    public static final String DEPOSIT_INVOICE = "\\1.骨灰盒寄存单.pdf";
+    public static final String DEPOSIT_INVOICE_PDF = "1.骨灰盒寄存单.pdf";
 
-    public static final String PLACE_SERVICE = "\\2.骨灰装置服务确认书.pdf";
+    public static final String PLACE_SERVICE_PDF = "2.骨灰装置服务确认书.pdf";
 
-    public static final String DRAW_CERT = "\\3.领取业务证明单.pdf";
+    public static final String DRAW_CERT_PDF = "3.领取业务证明单.pdf";
 
-    public static final String GIVEUP_CONFIRM = "\\放弃骨灰确认书.pdf";
+    public static final String GIVEUP_CONFIRM_PDF = "放弃骨灰确认书.pdf";
+
+    public static final String DEPOSIT_INVOICE_JASPER = "deposit_template.jasper";
+
+    public static final String PLACE_SERVICE_JASPER = "comfirm_template.jasper";
+
+    public static final String DRAW_CERT_JASPER = "draw_template.jasper";
+
+    public static final String GIVEUP_CONFIRM_jasper = "giveup_template.jasper";
 }
