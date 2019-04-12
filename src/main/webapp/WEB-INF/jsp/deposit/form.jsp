@@ -225,6 +225,84 @@
 <div style="padding-top: 20px;">
     <fieldset class="fieldset" style="width:1103px">
         <legend class="legend">
+            骨灰盒信息
+        </legend>
+        <table class="tab-border">
+            <tr>
+                <td style="width: 100px" class="title-bg">
+                    是否急取
+                </td>
+                <td class="domain-bg">
+                    <input class="easyui-combobox" id="urgent" name="urgent"
+                           style="width:198px"
+                           data-options="url:'${pageContext.request.contextPath}/dict/findDict/isUrgent',
+                                                editable:false,
+                                                method:'get',
+                                                valueField:'value',
+                                                textField:'name',
+                                                panelHeight:'auto',
+                                                required:true,
+                                                missingMessage:'请选择是否急取'">
+                </td>
+                <td style="width: 100px" class="title-bg">
+                    存放位置
+                </td>
+                <td class="domain-bg">
+                    <input class="easyui-textbox" id="position" name="position"
+                           style="width:198px;"
+                           data-options="required:true,
+                                         missingMessage:'请填入存放位置编号',
+                                         validType:'position'">
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 100px" class="title-bg">
+                    存入日期
+                </td>
+                <td class="domain-bg">
+                    <input class="easyui-datebox" id="depositDate" name="depositDate"
+                           style="width:198px;">
+                </td>
+                <td style="width: 100px" class="title-bg">
+                    取出日期
+                </td>
+                <td class="domain-bg">
+                    <input class="easyui-datebox" id="preDrawDate" name="preDrawDate"
+                           style="width:198px;"
+                           data-options="required:true,editable:false">
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 100px" class="title-bg">
+                    外观
+                </td>
+                <td class="domain-bg">
+                    <input class="easyui-combobox" id="facade" name="facade"
+                           style="width:198px"
+                           data-options="url:'${pageContext.request.contextPath}/dict/findDict/facade',
+                                                editable:false,
+                                                method:'get',
+                                                valueField:'value',
+                                                textField:'name',
+                                                panelHeight:'auto',
+                                                required:true,
+                                                missingMessage:'请选择外观选项'">
+                </td>
+                <td style="width: 100px" class="title-bg">
+                    备注
+                </td>
+                <td class="domain-bg">
+                    <input class="easyui-textbox" id="memo" name="memo"
+                           style="width:198px;" data-options="validType:'memoLen[200]'"/>
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+</div>
+
+<div style="padding-top: 20px;">
+    <fieldset class="fieldset" style="width:1103px">
+        <legend class="legend">
             确认签名
         </legend>
         <table class="tab-border">
