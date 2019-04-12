@@ -159,8 +159,7 @@ public class Deposit extends BaseEntity {
         this.depositDate = depositDate;
     }
 
-    @NotNull
-    @Column(name = "position", nullable = false, length = 20)
+    @Column(name = "position", nullable = true, length = 20)
     public String getPosition() {
         return position;
     }
