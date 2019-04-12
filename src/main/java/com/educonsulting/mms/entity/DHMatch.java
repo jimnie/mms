@@ -58,6 +58,8 @@ public class DHMatch implements Serializable {
     @Column(name = "h_status")
     private Integer hStatus;
 
+    private String phone;
+
     public String getServiceNo() {
         return serviceNo;
     }
@@ -176,5 +178,13 @@ public class DHMatch implements Serializable {
 
     public void sethStatus(Integer hStatus) {
         this.hStatus = hStatus;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }
