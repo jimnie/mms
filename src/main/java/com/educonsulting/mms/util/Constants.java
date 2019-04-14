@@ -29,5 +29,5 @@ public class Constants {
 
     public static final String DRAW_CERT_JASPER = "draw_template.jasper";
 
-    public static final String GIVEUP_CONFIRM_jasper = "giveup_template.jasper";
+    public static final String GIVEUP_CONFIRM_JASPER = "giveup_template.jasper";
 }
