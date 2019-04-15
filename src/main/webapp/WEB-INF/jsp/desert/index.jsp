@@ -131,19 +131,19 @@
         <div style="clear:both"></div>
     </div>
     <div id="dlg-buttons" style="text-align:center;">
-        <a
-                href="#"
-                class="easyui-linkbutton"
-                iconCls="icon-save"
-                onclick="saveItem()"
+        <a id="saveButton"
+           href="#"
+           class="easyui-linkbutton"
+           iconCls="icon-save"
+           onclick="saveItem()"
         >
             <%=SpringUtils.getMessage("page.action.save")%>
         </a>
-        <a
-                href="#"
-                class="easyui-linkbutton"
-                iconCls="icon-cancel"
-                onclick="closeAddDialog()"
+        <a id="closeButton"
+           href="#"
+           class="easyui-linkbutton"
+           iconCls="icon-cancel"
+           onclick="closeAddDialog()"
         >
             <%=SpringUtils.getMessage("page.action.close")%>
         </a>
