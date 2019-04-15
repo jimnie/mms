@@ -46,8 +46,13 @@ public class DesertAshesServiceImpl extends BaseServiceImpl<DesertAshes, Long> i
         String webRoot = System.getProperty("webapp.root");
         String jasperPath = webRoot + Constants.JASPER_FILE_PATH;
         String outputPath = webRoot + Constants.GENERATE_PDF_PATH + serviceNo + "\\" + Constants.GIVEUP_CONFIRM_PDF;
+        String serviceNoPath = webRoot + Constants.GENERATE_PDF_PATH + serviceNo;
         File pdf = new File(outputPath);
         if (!pdf.exists()) {
+            File file = new File(serviceNoPath);
+            if (!file.exists()) {
+                file.mkdir();
+            }
             String jasper = Constants.GIVEUP_CONFIRM_JASPER;
             File jasperFile = new File(jasperPath + jasper);
             List<DesertAshes> list = findDesertAshesByServiceNo(serviceNo);

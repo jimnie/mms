@@ -62,8 +62,13 @@ public class DrawServiceImpl extends BaseServiceImpl<Draw, Long> implements Draw
         String webRoot = System.getProperty("webapp.root");
         String jasperPath = webRoot + Constants.JASPER_FILE_PATH;
         String outputPath = webRoot + Constants.GENERATE_PDF_PATH + serviceNo + "\\" + fileName;
+        String serviceNoPath = webRoot + Constants.GENERATE_PDF_PATH + serviceNo;
         File pdf = new File(outputPath);
         if (!pdf.exists()) {
+            File file = new File(serviceNoPath);
+            if (!file.exists()) {
+                file.mkdir();
+            }
             String jasper = null;
             if (type.equals("cert")) {
                 jasper = Constants.DRAW_CERT_JASPER;
