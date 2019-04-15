@@ -86,6 +86,7 @@
         </table>
     </fieldset>
 </div>
+
 <div style="padding-top: 20px;">
     <fieldset class="fieldset" style="width:1103px">
         <legend class="legend">
@@ -135,70 +136,58 @@
         </table>
     </fieldset>
 </div>
+
 <div style="padding-top: 20px;">
     <fieldset class="fieldset" style="width:1103px">
         <legend class="legend">
-            骨灰盒信息
+            其他信息
         </legend>
         <table class="tab-border">
             <tr>
                 <td style="width: 100px" class="title-bg">
-                    是否急取
+                    磁卡情况
                 </td>
                 <td class="domain-bg">
-                    <input class="easyui-combobox" id="urgent" name="urgent"
+                    <input class="easyui-combobox" id="magcardState" name="magcardState"
                            style="width:198px"
-                           data-options="url:'${pageContext.request.contextPath}/dict/findDict/isUrgent',
+                           data-options="url:'${pageContext.request.contextPath}/dict/findDict/magcardState',
                                                 method:'get',
                                                 valueField:'value',
                                                 textField:'name',
                                                 disabled:true">
                 </td>
                 <td style="width: 100px" class="title-bg">
-                    存放位置
+                    单据情况
                 </td>
                 <td class="domain-bg">
-                    <input class="easyui-textbox" id="position" name="position"
-                           style="width:198px;"
-                           data-options="disabled:true">
+                    <input class="easyui-combobox" id="invoiceState" name="invoiceState"
+                           style="width:198px"
+                           data-options="url:'${pageContext.request.contextPath}/dict/findDict/invoiceState',
+                                                method:'get',
+                                                valueField:'value',
+                                                textField:'name',
+                                                disabled:true">
                 </td>
             </tr>
             <tr>
                 <td style="width: 100px" class="title-bg">
-                    存入日期
+                    领取类型
                 </td>
                 <td class="domain-bg">
-                    <input class="easyui-datebox" id="depositDate" name="depositDate"
+                    <input class="easyui-combobox" id="drawType" name="drawType"
+                           style="width:198px"
+                           data-options="url:'${pageContext.request.contextPath}/dict/findDict/drawType',
+                                                method:'get',
+                                                valueField:'value',
+                                                textField:'name',
+                                                disabled:true">
+                </td>
+                <td style="width: 100px" class="title-bg">
+                    领取时间
+                </td>
+                <td class="domain-bg">
+                    <input class="easyui-datebox" id="drawDate" name="drawDate"
                            style="width:198px;" data-options="disabled:true">
-                </td>
-                <td style="width: 100px" class="title-bg">
-                    取出日期
-                </td>
-                <td class="domain-bg">
-                    <input class="easyui-datebox" id="preDrawDate" name="preDrawDate"
-                           style="width:198px;"
-                           data-options="disabled:true">
-                </td>
-            </tr>
-            <tr>
-                <td style="width: 100px" class="title-bg">
-                    外观
-                </td>
-                <td class="domain-bg">
-                    <input class="easyui-combobox" id="facade" name="facade"
-                           style="width:198px"
-                           data-options="url:'${pageContext.request.contextPath}/dict/findDict/facade',
-                                                method:'get',
-                                                valueField:'value',
-                                                textField:'name',
-                                                disabled:true">
-                </td>
-                <td style="width: 100px" class="title-bg">
-                    备注
-                </td>
-                <td class="domain-bg">
-                    <input class="easyui-textbox" id="memo" name="memo"
-                           style="width:198px;" data-options="disabled:true"/>
                 </td>
             </tr>
         </table>
