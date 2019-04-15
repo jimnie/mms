@@ -12,10 +12,6 @@
                 <tr>
                     <td>
                         <a href="javascript:void(0)" class="easyui-linkbutton"
-                           data-options="iconCls:'icon-edit'" onclick="editDeposit()">
-                            <%=SpringUtils.getMessage("page.action.edit")%>
-                        </a>
-                        <a href="javascript:void(0)" class="easyui-linkbutton"
                            data-options="iconCls:'icon-more'" onclick="viewDraw()">
                             <%=SpringUtils.getMessage("page.action.view")%>
                         </a>
@@ -46,6 +42,14 @@
             <thead data-options="frozen:true">
             <tr>
                 <th data-options="field:'id',hidden:true">id</th>
+                <th data-options="field:'dpCertType',hidden:true">id</th>
+                <th data-options="field:'dpAddr',hidden:true">id</th>
+                <th data-options="field:'utCertType',hidden:true">id</th>
+                <th data-options="field:'phone',hidden:true">id</th>
+                <th data-options="field:'dpDrawType',hidden:true">id</th>
+                <th data-options="field:'invoiceState',hidden:true">id</th>
+                <th data-options="field:'magcardState',hidden:true">id</th>
+                <th data-options="field:'memo',hidden:true">id</th>
                 <th data-options="field:'serviceNo',width:100,halign:'center',align:'center',sortable:true">
                     服务编号
                 </th>
