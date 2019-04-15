@@ -237,6 +237,8 @@
                 $.messager.alert(title, '手写模块未知错误', error);
         }
         toSign = true;
+        $('#saveButton').linkbutton({disabled: true});
+        $('#closeButton').linkbutton({disabled: true});
     }
 
     function clearSign() {
@@ -252,6 +254,8 @@
             $('#signPic').val(signPanel.HWGetBase64Stream(1));
         }
         isSigned = true;
+        $('#saveButton').linkbutton({disabled: false});
+        $('#closeButton').linkbutton({disabled: false});
     }
 </script>
 <OBJECT classid="clsid:F1317711-6BDE-4658-ABAA-39E31D3704D3"
