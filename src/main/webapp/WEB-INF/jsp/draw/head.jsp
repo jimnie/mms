@@ -128,20 +128,8 @@
 
     }
 
-    // 编辑存放信息对话框
-    function editDeposit() {
-        var row = $('#deposits').datagrid('getSelected');
-        if (row) {
-            $('#dlg').window('maximize');
-            $('#addform').form('load', row);
-            $('#dlg').dialog('setTitle', '修改存放记录').dialog('open');
-        } else {
-            $.messager.alert(title, '请选择需要修改的存放记录', warning);
-        }
-    }
-
     // 查看存放信息对话框
-    function viewDeposit() {
+    function viewDraw() {
         var row = $('#draws').datagrid('getSelected');
         if (row) {
             $('#view-dialog').window('maximize');
@@ -180,10 +168,10 @@
         showQueryDialog({
             width: 350,
             height: 300,
-            form: base + '/deposit/query',
+            form: base + '/draw/query',
             callback: function (data) {
-                $('#deposits').datagrid('loadData', {total: 0, rows: []});
-                $('#deposits').datagrid('load', data);
+                $('#draws').datagrid('loadData', {total: 0, rows: []});
+                $('#draws').datagrid('load', data);
             }
         });
     }
