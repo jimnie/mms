@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name="comfirm_template" pageWidth="595" pageHeight="842" columnWidth="555"
+              leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20"
+              uuid="d359666b-dd49-4a19-aebc-0946f506889d">
+    <property name="com.jaspersoft.studio.data.defaultdataadapter"
+              value="One Empty Record"/>
+    <parameter name="utName" class="java.lang.String"/>
+    <parameter name="dpName" class="java.lang.String"/>
+    <parameter name="confirmDate" class="java.lang.String"/>
+    <parameter name="signPic" class="java.lang.String"/>
+    <queryString>
+        <![CDATA[]]>
+    </queryString>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <title>
+        <band height="79" splitType="Stretch">
+            <staticText>
+                <reportElement x="0" y="30" width="550" height="49"
+                               uuid="67bddc34-54c6-4ddc-a898-a63d0aa620ad"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="黑体" size="26" isBold="true"/>
+                </textElement>
+                <text><![CDATA[放弃骨灰确认书]]></text>
+            </staticText>
+        </band>
+    </title>
+    <detail>
+        <band height="510" splitType="Stretch">
+            <staticText>
+                <reportElement x="10" y="40" width="530" height="190"
+                               uuid="49766262-afcf-4319-ab0c-50007b7871bd"/>
+                <textElement>
+                    <font fontName="华文仿宋" size="18" isBold="false"/>
+                    <paragraph lineSpacing="Double"/>
+                </textElement>
+                <text><![CDATA[        本人                        为逝者                        的亲属代表。逝者亲属一致同意自愿放弃逝者遗体火化后产生的遗体骨灰。本人确认所填写（出示）的证明材料真实有效。
+	本确认书的内容完全符合家属的真实意愿，对由此产生的一切后果，本人愿意承担一切责任。
+	]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="86" y="36" width="99" height="29"
+                               uuid="9671bf43-193d-495c-9748-073dc403de48"/>
+                <box>
+                    <bottomPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="华文仿宋" size="18"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{utName}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="248" y="36" width="100" height="28"
+                               uuid="6251bfc2-ef81-48ad-8ed7-30773409c5c3"/>
+                <box>
+                    <bottomPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="华文仿宋" size="18"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{dpName}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="10" y="331" width="100" height="30"
+                               uuid="3924beb3-b4e2-4646-b786-bda5fa39b4ca"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="华文仿宋" size="18"/>
+                </textElement>
+                <text><![CDATA[确认签字：]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="380" y="464" width="169" height="30"
+                               uuid="14d2c9e2-36e4-4c5b-a92a-05e26e0df286"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="华文仿宋" size="18"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{confirmDate}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="10" y="250" width="530" height="60"
+                               uuid="9ae48bb5-6c74-4645-aaab-822ebb5a9cd5"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font fontName="华文仿宋" size="18" isBold="true"/>
+                </textElement>
+                <text><![CDATA[	注：逝者、家属身份证复印件各一份并附于《确认书》背面。]]></text>
+            </staticText>
+            <image>
+                <reportElement x="110" y="311" width="370" height="151"
+                               uuid="e161b8a0-5d52-41c1-acc4-c4925db2785e"/>
+                <imageExpression><![CDATA[$P{signPic}]]></imageExpression>
+            </image>
+        </band>
+    </detail>
+</jasperReport>
