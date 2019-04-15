@@ -16,11 +16,13 @@
 
     <!-- 对静态资源文件的访问，交给default servlet handler处理 -->
     <mvc:default-servlet-handler/>
+
     <!--<mvc:resources location="/resources/" mapping="/resources/**"/>-->
     <!-- or  <mvc:default-servlet-handler/> 与上面mvc:resources标签选其一即可,这里如果配置，必须配置<mvc:annotation-driven/>其他controller才可正常工作-->
 
     <!-- 自动扫描且只扫描@Controller -->
-    <context:component-scan base-package="com.educonsulting.mms" use-default-filters="false">
+    <context:component-scan base-package="com.educonsulting.mms"
+                            use-default-filters="false">
         <context:include-filter type="annotation"
                                 expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
@@ -49,7 +51,8 @@
         </mvc:interceptor>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
-            <bean id="listInterceptor" class="com.educonsulting.mms.interceptor.ListInterceptor"/>
+            <bean id="listInterceptor"
+                  class="com.educonsulting.mms.interceptor.ListInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
 
@@ -106,7 +109,9 @@
     <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
         <property name="exceptionMappings">
             <props>
-                <prop key="org.apache.shiro.authz.UnauthorizedException">/common/unauthorized</prop>
+                <prop key="org.apache.shiro.authz.UnauthorizedException">
+                    /common/unauthorized
+                </prop>
                 <!--<prop key="java.lang.Throwable">/common/</prop>-->
             </props>
         </property>
