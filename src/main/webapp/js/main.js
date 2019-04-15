@@ -47,8 +47,7 @@ function getMenuList(data, menulist) {
         $.each(data.menus, function (i, sm) {
             if (sm.url != null) {
                 menulist += '<li><div><a ref="' + sm.menuid + '" href="javascript:void(0)" rel="' + base + sm.url + '"><span class="icon ' + sm.icon + '"' + '>&nbsp;</span><span class="nav">' + sm.menuname + '</span></a>';
-            }
-            else {
+            } else {
                 menulist += '<li state="closed"><span class="nav">' + sm.menuname + '</span>'
             }
             menulist = getMenuList(sm, menulist);
@@ -57,6 +56,7 @@ function getMenuList(data, menulist) {
     }
     return menulist;
 }
+
 //左侧导航加载
 function addModules(data) {
     $.each(data, function (i, sm) {
@@ -114,6 +114,14 @@ function getIcon(menuid) {
 }
 
 function addTab(subtitle, url, icon) {
+    // 除欢迎页面关闭当前的功能tab
+    var currTab = $('#tabs').tabs('getSelected');
+    if (currTab) {
+        if (currTab.panel('options').title != '欢迎使用') {
+            $('#tabs').tabs('close', currTab.panel('options').title);
+        }
+    }
+
     if (!$('#tabs').tabs('exists', subtitle)) {
         $('#tabs').tabs('add', {
             title: subtitle,
@@ -153,6 +161,7 @@ function tabDoubleClickEvent() {
         return false;
     });
 }
+
 // 绑定右键菜单事件
 function tabRightClickEvent() {
     //刷新
@@ -273,6 +282,7 @@ function openPasswordChangingDialog() {
         resizable: false
     });
 }
+
 //关闭登录窗口
 function closePwd() {
     $('#modifyPassword').window('close');
@@ -306,6 +316,7 @@ function serverLogin() {
     })
 
 }
+
 $(function () {
     openPasswordChangingDialog();
 
