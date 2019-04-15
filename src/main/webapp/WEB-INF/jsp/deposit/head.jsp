@@ -16,6 +16,10 @@
 
     var signPanel;
 
+    // 控制签名后必须点击完成按钮画面正常切回pc屏内，才可以点击对话框底部的关闭按钮
+    var isSigned = false;
+    var toSign = false;
+
     // 页面加载成后设置签字区域属性
     window.onload = function () {
         signPanel = document.getElementById("HWPenSign");
@@ -376,6 +380,11 @@
 
     // 关闭新增寄存窗口时关闭读卡器端口
     function closeAddDialog() {
+        if (toSign && !isSigned) {
+            $.messager.alert(title, "签名没有完成", warning);
+            return;
+        }
+
         var closeState;
         closeState = rdcard.closeport(); // 关闭端口
         if (closeState == 0) {
@@ -419,6 +428,7 @@
             default:
                 $.messager.alert(title, "手写模块未知错误", error);
         }
+        toSign = true;
     }
 
     function clearSign() {
@@ -433,6 +443,7 @@
             signPanel.HWSwitchMonitor(0, 1);
             $("#signPic").val(signPanel.HWGetBase64Stream(1));
         }
+        isSigned = true;
     }
 </script>
 <OBJECT
