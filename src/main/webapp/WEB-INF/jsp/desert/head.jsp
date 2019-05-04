@@ -217,7 +217,7 @@
                         showType: "slide"
                     });
 
-                    $.messager.confirm(title, '是否打印寄存单？', function (r) {
+                    $.messager.confirm(title, "是否打印放弃骨灰确认书?", function (r) {
                         if (r) {
                             window.open(base + "/desert/viewPDF/" + sno);
                         }
