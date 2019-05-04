@@ -83,25 +83,6 @@
     </div>
 </div>
 
-<div id="dlg" class="easyui-dialog" closed="true" modal="true" buttons="#dlg-buttons">
-    <div style="padding:20px 0px 0px 60px">
-        <div style="width: 1080px;height: 550px;float: center">
-            <form id="addform" method="post" style="margin: 0;padding: 0">
-                <jsp:include page="form.jsp"/>
-            </form>
-        </div>
-        <div style="clear:both"></div>
-    </div>
-    <div id="dlg-buttons" style="text-align:center;">
-        <a href="#" class="easyui-linkbutton" iconCls="icon-save" onclick="saveItem()">
-            <%=SpringUtils.getMessage("page.action.save")%>
-        </a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-cancel"
-           onclick="closeAddDialog()">
-            <%=SpringUtils.getMessage("page.action.close")%>
-        </a>
-    </div>
-</div>
 <%--查看领取详情--%>
 <div id="view-dialog" class="easyui-dialog" closed="true" modal="true"
      buttons="#view-buttons">

@@ -96,38 +96,6 @@
         return value;
     }
 
-    // 保存新增的存放信息
-    function saveItem() {
-        url = base + '/deposit/save';
-
-        if ($('#id').attr('value') != '') {
-            url = base + '/deposit/update';
-        }
-
-        $('#addform').form('submit', {
-            url: url,
-            onSubmit: function () {
-                return $('#addform').form('validate');
-            },
-            success: function (data) {
-                data = eval('(' + data + ')');
-                if (data.type == 'success') {
-                    $.messager.show({
-                        title: title,
-                        msg: data.content,
-                        timeout: 2000,
-                        showType: 'slide'
-                    });
-                    $('#dlg').dialog('close');
-                    $('#deposits').datagrid('reload');
-                } else {
-                    $.messager.alert(title, data.content, error);
-                }
-            }
-        });
-
-    }
-
     // 查看存放信息对话框
     function viewDraw() {
         var row = $('#draws').datagrid('getSelected');
