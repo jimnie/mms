@@ -1,6 +1,5 @@
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
-<%@ page
-        language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <div>
     <fieldset class="fieldset" style="width:1103px">
         <legend class="legend">
@@ -137,6 +136,7 @@
         </table>
     </fieldset>
 </div>
+
 <div style="padding-top: 20px;">
     <fieldset class="fieldset" style="width:1103px">
         <legend class="legend">
@@ -225,84 +225,6 @@
 <div style="padding-top: 20px;">
     <fieldset class="fieldset" style="width:1103px">
         <legend class="legend">
-            骨灰盒信息
-        </legend>
-        <table class="tab-border">
-            <tr>
-                <td style="width: 100px" class="title-bg">
-                    是否急取
-                </td>
-                <td class="domain-bg">
-                    <input class="easyui-combobox" id="urgent" name="urgent"
-                           style="width:198px"
-                           data-options="url:'${pageContext.request.contextPath}/dict/findDict/isUrgent',
-                                                editable:false,
-                                                method:'get',
-                                                valueField:'value',
-                                                textField:'name',
-                                                panelHeight:'auto',
-                                                required:true,
-                                                missingMessage:'请选择是否急取'">
-                </td>
-                <td style="width: 100px" class="title-bg">
-                    存放位置
-                </td>
-                <td class="domain-bg">
-                    <input class="easyui-textbox" id="position" name="position"
-                           style="width:198px;"
-                           data-options="required:true,
-                                         missingMessage:'请填入存放位置编号',
-                                         validType:'position'">
-                </td>
-            </tr>
-            <tr>
-                <td style="width: 100px" class="title-bg">
-                    存入日期
-                </td>
-                <td class="domain-bg">
-                    <input class="easyui-datebox" id="depositDate" name="depositDate"
-                           style="width:198px;">
-                </td>
-                <td style="width: 100px" class="title-bg">
-                    取出日期
-                </td>
-                <td class="domain-bg">
-                    <input class="easyui-datebox" id="preDrawDate" name="preDrawDate"
-                           style="width:198px;"
-                           data-options="required:true,editable:false">
-                </td>
-            </tr>
-            <tr>
-                <td style="width: 100px" class="title-bg">
-                    外观
-                </td>
-                <td class="domain-bg">
-                    <input class="easyui-combobox" id="facade" name="facade"
-                           style="width:198px"
-                           data-options="url:'${pageContext.request.contextPath}/dict/findDict/facade',
-                                                editable:false,
-                                                method:'get',
-                                                valueField:'value',
-                                                textField:'name',
-                                                panelHeight:'auto',
-                                                required:true,
-                                                missingMessage:'请选择外观选项'">
-                </td>
-                <td style="width: 100px" class="title-bg">
-                    备注
-                </td>
-                <td class="domain-bg">
-                    <input class="easyui-textbox" id="memo" name="memo"
-                           style="width:198px;" data-options="validType:'memoLen[200]'"/>
-                </td>
-            </tr>
-        </table>
-    </fieldset>
-</div>
-
-<div style="padding-top: 20px;">
-    <fieldset class="fieldset" style="width:1103px">
-        <legend class="legend">
             确认签名
         </legend>
         <table class="tab-border">
@@ -310,13 +232,13 @@
                 <td class="domain-bg">
                     <p>
                         <br/>
-                        本人系逝者的亲属代表，经亲属一致同意，委托礼仪服务公司代为收纳逝者的骨灰，并提供装灰服务。
+                        本人为逝者的亲属代表，逝者亲属一致同意自愿放弃，逝者遗体火化后所产生的遗体骨灰。
                         <br/>
-                        本人承诺所填（出示）的证明材料真实有效，内容完全符合家属的真实意愿，并按规定时限领取骨灰。如未按照规定要求执行所产生的一切后果，本人愿意承担一切责任。
+                        本人承诺所填（出示）的证明材料真实有效，内容完全符合家属的真实意愿，对此产生的一切后果，本人愿意承担一切责任。
                         <br/>
                         注：
-                        1.丧事承办人再确认信息、时间无误后，应在“确认签名”处签名。
-                        2.在办理领取业务时请将信息磁卡及业务单据归还于本馆业务员。
+                        1.丧事承办人再确认信息无误后，应在“确认签名”处签名。
+                        2.请家属提供：身份证复印件（家属、逝者）各一份，并交于本馆业务员附于此单据背面留存。
                         <br/>
                     </p>
                 </td>

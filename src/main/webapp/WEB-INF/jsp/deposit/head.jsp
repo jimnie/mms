@@ -270,6 +270,7 @@
 
     // 保存新增的存放信息
     function saveItem() {
+        let sno = $("#serviceNo").textbox("getValue");
         url = base + "/deposit/save";
 
         if ($("#id").attr("value") != "") {
@@ -290,8 +291,15 @@
                         timeout: 2000,
                         showType: "slide"
                     });
-                    $("#dlg").dialog("close");
-                    $("#deposits").datagrid("reload");
+
+                    $.messager.confirm(title, '是否打印寄存单？', function (r) {
+                        if (r) {
+                            window.open(base + "/deposit/viewPDF/" + sno);
+                        }
+
+                        $("#dlg").dialog("close");
+                        $("#deposits").datagrid("reload");
+                    });
                 } else {
                     $.messager.alert(title, data.content, error);
                 }

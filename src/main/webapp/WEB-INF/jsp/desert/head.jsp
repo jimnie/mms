@@ -195,6 +195,7 @@
 
     // 保存新增的存放信息
     function saveItem() {
+        let sno = $("#serviceNo").textbox("getValue");
         url = base + "/desert/save";
 
         if ($("#id").attr("value") != "") {
@@ -215,8 +216,16 @@
                         timeout: 2000,
                         showType: "slide"
                     });
-                    $("#dlg").dialog("close");
-                    $("#deserts").datagrid("reload");
+
+                    $.messager.confirm(title, '是否打印寄存单？', function (r) {
+                        if (r) {
+                            window.open(base + "/desert/viewPDF/" + sno);
+                        }
+
+                        $("#dlg").dialog("close");
+                        $("#deserts").datagrid("reload");
+                    });
+
                 } else {
                     $.messager.alert(title, data.content, error);
                 }
