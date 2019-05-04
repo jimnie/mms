@@ -22,8 +22,12 @@
                            validType:'serviceNo'"
                     />
                 </td>
-                <td style="width: 100px" class="title-bg"></td>
-                <td class="domain-bg"></td>
+                <td style="width: 100px" class="title-bg">
+                    业务类型
+                </td>
+                <td class="domain-bg">
+                    放弃骨灰业务
+                </td>
             </tr>
             <tr>
                 <td style="width: 100px" class="title-bg">
