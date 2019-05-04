@@ -13,7 +13,7 @@
                     <td>
                         <a href="javascript:void(0)" class="easyui-linkbutton"
                            data-options="iconCls:'icon-redo'" onclick="addDraw()">
-                            领取
+                            办理领取
                         </a>
                     </td>
                     <td style="text-align:right">

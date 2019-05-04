@@ -231,17 +231,7 @@
                 <td class="domain-bg">
                     <p>
                         <br/>
-                        本人
-                        <lable id="cUtName"
-                               style="font-weight: bold;text-decoration:underline"></lable>
-                        为逝者<label id="cDpName1"
-                                  style="font-weight: bold;text-decoration:underline"></label>的亲属代表，逝者亲属一致同意，由礼仪服务公司服务员代为装置逝者<label
-                            id="cDpName2"
-                            style="font-weight: bold;text-decoration:underline"></label>的骨灰，并安放于骨灰盒内。本人确认所填写（出示）的证明材料真实有效。
-                        <br/>
-                        本确认书的内容完全符合家属的真实意愿，对由此产生的一切后果，本人愿意承担一切责任。
-                        <br/>
-                        说明：丧事承办人再确认信息无误后，应在《领取业务证明单》“确认签名”处签名，并将信息磁卡及业务单据交于业务员。
+                        丧事承办人在确认信息、时间无误后，应在“确认签名”处签名。
                         <br/>
                     </p>
                 </td>

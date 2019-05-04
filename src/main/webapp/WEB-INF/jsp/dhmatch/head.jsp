@@ -146,6 +146,7 @@
 
     // 保存新增的存放信息
     function saveItem() {
+        let sno = $("#serviceNo").textbox("getValue");
         url = base + '/draw/save';
 
         $('#addform').form('submit', {
@@ -162,8 +163,17 @@
                         timeout: 2000,
                         showType: 'slide'
                     });
-                    $('#dlg').dialog('close');
-                    $('#dhMatchList').datagrid('reload');
+
+                    $.messager.confirm(title, "是否打印骨灰装置服务确认书和领取业务证明单?", function (r) {
+                        if (r) {
+                            window.open(base + '/draw/viewPdf/' + sno + '/type/cert');
+                            window.open(base + '/draw/viewPdf/' + sno + '/type/conf');
+                        }
+
+                        $('#dlg').dialog('close');
+                        $('#dhMatchList').datagrid('reload');
+                    });
+
                 } else {
                     $.messager.alert(title, data.content, error);
                 }
