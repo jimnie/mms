@@ -14,6 +14,8 @@
         <shiro.version>1.4.0</shiro.version>
         <jackson.version>2.9.8</jackson.version>
         <hibernate.version>4.3.11.Final</hibernate.version>
+        <log4j2.version>2.10.0</log4j2.version>
+        <slf4j.version>1.7.26</slf4j.version>
         <project.build.name>mms</project.build.name>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -195,21 +197,38 @@
 
         <!-- Log Configuration -->
         <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j2.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-web</artifactId>
+            <version>${log4j2.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>${log4j2.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>1.7.21</version>
+            <version>${slf4j.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
-            <version>1.7.21</version>
+            <version>${slf4j.version}</version>
         </dependency>
 
         <!--Shiro Configuration-->
@@ -373,12 +392,6 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jms</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-instrument</artifactId>
             <version>${spring.version}</version>
         </dependency>
 
@@ -634,16 +647,16 @@
                         <argLine>-Dfile.encoding=UTF-8</argLine>
                     </configuration>
                 </plugin>
-                <plugin>
+                <!--<plugin>
                     <groupId>org.apache.tomcat.maven</groupId>
                     <artifactId>tomcat7-maven-plugin</artifactId>
                     <version>2.2</version>
                     <configuration>
                         <server>tomcat</server>
                         <path>/${project.build.finalName}</path>
-                        <url>http://localhost:8080/manager/html</url>
-                        <!--<username>tomcatadmin</username>-->
-                        <!--<password>tomcatadmin</password>-->
+                        <url>http://localhost:8080/manager/text</url>
+                        &lt;!&ndash;<username>tomcatadmin</username>&ndash;&gt;
+                        &lt;!&ndash;<password>tomcatadmin</password>&ndash;&gt;
                         <username>xxcadmin</username>
                         <password>tomcatadmin</password>
                         <update>true</update>
@@ -656,7 +669,7 @@
                             </goals>
                         </execution>
                     </executions>
-                </plugin>
+                </plugin>-->
             </plugins>
         </pluginManagement>
     </build>
