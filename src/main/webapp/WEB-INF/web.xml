@@ -9,6 +9,12 @@
 
     <description>综合业务系统</description>
 
+    <!-- log4j日志配置 -->
+    <context-param>
+        <param-name>log4jConfigLocation</param-name>
+        <param-value>classpath:/log4j.properties</param-value>
+    </context-param>
+
     <!-- 加载Spring配置文件 -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
@@ -29,6 +35,12 @@
         </listener-class>
     </listener>
 
+    <listener>
+        <description>log4j配置加载器</description>
+        <listener-class>org.apache.logging.log4j.web.Log4jServletContextListener
+        </listener-class>
+    </listener>
+
     <!-- 该监听器将在Web容器启动时激活Spring -->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener
@@ -45,6 +57,11 @@
     <listener>
         <listener-class>org.springframework.web.util.WebAppRootListener</listener-class>
     </listener>
+
+    <filter>
+        <filter-name>log4jServletFilter</filter-name>
+        <filter-class>org.apache.logging.log4j.web.Log4jServletFilter</filter-class>
+    </filter>
 
     <!-- 字符编码配置,设置servlet编码开始 -->
     <filter>
@@ -66,6 +83,15 @@
         <filter-class>com.planetj.servlet.filter.compression.CompressingFilter
         </filter-class>
     </filter>
+
+    <filter-mapping>
+        <filter-name>log4jServletFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>INCLUDE</dispatcher>
+        <dispatcher>ERROR</dispatcher>
+    </filter-mapping>
 
     <filter-mapping>
         <filter-name>encodingFilter</filter-name>
