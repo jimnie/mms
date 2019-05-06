@@ -1,5 +1,6 @@
 package com.educonsulting.mms.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.educonsulting.mms.Filter;
 import com.educonsulting.mms.Message;
 import com.educonsulting.mms.Page;
@@ -170,4 +171,12 @@ public class DrawController extends BaseController {
         }
     }
 
+    @RequestMapping(value = "/exist", method = {RequestMethod.POST, RequestMethod.GET})
+    @ResponseBody
+    public Object isServiceNoExist(@RequestParam(value = "sno", required = true) String sno) {
+        boolean isExist = drawService.isServiceNoExist(sno);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("result", isExist);
+        return jsonObject;
+    }
 }
