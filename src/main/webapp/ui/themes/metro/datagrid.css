@@ -280,11 +280,9 @@
   -webkit-border-radius: 0 0 0 0;
   border-radius: 0 0 0 0;
 }
-
 .datagrid-header .datagrid-filter-row td.datagrid-header-over {
     background: inherit;
 }
-
 .datagrid-split-proxy {
     position: absolute;
     left: 0;
@@ -293,7 +291,6 @@
     height: 100%;
     border-left: 1px solid #99cdff;
 }
-
 .datagrid-moving-proxy {
     border: 1px solid #99cdff;
     height: 32px;
