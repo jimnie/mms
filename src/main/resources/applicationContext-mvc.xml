@@ -17,6 +17,16 @@
     <!-- 对静态资源文件的访问，交给default servlet handler处理 -->
     <mvc:default-servlet-handler/>
 
+    <!-- 默认的注解映射的支持 -->
+    <!--注解驱动 -->
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <!-- <ref bean="stringHttpMessageConverter"/>-->
+            <!-- 避免IE执行AJAX时,返回JSON出现下载文件 -->
+            <ref bean="mappingJackson2HttpMessageConverter"/>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
     <!--<mvc:resources location="/resources/" mapping="/resources/**"/>-->
     <!-- or  <mvc:default-servlet-handler/> 与上面mvc:resources标签选其一即可,这里如果配置，必须配置<mvc:annotation-driven/>其他controller才可正常工作-->
 
@@ -65,6 +75,9 @@
     <bean id="servletHandlerAdapter"
           class="org.springframework.web.servlet.handler.SimpleServletHandlerAdapter"/>
 
+    <!--
+    <bean id="stringHttpMessageConverter"
+      class="org.springframework.http.converter.StringHttpMessageConverter"/>-->
     <!-- Json转换器配置 -->
     <!-- 避免IE执行AJAX时,返回JSON出现下载文件 -->
     <bean id="mappingJackson2HttpMessageConverter"
@@ -76,13 +89,14 @@
             </list>
         </property>
     </bean>
-    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+
+    <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
         <property name="messageConverters">
             <list>
                 <ref bean="mappingJackson2HttpMessageConverter"/>
             </list>
         </property>
-    </bean>
+    </bean>-->
 
     <!-- 视图处理器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -93,17 +107,18 @@
     </bean>
 
     <!-- 上传文件拦截，设置最大上传文件大小 10M=10*1024*1024(B)=10485760 bytes -->
+    <!--SpringMVC上传文件时，需要配置MultipartResolver处理器-->
     <bean id="multipartResolver"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 默认编码 -->
         <property name="defaultEncoding" value="UTF-8"/>
-        <!-- one of the properties available; the maximum file size in bytes -->
-        <property name="maxUploadSize">
-            <value>5242880</value>
-        </property>
+        <!-- 文件大小最大值 -->
+        <property name="maxUploadSize" value="10485760000"/>
+        <!-- 内存中的最大值 -->
+        <!--<property name="maxInMemorySize" value="1024"/>-->
+        <!-- 文件上传暂存目录，文件上传完成之后会清除目录下的文件 -->
+        <!--<property name="uploadTempDir" value="temp/tomcat"/>-->
     </bean>
-
-    <!-- 默认的注解映射的支持 -->
-    <mvc:annotation-driven/>
 
     <!-- 异常处理器 -->
     <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
