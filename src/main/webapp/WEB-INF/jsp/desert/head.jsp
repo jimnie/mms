@@ -334,7 +334,7 @@
             "clearButton;finishButton;",
             "clearSign;finishSign;"
         );
-        signPanel.HWMonitorWndEnable(0, 0, 800, 450);
+        signPanel.HWMonitorWndEnable(0, 0, parent.document.documentElement.clientWidth, parent.document.documentElement.clientHeight);
         res = signPanel.HWInitC();
         switch (res) {
             case 0:
