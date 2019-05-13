@@ -419,7 +419,7 @@
             "clearSign;finishSign;"
         );
         // 监视窗口长宽
-        signPanel.HWMonitorWndEnable(0, 0, parent.document.documentElement.clientWidth, parent.document.documentElement.clientHeight);
+        signPanel.HWMonitorWndEnable(0, 0, parent.window.screen.availWidth, parent.window.screen.availHeight);
         res = signPanel.HWInitC();
         switch (res) {
             case 0:
