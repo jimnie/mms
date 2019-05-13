@@ -33,7 +33,7 @@ public class DesertAshesServiceImpl extends BaseServiceImpl<DesertAshes, Long> i
 
     @Override
     public boolean isServiceNoExist(String serviceNo) {
-        return false;
+        return desertAshesDao.isServiceNoExist(serviceNo);
     }
 
     @Override
