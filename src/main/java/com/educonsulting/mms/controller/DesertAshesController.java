@@ -73,7 +73,7 @@ public class DesertAshesController extends BaseController {
     @ResponseBody
     @Transactional
     public Message save(DesertAshes desertAshes) {
-        if (!desertAshesService.isServiceNoExist(desertAshes.getServiceNo())) {
+        if (desertAshesService.isServiceNoExist(desertAshes.getServiceNo())) {
             return Message.error("服务编号已存在");
         }
         String webRoot = System.getProperty("webapp.root");
