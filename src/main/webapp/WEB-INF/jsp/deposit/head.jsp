@@ -204,6 +204,31 @@
             .next("span")
             .find("input")
             .focus();
+        $("#serviceNo").textbox({
+            onChange: function (value) {
+                $.ajax({
+                    type: "POST",
+                    url: base + "/deposit/exist",
+                    data: {sno: value},
+                    dataType: "json",
+                    async: false,
+                    success: function (data) {
+                        console.log(data);
+                        if (data.result) {
+                            if (data.result == true) {
+                                $.messager.alert(title, '服务编号已存在', warning, function () {
+                                    $("#serviceNo").textbox("setValue", "");
+                                    $("#serviceNo").textbox().next("span").find("input").focus();
+                                });
+                            }
+                        }
+                    },
+                    error: function (e) {
+                        console.log(e);
+                    }
+                })
+            }
+        });
         $("#depositDate").datebox("setValue", formatterDate(new Date()));
         // 修改逝者证件类型,动态添加输入验证规则
         $("#dpCertType").combobox({
@@ -292,13 +317,12 @@
                         showType: "slide"
                     });
 
+                    $("#dlg").dialog("close");
+                    $("#deposits").datagrid("reload");
                     $.messager.confirm(title, '是否打印寄存单？', function (r) {
                         if (r) {
                             window.open(base + "/deposit/viewPDF/" + sno);
                         }
-
-                        $("#dlg").dialog("close");
-                        $("#deposits").datagrid("reload");
                     });
                 } else {
                     $.messager.alert(title, data.content, error);

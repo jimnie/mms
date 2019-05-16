@@ -159,6 +159,31 @@
             .next("span")
             .find("input")
             .focus();
+        $("#serviceNo").textbox({
+            onChange: function (value) {
+                $.ajax({
+                    type: "POST",
+                    url: base + "/desert/exist",
+                    data: {sno: value},
+                    dataType: "json",
+                    async: false,
+                    success: function (data) {
+                        console.log(data);
+                        if (data.result) {
+                            if (data.result == true) {
+                                $.messager.alert(title, '服务编号已存在', warning, function () {
+                                    $("#serviceNo").textbox("setValue", "");
+                                    $("#serviceNo").textbox().next("span").find("input").focus();
+                                });
+                            }
+                        }
+                    },
+                    error: function (e) {
+                        console.log(e);
+                    }
+                })
+            }
+        });
         // 修改逝者证件类型,动态添加输入验证规则
         $("#dpCertType").combobox({
             onChange: function (newValue, oldValue) {
@@ -217,13 +242,12 @@
                         showType: "slide"
                     });
 
+                    $("#dlg").dialog("close");
+                    $("#deserts").datagrid("reload");
                     $.messager.confirm(title, "是否打印放弃骨灰确认书?", function (r) {
                         if (r) {
                             window.open(base + "/desert/viewPDF/" + sno);
                         }
-
-                        $("#dlg").dialog("close");
-                        $("#deserts").datagrid("reload");
                     });
 
                 } else {

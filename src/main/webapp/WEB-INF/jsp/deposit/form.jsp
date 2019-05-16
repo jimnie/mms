@@ -20,8 +20,7 @@
                             style="width:198px"
                             data-options="required:true,
                            missingMessage:'请扫码或填入服务编号',
-                           validType:'serviceNo',
-                           events:{blur:checkSerivceNo}"
+                           validType:'serviceNo'"
                     />
                 </td>
                 <td style="width: 100px" class="title-bg"></td>
