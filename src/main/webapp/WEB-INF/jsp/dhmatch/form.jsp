@@ -141,16 +141,6 @@
                            validType:'mobile'">
                 </td>
             </tr>
-            <tr>
-                <td align="right" colspan="4">
-                    <a id="clearUtInfo" href="#" class="easyui-linkbutton"
-                       data-options="iconCls:'icon-cancel'"
-                       style="width:135px;margin-top:2px;">清除承办人信息</a>
-                    <a id="readUtIdCard" href="#" class="easyui-linkbutton"
-                       data-options="iconCls:'icon-man'"
-                       style="width:135px;margin-top:2px;">读承办人身份证</a>
-                </td>
-            </tr>
         </table>
     </fieldset>
 </div>
