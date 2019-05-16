@@ -164,14 +164,15 @@
                         showType: 'slide'
                     });
 
-                    $.messager.confirm(title, "是否打印骨灰装置服务确认书和领取业务证明单?", function (r) {
+                    $('#dlg').dialog('close');
+                    $('#dhMatchList').datagrid('reload');
+                    $.messager.confirm(title, "是否打印骨灰装置服务确认书?", function (r) {
                         if (r) {
                             window.open(base + '/draw/viewPdf/' + sno + '/type/cert');
-                            window.open(base + '/draw/viewPdf/' + sno + '/type/conf');
+                            $.messager.confirm(title, "是否打印领取业务证明单?", function (r) {
+                                window.open(base + '/draw/viewPdf/' + sno + '/type/conf');
+                            });
                         }
-
-                        $('#dlg').dialog('close');
-                        $('#dhMatchList').datagrid('reload');
                     });
 
                 } else {
