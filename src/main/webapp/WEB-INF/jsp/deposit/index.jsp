@@ -1,3 +1,4 @@
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <%@ page import="com.educonsulting.mms.util.SpringUtils" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8" %>
@@ -15,10 +16,12 @@
                            data-options="iconCls:'icon-add'" onclick="addDeposit()">
                             <%=SpringUtils.getMessage("page.action.add")%>
                         </a>
-                        <a href="javascript:void(0)" class="easyui-linkbutton"
-                           data-options="iconCls:'icon-edit'" onclick="editDeposit()">
-                            <%=SpringUtils.getMessage("page.action.edit")%>
-                        </a>
+                        <shiro:hasPermission name="deposit:edit">
+                            <a href="javascript:void(0)" class="easyui-linkbutton"
+                               data-options="iconCls:'icon-edit'" onclick="editDeposit()">
+                                <%=SpringUtils.getMessage("page.action.edit")%>
+                            </a>
+                        </shiro:hasPermission>
                         <a href="javascript:void(0)" class="easyui-linkbutton"
                            data-options="iconCls:'icon-more'" onclick="viewDeposit()">
                             <%=SpringUtils.getMessage("page.action.view")%>
