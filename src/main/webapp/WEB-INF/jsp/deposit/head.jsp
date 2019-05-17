@@ -333,6 +333,10 @@
     function editDeposit() {
         var row = $("#deposits").datagrid("getSelected");
         if (row) {
+            if (row.status == 1) {
+                $.messager.alert(title, "状态为已领取，不能修改", error);
+                return;
+            }
             $("#dlg").window("maximize");
             $("#addform").form("load", row);
             $("#dlg")
