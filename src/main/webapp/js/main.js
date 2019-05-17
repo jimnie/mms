@@ -1,8 +1,8 @@
 ﻿$(function () {
 
-    initNavBar();
-    tabDoubleClickEvent();
-    tabRightClickEvent();
+    initNavBar(); // 初始化主功能项
+    tabDoubleClickEvent(); // tab双击事件
+    tabRightClickEvent(); // tab右键事件
 
     $('#css3menu a').click(function () {
         $('#css3menu a').removeClass('active');
@@ -27,6 +27,26 @@
     addModules(modsJson[firstMenuName]); //首次加载basic 左侧菜单
     addMenus();
     showTime();
+
+    $('#editPwd').click(function () {
+        $('#modifyPassword').window('open');
+    });
+
+    $('#btnOk').click(function () {
+        serverLogin();
+    })
+
+    $('#btnCancel').click(function () {
+        closePwd();
+    })
+
+    $('#loginOut').click(function () {
+        $.messager.confirm('系统提示', '您确定要退出本次登录吗?', function (r) {
+            if (r) {
+                location.href = base + "/logout.jsp";
+            }
+        });
+    })
 });
 
 function clearModules() {
@@ -316,81 +336,5 @@ function serverLogin() {
     })
 
 }
-
-$(function () {
-    openPasswordChangingDialog();
-
-    $('#editPwd').click(function () {
-        $('#modifyPassword').window('open');
-    });
-
-    $('#btnOk').click(function () {
-        serverLogin();
-    })
-
-    $('#btnCancel').click(function () {
-        closePwd();
-    })
-
-    $('#loginOut').click(function () {
-        $.messager.confirm('系统提示', '您确定要退出本次登录吗?', function (r) {
-            if (r) {
-                location.href = base + "/logout.jsp";
-            }
-        });
-    })
-    $('#perCenter').click(function () {
-        $('#perForm').form('load', '/cwma/employee/getEmp');
-        $('#perWin').window('open');
-    });
-    $('#editPer').click(function () {
-        $('#perForm').form('submit', {
-            url: '/cwma/employee/employeeUpdate',
-            success: function (data) {
-                data = eval('(' + data + ')');
-                if (data.type == 'success') {
-                    $('#perWin').window('close');
-                    $.messager.alert('操作提示', '修改成功', 'info');
-                } else {
-                    $.messager.alert('操作提示', data.content, 'error');
-                }
-            }
-        });
-    });
-    $('#closePer').click(function () {
-        $('#perWin').window('close');
-    });
-    /*居住地址级联菜单*/
-    /*省份*/
-    $('#nowProvince').combobox({
-        url: "/cwma/area/province",
-        editable: false,
-        method: 'get',
-        valueField: 'areaName',
-        textField: 'areaName',
-        onSelect: function (record) {
-            var areaName = $('#nowProvince').combobox('getValue');
-            $('#nowCity').combobox('reload', base + '/area/getChildrenbyName/' + areaName);
-        }
-    });
-    /*城市*/
-    $('#nowCity').combobox({
-        editable: false,
-        method: 'get',
-        valueField: 'areaName',
-        textField: 'areaName',
-        onSelect: function (record) {
-            var areaName = $('#nowCity').combobox('getValue');
-            $('#nowCounty').combobox('reload', base + '/area/getChildrenbyName/' + areaName);
-        }
-    });
-    /*区县*/
-    $('#nowCounty').combobox({
-        editable: false,
-        method: 'get',
-        valueField: 'areaName',
-        textField: 'areaName'
-    });
-});
 
 /*************************************************************************************************************************************/
