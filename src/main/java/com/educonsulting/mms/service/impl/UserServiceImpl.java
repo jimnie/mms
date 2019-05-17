@@ -2,7 +2,10 @@ package com.educonsulting.mms.service.impl;
 
 import com.educonsulting.mms.Principal;
 import com.educonsulting.mms.dao.UserDao;
-import com.educonsulting.mms.entity.*;
+import com.educonsulting.mms.entity.Authority;
+import com.educonsulting.mms.entity.Group;
+import com.educonsulting.mms.entity.Role;
+import com.educonsulting.mms.entity.User;
 import com.educonsulting.mms.service.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
@@ -42,10 +45,8 @@ public class UserServiceImpl extends BaseServiceImpl<User, Long> implements User
         if (user != null) {
             for (Group group : user.getGroups()) {
                 for (Role role : group.getRoles()) {
-                    for (Resources resource : role.getResources()) {
-                        for (Authority authority : resource.getAuthorities()) {
-                            authorities.add(authority.getPerms());
-                        }
+                    for (Authority authority : role.getAuthorities()) {
+                        authorities.add(authority.getPerms());
                     }
                 }
             }
