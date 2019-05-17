@@ -1,6 +1,4 @@
-<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
-<%@ page
-        language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <%@include file="../common/global.jsp" %>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <title>
