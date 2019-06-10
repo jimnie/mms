@@ -105,6 +105,26 @@
                 return;
             }
         });
+        $("#readRfid").bind("click", function () {
+            var SnEPC = TUHFReader09.Inventory();
+            // 查询电子标签
+            if (SnEPC == "") {
+                $.messager.alert(
+                    title,
+                    "未询查到电子标签",
+                    error
+                );
+            } else {
+                console.log("询查到电子标签");
+                $("#serviceNo").textbox("setValue", "");
+                var EPC_Len = parseInt(SnEPC.substr(0, 2), 16)
+                var EPC = SnEPC.substr(2, EPC_Len * 2); // EPC号码
+                var TID = TUHFReader09.Read(EPC, 2, 4, 2); // 读取TID
+                console.log("EPC:" + EPC);
+                console.log("TID:" + TID);
+                $("#serviceNo").textbox("setValue", TID);
+            }
+        });
     });
 </script>
 <script type="text/javascript">
@@ -141,6 +161,17 @@
 
     // 显示新增存放对话框
     function addDesert() {
+        var port = "4"; // 串口
+        var baud = "5"; // 波特率
+        var sum = TUHFReader09.Open(port, baud);
+        if (sum == "00") {
+            console.log("RFID设备连接成功");
+        } else if (sum == "35") {
+            console.log("RFID设备已连接");
+        } else {
+            $.messager.alert(title, "RFID设备连接失败", error);
+        }
+
         var openState = rdcard.openport();
         if (openState == 0) {
             // $.messager.alert('提示', '开启端口成功', 'info');
@@ -158,31 +189,31 @@
             .next("span")
             .find("input")
             .focus();
-        $("#serviceNo").textbox({
-            onChange: function (value) {
-                $.ajax({
-                    type: "POST",
-                    url: base + "/desert/exist",
-                    data: {sno: value},
-                    dataType: "json",
-                    async: false,
-                    success: function (data) {
-                        console.log(data);
-                        if (data.result) {
-                            if (data.result == true) {
-                                $.messager.alert(title, '服务编号已存在', warning, function () {
-                                    $("#serviceNo").textbox("setValue", "");
-                                    $("#serviceNo").textbox().next("span").find("input").focus();
-                                });
-                            }
-                        }
-                    },
-                    error: function (e) {
-                        console.log(e);
-                    }
-                })
-            }
-        });
+        // $("#serviceNo").textbox({
+        //     onChange: function (value) {
+        //         $.ajax({
+        //             type: "POST",
+        //             url: base + "/desert/exist",
+        //             data: {sno: value},
+        //             dataType: "json",
+        //             async: false,
+        //             success: function (data) {
+        //                 console.log(data);
+        //                 if (data.result) {
+        //                     if (data.result == true) {
+        //                         $.messager.alert(title, '服务编号已存在', warning, function () {
+        //                             $("#serviceNo").textbox("setValue", "");
+        //                             $("#serviceNo").textbox().next("span").find("input").focus();
+        //                         });
+        //                     }
+        //                 }
+        //             },
+        //             error: function (e) {
+        //                 console.log(e);
+        //             }
+        //         })
+        //     }
+        // });
         // 修改逝者证件类型,动态添加输入验证规则
         $("#dpCertType").combobox({
             onChange: function (newValue, oldValue) {
@@ -330,6 +361,13 @@
         if (toSign && !isSigned) {
             $.messager.alert(title, "签名没有完成", warning);
             return;
+        }
+
+        var sum = TUHFReader09.Close();
+        if (sum == "00") {
+            console.log("RFID设备关闭成功");
+        } else {
+            console.log("RFID设备关闭失败");
         }
 
         var closeState;

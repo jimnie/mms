@@ -80,7 +80,7 @@
                 <th
                         data-options="field:'serviceNo',width:100,halign:'center',align:'center',sortable:true"
                 >
-                    服务编号
+                    安放袋编号
                 </th>
                 <th
                         data-options="field:'dpName',width:100,halign:'center',align:'center'"
@@ -187,3 +187,14 @@
     </div>
 </div>
 </body>
+<OBJECT
+        id="TUHFReader09"
+        codebase="UHFReader09Proj.ocx"
+        classid="clsid:14428901-AF2B-4B45-ACBD-0B4779551E5D"
+        width="0"
+        height="0"
+        align="center"
+        hspace="0"
+        vspace="0"
+>
+</OBJECT>

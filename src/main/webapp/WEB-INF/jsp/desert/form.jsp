@@ -8,7 +8,7 @@
         <table class="tab-border">
             <tr>
                 <td style="width: 100px" class="title-bg">
-                    服务编号
+                    安放袋编号
                 </td>
                 <td class="domain-bg">
                     <input type="hidden" id="id" name="id" value=""/>
@@ -18,7 +18,7 @@
                             name="serviceNo"
                             style="width:198px"
                             data-options="required:true,
-                           missingMessage:'请扫码或填入服务编号',
+                           missingMessage:'请放置安放袋读取识别号码',
                            validType:'serviceNo'"
                     />
                 </td>
@@ -128,13 +128,19 @@
             <tr>
                 <td align="right" colspan="4">
                     <a
+                            id="readRfid"
+                            href="#"
+                            class="easyui-linkbutton"
+                            data-options="iconCls:'icon-man'"
+                            style="width:135px;margin-top:2px;"
+                    >读取安放袋编号</a>
+                    <a
                             id="readDpIdCard"
                             href="#"
                             class="easyui-linkbutton"
                             data-options="iconCls:'icon-man'"
                             style="width:135px;margin-top:2px;"
-                    >读逝者身份证</a
-                    >
+                    >读逝者身份证</a>
                 </td>
             </tr>
         </table>
