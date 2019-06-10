@@ -25,7 +25,8 @@
 <noscript>
     <div style="position: absolute; z-index: 100000; height: 2046px; top: 0px; left: 0px;
             width: 100%; background: white; text-align: center;">
-        <img src="images/noscript.gif" alt='<%=SpringUtils.getMessage("page.main.noscript")%>'/>
+        <img src="images/noscript.gif"
+             alt='<%=SpringUtils.getMessage("page.main.noscript")%>'/>
     </div>
 </noscript>
 
@@ -43,9 +44,11 @@
     <ul id="css3menu" style="padding: 0px; margin: 0px; list-type: none; float: left;
             margin-left: 40px;">
     </ul>
+
     <span style="float: right; padding-right: 20px;">
         <label id="bgclock"></label>
     </span>
+
     <span style="float: right; padding-right: 20px;" class="head">
         <%=SpringUtils.getMessage("sys.main.hello")%>
         <label><shiro:principal/></label>
@@ -69,7 +72,8 @@
 </div>
 
 <!-- 内容 -->
-<div id="mainPanle" data-options="region:'center'" style="background: #eee; overflow-y: hidden">
+<div id="mainPanle" data-options="region:'center'"
+     style="background: #eee; overflow-y: hidden">
     <div id="tabs" class="easyui-tabs" data-options="fit:true,border:false">
         <div id="home" title="<%=SpringUtils.getMessage("sys.main.welcomeToUse")%>"
              style="padding: 20px; overflow: hidden;">
@@ -119,7 +123,7 @@
 <div id="modifyPassword" class="easyui-window"
      title="<%=SpringUtils.getMessage("page.main.modifyPassword")%>"
      data-options="iconCls:'icon-save',collapsible:false,minimizable:false,maximizable:false,modal:true,closed:true"
-     style="width: 350px; height: 200px; padding: 5px;
+     style="width: 300px; height: 150px; padding: 5px;
         background: #fafafa;">
     <div class="easyui-layout" data-options="fit:true">
         <div data-options="region:'center',border:false"
@@ -150,7 +154,8 @@
         </div>
         <div region="south" border="false"
              style="text-align: right; height: 30px; line-height: 30px;">
-            <a id="btnOk" class="easyui-linkbutton" icon="icon-ok" href="javascript:void(0)">
+            <a id="btnOk" class="easyui-linkbutton" icon="icon-ok"
+               href="javascript:void(0)">
                 <%=SpringUtils.getMessage("page.main.ok")%>
             </a>
             <a id="btnCancel" class="easyui-linkbutton" icon="icon-cancel"
