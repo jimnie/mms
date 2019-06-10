@@ -8,7 +8,7 @@
         <table class="tab-border">
             <tr>
                 <td style="width: 100px" class="title-bg">
-                    服务编号
+                    安放袋编号
                 </td>
                 <td class="domain-bg">
                     <input type="hidden" id="id" name="id" value="">
