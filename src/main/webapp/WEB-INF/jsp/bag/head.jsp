@@ -125,7 +125,6 @@
         } else if (sum == "35") {
             console.log("RFID设备已连接");
         } else {
-            document.getElementById("Snr").innerText = "";
             $.messager.alert(title, "RFID设备连接失败", error);
         }
 
