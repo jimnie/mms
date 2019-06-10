@@ -90,7 +90,7 @@
             <%=SpringUtils.getMessage("page.action.save")%>
         </a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-cancel"
-           onclick="javascript:$('#dlg').dialog('close')">
+           onclick="closeHandover()">
             <%=SpringUtils.getMessage("page.action.close")%>
         </a>
     </div>
@@ -115,3 +115,14 @@
     </div>
 </div>
 </body>
+<OBJECT
+        id="TUHFReader09"
+        codebase="UHFReader09Proj.ocx"
+        classid="clsid:14428901-AF2B-4B45-ACBD-0B4779551E5D"
+        width="0"
+        height="0"
+        align="center"
+        hspace="0"
+        vspace="0"
+>
+</OBJECT>

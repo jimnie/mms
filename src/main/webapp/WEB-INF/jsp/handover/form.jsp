@@ -8,14 +8,14 @@
         <table class="tab-border">
             <tr>
                 <td style="width: 100px" class="title-bg">
-                    服务编号
+                    安放袋编号
                 </td>
                 <td class="domain-bg">
                     <input type="hidden" id="id" name="id" value="">
                     <input class="easyui-textbox" id="serviceNo"
                            name="serviceNo" style="width:198px"
                            data-options="required:true,
-                           missingMessage:'请扫码或填入服务编号',
+                           missingMessage:'请放置安放袋读取识别号码',
                            validType:'serviceNo',
                            events:{blur:checkSerivceNo}">
                 </td>
@@ -53,6 +53,17 @@
                     <input class="easyui-numberspinner" id="dpAge" name="dpAge"
                            style="width:198px"
                            data-options="required:true,panelHeight:'auto',min:0,max:150,missingMessage:'请填入逝者年龄',validType:'age'">
+                </td>
+            </tr>
+            <tr>
+                <td align="right" colspan="4">
+                    <a
+                            id="readRfid"
+                            href="#"
+                            class="easyui-linkbutton"
+                            data-options="iconCls:'icon-man'"
+                            style="width:135px;margin-top:2px;"
+                    >读取安放袋编号</a>
                 </td>
             </tr>
         </table>

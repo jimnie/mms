@@ -21,11 +21,33 @@
         $(window).resize(function () {
             $('#mainlayout').layout('resize');
         });
+
         $('#handOverList').datagrid({
             onDblClickRow: function (index, row) {
                 $('#view-dialog').window('maximize');
                 $('#viewform').form('load', row);
                 $('#view-dialog').dialog('setTitle', '查看交接记录').dialog('open');
+            }
+        });
+
+        $("#readRfid").bind("click", function () {
+            var SnEPC = TUHFReader09.Inventory();
+            // 查询电子标签
+            if (SnEPC == "") {
+                $.messager.alert(
+                    title,
+                    "未询查到电子标签",
+                    error
+                );
+            } else {
+                console.log("询查到电子标签");
+                $("#serviceNo").textbox("setValue", "");
+                var EPC_Len = parseInt(SnEPC.substr(0, 2), 16)
+                var EPC = SnEPC.substr(2, EPC_Len * 2); // EPC号码
+                var TID = TUHFReader09.Read(EPC, 2, 4, 2); // 读取TID
+                console.log("EPC:" + EPC);
+                console.log("TID:" + TID);
+                $("#serviceNo").textbox("setValue", TID);
             }
         });
     });
@@ -64,6 +86,18 @@
 
     // 显示新增存放对话框
     function addHandover() {
+        var port = "4"; // 串口
+        var baud = "5"; // 波特率
+        var sum = TUHFReader09.Open(port, baud);
+        if (sum == "00") {
+            console.log("RFID设备连接成功");
+        } else if (sum == "35") {
+            console.log("RFID设备已连接");
+        } else {
+            document.getElementById("Snr").innerText = "";
+            $.messager.alert(title, "RFID设备连接失败", error);
+        }
+
         $('#dlg').dialog('setTitle', '新增交接记录').dialog('open');
         $('#dlg').window('maximize')
         $('#addform').form('clear');
@@ -91,6 +125,18 @@
         });
         // TODO: 为方便扫码使用,新增对话框显示后将焦点放到服务编号域
         $('#serviceNo').textbox().next('span').find('input').focus();
+    }
+
+    // 关闭新增寄存窗口时关闭读卡器端口
+    function closeHandover() {
+        var sum = TUHFReader09.Close();
+        if (sum == "00") {
+            console.log("RFID设备关闭成功");
+        } else {
+            console.log("RFID设备关闭失败");
+        }
+
+        $("#dlg").dialog("close");
     }
 
     // 保存新增的存放信息
@@ -189,7 +235,7 @@
                 console.log(data);
                 if (data.result) {
                     if (data.result == true) {
-                        $.messager.alert(title, '服务编号已存在', warning, function () {
+                        $.messager.alert(title, '安放袋编号已存在', warning, function () {
                             $("#serviceNo").textbox("setValue", "");
                             $("#serviceNo").textbox().next("span").find("input").focus();
                         });
