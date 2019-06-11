@@ -48,13 +48,13 @@
                 <th data-options="field:'serviceNo',width:150,halign:'center',align:'center',sortable:true">
                     安放袋编号
                 </th>
-                <th data-options="field:'utName',width:100,halign:'center',align:'center'">
-                    领取人
+                <th data-options="field:'dpName',width:100,halign:'center',align:'center'">
+                    逝者姓名
                 </th>
-                <th data-options="field:'utCertType',width:100,halign:'center',align:'center',formatter:certTypeFormatter">
+                <th data-options="field:'dpCertType',width:100,halign:'center',align:'center',formatter:certTypeFormatter">
                     证件类型
                 </th>
-                <th data-options="field:'utCertNo',width:160,halign:'center',align:'center'">
+                <th data-options="field:'dpCertNo',width:160,halign:'center',align:'center'">
                     证件号码
                 </th>
                 <th data-options="field:'createDate',width:150,halign:'center',align:'center'">
