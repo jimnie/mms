@@ -341,12 +341,6 @@
                         showType: "slide"
                     });
 
-                    var sum = TUHFReader09.Close();
-                    if (sum == "00") {
-                        console.log("RFID设备关闭成功");
-                    } else {
-                        console.log("RFID设备关闭失败");
-                    }
                     $("#dlg").dialog("close");
                     $("#deposits").datagrid("reload");
                     $.messager.confirm(title, '是否打印寄存单？', function (r) {
