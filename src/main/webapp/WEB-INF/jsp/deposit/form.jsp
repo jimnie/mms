@@ -9,7 +9,7 @@
         <table class="tab-border">
             <tr>
                 <td style="width: 100px" class="title-bg">
-                    服务编号
+                    安放袋编号
                 </td>
                 <td class="domain-bg">
                     <input type="hidden" id="id" name="id" value=""/>
@@ -19,7 +19,7 @@
                             name="serviceNo"
                             style="width:198px"
                             data-options="required:true,
-                           missingMessage:'请扫码或填入服务编号',
+                            missingMessage:'请放置安放袋读取识别号码',
                            validType:'serviceNo'"
                     />
                 </td>

@@ -214,7 +214,7 @@
                         console.log(data);
                         if (data.result) {
                             if (data.result == true) {
-                                $.messager.alert(title, '服务编号已存在', warning, function () {
+                                $.messager.alert(title, '安放袋编号已存在', warning, function () {
                                     $("#serviceNo").textbox("setValue", "");
                                     $("#serviceNo").textbox().next("span").find("input").focus();
                                 });
@@ -227,6 +227,31 @@
                 })
             }
         });
+
+        $("#dpCertNo").textbox({
+            onChange: function (value) {
+                // console.log("通过逝者身份证号查询已绑定的安放袋编号");
+                $.ajax({
+                    type: "POST",
+                    url: base + "/bag/findBag",
+                    data: {certNo: value},
+                    dataType: "json",
+                    async: false,
+                    success: function (data) {
+                        console.log(data);
+                        if (data.result) {
+                            $("#serviceNo").textbox("setValue", data.result.serviceNo);
+                        } else {
+                            $.messager.alert(title, '没有找到安放袋领取信息', warning);
+                        }
+                    },
+                    error: function (e) {
+                        console.log(e);
+                    }
+                })
+            }
+        });
+
         $("#depositDate").datebox("setValue", formatterDate(new Date()));
         // 修改逝者证件类型,动态添加输入验证规则
         $("#dpCertType").combobox({
@@ -307,6 +332,7 @@
             },
             success: function (data) {
                 data = eval("(" + data + ")");
+                console.log("data:" + data);
                 if (data.type == "success") {
                     $.messager.show({
                         title: title,
@@ -315,6 +341,12 @@
                         showType: "slide"
                     });
 
+                    var sum = TUHFReader09.Close();
+                    if (sum == "00") {
+                        console.log("RFID设备关闭成功");
+                    } else {
+                        console.log("RFID设备关闭失败");
+                    }
                     $("#dlg").dialog("close");
                     $("#deposits").datagrid("reload");
                     $.messager.confirm(title, '是否打印寄存单？', function (r) {
@@ -419,6 +451,12 @@
             return;
         }
 
+        var sum = TUHFReader09.Close();
+        if (sum == "00") {
+            console.log("RFID设备关闭成功");
+        } else {
+            console.log("RFID设备关闭失败");
+        }
         var closeState;
         closeState = rdcard.closeport(); // 关闭端口
         if (closeState == 0) {

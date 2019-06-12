@@ -49,8 +49,8 @@
             <thead data-options="frozen:true">
             <tr>
                 <th data-options="field:'id',hidden:true">id</th>
-                <th data-options="field:'serviceNo',width:100,halign:'center',align:'center',sortable:true">
-                    服务编号
+                <th data-options="field:'serviceNo',width:150,halign:'center',align:'center',sortable:true">
+                    安放袋编号
                 </th>
                 <th data-options="field:'dpName',width:100,halign:'center',align:'center'">
                     逝者姓名
@@ -61,13 +61,13 @@
                 <th data-options="field:'dpAge',width:80,halign:'center',align:'center'">
                     年龄
                 </th>
-                <th data-options="field:'dpCertNo',width:140,halign:'center',align:'center'">
+                <th data-options="field:'dpCertNo',width:160,halign:'center',align:'center'">
                     证件号码
                 </th>
-                <th data-options="field:'depositDate',width:100,halign:'center',align:'center',sortable:true">
+                <th data-options="field:'depositDate',width:120,halign:'center',align:'center',sortable:true">
                     存入日期
                 </th>
-                <th data-options="field:'preDrawDate',width:100,halign:'center',align:'center'">
+                <th data-options="field:'preDrawDate',width:120,halign:'center',align:'center'">
                     取出日期
                 </th>
                 <th data-options="field:'position',width:100,halign:'center',align:'center'">
