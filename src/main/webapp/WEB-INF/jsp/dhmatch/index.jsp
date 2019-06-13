@@ -38,8 +38,8 @@
                 <th data-options="field:'utCertType',hidden:true">id</th>
                 <th data-options="field:'utCertNo',hidden:true">id</th>
                 <th data-options="field:'phone',hidden:true">id</th>
-                <th data-options="field:'serviceNo',width:100,halign:'center',align:'center'">
-                    服务编号
+                <th data-options="field:'serviceNo',width:150,halign:'center',align:'center'">
+                    安放袋编号
                 </th>
                 <th data-options="field:'dpName',width:100,halign:'center',align:'center'">
                     逝者姓名

@@ -61,6 +61,7 @@
             $('#utName').textbox('clear');
             $('#phone').textbox('clear');
         });
+
     });
 </script>
 <script type="text/javascript">
@@ -214,6 +215,12 @@
             callback: function (data) {
                 $('#dhMatchList').datagrid('loadData', {total: 0, rows: []});
                 $('#dhMatchList').datagrid('load', data);
+                var closed = TUHFReader09.Close();
+                if (closed == "00") {
+                    console.log("RFID设备关闭成功");
+                } else {
+                    console.log("RFID设备关闭失败");
+                }
             }
         });
     }
