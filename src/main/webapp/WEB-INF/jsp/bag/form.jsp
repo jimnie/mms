@@ -19,9 +19,9 @@
                             name="serviceNo"
                             style="width:198px"
                             data-options="required:true,
-                           missingMessage:'请放置安放袋读取识别号码',
-                           validType:'serviceNo'"
-                    />
+
+                    /> missingMessage:'请放置安放袋读取识别号码',
+                    validType:'serviceNo'"
                 </td>
             </tr>
             <tr>
