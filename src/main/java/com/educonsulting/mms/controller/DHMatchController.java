@@ -39,7 +39,7 @@ public class DHMatchController extends BaseController {
                        @RequestParam(value = "page", required = false) String page,
                        @RequestParam(value = "sort", required = false) String sort,
                        @RequestParam(value = "order", required = false) String order,
-                       @RequestParam(value = "serviceNo", required = false) String serviceNo,
+                       @RequestParam(value = "serviceNo2", required = false) String serviceNo,
                        @RequestParam(value = "dpName", required = false) String dpName) {
 //        List<DHMatch> list = dhMatchService.findDHMatch(serviceNo, dpName);
 //        return list;
