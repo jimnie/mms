@@ -214,7 +214,7 @@
                         console.log(data);
                         if (data.result) {
                             if (data.result == true) {
-                                $.messager.alert(title, '安放袋编号已存在', warning, function () {
+                                $.messager.alert(title, '已办理存放业务', warning, function () {
                                     $("#serviceNo").textbox("setValue", "");
                                     $("#serviceNo").textbox().next("span").find("input").focus();
                                 });
@@ -445,12 +445,6 @@
             return;
         }
 
-        var sum = TUHFReader09.Close();
-        if (sum == "00") {
-            console.log("RFID设备关闭成功");
-        } else {
-            console.log("RFID设备关闭失败");
-        }
         var closeState;
         closeState = rdcard.closeport(); // 关闭端口
         if (closeState == 0) {

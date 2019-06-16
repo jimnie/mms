@@ -46,7 +46,7 @@
             <thead data-options="frozen:true">
             <tr>
                 <th data-options="field:'id',hidden:true">id</th>
-                <th data-options="field:'serviceNo',width:100,halign:'center',align:'center',sortable:true">
+                <th data-options="field:'serviceNo',width:150,halign:'center',align:'center',sortable:true">
                     安放袋编号
                 </th>
                 <th data-options="field:'dpName',width:100,halign:'center',align:'center'">

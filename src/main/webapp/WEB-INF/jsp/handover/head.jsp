@@ -31,6 +31,7 @@
         });
 
         $("#readRfid").bind("click", function () {
+            $("#serviceNo").textbox("clear");
             var SnEPC = TUHFReader09.Inventory();
             // 查询电子标签
             if (SnEPC == "") {
@@ -41,8 +42,7 @@
                 );
             } else {
                 console.log("询查到电子标签");
-                $("#serviceNo").textbox("setValue", "");
-                var EPC_Len = parseInt(SnEPC.substr(0, 2), 16)
+                var EPC_Len = parseInt(SnEPC.substr(0, 2), 16);
                 var EPC = SnEPC.substr(2, EPC_Len * 2); // EPC号码
                 var TID = TUHFReader09.Read(EPC, 2, 4, 2); // 读取TID
                 console.log("EPC:" + EPC);
@@ -94,7 +94,6 @@
         } else if (sum == "35") {
             console.log("RFID设备已连接");
         } else {
-            document.getElementById("Snr").innerText = "";
             $.messager.alert(title, "RFID设备连接失败", error);
         }
 
@@ -110,21 +109,46 @@
                 $('#position').combobox('setValue', json[0].code);
             }
         });
+        // TODO: 为方便扫码使用,新增对话框显示后将焦点放到服务编号域
+        $('#serviceNo').textbox().next('span').find('input').focus();
         $('#serviceNo').textbox({
             onChange: function (newValue, oldValue) {
                 $.getJSON(base + '/deposit/findDepositByServiceNo/' + newValue, function (json) {
                     if (json.length == 0) {
-                        $.messager.alert(title, '没有找到匹配的寄存登记信息', warning);
+                        $.messager.alert(title, '没有找到匹配的存放记录', warning, function () {
+                            $("#serviceNo").textbox("clear");
+                            $("#serviceNo").textbox().next("span").find("input").focus();
+                        });
                     } else {
-                        $('#dpName').textbox('setValue', json[0].dpName);
-                        $('#dpSex').combobox('setValue', json[0].dpSex);
-                        $('#dpAge').numberspinner('setValue', json[0].dpAge);
+                        $.ajax({
+                            type: "POST",
+                            url: base + "/handover/exist",
+                            data: {sno: newValue},
+                            dataType: "json",
+                            async: false,
+                            success: function (data) {
+                                console.log(data);
+                                if (data.result) {
+                                    if (data.result == true) {
+                                        $.messager.alert(title, '已办理交接业务', warning, function () {
+                                            $("#serviceNo").textbox("clear");
+                                            $("#serviceNo").textbox().next("span").find("input").focus();
+                                        });
+                                    } else {
+                                        $('#dpName').textbox('setValue', json[0].dpName);
+                                        $('#dpSex').combobox('setValue', json[0].dpSex);
+                                        $('#dpAge').numberspinner('setValue', json[0].dpAge);
+                                    }
+                                }
+                            },
+                            error: function (e) {
+                                console.log(e);
+                            }
+                        })
                     }
                 });
             }
         });
-        // TODO: 为方便扫码使用,新增对话框显示后将焦点放到服务编号域
-        $('#serviceNo').textbox().next('span').find('input').focus();
     }
 
     // 关闭新增寄存窗口时关闭读卡器端口
@@ -161,6 +185,12 @@
                         timeout: 2000,
                         showType: 'slide'
                     });
+                    var sum = TUHFReader09.Close();
+                    if (sum == "00") {
+                        console.log("RFID设备关闭成功");
+                    } else {
+                        console.log("RFID设备关闭失败");
+                    }
                     $('#dlg').dialog('close');
                     $('#handOverList').datagrid('reload');
                 } else {
