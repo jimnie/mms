@@ -11,7 +11,7 @@
 
     <properties>
         <spring.version>4.3.23.RELEASE</spring.version>
-        <shiro.version>1.4.0</shiro.version>
+        <shiro.version>1.4.1</shiro.version>
         <jackson.version>2.9.8</jackson.version>
         <hibernate.version>4.3.11.Final</hibernate.version>
         <log4j2.version>2.10.0</log4j2.version>
@@ -210,12 +210,6 @@
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-web</artifactId>
-            <version>${log4j2.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-slf4j-impl</artifactId>
             <version>${log4j2.version}</version>
         </dependency>
 
@@ -548,29 +542,29 @@
         </dependency>
 
         <!--DB Connection Pool-->
-        <dependency>
-            <groupId>com.mchange</groupId>
-            <artifactId>c3p0</artifactId>
-            <version>0.9.5.4</version>
-        </dependency>
+        <!-- <dependency>
+             <groupId>com.mchange</groupId>
+             <artifactId>c3p0</artifactId>
+             <version>0.9.5.4</version>
+         </dependency>
 
-        <dependency>
-            <groupId>com.mchange</groupId>
-            <artifactId>mchange-commons-java</artifactId>
-            <version>0.2.15</version>
-        </dependency>
+         <dependency>
+             <groupId>com.mchange</groupId>
+             <artifactId>mchange-commons-java</artifactId>
+             <version>0.2.15</version>
+         </dependency>-->
 
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
-            <version>1.1.16</version>
+            <version>1.1.17</version>
         </dependency>
 
         <!--DB JDBC-->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.47</version>
+            <version>8.0.16</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports -->
