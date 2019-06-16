@@ -19,9 +19,8 @@
                             name="serviceNo"
                             style="width:198px"
                             data-options="required:true,
-
-                    /> missingMessage:'请放置安放袋读取识别号码',
-                    validType:'serviceNo'"
+                    missingMessage:'请放置安放袋读取识别号码',
+                    validType:'serviceNo'"/>
                 </td>
             </tr>
             <tr>
@@ -41,7 +40,7 @@
 <div style="padding-top: 20px;">
     <fieldset class="fieldset" style="width:1103px">
         <legend class="legend">
-            承办人信息
+            逝者信息
         </legend>
         <table class="tab-border">
             <tr>
@@ -51,8 +50,8 @@
                 <td class="domain-bg">
                     <input
                             class="easyui-combobox"
-                            id="utCertType"
-                            name="utCertType"
+                            id="dpCertType"
+                            name="dpCertType"
                             style="width:198px"
                             data-options="url:'${pageContext.request.contextPath}/dict/findDict/certType',
                                                 editable:false,
@@ -61,7 +60,7 @@
                                                 textField:'name',
                                                 panelHeight:'auto',
                                                 required:true,
-                                                missingMessage:'请选择承办人证件类型'"
+                                                missingMessage:'请选择逝者证件类型'"
                     />
                 </td>
                 <td style="width: 100px" class="title-bg">
@@ -70,10 +69,10 @@
                 <td class="domain-bg">
                     <input
                             class="easyui-textbox"
-                            id="utCertNo"
-                            name="utCertNo"
+                            id="dpCertNo"
+                            name="dpCertNo"
                             style="width:198px"
-                            data-options="required:true,missingMessage:'请填入承办人证件号码'"
+                            data-options="required:true,missingMessage:'请填入逝者证件号码'"
                     />
                 </td>
             </tr>
@@ -84,11 +83,11 @@
                 <td class="domain-bg">
                     <input
                             class="easyui-textbox"
-                            id="utName"
-                            name="utName"
+                            id="dpName"
+                            name="dpName"
                             style="width:198px"
                             data-options="required:true,
-                           missingMessage:'请填入承办人姓名',
+                           missingMessage:'请填入逝者姓名',
                            validType:['chinese','length[2,5]']"
                     />
                 </td>
@@ -105,7 +104,7 @@
                             class="easyui-linkbutton"
                             data-options="iconCls:'icon-man'"
                             style="width:135px;margin-top:2px;"
-                    >读承办人身份证</a>
+                    >读逝者身份证</a>
                 </td>
             </tr>
         </table>

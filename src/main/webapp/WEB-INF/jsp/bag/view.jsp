@@ -23,7 +23,7 @@
 <div style="padding-top: 20px;">
     <fieldset class="fieldset" style="width:1103px">
         <legend class="legend">
-            承办人信息
+            逝者信息
         </legend>
         <table class="tab-border">
             <tr>
@@ -31,7 +31,7 @@
                     证件类型
                 </td>
                 <td class="domain-bg">
-                    <input class="easyui-combobox" id="utCertType" name="utCertType"
+                    <input class="easyui-combobox" id="dpCertType" name="dpCertType"
                            style="width:198px"
                            data-options="url:'${pageContext.request.contextPath}/dict/findDict/certType',
                                                 method:'get',
@@ -43,7 +43,7 @@
                     证件号码
                 </td>
                 <td class="domain-bg">
-                    <input class="easyui-textbox" id="utCertNo" name="utCertNo"
+                    <input class="easyui-textbox" id="dpCertNo" name="dpCertNo"
                            style="width:198px"
                            data-options="disabled:true">
                 </td>
@@ -53,7 +53,7 @@
                     姓名
                 </td>
                 <td class="domain-bg">
-                    <input class="easyui-textbox" id="utName" name="utName"
+                    <input class="easyui-textbox" id="dpName" name="dpName"
                            style="width:198px"
                            data-options="disabled:true">
                 </td>

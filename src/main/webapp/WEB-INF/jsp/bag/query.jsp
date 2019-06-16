@@ -10,10 +10,10 @@
 
             <tr>
                 <td class="title-bg">
-                    领取人
+                    逝者姓名
                 </td>
-                <td class="domain-bg"><input class="easyui-textbox" id="utName"
-                                             name="utName">
+                <td class="domain-bg"><input class="easyui-textbox" id="dpName"
+                                             name="dpName">
                 </td>
             </tr>
 

@@ -38,9 +38,31 @@
         $("#readUtIdCard").bind("click", function () {
             var readState = rdcard.readcard(); // 调用readcard操作之后就可以从rdcard对象取出身份证信息
             if (readState == 0) {
-                $("#utCertType").combobox("setValue", "0");
-                $("#utCertNo").textbox("setValue", rdcard.CardNo);
-                $("#utName").textbox("setValue", rdcard.NameL);
+                let cardNo = rdcard.CardNo;
+                let name = rdcard.NameL;
+                $.ajax({
+                    type: "POST",
+                    url: base + "/bag/findBag",
+                    data: {certNo: cardNo},
+                    dataType: "json",
+                    async: false,
+                    success: function (data) {
+                        console.log(data);
+                        if (data.result) {
+                            $("#dpCertType").combobox("clear");
+                            $("#dpCertNo").textbox("clear");
+                            $("#dpName").textbox("clear");
+                            $.messager.alert(title, '已领取安放袋', warning);
+                        } else {
+                            $("#dpCertType").combobox("setValue", "0");
+                            $("#dpCertNo").textbox("setValue", cardNo);
+                            $("#dpName").textbox("setValue", name);
+                        }
+                    },
+                    error: function (e) {
+                        console.log(e);
+                    }
+                })
                 return;
             } else {
                 if (readState == -7) {
@@ -62,6 +84,7 @@
         });
 
         $("#readRfid").bind("click", function () {
+            $("#serviceNo").textbox("clear");
             var SnEPC = TUHFReader09.Inventory();
             // 查询电子标签
             if (SnEPC == "") {
@@ -72,15 +95,33 @@
                 );
             } else {
                 console.log("询查到电子标签");
-                $("#serviceNo").textbox("setValue", "");
-                var EPC_Len = parseInt(SnEPC.substr(0, 2), 16)
+                var EPC_Len = parseInt(SnEPC.substr(0, 2), 16);
                 var EPC = SnEPC.substr(2, EPC_Len * 2); // EPC号码
                 var TID = TUHFReader09.Read(EPC, 2, 4, 2); // 读取TID
                 console.log("EPC:" + EPC);
                 console.log("TID:" + TID);
-                $("#serviceNo").textbox("setValue", TID);
+                $.ajax({
+                    type: "POST",
+                    url: base + "/bag/findBagWithServiceNo",
+                    data: {serviceNo: TID},
+                    dataType: "json",
+                    async: false,
+                    success: function (data) {
+                        console.log(data);
+                        if (data.result) {
+                            $.messager.alert(title, '安放袋编号已登记', warning);
+                        } else {
+                            $("#serviceNo").textbox("setValue", TID);
+                        }
+                    },
+                    error: function (e) {
+                        console.log(e);
+                    }
+                })
+
             }
         });
+
     });
 </script>
 <script type="text/javascript">
@@ -145,23 +186,22 @@
             .next("span")
             .find("input")
             .focus();
-        // $("#serviceNo").textbox({
+        // $("#dpCertNo").textbox({
         //     onChange: function (value) {
+        //         // console.log("通过逝者身份证号查询已绑定的安放袋编号");
         //         $.ajax({
         //             type: "POST",
-        //             url: base + "/deposit/exist",
-        //             data: {sno: value},
+        //             url: base + "/bag/findBag",
+        //             data: {certNo: value},
         //             dataType: "json",
         //             async: false,
         //             success: function (data) {
         //                 console.log(data);
         //                 if (data.result) {
-        //                     if (data.result == true) {
-        //                         $.messager.alert(title, '服务编号已存在', warning, function () {
-        //                             $("#serviceNo").textbox("setValue", "");
-        //                             $("#serviceNo").textbox().next("span").find("input").focus();
-        //                         });
-        //                     }
+        //                     $("#dpCertType").combobox("clear");
+        //                     $("#dpCertNo").textbox("clear");
+        //                     $("#dpName").textbox("clear");
+        //                     $.messager.alert(title, '已领取安放袋', warning);
         //                 }
         //             },
         //             error: function (e) {
@@ -171,16 +211,16 @@
         //     }
         // });
         // 修改承办人证件类型,动态添加输入验证规则
-        $("#utCertType").combobox({
+        $("#dpCertType").combobox({
             onChange: function (newValue, oldValue) {
                 // 清空证件号码域
-                $("#utCertNo").textbox("setValue", "");
+                $("#dpCertNo").textbox("setValue", "");
                 if (newValue == 0) {
-                    $("#utCertNo").textbox({
+                    $("#dpCertNo").textbox({
                         validType: ["certNo", "certNoLen[18]"]
                     });
                 } else {
-                    $("#utCertNo").textbox({
+                    $("#dpCertNo").textbox({
                         validType: "certNoLen[20]"
                     });
                 }
