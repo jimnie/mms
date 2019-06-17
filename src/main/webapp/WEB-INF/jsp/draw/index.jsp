@@ -51,7 +51,7 @@
                 <th data-options="field:'magcardState',hidden:true">id</th>
                 <th data-options="field:'memo',hidden:true">id</th>
                 <th data-options="field:'serviceNo',width:100,halign:'center',align:'center',sortable:true">
-                    服务编号
+                    安放袋编号
                 </th>
                 <th data-options="field:'dpName',width:100,halign:'center',align:'center'">
                     逝者姓名

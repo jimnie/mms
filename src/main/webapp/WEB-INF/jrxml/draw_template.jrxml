@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
@@ -42,7 +42,7 @@
     <title>
         <band height="85" splitType="Stretch">
             <staticText>
-                <reportElement x="3" y="22" width="550" height="60"
+                <reportElement x="3" y="0" width="550" height="80"
                                uuid="268f26b9-3ef9-42cb-867f-203462c3eccb"/>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
                     <font fontName="黑体" size="26" isBold="true"/>
@@ -54,491 +54,561 @@
     <detail>
         <band height="710" splitType="Stretch">
             <staticText>
-                <reportElement x="3" y="4" width="99" height="50"
-                               uuid="b0415ec9-6a36-41a0-b28c-45d03c861c89"/>
+                <reportElement x="2" y="2" width="100" height="38"
+                               uuid="b0415ec9-6a36-41a0-b28c-45d03c861c89">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
                 <box>
                     <pen lineWidth="1.0" lineStyle="Solid"/>
-                    <topPen lineWidth="2.0"/>
-                    <leftPen lineWidth="2.0"/>
-                    <bottomPen lineWidth="1.0"/>
-                    <rightPen lineWidth="1.0"/>
-                </box>
-                <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font fontName="华文仿宋" size="18"/>
-                </textElement>
-                <text><![CDATA[服务编号]]></text>
-            </staticText>
-            <staticText>
-                <reportElement x="3" y="54" width="99" height="50"
-                               uuid="f4ad3305-63c3-4e57-9795-98d920e37d21"/>
-                <box>
-                    <topPen lineWidth="1.0"/>
-                    <leftPen lineWidth="2.0"/>
-                    <bottomPen lineWidth="1.0"/>
-                    <rightPen lineWidth="1.0"/>
-                </box>
-                <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font fontName="华文仿宋" size="18"/>
-                </textElement>
-                <text><![CDATA[逝者姓名]]></text>
-            </staticText>
-            <staticText>
-                <reportElement x="231" y="54" width="99" height="50"
-                               uuid="5fd833f9-b3ba-48f0-ad00-7dac62e57030"/>
-                <box>
-                    <topPen lineWidth="1.0"/>
-                    <leftPen lineWidth="1.0"/>
-                    <bottomPen lineWidth="1.0"/>
-                    <rightPen lineWidth="1.0"/>
-                </box>
-                <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font fontName="华文仿宋" size="18"/>
-                </textElement>
-                <text><![CDATA[性别]]></text>
-            </staticText>
-            <staticText>
-                <reportElement x="3" y="104" width="99" height="50"
-                               uuid="bb66f356-f08e-4e2f-a04f-a819c2f59848"/>
-                <box>
-                    <topPen lineWidth="1.0"/>
-                    <leftPen lineWidth="2.0"/>
-                    <bottomPen lineWidth="1.0"/>
-                    <rightPen lineWidth="1.0"/>
-                </box>
-                <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font fontName="华文仿宋" size="18"/>
-                </textElement>
-                <text><![CDATA[证件类型]]></text>
-            </staticText>
-            <staticText>
-                <reportElement x="231" y="104" width="99" height="50"
-                               uuid="d4ad7369-58b1-4765-a5f2-294d59a3e83d"/>
-                <box>
-                    <topPen lineWidth="1.0"/>
-                    <leftPen lineWidth="1.0"/>
-                    <bottomPen lineWidth="1.0"/>
-                    <rightPen lineWidth="1.0"/>
-                </box>
-                <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font fontName="华文仿宋" size="18"/>
-                </textElement>
-                <text><![CDATA[证件号码]]></text>
-            </staticText>
-            <staticText>
-                <reportElement x="3" y="154" width="99" height="50"
-                               uuid="c96eaadc-241c-421c-99ce-e775ddc66e30"/>
-                <box>
-                    <topPen lineWidth="1.0"/>
-                    <leftPen lineWidth="2.0"/>
-                    <bottomPen lineWidth="1.0"/>
-                    <rightPen lineWidth="1.0"/>
-                </box>
-                <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font fontName="华文仿宋" size="18"/>
-                </textElement>
-                <text><![CDATA[承办人姓名]]></text>
-            </staticText>
-            <staticText>
-                <reportElement x="231" y="154" width="99" height="50"
-                               uuid="b0115ce3-b8cb-47b5-acfe-cefb5207e43e"/>
-                <box>
-                    <topPen lineWidth="1.0"/>
-                    <leftPen lineWidth="1.0"/>
-                    <bottomPen lineWidth="1.0"/>
-                    <rightPen lineWidth="1.0"/>
-                </box>
-                <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font fontName="华文仿宋" size="18"/>
-                </textElement>
-                <text><![CDATA[联系电话]]></text>
-            </staticText>
-            <staticText>
-                <reportElement x="392" y="54" width="99" height="50"
-                               uuid="b66b2086-073d-4044-96db-5c90ba00b183"/>
-                <box>
-                    <topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-                    <leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <topPen lineWidth="2.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="2.0" lineStyle="Solid" lineColor="#000000"/>
                     <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
                     <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
                 </box>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font fontName="华文仿宋" size="18"/>
+                    <font fontName="华文仿宋" size="14"/>
+                </textElement>
+                <text><![CDATA[服务编号]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="2" y="40" width="100" height="38"
+                               uuid="f4ad3305-63c3-4e57-9795-98d920e37d21">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="2.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="华文仿宋" size="14"/>
+                </textElement>
+                <text><![CDATA[逝者姓名]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="231" y="40" width="99" height="38"
+                               uuid="5fd833f9-b3ba-48f0-ad00-7dac62e57030">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="华文仿宋" size="14"/>
+                </textElement>
+                <text><![CDATA[性别]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="2" y="78" width="100" height="38"
+                               uuid="bb66f356-f08e-4e2f-a04f-a819c2f59848">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="2.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="华文仿宋" size="14"/>
+                </textElement>
+                <text><![CDATA[证件类型]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="231" y="78" width="99" height="38"
+                               uuid="d4ad7369-58b1-4765-a5f2-294d59a3e83d">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="华文仿宋" size="14"/>
+                </textElement>
+                <text><![CDATA[证件号码]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="2" y="116" width="100" height="38"
+                               uuid="c96eaadc-241c-421c-99ce-e775ddc66e30">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="2.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="华文仿宋" size="14"/>
+                </textElement>
+                <text><![CDATA[承办人姓名]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="231" y="116" width="99" height="38"
+                               uuid="b0115ce3-b8cb-47b5-acfe-cefb5207e43e">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="华文仿宋" size="14"/>
+                </textElement>
+                <text><![CDATA[联系电话]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="400" y="40" width="91" height="38"
+                               uuid="b66b2086-073d-4044-96db-5c90ba00b183">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="华文仿宋" size="14"/>
                 </textElement>
                 <text><![CDATA[年龄]]></text>
             </staticText>
             <staticText>
-                <reportElement x="231" y="204" width="99" height="55"
-                               uuid="ce24eb44-2fdd-499d-9174-e16013b7aa5a"/>
+                <reportElement x="231" y="154" width="99" height="38"
+                               uuid="ce24eb44-2fdd-499d-9174-e16013b7aa5a">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
                 <box>
-                    <topPen lineWidth="1.0"/>
-                    <leftPen lineWidth="1.0"/>
-                    <bottomPen lineWidth="1.0"/>
-                    <rightPen lineWidth="1.0"/>
+                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
                 </box>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font fontName="华文仿宋" size="18"/>
+                    <font fontName="华文仿宋" size="14"/>
                 </textElement>
                 <text><![CDATA[承办人身份
 证件号码]]></text>
             </staticText>
             <staticText>
-                <reportElement x="3" y="359" width="99" height="55"
-                               uuid="02eb8bf8-46d7-4f8c-a778-7733d830b2f9"/>
+                <reportElement x="2" y="268" width="100" height="38"
+                               uuid="02eb8bf8-46d7-4f8c-a778-7733d830b2f9">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
                 <box>
-                    <topPen lineWidth="1.0"/>
-                    <leftPen lineWidth="2.0"/>
-                    <bottomPen lineWidth="1.0"/>
-                    <rightPen lineWidth="1.0"/>
+                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="2.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
                 </box>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font fontName="华文仿宋" size="18"/>
+                    <font fontName="华文仿宋" size="14"/>
                 </textElement>
                 <text><![CDATA[备     注]]></text>
             </staticText>
             <staticText>
-                <reportElement x="3" y="414" width="99" height="171"
+                <reportElement x="2" y="306" width="100" height="171"
                                uuid="ebc40a7c-e8a2-4255-80a6-8e0c7763af5f"/>
                 <box>
-                    <topPen lineWidth="1.0"/>
-                    <leftPen lineWidth="2.0"/>
-                    <bottomPen lineWidth="1.0"/>
-                    <rightPen lineWidth="1.0"/>
+                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="2.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
                 </box>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font fontName="华文仿宋" size="18"/>
+                    <font fontName="华文仿宋" size="14"/>
                 </textElement>
                 <text><![CDATA[确认签字]]></text>
             </staticText>
             <staticText>
-                <reportElement x="3" y="585" width="99" height="50"
-                               uuid="6e4582d7-8a50-41c1-9d81-80200e596408"/>
+                <reportElement x="2" y="477" width="100" height="38"
+                               uuid="6e4582d7-8a50-41c1-9d81-80200e596408">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
                 <box>
-                    <topPen lineWidth="1.0"/>
-                    <leftPen lineWidth="2.0"/>
-                    <bottomPen lineWidth="2.0"/>
-                    <rightPen lineWidth="1.0"/>
+                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="2.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="2.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
                 </box>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font fontName="华文仿宋" size="18"/>
+                    <font fontName="华文仿宋" size="14"/>
                 </textElement>
                 <text><![CDATA[经办日期]]></text>
             </staticText>
             <staticText>
-                <reportElement x="3" y="204" width="99" height="55"
-                               uuid="14efd560-279a-403f-8c8c-48555494e319"/>
+                <reportElement x="2" y="154" width="100" height="38"
+                               uuid="14efd560-279a-403f-8c8c-48555494e319">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
                 <box>
-                    <topPen lineWidth="1.0"/>
-                    <leftPen lineWidth="2.0"/>
-                    <bottomPen lineWidth="1.0"/>
-                    <rightPen lineWidth="1.0"/>
+                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="2.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
                 </box>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font fontName="华文仿宋" size="18"/>
+                    <font fontName="华文仿宋" size="14"/>
                 </textElement>
                 <text><![CDATA[承办人身份
 证件类型]]></text>
             </staticText>
             <textField>
-                <reportElement x="102" y="4" width="451" height="50"
-                               uuid="a9b3aabf-1d5b-4284-b80f-93f9fb04f051"/>
+                <reportElement x="102" y="2" width="451" height="38"
+                               uuid="a9b3aabf-1d5b-4284-b80f-93f9fb04f051">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
                 <box>
-                    <topPen lineWidth="2.0"/>
-                    <leftPen lineWidth="1.0"/>
-                    <bottomPen lineWidth="1.0"/>
-                    <rightPen lineWidth="2.0"/>
+                    <topPen lineWidth="2.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="2.0" lineStyle="Solid" lineColor="#000000"/>
                 </box>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font fontName="华文仿宋" size="18"/>
+                    <font fontName="华文仿宋" size="14"/>
                 </textElement>
                 <textFieldExpression><![CDATA[$P{serviceNo}]]></textFieldExpression>
             </textField>
             <textField>
-                <reportElement x="102" y="54" width="129" height="50"
-                               uuid="1abfca63-5a63-41b2-8084-5ef5a7afb0c9"/>
+                <reportElement x="102" y="40" width="129" height="38"
+                               uuid="1abfca63-5a63-41b2-8084-5ef5a7afb0c9">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
                 <box>
-                    <topPen lineWidth="1.0"/>
-                    <leftPen lineWidth="1.0"/>
-                    <bottomPen lineWidth="1.0"/>
-                    <rightPen lineWidth="1.0"/>
+                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
                 </box>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font fontName="华文仿宋" size="18"/>
+                    <font fontName="华文仿宋" size="14"/>
                 </textElement>
                 <textFieldExpression><![CDATA[$P{dpName}]]></textFieldExpression>
             </textField>
             <textField>
-                <reportElement x="491" y="54" width="62" height="50"
-                               uuid="5a680c04-35b7-41bb-ad17-0884e29800b8"/>
+                <reportElement x="491" y="40" width="62" height="38"
+                               uuid="5a680c04-35b7-41bb-ad17-0884e29800b8">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
                 <box>
-                    <topPen lineWidth="1.0"/>
-                    <leftPen lineWidth="1.0"/>
-                    <bottomPen lineWidth="1.0"/>
-                    <rightPen lineWidth="2.0"/>
+                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="2.0" lineStyle="Solid" lineColor="#000000"/>
                 </box>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font fontName="华文仿宋" size="18"/>
+                    <font fontName="华文仿宋" size="14"/>
                 </textElement>
                 <textFieldExpression><![CDATA[$P{dpAge}]]></textFieldExpression>
             </textField>
             <textField>
-                <reportElement x="330" y="54" width="62" height="50"
-                               uuid="43bd693b-7bff-438e-b30e-2ab582008eb9"/>
+                <reportElement x="330" y="40" width="70" height="38"
+                               uuid="43bd693b-7bff-438e-b30e-2ab582008eb9">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
                 <box>
-                    <topPen lineWidth="1.0"/>
-                    <leftPen lineWidth="1.0"/>
-                    <bottomPen lineWidth="1.0"/>
-                    <rightPen lineWidth="1.0"/>
+                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
                 </box>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font fontName="华文仿宋" size="18"/>
+                    <font fontName="华文仿宋" size="14"/>
                 </textElement>
                 <textFieldExpression><![CDATA[$P{dpSex}]]></textFieldExpression>
             </textField>
             <textField>
-                <reportElement x="102" y="104" width="129" height="50"
-                               uuid="5139c0a7-a180-48e6-8ce7-f16bfe4a9c36"/>
+                <reportElement x="102" y="78" width="129" height="38"
+                               uuid="5139c0a7-a180-48e6-8ce7-f16bfe4a9c36">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
                 <box>
-                    <topPen lineWidth="1.0"/>
-                    <leftPen lineWidth="1.0"/>
-                    <bottomPen lineWidth="1.0"/>
-                    <rightPen lineWidth="1.0"/>
+                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
                 </box>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font fontName="华文仿宋" size="18"/>
+                    <font fontName="华文仿宋" size="14"/>
                 </textElement>
                 <textFieldExpression><![CDATA[$P{dpCertType}]]></textFieldExpression>
             </textField>
             <textField>
-                <reportElement x="330" y="104" width="223" height="50"
-                               uuid="dea730b9-fcc3-4b6e-91b7-4e67173c61fa"/>
+                <reportElement x="330" y="78" width="223" height="38"
+                               uuid="dea730b9-fcc3-4b6e-91b7-4e67173c61fa">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
                 <box>
-                    <topPen lineWidth="1.0"/>
-                    <leftPen lineWidth="1.0"/>
-                    <bottomPen lineWidth="1.0"/>
-                    <rightPen lineWidth="2.0"/>
+                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="2.0" lineStyle="Solid" lineColor="#000000"/>
                 </box>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font fontName="华文仿宋" size="18"/>
+                    <font fontName="华文仿宋" size="14"/>
                 </textElement>
                 <textFieldExpression><![CDATA[$P{dpCertNo}]]></textFieldExpression>
             </textField>
             <textField>
-                <reportElement x="102" y="154" width="129" height="50"
-                               uuid="1b96623f-03a3-4d0e-8c02-66879b15c469"/>
+                <reportElement x="102" y="116" width="129" height="38"
+                               uuid="1b96623f-03a3-4d0e-8c02-66879b15c469">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
                 <box>
-                    <topPen lineWidth="1.0"/>
-                    <leftPen lineWidth="1.0"/>
-                    <bottomPen lineWidth="1.0"/>
-                    <rightPen lineWidth="1.0"/>
+                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
                 </box>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font fontName="华文仿宋" size="18"/>
+                    <font fontName="华文仿宋" size="14"/>
                 </textElement>
                 <textFieldExpression><![CDATA[$P{utName}]]></textFieldExpression>
             </textField>
             <textField>
-                <reportElement x="330" y="154" width="223" height="50"
-                               uuid="63d1767d-d566-4ed7-8d88-da3fda666054"/>
+                <reportElement x="330" y="116" width="223" height="38"
+                               uuid="63d1767d-d566-4ed7-8d88-da3fda666054">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
                 <box>
-                    <topPen lineWidth="1.0"/>
-                    <leftPen lineWidth="1.0"/>
-                    <bottomPen lineWidth="1.0"/>
-                    <rightPen lineWidth="2.0"/>
+                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="2.0" lineStyle="Solid" lineColor="#000000"/>
                 </box>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font fontName="华文仿宋" size="18"/>
+                    <font fontName="华文仿宋" size="14"/>
                 </textElement>
                 <textFieldExpression><![CDATA[$P{phone}]]></textFieldExpression>
             </textField>
             <textField>
-                <reportElement x="102" y="204" width="129" height="55"
-                               uuid="e478fe6b-11ca-487c-a24a-ff3ab7c4de7a"/>
+                <reportElement x="102" y="154" width="129" height="38"
+                               uuid="e478fe6b-11ca-487c-a24a-ff3ab7c4de7a">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
                 <box>
-                    <topPen lineWidth="1.0"/>
-                    <leftPen lineWidth="1.0"/>
-                    <bottomPen lineWidth="1.0"/>
-                    <rightPen lineWidth="1.0"/>
+                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
                 </box>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font fontName="华文仿宋" size="18"/>
+                    <font fontName="华文仿宋" size="14"/>
                 </textElement>
                 <textFieldExpression><![CDATA[$P{utCertType}]]></textFieldExpression>
             </textField>
             <textField>
-                <reportElement x="330" y="204" width="223" height="55"
-                               uuid="41a33443-9658-4e51-81a0-e0284e18b859"/>
+                <reportElement x="330" y="154" width="223" height="38"
+                               uuid="41a33443-9658-4e51-81a0-e0284e18b859">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
                 <box>
-                    <topPen lineWidth="1.0"/>
-                    <leftPen lineWidth="1.0"/>
-                    <bottomPen lineWidth="1.0"/>
-                    <rightPen lineWidth="2.0"/>
+                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="2.0" lineStyle="Solid" lineColor="#000000"/>
                 </box>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font fontName="华文仿宋" size="18"/>
+                    <font fontName="华文仿宋" size="14"/>
                 </textElement>
                 <textFieldExpression><![CDATA[$P{utCertNo}]]></textFieldExpression>
             </textField>
             <textField>
-                <reportElement x="102" y="359" width="451" height="55"
-                               uuid="18fbd9b1-8b3b-4809-8fd3-36c2a3f88f65"/>
+                <reportElement x="102" y="268" width="451" height="38"
+                               uuid="18fbd9b1-8b3b-4809-8fd3-36c2a3f88f65">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
                 <box>
-                    <topPen lineWidth="1.0"/>
-                    <leftPen lineWidth="1.0"/>
-                    <bottomPen lineWidth="1.0"/>
-                    <rightPen lineWidth="2.0"/>
+                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="2.0" lineStyle="Solid" lineColor="#000000"/>
                 </box>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font fontName="华文仿宋" size="18"/>
+                    <font fontName="华文仿宋" size="14"/>
                 </textElement>
                 <textFieldExpression><![CDATA[$P{memo}]]></textFieldExpression>
             </textField>
             <frame>
-                <reportElement x="102" y="414" width="451" height="171"
+                <reportElement x="102" y="306" width="451" height="171"
                                uuid="ca51d25b-e381-4773-931f-5e93d33df2e3"/>
                 <box>
-                    <topPen lineWidth="1.0"/>
-                    <leftPen lineWidth="1.0"/>
-                    <bottomPen lineWidth="1.0"/>
-                    <rightPen lineWidth="2.0"/>
+                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
                 </box>
                 <image>
-                    <reportElement x="1" y="1" width="450" height="170"
+                    <reportElement x="0" y="0" width="451" height="171"
                                    uuid="64686c7d-1dec-46dc-8d58-a4cc80307d89"/>
+                    <box>
+                        <topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                        <leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                        <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                        <rightPen lineWidth="2.0" lineStyle="Solid" lineColor="#000000"/>
+                    </box>
                     <imageExpression><![CDATA[$P{signPic}]]></imageExpression>
                 </image>
             </frame>
             <staticText>
-                <reportElement x="3" y="259" width="99" height="50"
-                               uuid="7debdb22-2a69-4877-8417-cf940cb26f00"/>
+                <reportElement x="2" y="192" width="100" height="38"
+                               uuid="7debdb22-2a69-4877-8417-cf940cb26f00">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
                 <box>
-                    <topPen lineWidth="1.0"/>
-                    <leftPen lineWidth="2.0"/>
-                    <bottomPen lineWidth="1.0"/>
-                    <rightPen lineWidth="1.0"/>
+                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="2.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
                 </box>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font fontName="华文仿宋" size="18"/>
+                    <font fontName="华文仿宋" size="14"/>
                 </textElement>
                 <text><![CDATA[领取类型]]></text>
             </staticText>
             <textField>
-                <reportElement x="102" y="259" width="129" height="50"
-                               uuid="cd650544-b0bf-4a69-9efe-9b85b461dfab"/>
+                <reportElement x="102" y="192" width="129" height="38"
+                               uuid="cd650544-b0bf-4a69-9efe-9b85b461dfab">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
                 <box>
-                    <topPen lineWidth="1.0"/>
-                    <leftPen lineWidth="1.0"/>
-                    <bottomPen lineWidth="1.0"/>
-                    <rightPen lineWidth="1.0"/>
+                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
                 </box>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font fontName="华文仿宋" size="18"/>
+                    <font fontName="华文仿宋" size="14"/>
                 </textElement>
                 <textFieldExpression><![CDATA[$P{drawType}]]></textFieldExpression>
             </textField>
             <staticText>
-                <reportElement x="231" y="259" width="99" height="50"
-                               uuid="d68d0f5e-db0c-4349-ab7f-f9e655db43a7"/>
+                <reportElement x="231" y="192" width="99" height="38"
+                               uuid="d68d0f5e-db0c-4349-ab7f-f9e655db43a7">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
                 <box>
-                    <topPen lineWidth="1.0"/>
-                    <leftPen lineWidth="1.0"/>
-                    <bottomPen lineWidth="1.0"/>
-                    <rightPen lineWidth="1.0"/>
+                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
                 </box>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font fontName="华文仿宋" size="18"/>
+                    <font fontName="华文仿宋" size="14"/>
                 </textElement>
                 <text><![CDATA[领取时间]]></text>
             </staticText>
             <staticText>
-                <reportElement x="3" y="309" width="99" height="50"
-                               uuid="5401dbd9-7cb2-4928-b473-ab7c8984aea4"/>
+                <reportElement x="2" y="230" width="100" height="38"
+                               uuid="5401dbd9-7cb2-4928-b473-ab7c8984aea4">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
                 <box>
-                    <topPen lineWidth="1.0"/>
-                    <leftPen lineWidth="2.0"/>
-                    <bottomPen lineWidth="1.0"/>
-                    <rightPen lineWidth="1.0"/>
+                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="2.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
                 </box>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font fontName="华文仿宋" size="18"/>
+                    <font fontName="华文仿宋" size="14"/>
                 </textElement>
                 <text><![CDATA[磁卡情况]]></text>
             </staticText>
             <textField>
-                <reportElement x="330" y="259" width="223" height="50"
-                               uuid="2ad4cb97-1f1c-4948-a0d9-87bcb6a4f0ae"/>
+                <reportElement x="330" y="192" width="223" height="38"
+                               uuid="2ad4cb97-1f1c-4948-a0d9-87bcb6a4f0ae">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
                 <box>
-                    <topPen lineWidth="1.0"/>
-                    <leftPen lineWidth="1.0"/>
-                    <bottomPen lineWidth="1.0"/>
-                    <rightPen lineWidth="2.0"/>
+                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="2.0" lineStyle="Solid" lineColor="#000000"/>
                 </box>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font fontName="华文仿宋" size="18"/>
+                    <font fontName="华文仿宋" size="14"/>
                 </textElement>
                 <textFieldExpression><![CDATA[$P{drawDate}]]></textFieldExpression>
             </textField>
             <staticText>
-                <reportElement x="231" y="309" width="99" height="50"
-                               uuid="e8b2aa56-0a58-42db-8493-5371ba6ed142"/>
+                <reportElement x="231" y="230" width="99" height="38"
+                               uuid="e8b2aa56-0a58-42db-8493-5371ba6ed142">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
                 <box>
-                    <topPen lineWidth="1.0"/>
-                    <leftPen lineWidth="1.0"/>
-                    <bottomPen lineWidth="1.0"/>
-                    <rightPen lineWidth="1.0"/>
+                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
                 </box>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font fontName="华文仿宋" size="18"/>
+                    <font fontName="华文仿宋" size="14"/>
                 </textElement>
                 <text><![CDATA[单据情况]]></text>
             </staticText>
             <textField>
-                <reportElement x="330" y="309" width="223" height="50"
-                               uuid="174d454d-84f4-49a6-95c9-0353879fe68a"/>
+                <reportElement x="330" y="230" width="223" height="38"
+                               uuid="174d454d-84f4-49a6-95c9-0353879fe68a">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
                 <box>
-                    <topPen lineWidth="1.0"/>
-                    <leftPen lineWidth="1.0"/>
-                    <bottomPen lineWidth="1.0"/>
-                    <rightPen lineWidth="2.0"/>
+                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="2.0" lineStyle="Solid" lineColor="#000000"/>
                 </box>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font fontName="华文仿宋" size="18"/>
+                    <font fontName="华文仿宋" size="14"/>
                 </textElement>
                 <textFieldExpression><![CDATA[$P{invoiceState}]]></textFieldExpression>
             </textField>
             <textField>
-                <reportElement x="102" y="309" width="129" height="50"
-                               uuid="f23d2bc2-744e-47f6-902d-60d50d01134b"/>
+                <reportElement x="102" y="230" width="129" height="38"
+                               uuid="f23d2bc2-744e-47f6-902d-60d50d01134b">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
                 <box>
-                    <topPen lineWidth="1.0"/>
-                    <leftPen lineWidth="1.0"/>
-                    <bottomPen lineWidth="1.0"/>
-                    <rightPen lineWidth="1.0"/>
+                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
                 </box>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font fontName="华文仿宋" size="18"/>
+                    <font fontName="华文仿宋" size="14"/>
                 </textElement>
                 <textFieldExpression><![CDATA[$P{magcardState}]]></textFieldExpression>
             </textField>
             <staticText>
-                <reportElement x="2" y="650" width="551" height="60"
+                <reportElement x="2" y="527" width="551" height="43"
                                uuid="d665c92f-ebfe-4525-9e2c-d29f91e7bcce"/>
                 <textElement>
-                    <font fontName="华文仿宋" size="18" isBold="true"/>
+                    <font fontName="华文仿宋" size="14" isBold="true"/>
                 </textElement>
                 <text>
                     <![CDATA[说明：丧事承办人再确认信息无误后，应在《领取业务证明单》“确认签名”处签名，并将信息磁卡及业务单据交于业务员。]]></text>
             </staticText>
             <textField>
-                <reportElement x="103" y="585" width="450" height="50"
-                               uuid="7f645a4d-7f3a-4b42-be03-14a86c0d9c29"/>
+                <reportElement x="102" y="477" width="451" height="38"
+                               uuid="7f645a4d-7f3a-4b42-be03-14a86c0d9c29">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
                 <box>
-                    <topPen lineWidth="1.0"/>
-                    <leftPen lineWidth="1.0"/>
-                    <bottomPen lineWidth="2.0"/>
-                    <rightPen lineWidth="2.0"/>
+                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="2.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="2.0" lineStyle="Solid" lineColor="#000000"/>
                 </box>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font fontName="华文仿宋" size="18"/>
+                    <font fontName="华文仿宋" size="14"/>
                 </textElement>
                 <textFieldExpression><![CDATA[$P{createDate}]]></textFieldExpression>
             </textField>

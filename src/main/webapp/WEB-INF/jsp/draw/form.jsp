@@ -15,7 +15,7 @@
                     <input class="easyui-textbox" id="serviceNo"
                            name="serviceNo" style="width:198px"
                            data-options="required:true,
-                           missingMessage:'请扫码或填入服务编号',
+                           missingMessage:'请放置安放袋读取识别号码',
                            validType:'serviceNo',
                            events:{blur:checkSerivceNo}">
                 </td>
