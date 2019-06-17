@@ -186,36 +186,6 @@
             .dialog("open");
         $("#dlg").window("maximize");
         $("#addform").form("clear");
-        // TODO: 为方便扫码使用,新增对话框显示后将焦点放到服务编号域
-        $("#serviceNo")
-            .textbox()
-            .next("span")
-            .find("input")
-            .focus();
-        // $("#dpCertNo").textbox({
-        //     onChange: function (value) {
-        //         // console.log("通过逝者身份证号查询已绑定的安放袋编号");
-        //         $.ajax({
-        //             type: "POST",
-        //             url: base + "/bag/findBag",
-        //             data: {certNo: value},
-        //             dataType: "json",
-        //             async: false,
-        //             success: function (data) {
-        //                 console.log(data);
-        //                 if (data.result) {
-        //                     $("#dpCertType").combobox("clear");
-        //                     $("#dpCertNo").textbox("clear");
-        //                     $("#dpName").textbox("clear");
-        //                     $.messager.alert(title, '已领取安放袋', warning);
-        //                 }
-        //             },
-        //             error: function (e) {
-        //                 console.log(e);
-        //             }
-        //         })
-        //     }
-        // });
         // 修改承办人证件类型,动态添加输入验证规则
         $("#dpCertType").combobox({
             onChange: function (newValue, oldValue) {
