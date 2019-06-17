@@ -53,7 +53,7 @@ public class Draw extends BaseEntity {
     private String createdBy;
 
     @NotNull
-    @Column(name = "service_no", nullable = false, unique = true, length = 11)
+    @Column(name = "service_no", nullable = false, unique = true, length = 16)
     public String getServiceNo() {
         return serviceNo;
     }
