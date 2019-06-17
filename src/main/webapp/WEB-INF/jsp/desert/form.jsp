@@ -17,9 +17,7 @@
                             id="serviceNo"
                             name="serviceNo"
                             style="width:198px"
-                            data-options="required:true,
-                            missingMessage:'请填入安放袋编号',
-                           validType:'serviceNo'"
+                            data-options="required:true, readonly:true"
                     />
                 </td>
                 <td style="width: 100px" class="title-bg">

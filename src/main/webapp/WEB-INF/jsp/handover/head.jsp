@@ -116,14 +116,12 @@
             }
         });
         // TODO: 为方便扫码使用,新增对话框显示后将焦点放到服务编号域
-        $('#serviceNo').textbox().next('span').find('input').focus();
         $('#serviceNo').textbox({
             onChange: function (newValue, oldValue) {
                 $.getJSON(base + '/deposit/findDepositByServiceNo/' + newValue, function (json) {
                     if (json.length == 0) {
                         $.messager.alert(title, '没有找到匹配的存放记录', warning, function () {
                             $("#serviceNo").textbox("clear");
-                            $("#serviceNo").textbox().next("span").find("input").focus();
                         });
                     } else {
                         $.ajax({
@@ -138,7 +136,6 @@
                                     if (data.result == true) {
                                         $.messager.alert(title, '已办理交接业务', warning, function () {
                                             $("#serviceNo").textbox("clear");
-                                            $("#serviceNo").textbox().next("span").find("input").focus();
                                         });
                                     } else {
                                         $('#dpName').textbox('setValue', json[0].dpName);
@@ -260,7 +257,6 @@
                     if (data.result == true) {
                         $.messager.alert(title, '安放袋编号已存在', warning, function () {
                             $("#serviceNo").textbox("setValue", "");
-                            $("#serviceNo").textbox().next("span").find("input").focus();
                         });
                     }
                 }

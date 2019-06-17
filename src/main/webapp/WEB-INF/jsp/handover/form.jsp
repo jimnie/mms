@@ -14,10 +14,7 @@
                     <input type="hidden" id="id" name="id" value="">
                     <input class="easyui-textbox" id="serviceNo"
                            name="serviceNo" style="width:198px"
-                           data-options="required:true,
-                           missingMessage:'请放置安放袋读取识别号码',
-                           validType:'serviceNo',
-                           events:{blur:checkSerivceNo}">
+                           data-options="required:true,readonly:true">
                 </td>
                 <td style="width: 100px" class="title-bg">
                     姓名

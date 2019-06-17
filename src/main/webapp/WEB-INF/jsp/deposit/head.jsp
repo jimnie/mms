@@ -197,11 +197,6 @@
         $("#dlg").window("maximize");
         $("#addform").form("clear");
         // TODO: 为方便扫码使用,新增对话框显示后将焦点放到服务编号域
-        $("#serviceNo")
-            .textbox()
-            .next("span")
-            .find("input")
-            .focus();
         $("#serviceNo").textbox({
             onChange: function (value) {
                 $.ajax({
@@ -216,7 +211,6 @@
                             if (data.result == true) {
                                 $.messager.alert(title, '已办理存放业务', warning, function () {
                                     $("#serviceNo").textbox("setValue", "");
-                                    $("#serviceNo").textbox().next("span").find("input").focus();
                                 });
                             }
                         }
