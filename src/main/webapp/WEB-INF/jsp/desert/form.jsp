@@ -18,7 +18,7 @@
                             name="serviceNo"
                             style="width:198px"
                             data-options="required:true,
-                           missingMessage:'请放置安放袋读取识别号码',
+                            missingMessage:'请填入安放袋编号',
                            validType:'serviceNo'"
                     />
                 </td>
@@ -127,13 +127,6 @@
             </tr>
             <tr>
                 <td align="right" colspan="4">
-                    <a
-                            id="readRfid"
-                            href="#"
-                            class="easyui-linkbutton"
-                            data-options="iconCls:'icon-man'"
-                            style="width:135px;margin-top:2px;"
-                    >读取安放袋编号</a>
                     <a
                             id="readDpIdCard"
                             href="#"
