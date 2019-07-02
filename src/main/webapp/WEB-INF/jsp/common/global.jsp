@@ -21,14 +21,12 @@
         background-color: #FAFCFF;
         padding-left: 10px;
     }
-
     .tab-form {
         border-collapse: collapse;
         border: none;
         padding-top: 10px;
         vertical-align: middle;
     }
-
     .title-bg {
         height: 40px;
         font-size: 14px;
@@ -37,7 +35,6 @@
         padding-right: 10px;
         text-align: right;
     }
-
     .domain-bg {
         height: 40px;
         font-size: 14px;
@@ -45,7 +42,6 @@
         background-color: #FAFCFF;
         padding-left: 10px;
     }
-
     .tab-border {
         width: 1080px;
         border-collapse: collapse;
@@ -53,12 +49,10 @@
         padding-top: 10px;
         vertical-align: middle;
     }
-
     .fieldset {
         width: 300px;
         border: 1px solid grey;
     }
-
     .legend {
         font-family: Verdana, Arial, Helvetica, sans-serif;
         font-size: 14px;
@@ -155,4 +149,36 @@
         });
 
     });
+    (function () {
+        $.extend($.fn.tabs.methods, {
+            //显示遮罩
+            loading: function (jq, msg) {
+                return jq.each(function () {
+                    var panel = $(this).tabs("getSelected");
+                    if (msg == undefined) {
+                        msg = "正在加载数据，请稍候...";
+                    }
+                    $("<div class=\"datagrid-mask\"></div>").css({
+                        display: "block",
+                        width: panel.width(),
+                        height: panel.height()
+                    }).appendTo(panel);
+                    $("<div class=\"datagrid-mask-msg2\"></div>").html(msg).appendTo(panel).css({
+                        display: "block",
+                        left: (panel.width() - $("div.datagrid-mask-msg2", panel).outerWidth()) / 2,
+                        top: (panel.height() - $("div.datagrid-mask-msg2", panel).outerHeight()) / 2
+                    });
+                });
+            }
+            ,
+            //隐藏遮罩
+            loaded: function (jq) {
+                return jq.each(function () {
+                    var panel = $(this).tabs("getSelected");
+                    panel.find("div.datagrid-mask-msg2").remove();
+                    panel.find("div.datagrid-mask").remove();
+                });
+            }
+        });
+    })(jQuery);
 </script>
