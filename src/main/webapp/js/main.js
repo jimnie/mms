@@ -61,7 +61,7 @@
                 $.messager.alert(title, '车辆行驶中,操作无效', warning);
             } else {
                 if (currPosition == 2) {
-                    $.messager.alert(title, '车辆已到达10号厅', warning);
+                    $.messager.alert(title, '车辆已到达十号厅', warning);
                 } else {
                     $.ajax({
                         url: base + "/agv/toStation2",
@@ -131,7 +131,7 @@
                         $.messager.alert(title, '车辆已到达后炉', warning);
                     }
                     if (data.currPosition == 2) {
-                        $.messager.alert(title, '车辆已到达10号厅', warning);
+                        $.messager.alert(title, '车辆已到达十号厅', warning);
                     }
                     beginPosition = data.currPosition;
                 }
@@ -139,7 +139,7 @@
                     $('#currPosition').html('后炉')
                 }
                 if (data.currPosition == 2) {
-                    $('#currPosition').html('10号厅')
+                    $('#currPosition').html('十号厅')
                 }
                 $('#currSpeed').html('' + data.currSpeed);
                 $('#batteryBalance').html('' + data.batteryBalance);
