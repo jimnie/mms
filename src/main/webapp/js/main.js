@@ -47,7 +47,132 @@
             }
         });
     })
+
+    /*********************** 无人智能运输车控制台功能 ***********************/
+    var beginPosition = 0; // 出发站点
+    var currPosition = 0; // 车辆站点
+    var currSpeed = 0; // 车辆速度
+    var movingStat = false; // 车辆移动中
+    var agvInfInit = false; // 车辆信息初始化
+
+    $('#agvGo').bind("click", function () {
+        if (agvInfInit) {
+            if (currSpeed != 0 && movingStat) {
+                $.messager.alert(title, '车辆行驶中,操作无效', warning);
+            } else {
+                if (currPosition == 2) {
+                    $.messager.alert(title, '车辆已到达10号厅', warning);
+                } else {
+                    $.ajax({
+                        url: base + "/agv/toStation2",
+                        dataType: "json",
+                        async: false,
+                        success: function (data) {
+                            console.log(data);
+                            if (data.currSpeed != 0 && data.movingOrNot) {
+                                $.messager.alert(title, '车辆已出发', info);
+                                beginPosition = data.currPosition;
+                                currSpeed = data.currSpeed;
+                                movingStat = data.movingOrNot;
+                            }
+                        },
+                        error: function (e) {
+                            console.log(e);
+                        }
+                    });
+                }
+            }
+        } else {
+            $.messager.alert(title, '正在查询车辆信息,请稍后再试', warning);
+        }
+    });
+
+    $('#agvRet').bind("click", function () {
+        if (agvInfInit) {
+            if (currSpeed != 0 && movingStat) {
+                $.messager.alert(title, '车辆行驶中,操作无效', warning);
+            } else {
+                if (currPosition == 1) {
+                    $.messager.alert(title, '车辆已到达后炉', warning);
+                } else {
+                    $.ajax({
+                        url: base + "/agv/toStation1",
+                        dataType: "json",
+                        async: false,
+                        success: function (data) {
+                            console.log(data);
+                            if (data.currSpeed != 0 && data.movingOrNot) {
+                                $.messager.alert(title, '车辆已出发', info);
+                                beginPosition = data.currPosition;
+                                currSpeed = data.currSpeed;
+                                movingStat = data.movingOrNot;
+                            }
+                        },
+                        error: function (e) {
+                            console.log(e);
+                        }
+                    });
+                }
+            }
+        } else {
+            $.messager.alert(title, '正在查询车辆信息,请稍后再试', warning);
+        }
+    });
+
+    setInterval(function () {
+        $.ajax({
+            url: base + "/agv/queryStatus",
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                console.log(data);
+                if (beginPosition != 0 && data.currPosition != beginPosition) {
+                    if (data.currPosition == 1) {
+                        $.messager.alert(title, '车辆已到达后炉', warning);
+                    }
+                    if (data.currPosition == 2) {
+                        $.messager.alert(title, '车辆已到达10号厅', warning);
+                    }
+                    beginPosition = data.currPosition;
+                }
+                if (data.currPosition == 1) {
+                    $('#currPosition').html('后炉')
+                }
+                if (data.currPosition == 2) {
+                    $('#currPosition').html('10号厅')
+                }
+                $('#currSpeed').html('' + data.currSpeed);
+                $('#batteryBalance').html('' + data.batteryBalance);
+                $('#faultCode').html('' + data.faultCode);
+
+                $('#faultInf').html(getValueByBoolean(data.faultInf));
+                $('#missingStat').html(getValueByBoolean(data.missingStat));
+                $('#ctrlRelease').html(getValueByBoolean(data.ctrlRelease));
+                $('#trafficCtrl').html(getValueByBoolean(data.trafficCtrl));
+                $('#taskLocking').html(getValueByBoolean(data.taskLocking));
+                $('#taskNull').html(getValueByBoolean(data.taskNull));
+                $('#movingOrNot').html(getValueByBoolean(data.movingOrNot));
+                $('#startUpOrAwait').html(getValueByBoolean(data.startUpOrAwait));
+                $('#charging').html(getValueByBoolean(data.charging));
+                $('#taskExecuting').html(getValueByBoolean(data.taskExecuting));
+                $('#stopByObstacle').html(getValueByBoolean(data.stopByObstacle));
+                $('#pauseByMainCtrl').html(getValueByBoolean(data.pauseByMainCtrl));
+                agvInfInit = true;
+                currPosition = data.currPosition;
+                currSpeed = data.currSpeed;
+                movingStat = data.movingOrNot;
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        })
+    }, 3000);
+
 });
+
+function getValueByBoolean(val) {
+    return val ? '是' : '否';
+}
 
 function clearModules() {
     var panels = $('#nav').accordion('panels');
