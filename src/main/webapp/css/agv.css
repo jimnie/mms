@@ -1,0 +1,14 @@
+@charset "utf-8";
+
+.datagrid-mask-msg2 {
+    position: absolute;
+    top: 50%;
+    margin-top: -20px;
+    padding: 10px 5px 10px 30px;
+    width: auto;
+    border-width: 2px;
+    border-style: solid;
+    display: none;
+    background: #ffffff url('../ui/themes/default/images/loading.gif') no-repeat scroll 5px center;
+    border-color: #95B8E7;
+}
