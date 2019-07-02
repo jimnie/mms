@@ -77,7 +77,75 @@
     <div id="tabs" class="easyui-tabs" data-options="fit:true,border:false">
         <div id="home" title="<%=SpringUtils.getMessage("sys.main.welcomeToUse")%>"
              style="padding: 20px; overflow: hidden;">
-            <h1>Welcome !</h1>
+            <div id="opPanel" class="easyui-panel" title="车辆操作"
+                 style="width: 700px; height: 85px; padding: 10px; text-align: center;"
+                 collapsible="false">
+                <a id="agvGo" href="#" class="easyui-linkbutton"
+                   data-options="iconCls:'icon-redo'">车辆出发</a>
+                <a id="agvRet" href="#" class="easyui-linkbutton"
+                   data-options="iconCls:'icon-undo'">车辆返回</a>
+            </div>
+            <div style="margin-bottom: 10px;"></div>
+            <div id="stPanel" class="easyui-panel" title="车辆状态"
+                 style="width: 700px; padding: 10px;" collapsible="false">
+                <table width="100%">
+                    <tr>
+                        <td width="20%">当前位置：</td>
+                        <td align="left"><label id="currPosition"></label></td>
+                        <td width="20%">当前速度：</td>
+                        <td align="left"><label id="currSpeed"></label></td>
+                    </tr>
+                    <tr>
+                        <td width="20%">剩余电量：</td>
+                        <td align="left"><label id="batteryBalance"></label></td>
+                        <td width="20%">故障代码：</td>
+                        <td align="left"><label id="faultCode"></label></td>
+                    </tr>
+                </table>
+            </div>
+            <div style="margin-bottom: 10px;"></div>
+            <div id="runPanel" class="easyui-panel" title="行驶状态"
+                 style="width: 700px; padding: 10px;" collapsible="false">
+                <table width="100%">
+                    <tr>
+                        <td width="20%">故障信息：</td>
+                        <td align="left"><label id="faultInf"></label></td>
+                        <td width="20%">失联状态：</td>
+                        <td align="left"><label id="missingStat"></label></td>
+                    </tr>
+                    <tr>
+                        <td width="20%">管制放行：</td>
+                        <td align="left"><label id="ctrlRelease"></label></td>
+                        <td width="20%">交通管制：</td>
+                        <td align="left"><label id="trafficCtrl"></label></td>
+                    </tr>
+                    <tr>
+                        <td width="20%">任务锁定：</td>
+                        <td align="left"><label id="taskLocking"></label></td>
+                        <td width="20%">任务空：</td>
+                        <td align="left"><label id="taskNull"></label></td>
+                    </tr>
+                    <tr>
+                        <td width="20%">运动/静止：</td>
+                        <td align="left"><label id="movingOrNot"></label></td>
+                        <td width="20%">启动/待机：</td>
+                        <td align="left"><label id="startUpOrAwait"></label></td>
+                    </tr>
+                    <tr>
+                        <td width="20%">正在充电：</td>
+                        <td align="left"><label id="charging"></label></td>
+                        <td width="20%">任务执行中：</td>
+                        <td align="left"><label id="taskExecuting"></label></td>
+                    </tr>
+                    <tr>
+                        <td width="20%">障碍停止：</td>
+                        <td align="left"><label id="stopByObstacle"></label></td>
+                        <td width="20%">主控暂停：</td>
+                        <td align="left"><label id="pauseByMainCtrl"></label></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
         </div>
     </div>
 </div>
