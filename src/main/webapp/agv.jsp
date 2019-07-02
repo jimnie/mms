@@ -4,11 +4,14 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title><%=SpringUtils.getMessage("sys.main.projectName")%>
+    <title>
+        <%=SpringUtils.getMessage("sys.main.projectName")%>
     </title>
     <link rel="shortcut icon" href="<%=base%>/images/favorite.ico" type="image/x-icon"/>
     <script type="text/javascript">
+        /*********************** 无人智能运输车控制台功能 ***********************/
         $(function () {
+            var beginPosition = 0; // 出发站点
             var currPosition = 0; // 车辆站点
             var currSpeed = 0; // 车辆速度
             var movingStat = false; // 车辆移动中
@@ -17,7 +20,7 @@
             $('#agvGo').bind("click", function () {
                 if (agvInfInit) {
                     if (currSpeed != 0 && movingStat) {
-                        $.messager.alert(title, '车辆行驶中', warning);
+                        $.messager.alert(title, '车辆行驶中,操作无效', warning);
                     } else {
                         if (currPosition == 2) {
                             $.messager.alert(title, '车辆已到达10号厅', warning);
@@ -30,6 +33,7 @@
                                     console.log(data);
                                     if (data.currSpeed != 0 && data.movingOrNot) {
                                         $.messager.alert(title, '车辆已出发', info);
+                                        beginPosition = data.currPosition;
                                         currSpeed = data.currSpeed;
                                         movingStat = data.movingOrNot;
                                     }
@@ -48,7 +52,7 @@
             $('#agvRet').bind("click", function () {
                 if (agvInfInit) {
                     if (currSpeed != 0 && movingStat) {
-                        $.messager.alert(title, '车辆行驶中', warning);
+                        $.messager.alert(title, '车辆行驶中,操作无效', warning);
                     } else {
                         if (currPosition == 1) {
                             $.messager.alert(title, '车辆已到达后炉', warning);
@@ -61,6 +65,7 @@
                                     console.log(data);
                                     if (data.currSpeed != 0 && data.movingOrNot) {
                                         $.messager.alert(title, '车辆已出发', info);
+                                        beginPosition = data.currPosition;
                                         currSpeed = data.currSpeed;
                                         movingStat = data.movingOrNot;
                                     }
@@ -84,14 +89,23 @@
                     async: false,
                     success: function (data) {
                         console.log(data);
+                        if (beginPosition != 0 && data.currPosition != beginPosition) {
+                            if (data.currPosition == 1) {
+                                $.messager.alert(title, '车辆已到达后炉', warning);
+                            }
+                            if (data.currPosition == 2) {
+                                $.messager.alert(title, '车辆已到达10号厅', warning);
+                            }
+                            beginPosition = data.currPosition;
+                        }
                         if (data.currPosition == 1) {
-                            $('#currPosition').html('后炉')
+                            $('#currPosition').html('后炉');
                         }
                         if (data.currPosition == 2) {
-                            $('#currPosition').html('10号厅')
+                            $('#currPosition').html('10号厅');
                         }
                         $('#currSpeed').html('' + data.currSpeed);
-                        $('#batteryBalance').html('' + data.batteryBalance);
+                        $('#batteryBalance').html(data.batteryBalance + '%');
                         $('#faultCode').html('' + data.faultCode);
 
                         $('#faultInf').html(getValueByBoolean(data.faultInf));
