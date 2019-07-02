@@ -8,6 +8,8 @@
         <%=SpringUtils.getMessage("sys.main.projectName")%>
     </title>
     <link rel="shortcut icon" href="<%=base%>/images/favorite.ico" type="image/x-icon"/>
+    <link rel="stylesheet" type="text/css"
+          href="<%=base%>/css/agv.css">
     <script type="text/javascript">
         /*********************** 无人智能运输车控制台功能 ***********************/
         $(function () {
@@ -25,6 +27,7 @@
                         if (currPosition == 2) {
                             $.messager.alert(title, '车辆已到达十号厅', warning);
                         } else {
+                            $('#tabs').tabs('loading', '正在启动车辆...')
                             $.ajax({
                                 url: base + "/agv/toStation2",
                                 dataType: "json",
@@ -37,9 +40,11 @@
                                         currSpeed = data.currSpeed;
                                         movingStat = data.movingOrNot;
                                     }
+                                    $("#tabs").tabs("loaded")
                                 },
                                 error: function (e) {
                                     console.log(e);
+                                    $("#tabs").tabs("loaded")
                                 }
                             });
                         }
@@ -57,6 +62,7 @@
                         if (currPosition == 1) {
                             $.messager.alert(title, '车辆已到达后炉', warning);
                         } else {
+                            $('#tabs').tabs('loading', '正在启动车辆...')
                             $.ajax({
                                 url: base + "/agv/toStation1",
                                 dataType: "json",
@@ -69,9 +75,11 @@
                                         currSpeed = data.currSpeed;
                                         movingStat = data.movingOrNot;
                                     }
+                                    $("#tabs").tabs("loaded")
                                 },
                                 error: function (e) {
                                     console.log(e);
+                                    $("#tabs").tabs("loaded")
                                 }
                             });
                         }
@@ -135,6 +143,24 @@
 
         function getValueByBoolean(val) {
             return val ? '是' : '否';
+        }
+
+        function onloading() {
+            $("<div class=\"datagrid-mask\"></div>").css({
+                display: "block",
+                width: "100%",
+                height: $(window).height()
+            }).appendTo("body");
+            $("<div class=\"datagrid-mask-msg2\"></div>").html("正在启动车辆...").appendTo("body").css({
+                display: "block",
+                left: ($(document.body).outerWidth(true) - 190) / 2,
+                top: ($(window).height() - 45) / 2
+            });
+        }
+
+        function removeload() {
+            $(".datagrid-mask").remove();
+            $(".datagrid-mask-msg2").remove();
         }
     </script>
 </head>
