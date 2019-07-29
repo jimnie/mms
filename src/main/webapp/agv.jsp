@@ -18,8 +18,13 @@
             var currSpeed = 0; // 车辆速度
             var movingStat = false; // 车辆移动中
             var agvInfInit = false; // 车辆信息初始化
+            var batteryLow = false; // 电量低
 
             $('#agvGo').bind("click", function () {
+                if (batteryLow) {
+                    $.messager.alert(title, '车辆电量低,请及时充电', error);
+                    return;
+                }
                 if (agvInfInit) {
                     if (currSpeed != 0 && movingStat) {
                         $.messager.alert(title, '车辆行驶中,操作无效', warning);
@@ -33,12 +38,14 @@
                                 dataType: "json",
                                 async: false,
                                 success: function (data) {
-                                    console.log(data);
-                                    if (data.currSpeed != 0 && data.movingOrNot) {
-                                        $.messager.alert(title, '车辆已出发', info);
-                                        beginPosition = data.currPosition;
-                                        currSpeed = data.currSpeed;
-                                        movingStat = data.movingOrNot;
+                                    if (data.statusInf != undefined) {
+                                        console.log(data.statusInf);
+                                        if (data.statusInf.currSpeed != 0 && data.statusInf.movingOrNot) {
+                                            closableMessager('车辆已出发', info)
+                                            beginPosition = data.statusInf.currPosition;
+                                            currSpeed = data.statusInf.currSpeed;
+                                            movingStat = data.statusInf.movingOrNot;
+                                        }
                                     }
                                     $("#tabs").tabs("loaded")
                                 },
@@ -55,6 +62,10 @@
             });
 
             $('#agvRet').bind("click", function () {
+                if (batteryLow) {
+                    $.messager.alert(title, '车辆电量低,请及时充电', error);
+                    return;
+                }
                 if (agvInfInit) {
                     if (currSpeed != 0 && movingStat) {
                         $.messager.alert(title, '车辆行驶中,操作无效', warning);
@@ -68,12 +79,15 @@
                                 dataType: "json",
                                 async: false,
                                 success: function (data) {
-                                    console.log(data);
-                                    if (data.currSpeed != 0 && data.movingOrNot) {
-                                        $.messager.alert(title, '车辆已出发', info);
-                                        beginPosition = data.currPosition;
-                                        currSpeed = data.currSpeed;
-                                        movingStat = data.movingOrNot;
+                                    // console.log(data.statusInf != undefined);
+                                    if (data.statusInf != undefined) {
+                                        console.log(data.statusInf);
+                                        if (data.statusInf.currSpeed != 0 && data.statusInf.movingOrNot) {
+                                            closableMessager('车辆已出发', info)
+                                            beginPosition = data.statusInf.currPosition;
+                                            currSpeed = data.statusInf.currSpeed;
+                                            movingStat = data.statusInf.movingOrNot;
+                                        }
                                     }
                                     $("#tabs").tabs("loaded")
                                 },
@@ -90,48 +104,80 @@
             });
 
             setInterval(function () {
-                console.log("执行...");
                 $.ajax({
                     url: base + "/agv/queryStatus",
                     dataType: "json",
                     async: false,
                     success: function (data) {
-                        console.log(data);
-                        if (beginPosition != 0 && data.currPosition != beginPosition) {
-                            if (data.currPosition == 1) {
-                                $.messager.alert(title, '车辆已到达后炉', warning);
+                        // console.log(data.statusInf);
+                        if (data.statusInf != undefined) {
+                            console.log(data.statusInf);
+                            if (beginPosition != 0 && data.statusInf.currPosition != beginPosition) {
+                                if (data.statusInf.currPosition == 1) {
+                                    $.messager.alert(title, '车辆已到达后炉', warning);
+                                }
+                                if (data.statusInf.currPosition == 2) {
+                                    $.messager.alert(title, '车辆已到达十号厅', warning);
+                                }
+                                beginPosition = data.statusInf.currPosition;
                             }
-                            if (data.currPosition == 2) {
-                                $.messager.alert(title, '车辆已到达十号厅', warning);
+                            if (data.statusInf.currPosition == 1) {
+                                $('#currPosition').html('后炉');
+                            } else if (data.statusInf.currPosition == 2) {
+                                $('#currPosition').html('十号厅');
+                            } else {
+                                $('#currPosition').html('行驶中');
                             }
-                            beginPosition = data.currPosition;
-                        }
-                        if (data.currPosition == 1) {
-                            $('#currPosition').html('后炉');
-                        }
-                        if (data.currPosition == 2) {
-                            $('#currPosition').html('十号厅');
-                        }
-                        $('#currSpeed').html('' + data.currSpeed);
-                        $('#batteryBalance').html(data.batteryBalance + '%');
-                        $('#faultCode').html('' + data.faultCode);
+                            $('#currSpeed').html('' + data.statusInf.currSpeed);
+                            $('#batteryBalance').html(data.statusInf.batteryBalance + '%');
+                            $('#faultCode').html('' + data.statusInf.faultCode);
 
-                        $('#faultInf').html(getValueByBoolean(data.faultInf));
-                        $('#missingStat').html(getValueByBoolean(data.missingStat));
-                        $('#ctrlRelease').html(getValueByBoolean(data.ctrlRelease));
-                        $('#trafficCtrl').html(getValueByBoolean(data.trafficCtrl));
-                        $('#taskLocking').html(getValueByBoolean(data.taskLocking));
-                        $('#taskNull').html(getValueByBoolean(data.taskNull));
-                        $('#movingOrNot').html(getValueByBoolean(data.movingOrNot));
-                        $('#startUpOrAwait').html(getValueByBoolean(data.startUpOrAwait));
-                        $('#charging').html(getValueByBoolean(data.charging));
-                        $('#taskExecuting').html(getValueByBoolean(data.taskExecuting));
-                        $('#stopByObstacle').html(getValueByBoolean(data.stopByObstacle));
-                        $('#pauseByMainCtrl').html(getValueByBoolean(data.pauseByMainCtrl));
-                        agvInfInit = true;
-                        currPosition = data.currPosition;
-                        currSpeed = data.currSpeed;
-                        movingStat = data.movingOrNot;
+                            $('#faultInf').html(getValueByBoolean(data.statusInf.faultInf));
+                            $('#missingStat').html(getValueByBoolean(data.statusInf.missingStat));
+                            $('#ctrlRelease').html(getValueByBoolean(data.statusInf.ctrlRelease));
+                            $('#trafficCtrl').html(getValueByBoolean(data.statusInf.trafficCtrl));
+                            $('#taskLocking').html(getValueByBoolean(data.statusInf.taskLocking));
+                            $('#taskNull').html(getValueByBoolean(data.statusInf.taskNull));
+                            $('#movingOrNot').html(getValueByBoolean(data.statusInf.movingOrNot));
+                            $('#startUpOrAwait').html(getValueByBoolean(data.statusInf.startUpOrAwait));
+                            $('#charging').html(getValueByBoolean(data.statusInf.charging));
+                            $('#taskExecuting').html(getValueByBoolean(data.statusInf.taskExecuting));
+                            $('#stopByObstacle').html(getValueByBoolean(data.statusInf.stopByObstacle));
+                            $('#pauseByMainCtrl').html(getValueByBoolean(data.statusInf.pauseByMainCtrl));
+
+                            if (parseInt(data.statusInf.batteryBalance) < 30) {
+                                $.messager.alert(title, '车辆电量低,请及时充电', error);
+                                batteryLow = true;
+                            } else {
+                                batteryLow = false;
+                            }
+
+                            agvInfInit = true;
+                            currPosition = data.statusInf.currPosition;
+                            currSpeed = data.statusInf.currSpeed;
+                            movingStat = data.statusInf.movingOrNot;
+                            $('#agvStatus').html('<font color="blue">车辆在线</font>');
+                        } else {
+                            agvInfInit = false;
+                            $('#currPosition').html('');
+                            $('#currSpeed').html('');
+                            $('#batteryBalance').html('');
+                            $('#faultCode').html('');
+
+                            $('#faultInf').html('');
+                            $('#missingStat').html('');
+                            $('#ctrlRelease').html('');
+                            $('#trafficCtrl').html('');
+                            $('#taskLocking').html('');
+                            $('#taskNull').html('');
+                            $('#movingOrNot').html('');
+                            $('#startUpOrAwait').html('');
+                            $('#charging').html('');
+                            $('#taskExecuting').html('');
+                            $('#stopByObstacle').html('');
+                            $('#pauseByMainCtrl').html('');
+                            $('#agvStatus').html('<font color="red">车辆离线</font>');
+                        }
                     },
                     error: function (e) {
                         console.log(e);
@@ -140,6 +186,26 @@
             }, 3000);
 
         });
+
+        function closableMessager(content, type) {
+            var interval;
+            var time = 1000;
+            var x = 3;
+            $.messager.alert(' ', content, type, function () {
+            });
+            $(".messager-window .window-header .panel-title").append("系统提示（" + x + "秒后自动关闭）");
+            interval = setInterval(fun, time);
+
+            function fun() {
+                --x;
+                if (x == 0) {
+                    clearInterval(interval);
+                    $(".messager-body").window('close');
+                }
+                $(".messager-window .window-header .panel-title").text("");
+                $(".messager-window .window-header .panel-title").append("系统提示（" + x + "秒后自动关闭）");
+            }
+        }
 
         function getValueByBoolean(val) {
             return val ? '是' : '否';
@@ -183,17 +249,21 @@
              style="padding: 20px; overflow: hidden; text-align: center;">
             <div style="display: inline-block;">
                 <div id="opPanel" class="easyui-panel" title="车辆操作"
-                     style="width: 700px; height: 85px; padding: 10px; text-align: center;"
+                     style="width: 700px; height: 100px; padding: 10px; text-align: center;"
                      collapsible="false">
                     <a id="agvGo" href="#" class="easyui-linkbutton"
-                       data-options="iconCls:'icon-redo'">车辆出发</a>
+                       data-options="iconCls:'icon-redo',size:'large'">车辆出发</a>
                     <a id="agvRet" href="#" class="easyui-linkbutton"
-                       data-options="iconCls:'icon-undo'">车辆返回</a>
+                       data-options="iconCls:'icon-undo',size:'large'">车辆返回</a>
                 </div>
                 <div style="margin-bottom: 10px;"></div>
                 <div id="stPanel" class="easyui-panel" title="车辆状态"
                      style="width: 700px; padding: 10px;" collapsible="false">
                     <table width="100%">
+                        <tr>
+                            <td colspan="4" align="center"><label id="agvStatus">车辆状态初始化中...</label>
+                            </td>
+                        </tr>
                         <tr>
                             <td width="20%">当前位置：</td>
                             <td align="left"><label id="currPosition"></label></td>
