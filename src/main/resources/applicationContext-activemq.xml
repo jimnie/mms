@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 本地MQ服务环境配置   -->
+    <!-- ActiveMQ 真正产生Connection的ConnectionFactory,由对应的 JMS服务厂商提供 -->
+    <!--<bean id="activeMqConnectionFactory"
+          class="org.apache.activemq.ActiveMQConnectionFactory">
+        <property name="brokerURL" value="tcp://localhost:61616"/>
+        <property name="userName" value="admin"></property>
+        <property name="password" value="admin"></property>
+    </bean>-->
+
+    <!-- 服务器MQ服务环境配置   -->
+    <bean id="activeMqConnectionFactory"
+          class="org.apache.activemq.ActiveMQConnectionFactory">
+        <property name="brokerURL" value="tcp://192.168.2.11:61616"/>
+        <property name="userName" value="admin"></property>
+        <property name="password" value="admin"></property>
+    </bean>
+
+    <!-- 配置spring 管理 connectionFactory -->
+    <bean id="connectionFactory"
+          class="org.springframework.jms.connection.CachingConnectionFactory">
+        <constructor-arg ref="activeMqConnectionFactory"/>
+        <property name="sessionCacheSize" value="100"/>
+    </bean>
+
+    <!-- queue(队列模式),点对点 -->
+    <bean id="jmsQueueTemplate" class="org.springframework.jms.core.JmsTemplate">
+        <property name="connectionFactory" ref="connectionFactory"/>
+        <property name="pubSubDomain" value="false"/>
+    </bean>
+
+    <!-- topic(主题,发布/订阅),一对多 -->
+    <bean id="jmsTopicTemplate" class="org.springframework.jms.core.JmsTemplate">
+        <property name="connectionFactory" ref="connectionFactory"/>
+        <property name="defaultDestination" ref="topicDestination"/>
+        <!-- true是topic，false是queue，默认是false，此处显示写出false -->
+        <property name="pubSubDomain" value="true"/>
+        <!-- 设置接收超时时间 60秒
+        <property name="receiveTimeout" value="60000"/>
+        -->
+        <!-- 消息不持久化 -->
+        <property name="explicitQosEnabled" value="true"></property>
+    </bean>
+
+    <!--这个是主题(topic)目的地，一对多的 -->
+    <bean id="topicDestination" class="org.apache.activemq.command.ActiveMQTopic">
+        <constructor-arg value="bizInfTopic"/>
+    </bean>
+
+    <!-- 消息监听类 -->
+    <bean id="queueMessageListener"
+          class="com.educonsulting.mms.listener.QueueMessageListener"/>
+
+    <!-- 消息监听器 -->
+    <bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+        <property name="connectionFactory" ref="connectionFactory"></property>
+        <property name="destination" ref="topicDestination"></property>
+        <property name="messageListener" ref="queueMessageListener"></property>
+    </bean>
+
+</beans>

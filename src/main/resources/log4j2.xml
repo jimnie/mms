@@ -1,38 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="OFF" monitorInterval="1800">
-    <properties>
-        <property name="LOG_HOME">D:/logs</property>
-        <property name="FILE_NAME">running</property>
-    </properties>
+<configuration status="off" monitorInterval="120">
 
-    <Appenders>
+    <!-- 属性定义供下文使用 -->
+    <Properties>
+        <Property name="LOG_HOME">D:/logs</Property>
+        <Property name="FILE_NAME">running</Property>
+    </Properties>
+
+    <!-- 先定义所有的appender -->
+    <appenders>
         <Console name="Console" target="SYSTEM_OUT">
+            <ThresholdFilter level="trace" onMatch="ACCEPT" onMismatch="DENY"/>
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </Console>
 
-        <RollingFile name="running-log" fileName="${LOG_HOME}/${FILE_NAME}.log"
-                     filePattern="${LOG_HOME}/$${date:yyyy-MM}/${FILE_NAME}-%d{yyyy-MM-dd}-%i.log.gz"
-                     immediateFlush="true">
+        <!--RollingFile 为全局同步 RandomAccessFile 为异步-->
+        <RollingRandomAccessFile name="rootAppeder"
+                                 fileName="${LOG_HOME}/running.log"
+                                 filePattern="${LOG_HOME}/$${date:yyyy-MM}/root-%d{yyyy-MM-dd}-%i.log">
             <PatternLayout
-                    pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread][%file:%line] - %msg%n"/>
+                    pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %ex%msg%n"/>
             <Policies>
-                <TimeBasedTriggeringPolicy/>
+                <TimeBasedTriggeringPolicy interval="1"/>
                 <SizeBasedTriggeringPolicy size="10 MB"/>
             </Policies>
-            <DefaultRolloverStrategy max="20"/>
-        </RollingFile>
-    </Appenders>
+            <DefaultRolloverStrategy max="30"/>
+        </RollingRandomAccessFile>
 
-    <Loggers>
+        <!--错误日志输出-->
+        <RollingRandomAccessFile name="errorAppeder"
+                                 fileName="${LOG_HOME}/error.log"
+                                 filePattern="${LOG_HOME}/$${date:yyyy-MM}/error-%d{yyyy-MM-dd}-%i.log">
+            <Filters>
+                <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <PatternLayout
+                    pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %ex%msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="10 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="30"/>
+        </RollingRandomAccessFile>
 
-        <!-- <Logger name="com.cssweb.test.app" level="trace" additivity="true">
-            <AppenderRef ref="running-log" /> </Logger> -->
+    </appenders>
 
-        <Root level="info">
-            <!-- 这里是输入到文件，很重要-->
-            <AppenderRef ref="running-log"/>
-            <!-- 这里是输入到控制台-->
-            <AppenderRef ref="Console"/>
-        </Root>
-    </Loggers>
-</Configuration>
+    <loggers>
+        <asyncRoot level="info">
+            <!--根据配置文件是否打开 console输出 -->
+            <appender-ref ref="Console"/>
+            <appender-ref ref="rootAppeder"/>
+            <appender-ref ref="errorAppeder"/>
+        </asyncRoot>
+    </loggers>
+
+</configuration>

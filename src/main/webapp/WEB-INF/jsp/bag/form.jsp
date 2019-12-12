@@ -9,7 +9,7 @@
         <table class="tab-border">
             <tr>
                 <td style="width: 100px" class="title-bg">
-                    安放袋编号
+                    RFID编号
                 </td>
                 <td class="domain-bg">
                     <input type="hidden" id="id" name="id" value=""/>
@@ -20,6 +20,13 @@
                             style="width:198px"
                             data-options="required:true,readonly:true,
                     missingMessage:'请放置安放袋读取识别号码'"/>
+                    <a
+                            id="readRfid"
+                            href="#"
+                            class="easyui-linkbutton"
+                            data-options="iconCls:'icon-man'"
+                            style="width:135px;margin-top:2px;"
+                    >读取安放袋编号</a>
                 </td>
             </tr>
             <tr>

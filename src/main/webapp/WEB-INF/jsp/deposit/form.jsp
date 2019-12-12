@@ -9,7 +9,7 @@
         <table class="tab-border">
             <tr>
                 <td style="width: 100px" class="title-bg">
-                    安放袋编号
+                    业务编号
                 </td>
                 <td class="domain-bg">
                     <input type="hidden" id="id" name="id" value=""/>
@@ -18,43 +18,19 @@
                             id="serviceNo"
                             name="serviceNo"
                             style="width:198px"
-                            data-options="required:true,readonly:true"
-                    />
-                </td>
-                <td style="width: 100px" class="title-bg"></td>
-                <td class="domain-bg"></td>
-            </tr>
-            <tr>
-                <td style="width: 100px" class="title-bg">
-                    证件类型
-                </td>
-                <td class="domain-bg">
-                    <input
-                            class="easyui-combobox"
-                            id="dpCertType"
-                            name="dpCertType"
-                            style="width:198px"
-                            data-options="url:'${pageContext.request.contextPath}/dict/findDict/certType',
-                                                editable:false,
-                                                method:'get',
-                                                valueField:'value',
-                                                textField:'name',
-                                                panelHeight:'auto',
-                                                required:true,
-                                                missingMessage:'请选择逝者证件类型'"
+                            data-options="prompt:'请输入业务编号或扫码',required:true"
                     />
                 </td>
                 <td style="width: 100px" class="title-bg">
-                    证件号码
+                    RFID编号
                 </td>
                 <td class="domain-bg">
                     <input
                             class="easyui-textbox"
-                            id="dpCertNo"
-                            name="dpCertNo"
+                            id="rfid"
+                            name="rfid"
                             style="width:198px"
-                            data-options="required:true,missingMessage:'请填入逝者证件号码'"
-                    />
+                            data-options="required:true,readonly:true"/>
                 </td>
             </tr>
             <tr>
@@ -121,6 +97,39 @@
                 </td>
             </tr>
             <tr>
+                <td style="width: 100px" class="title-bg">
+                    证件类型
+                </td>
+                <td class="domain-bg">
+                    <input
+                            class="easyui-combobox"
+                            id="dpCertType"
+                            name="dpCertType"
+                            style="width:198px"
+                            data-options="url:'${pageContext.request.contextPath}/dict/findDict/certType',
+                                                editable:false,
+                                                method:'get',
+                                                valueField:'value',
+                                                textField:'name',
+                                                panelHeight:'auto',
+                                                required:true,
+                                                missingMessage:'请选择逝者证件类型'"
+                    />
+                </td>
+                <td style="width: 100px" class="title-bg">
+                    证件号码
+                </td>
+                <td class="domain-bg">
+                    <input
+                            class="easyui-textbox"
+                            id="dpCertNo"
+                            name="dpCertNo"
+                            style="width:198px"
+                            data-options="required:true,missingMessage:'请填入逝者证件号码'"
+                    />
+                </td>
+            </tr>
+            <tr>
                 <td align="right" colspan="4">
                     <a
                             id="readDpIdCard"
@@ -141,6 +150,36 @@
             承办人信息
         </legend>
         <table class="tab-border">
+            <tr>
+                <td style="width: 100px" class="title-bg">
+                    姓名
+                </td>
+                <td class="domain-bg">
+                    <input
+                            class="easyui-textbox"
+                            id="utName"
+                            name="utName"
+                            style="width:198px"
+                            data-options="required:true,
+                           missingMessage:'请填入承办人姓名',
+                           validType:['chinese','length[2,5]']"
+                    />
+                </td>
+                <td style="width: 100px" class="title-bg">
+                    联系电话
+                </td>
+                <td class="domain-bg">
+                    <input
+                            class="easyui-textbox"
+                            id="phone"
+                            name="phone"
+                            style="width:198px"
+                            data-options="required:true,
+                           missingMessage:'请填入移动电话号码',
+                           validType:'mobile'"
+                    />
+                </td>
+            </tr>
             <tr>
                 <td style="width: 100px" class="title-bg">
                     证件类型
@@ -171,36 +210,6 @@
                             name="utCertNo"
                             style="width:198px"
                             data-options="required:true,missingMessage:'请填入承办人证件号码'"
-                    />
-                </td>
-            </tr>
-            <tr>
-                <td style="width: 100px" class="title-bg">
-                    姓名
-                </td>
-                <td class="domain-bg">
-                    <input
-                            class="easyui-textbox"
-                            id="utName"
-                            name="utName"
-                            style="width:198px"
-                            data-options="required:true,
-                           missingMessage:'请填入承办人姓名',
-                           validType:['chinese','length[2,5]']"
-                    />
-                </td>
-                <td style="width: 100px" class="title-bg">
-                    联系电话
-                </td>
-                <td class="domain-bg">
-                    <input
-                            class="easyui-textbox"
-                            id="phone"
-                            name="phone"
-                            style="width:198px"
-                            data-options="required:true,
-                           missingMessage:'请填入移动电话号码',
-                           validType:'mobile'"
                     />
                 </td>
             </tr>
@@ -365,3 +374,26 @@
         </table>
     </fieldset>
 </div>
+<OBJECT
+        classid="clsid:F1317711-6BDE-4658-ABAA-39E31D3704D3"
+        codebase="SDRdCard.cab#version=2,0,1,0"
+        width="0"
+        height="0"
+        align="center"
+        hspace="0"
+        vspace="0"
+        id="idcard"
+        name="rdcard"
+>
+</OBJECT>
+<OBJECT
+        id="TUHFReader09"
+        codebase="UHFReader09Proj.ocx"
+        classid="clsid:14428901-AF2B-4B45-ACBD-0B4779551E5D"
+        width="0"
+        height="0"
+        align="center"
+        hspace="0"
+        vspace="0"
+>
+</OBJECT>

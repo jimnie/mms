@@ -80,7 +80,7 @@
                 <th
                         data-options="field:'serviceNo',width:100,halign:'center',align:'center',sortable:true"
                 >
-                    安放袋编号
+                    业务编号
                 </th>
                 <th
                         data-options="field:'dpName',width:100,halign:'center',align:'center'"

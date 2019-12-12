@@ -78,17 +78,20 @@
         <div id="home" title="<%=SpringUtils.getMessage("sys.main.welcomeToUse")%>"
              style="padding: 20px; overflow: hidden;">
             <div id="opPanel" class="easyui-panel" title="车辆操作"
-                 style="width: 700px; height: 85px; padding: 10px; text-align: center;"
+                 style="width: 700px; height: 100px; padding: 10px; text-align: center;"
                  collapsible="false">
-                <a id="agvGo" href="#" class="easyui-linkbutton"
-                   data-options="iconCls:'icon-redo'">车辆出发</a>
                 <a id="agvRet" href="#" class="easyui-linkbutton"
-                   data-options="iconCls:'icon-undo'">车辆返回</a>
+                   data-options="iconCls:'icon-undo',size:'large'">车辆返回</a>
             </div>
             <div style="margin-bottom: 10px;"></div>
             <div id="stPanel" class="easyui-panel" title="车辆状态"
                  style="width: 700px; padding: 10px;" collapsible="false">
                 <table width="100%">
+                    <tr>
+                        <td colspan="4" align="center"><label
+                                id="agvStatus">车辆状态初始化中...</label>
+                        </td>
+                    </tr>
                     <tr>
                         <td width="20%">当前位置：</td>
                         <td align="left"><label id="currPosition"></label></td>
@@ -145,7 +148,6 @@
                     </tr>
                 </table>
             </div>
-        </div>
         </div>
     </div>
 </div>

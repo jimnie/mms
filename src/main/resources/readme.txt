@@ -1,0 +1,7 @@
+DOS窗口打开本地应用，打开chrome浏览器
+1.添加CHROME_HOME变量到系统环境变量
+2.把CHROME_HOME变量添加到Path里，这样就可以在任意路径下打开执行chrome.exe
+
+
+startup.vbs的快捷方式放到windows开机启动目录下
+startup.vbs与run.bat复制到C盘根目录下

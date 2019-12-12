@@ -8,7 +8,7 @@
         <table class="tab-border">
             <tr>
                 <td style="width: 100px" class="title-bg">
-                    安放袋编号
+                    RFID编号
                 </td>
                 <td class="domain-bg">
                     <input type="hidden" id="id" name="id" value="">

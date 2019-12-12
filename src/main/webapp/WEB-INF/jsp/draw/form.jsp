@@ -8,14 +8,15 @@
         <table class="tab-border">
             <tr>
                 <td style="width: 100px" class="title-bg">
-                    服务编号
+                    业务编号
                 </td>
                 <td class="domain-bg">
                     <input type="hidden" id="id" name="id" value="">
                     <input class="easyui-textbox" id="serviceNo"
                            name="serviceNo" style="width:198px"
-                           data-options="required:true,
-                           missingMessage:'请放置安放袋读取识别号码',
+                           data-options="prompt:'请输入业务编号或扫码',
+                           required:true,
+                           missingMessage:'请输入业务编号或扫码',
                            validType:'serviceNo',
                            events:{blur:checkSerivceNo}">
                 </td>

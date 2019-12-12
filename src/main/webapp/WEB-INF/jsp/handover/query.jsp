@@ -9,7 +9,7 @@
         <table cellpadding="5" class="tab-form">
             <tr>
                 <td style="width:70px" class="title-bg">
-                    服务编号
+                    业务编号
                 </td>
                 <td style="width:180px" class="domain-bg">
                     <input class="easyui-textbox" id="serviceNo" name="serviceNo"></td>

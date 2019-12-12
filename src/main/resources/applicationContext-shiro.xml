@@ -22,6 +22,7 @@
                 /bootstrap/** = anon
                 /dict/findDict = anon
 
+                /agv.jsp = anon
                 /login.jsp = authc
                 /logout.jsp = logout
                 /common/main = authc
@@ -50,7 +51,8 @@
           class="org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator"/>
 
     <!-- 会话DAO -->
-    <bean id="sessionDAO" class="org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO">
+    <bean id="sessionDAO"
+          class="org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO">
         <property name="activeSessionsCacheName" value="shiro-activeSessionCache"/>
         <property name="sessionIdGenerator" ref="sessionIdGenerator"/>
         <property name="cacheManager" ref="shiroCacheManager"/>
@@ -103,10 +105,12 @@
         <property name="cacheManager" ref="ehCacheManager"/>
     </bean>
 
-    <bean id="authenticationFilter" class="com.educonsulting.mms.filter.AuthenticationFilter"/>
+    <bean id="authenticationFilter"
+          class="com.educonsulting.mms.filter.AuthenticationFilter"/>
 
     <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
-        <property name="staticMethod" value="org.apache.shiro.SecurityUtils.setSecurityManager"/>
+        <property name="staticMethod"
+                  value="org.apache.shiro.SecurityUtils.setSecurityManager"/>
         <property name="arguments" ref="securityManager"/>
     </bean>
 

@@ -100,7 +100,7 @@ public class ExcelView extends AbstractXlsView {
             for (int i = 0; i < properties.length; i++) {
                 HSSFCell cell = header.createCell(i);
                 HSSFCellStyle cellStyle = wb.createCellStyle();
-                cellStyle.setFillForegroundColor(HSSFColor.LIGHT_CORNFLOWER_BLUE.index);
+                cellStyle.setFillForegroundColor(HSSFColor.HSSFColorPredefined.LIGHT_CORNFLOWER_BLUE.getIndex());
 //                cellStyle.setFillPattern(HSSFCellStyle);
 //                cellStyle.setAlignment(HSSFCellStyle.ALIGN_CENTER);
 //                cellStyle.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
@@ -166,7 +166,7 @@ public class ExcelView extends AbstractXlsView {
                 HSSFCell cell = row.createCell(0);
                 HSSFCellStyle cellStyle = wb.createCellStyle();
                 HSSFFont font = wb.createFont();
-                font.setColor(HSSFColor.GREY_50_PERCENT.index);
+                font.setColor(HSSFColor.HSSFColorPredefined.GREY_50_PERCENT.getIndex());
                 cellStyle.setFont(font);
                 cell.setCellStyle(cellStyle);
                 cell.setCellValue(content);

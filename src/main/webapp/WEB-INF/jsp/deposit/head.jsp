@@ -48,6 +48,10 @@
             }
         });
 
+        $("#readInf").bind("click", function () {
+            let sno = $("#serviceNo").textbox("getValue");
+        });
+
         // 读取逝者身份证信息
         $("#readDpIdCard").bind("click", function () {
             // 调用readcard操作之后就可以从rdcard对象取出身份证信息
@@ -78,6 +82,7 @@
                 return;
             }
         });
+
         // 读取承办人身份证信息
         $("#readUtIdCard").bind("click", function () {
             var readState = rdcard.readcard(); // 调用readcard操作之后就可以从rdcard对象取出身份证信息
@@ -102,6 +107,62 @@
                 }
                 readState = null;
                 return;
+            }
+        });
+
+        // 读取骨灰袋RFID
+        $("#readRfid").bind("click", function () {
+            var port = "4"; // 串口
+            var baud = "5"; // 波特率
+            var opened = TUHFReader09.Open(port, baud);
+            if (opened == "00") {
+                console.log("RFID设备连接成功");
+                var SnEPC = TUHFReader09.Inventory();
+                // 查询电子标签
+                if (SnEPC == "") {
+                    $.messager.alert(
+                        title,
+                        "未询查到电子标签",
+                        error
+                    );
+                } else {
+                    console.log("询查到电子标签");
+                    var EPC_Len = parseInt(SnEPC.substr(0, 2), 16);
+                    var EPC = SnEPC.substr(2, EPC_Len * 2); // EPC号码
+                    var TID = TUHFReader09.Read(EPC, 2, 4, 2); // 读取TID
+                    console.log("EPC:" + EPC);
+                    console.log("TID:" + TID);
+
+                    $.ajax({
+                        type: "POST",
+                        url: base + "/bag/findBagWithServiceNo",
+                        data: {serviceNo: TID},
+                        dataType: "json",
+                        async: false,
+                        success: function (data) {
+                            console.log(data);
+                            if (data.result) {
+                                $.messager.alert(title, '安放袋编号已登记', warning);
+                            } else {
+                                $("#serviceNo").textbox("setValue", TID);
+                            }
+                        },
+                        error: function (e) {
+                            console.log(e);
+                        }
+                    })
+                }
+            } else if (opened == "35") {
+                console.log("RFID设备已连接");
+            } else {
+                $.messager.alert(title, "RFID设备连接失败", error);
+            }
+
+            var closed = TUHFReader09.Close();
+            if (closed == "00") {
+                console.log("RFID设备关闭成功");
+            } else {
+                console.log("RFID设备关闭失败");
             }
         });
     });
@@ -196,55 +257,6 @@
             .dialog("open");
         $("#dlg").window("maximize");
         $("#addform").form("clear");
-        // TODO: 为方便扫码使用,新增对话框显示后将焦点放到服务编号域
-        $("#serviceNo").textbox({
-            onChange: function (value) {
-                $.ajax({
-                    type: "POST",
-                    url: base + "/deposit/exist",
-                    data: {sno: value},
-                    dataType: "json",
-                    async: false,
-                    success: function (data) {
-                        console.log(data);
-                        if (data.result) {
-                            if (data.result == true) {
-                                $.messager.alert(title, '已办理存放业务', warning, function () {
-                                    $("#serviceNo").textbox("setValue", "");
-                                });
-                            }
-                        }
-                    },
-                    error: function (e) {
-                        console.log(e);
-                    }
-                })
-            }
-        });
-
-        $("#dpCertNo").textbox({
-            onChange: function (value) {
-                // console.log("通过逝者身份证号查询已绑定的安放袋编号");
-                $.ajax({
-                    type: "POST",
-                    url: base + "/bag/findBag",
-                    data: {certNo: value},
-                    dataType: "json",
-                    async: false,
-                    success: function (data) {
-                        console.log(data);
-                        if (data.result) {
-                            $("#serviceNo").textbox("setValue", data.result.serviceNo);
-                        } else {
-                            $.messager.alert(title, '没有找到安放袋领取信息', warning);
-                        }
-                    },
-                    error: function (e) {
-                        console.log(e);
-                    }
-                })
-            }
-        });
 
         $("#depositDate").datebox("setValue", formatterDate(new Date()));
         // 修改逝者证件类型,动态添加输入验证规则
@@ -308,6 +320,76 @@
                 }
             }
         });
+
+        // 为方便扫码使用,新增对话框显示后将焦点放到业务编号域
+        $("#serviceNo").textbox({
+            icons: [{
+                iconCls: 'icon-clear',
+                handler: function (e) {
+                    $(e.data.target).textbox('clear');
+                    $('#serviceNo').textbox().next('span').find('input').focus();
+                }
+            }]
+        });
+
+        // 给业务编号扫码添加回车事件
+        $('#serviceNo').textbox({
+            inputEvents: $.extend({}, $.fn.textbox.defaults.inputEvents, {
+                keypress: function test() {
+                    console.log(event.keyCode);
+                    if (event.keyCode == 13) {
+                        let sno = $('#serviceNo').textbox('getValue');
+                        console.log("查询业务编号:" + sno);
+                        $.ajax({
+                            type: "POST",
+                            url: base + "/tmp/queryInf",
+                            data: {sno: sno},
+                            dataType: "json",
+                            async: false,
+                            success: function (data) {
+                                console.log(data);
+                                if (data.result == true) {
+                                    $("#rfid").textbox("setValue", data.rfid);
+                                    $("#dpName").textbox("setValue", data.dsName);
+                                    $("#dpAge").numberspinner('setValue', data.dsAge);
+                                    $('#dpSex').combobox('setValue', '' + data.dsSex);
+                                    $('#dpCertType').combobox('setValue', data.dsCertNo.length == 18 ? '0' : '');
+                                    $("#dpCertNo").textbox('setValue', data.dsCertNo);
+                                    $('#dpAddr').textbox('setValue', data.dsAddr);
+
+                                    $('#utName').textbox('setValue', data.name);
+                                    $('#utCertType').combobox('setValue', data.agentCertNo.length == 18 ? '0' : '');
+                                    $('#utCertNo').textbox('setValue', data.agentCertNo);
+                                    $('#phone').textbox('setValue', data.phone);
+                                } else {
+                                    $.messager.alert(title, '业务登记信息不存在', warning, function () {
+                                        $("#serviceNo").textbox("setValue", "");
+                                        $("#serviceNo").textbox().next("span").find("input").focus();
+                                    });
+                                }
+                            },
+                            error: function (e) {
+                                console.log(e);
+                            }
+                        })
+                    }
+                }
+            })
+        });
+
+        // 使业务编号获得焦点
+        $('#serviceNo').textbox().next('span').find('input').focus();
+        /*$('#serviceNo').textbox('textbox').bind('keypress', function (e) {
+            let sno = $('#serviceNo').textbox('getValue');
+            console.log(e.keyCode);
+            if (sno.length == 11) {
+                // when press ENTER key, accept the inputed value.
+                // 调用查询业务登记信息
+
+
+
+            }
+        });*/
     }
 
     // 保存新增的存放信息
