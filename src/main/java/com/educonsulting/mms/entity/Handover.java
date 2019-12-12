@@ -13,7 +13,7 @@ import java.util.Date;
 public class Handover extends BaseEntity {
 
     private static final long serialVersionUID = 7817195853770472844L;
-    // 服务编号
+    // 业务编号
     private String serviceNo;
     // 逝者姓名
     private String dpName;
@@ -33,6 +33,8 @@ public class Handover extends BaseEntity {
     private Date drawDate;
     // 存放位置
     private String position;
+    // rfid
+    private String rfid;
 
     @NotNull
     @Column(name = "service_no", nullable = false, unique = true, length = 16)
@@ -132,5 +134,15 @@ public class Handover extends BaseEntity {
 
     public void setPosition(String position) {
         this.position = position;
+    }
+
+    @NotNull
+    @Column(name = "rfid", nullable = false, length = 50)
+    public String getRfid() {
+        return rfid;
+    }
+
+    public void setRfid(String rfid) {
+        this.rfid = rfid;
     }
 }
