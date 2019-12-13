@@ -126,7 +126,7 @@ public class TopicProducer {
             message.setIntProperty("ds_age", 59); // 女：0
             message.setIntProperty("ds_sex", 1);
             message.setStringProperty("ds_addr", "天津市北辰区铁东北路5998号旁正东方向151米");
-            message.setStringProperty("rfid", "aaaa");
+            message.setStringProperty("rfid", "01271700064729C2101E00AB");
             // 承办人信息
             message.setStringProperty("name", "张三");
             message.setStringProperty("id_card", "120102198004291071");
