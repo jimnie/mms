@@ -82,9 +82,6 @@ public class DepositController extends BaseController {
     @ResponseBody
     @Transactional
     public Message save(Deposit deposit) {
-//        if (depositService.isServiceNoExist(deposit.getServiceNo())) {
-//            return Message.error("安放袋编号已存在");
-//        }
         String webRoot = System.getProperty("webapp.root");
         deposit.setStatus(0); // 收存状态为已收存
         // 收存操作员
@@ -96,7 +93,7 @@ public class DepositController extends BaseController {
         deposit.setSignPic(fileName);
         // TODO: 领取操作员
         depositService.save(deposit);
-        // 按服务编号创建目录名称
+        // 按业务编号创建目录名称
         String pdfPath = webRoot + Constants.GENERATE_PDF_PATH + deposit.getServiceNo();
         File file = new File(pdfPath);
         if (!file.exists()) {
