@@ -40,4 +40,23 @@ public class TempInfController extends BaseController {
         jsonObject.put("result", sNoExist);
         return jsonObject;
     }
+
+    @RequestMapping(value = "/queryRfid", method = {RequestMethod.POST, RequestMethod.GET})
+    @ResponseBody
+    public Object findTempInfByRfid(@RequestParam(value = "rfid", required = true) String rfid) {
+        logger.info("查询业务登记信息 -> RFID:" + rfid);
+        JSONObject jsonObject = null;
+        boolean sNoExist = tempInfService.isRfidNoExist(rfid);
+        if (sNoExist) {
+            TempInf tempInf = tempInfService.findByRfidNo(rfid);
+            jsonObject = JSONObject.fromObject(tempInf);
+            logger.info("业务登记信息 -> RFID:" + jsonObject.toString());
+        } else {
+            jsonObject = new JSONObject();
+            logger.info("业务登记信息不存在 -> RFID:" + rfid);
+        }
+
+        jsonObject.put("result", sNoExist);
+        return jsonObject;
+    }
 }
