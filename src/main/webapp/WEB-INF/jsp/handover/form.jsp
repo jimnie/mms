@@ -76,7 +76,7 @@
                             id="readRfid"
                             href="#"
                             class="easyui-linkbutton"
-                            data-options="iconCls:'icon-man'"
+                            data-options="iconCls:'icon-search'"
                             style="width:135px;margin-top:2px;"
                     >读骨灰袋识别码</a>
                 </td>
