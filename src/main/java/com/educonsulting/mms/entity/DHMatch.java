@@ -58,6 +58,9 @@ public class DHMatch implements Serializable {
     @Column(name = "h_status")
     private Integer hStatus;
 
+    @Column(name = "rfid")
+    private String rfid;
+
     private String phone;
 
     public String getServiceNo() {
@@ -186,5 +189,13 @@ public class DHMatch implements Serializable {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getRfid() {
+        return rfid;
+    }
+
+    public void setRfid(String rfid) {
+        this.rfid = rfid;
     }
 }
