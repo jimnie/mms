@@ -8,14 +8,24 @@
         <table class="tab-border">
             <tr>
                 <td style="width: 100px" class="title-bg">
-                    RFID编号
+                    骨灰袋识别码
                 </td>
                 <td class="domain-bg">
                     <input type="hidden" id="id" name="id" value="">
+                    <input class="easyui-textbox" id="rfid"
+                           name="rfid" style="width:198px"
+                           data-options="disabled:true">
+                </td>
+                <td style="width: 100px" class="title-bg">
+                    业务编号
+                </td>
+                <td class="domain-bg">
                     <input class="easyui-textbox" id="serviceNo"
                            name="serviceNo" style="width:198px"
                            data-options="disabled:true">
                 </td>
+            </tr>
+            <tr>
                 <td style="width: 100px" class="title-bg">
                     姓名
                 </td>
@@ -24,8 +34,6 @@
                            style="width:198px"
                            data-options="disabled:true">
                 </td>
-            </tr>
-            <tr>
                 <td style="width: 100px" class="title-bg">
                     性别
                 </td>
@@ -38,6 +46,8 @@
                                                 textField:'name',
                                                 disabled:true">
                 </td>
+            </tr>
+            <tr>
                 <td style="width: 100px" class="title-bg">
                     年龄
                 </td>
@@ -45,6 +55,10 @@
                     <input class="easyui-numberspinner" id="dpAge" name="dpAge"
                            style="width:198px"
                            data-options="disabled:true">
+                </td>
+                <td style="width: 100px" class="title-bg">
+                </td>
+                <td class="domain-bg">
                 </td>
             </tr>
         </table>

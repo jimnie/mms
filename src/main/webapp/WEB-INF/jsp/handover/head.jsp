@@ -31,40 +31,84 @@
         });
 
         $("#readRfid").bind("click", function () {
-            $("#serviceNo").textbox("clear");
-            var port = "4"; // 串口
-            var baud = "5"; // 波特率
-            var opened = TUHFReader09.Open(port, baud);
-            if (opened == "00") {
-                console.log("RFID设备连接成功");
-                var SnEPC = TUHFReader09.Inventory();
-                // 查询电子标签
-                if (SnEPC == "") {
+            $("#rfid").textbox("clear");
+            var port = 3; // 端口COM3
+            var baud = 5; // 波特率57600bps
+            var mem = 2 // 读TID区
+            var beginAddr = 2; // 起始地址
+            var wordNum = 5; // 字数
+            var connStatus = TUHFReader09.Open(port, baud);
+
+            if (connStatus == '00') {
+                console.log('设备连接成功');
+            } else if (connStatus == '35') {
+                console.log('设备已连接');
+            } else {
+                $.messager.alert(
+                    title,
+                    '设备连接失败',
+                    error
+                );
+            }
+
+            if (connStatus == '00' || connStatus == '35') {
+                var codeNum = TUHFReader09.Inventory();
+                if (codeNum == "") {
                     $.messager.alert(
                         title,
-                        "未询查到电子标签",
+                        '未询查到电子标签',
                         error
                     );
                 } else {
-                    console.log("询查到电子标签");
-                    var EPC_Len = parseInt(SnEPC.substr(0, 2), 16);
-                    var EPC = SnEPC.substr(2, EPC_Len * 2); // EPC号码
-                    var TID = TUHFReader09.Read(EPC, 2, 4, 2); // 读取TID
-                    console.log("EPC:" + EPC);
-                    console.log("TID:" + TID);
-                    $("#serviceNo").textbox("setValue", TID);
+                    console.log('询查到电子标签');
+                    console.log('EPC=' + codeNum)
+                    var epcLen = parseInt(codeNum.substr(0, 2), 16);
+                    var EPC = codeNum.substr(2, epcLen * 2);
+                    var TID = TUHFReader09.Read(EPC, beginAddr, wordNum, mem);
+                    if (TID == '') {
+                        $.messager.alert(
+                            title,
+                            '读数据失败',
+                            error
+                        );
+                    } else {
+                        console.log('读数据成功');
+                        console.log('TID=' + TID);
+                        $('#rfid').textbox('setValue', TID);
+                        $.ajax({
+                            type: "POST",
+                            url: base + "/tmp/queryRfid",
+                            data: {rfid: TID},
+                            dataType: "json",
+                            async: false,
+                            success: function (data) {
+                                console.log(data);
+                                if (data.result == true) {
+                                    $('#rfid').textbox('setValue', data.rfid);
+                                    $('#serviceNo').textbox('setValue', data.serviceNo);
+                                    $('#dpName').textbox('setValue', data.dsName);
+                                    $('#dpAge').numberspinner('setValue', data.dsAge);
+                                    $('#dpSex').combobox('setValue', '' + data.dsSex);
+                                } else {
+                                    $.messager.alert(title, '骨灰袋识别码不存在', warning, function () {
+                                        $('#rfid').textbox('setValue', '');
+                                        $('#rfid').textbox().next('span').find('input').focus();
+                                    });
+                                }
+                            },
+                            error: function (e) {
+                                console.log(e);
+                            }
+                        })
+                    }
                 }
-            } else if (opened == "35") {
-                console.log("RFID设备已连接");
-            } else {
-                $.messager.alert(title, "RFID设备连接失败", error);
-            }
 
-            var closed = TUHFReader09.Close();
-            if (closed == "00") {
-                console.log("RFID设备关闭成功");
-            } else {
-                console.log("RFID设备关闭失败");
+                connStatus = TUHFReader09.Close();
+                if (connStatus == '00') {
+                    console.log('设备关闭成功');
+                } else {
+                    console.log('设备关闭失败');
+                }
             }
         });
     });
@@ -115,12 +159,26 @@
                 $('#position').combobox('setValue', json[0].code);
             }
         });
+
+        // 为方便扫码使用,新增对话框显示后将焦点放到业务编号域
+        $("#rfid").textbox({
+            icons: [{
+                iconCls: 'icon-clear',
+                handler: function (e) {
+                    $(e.data.target).textbox('clear');
+                    $('#rfid').textbox().next('span').find('input').focus();
+                }
+            }]
+        });
+
+        // 使RFID编号获得焦点
+        $('#rfid').textbox().next('span').find('input').focus();
         // TODO: 为方便扫码使用,新增对话框显示后将焦点放到服务编号域
         $('#serviceNo').textbox({
             onChange: function (newValue, oldValue) {
                 $.getJSON(base + '/deposit/findDepositByServiceNo/' + newValue, function (json) {
                     if (json.length == 0) {
-                        $.messager.alert(title, '没有找到匹配的存放记录', warning, function () {
+                        $.messager.alert(title, '没有匹配的骨灰盒存放记录', warning, function () {
                             $("#serviceNo").textbox("clear");
                         });
                     } else {
@@ -255,7 +313,7 @@
                 console.log(data);
                 if (data.result) {
                     if (data.result == true) {
-                        $.messager.alert(title, '安放袋编号已存在', warning, function () {
+                        $.messager.alert(title, 'RFID编号已存在', warning, function () {
                             $("#serviceNo").textbox("setValue", "");
                         });
                     }

@@ -8,14 +8,28 @@
         <table class="tab-border">
             <tr>
                 <td style="width: 100px" class="title-bg">
-                    RFID编号
+                    骨灰袋识别码
                 </td>
                 <td class="domain-bg">
                     <input type="hidden" id="id" name="id" value="">
-                    <input class="easyui-textbox" id="serviceNo"
-                           name="serviceNo" style="width:198px"
-                           data-options="required:true,readonly:true">
+                    <input class="easyui-textbox" id="rfid"
+                           name="rfid" style="width:198px"
+                           data-options="prompt:'请读取骨灰袋识别码',required:true">
                 </td>
+                <td style="width: 100px" class="title-bg">
+                    业务编号
+                </td>
+                <td class="domain-bg">
+                    <input
+                            class="easyui-textbox"
+                            id="serviceNo"
+                            name="serviceNo"
+                            style="width:198px"
+                            data-options="required:true"
+                    />
+                </td>
+            </tr>
+            <tr>
                 <td style="width: 100px" class="title-bg">
                     姓名
                 </td>
@@ -26,8 +40,6 @@
                            missingMessage:'请填入逝者姓名',
                            validType:['chinese','length[2,5]']">
                 </td>
-            </tr>
-            <tr>
                 <td style="width: 100px" class="title-bg">
                     性别
                 </td>
@@ -43,6 +55,8 @@
                                                 required:true,
                                                 missingMessage:'请选择逝者性别'">
                 </td>
+            </tr>
+            <tr>
                 <td style="width: 100px" class="title-bg">
                     年龄
                 </td>
@@ -50,6 +64,10 @@
                     <input class="easyui-numberspinner" id="dpAge" name="dpAge"
                            style="width:198px"
                            data-options="required:true,panelHeight:'auto',min:0,max:150,missingMessage:'请填入逝者年龄',validType:'age'">
+                </td>
+                <td style="width: 100px" class="title-bg">
+                </td>
+                <td class="domain-bg">
                 </td>
             </tr>
             <tr>
@@ -60,7 +78,7 @@
                             class="easyui-linkbutton"
                             data-options="iconCls:'icon-man'"
                             style="width:135px;margin-top:2px;"
-                    >读取安放袋编号</a>
+                    >读骨灰袋识别码</a>
                 </td>
             </tr>
         </table>
@@ -92,3 +110,14 @@
         </table>
     </fieldset>
 </div>
+<OBJECT
+        id="TUHFReader09"
+        codebase="UHFReader09Proj.ocx"
+        classid="clsid:14428901-AF2B-4B45-ACBD-0B4779551E5D"
+        width="0"
+        height="0"
+        align="center"
+        hspace="0"
+        vspace="0"
+>
+</OBJECT>
