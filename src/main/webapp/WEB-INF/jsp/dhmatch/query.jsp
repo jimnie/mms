@@ -9,7 +9,7 @@
         <table cellpadding="5" class="tab-form">
             <tr>
                 <td style="width:90px" class="title-bg">
-                    安放袋编号
+                    RFID编号
                 </td>
                 <td style="width:180px" class="domain-bg">
                     <input class="easyui-textbox" id="serviceNo2" name="serviceNo2"></td>
@@ -30,7 +30,7 @@
                             class="easyui-linkbutton"
                             data-options="iconCls:'icon-man'"
                             style="width:135px;margin-top:2px;"
-                    >读取安放袋编号</a>
+                    >读取RFID编号</a>
                 </td>
             </tr>
         </table>

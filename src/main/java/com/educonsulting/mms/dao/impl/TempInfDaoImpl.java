@@ -22,4 +22,18 @@ public class TempInfDaoImpl extends BaseDaoImpl<TempInf, Long> implements TempIn
         String jpql = "select inf from TempInf inf where inf.serviceNo = :serviceNo";
         return (TempInf) entityManager.createQuery(jpql).setParameter("serviceNo", serviceNo).getSingleResult();
     }
+
+    @Override
+    public boolean isRfidNoExist(String rfid) {
+        String jpql = "select count(inf.rfid) from TempInf inf where inf.rfid = :rfid";
+        Long count = entityManager.createQuery(jpql, Long.class).setFlushMode(FlushModeType.COMMIT)
+                .setParameter("rfid", rfid).getSingleResult();
+        return count > 0;
+    }
+
+    @Override
+    public TempInf findByRfidNo(String rfid) {
+        String jpql = "select inf from TempInf inf where inf.rfid = :rfid";
+        return (TempInf) entityManager.createQuery(jpql).setParameter("rfid", rfid).getSingleResult();
+    }
 }

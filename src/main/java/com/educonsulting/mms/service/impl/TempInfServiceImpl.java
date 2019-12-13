@@ -39,4 +39,14 @@ public class TempInfServiceImpl extends BaseServiceImpl<TempInf, Long> implement
     public TempInf findByServiceNo(String serviceNo) {
         return tempInfDao.findByServiceNo(serviceNo);
     }
+
+    @Override
+    public boolean isRfidNoExist(String rfid) {
+        return tempInfDao.isRfidNoExist(rfid);
+    }
+
+    @Override
+    public TempInf findByRfidNo(String rfid) {
+        return tempInfDao.findByRfidNo(rfid);
+    }
 }

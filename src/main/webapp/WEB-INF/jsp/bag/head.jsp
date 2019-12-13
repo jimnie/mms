@@ -201,29 +201,5 @@
         $("#dlg").dialog("close");
     }
 
-    // function checkSerivceNo() {
-    //     let sno = $('#serviceNo').textbox('getValue');
-    //     $.ajax({
-    //         type: "POST",
-    //         url: base + "/deposit/exist",
-    //         data: {sno: sno},
-    //         dataType: "json",
-    //         async: false,
-    //         success: function (data) {
-    //             console.log(data);
-    //             if (data.result) {
-    //                 if (data.result == true) {
-    //                     $.messager.alert(title, '服务编号已存在', warning, function () {
-    //                         $("#serviceNo").textbox("setValue", "");
-    //                         $("#serviceNo").textbox().next("span").find("input").focus();
-    //                     });
-    //                 }
-    //             }
-    //         },
-    //         error: function (e) {
-    //             console.log(e);
-    //         }
-    //     })
-    // }
 </script>
 

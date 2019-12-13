@@ -152,11 +152,11 @@
             .dialog("open");
         $("#dlg").window("maximize");
         $("#addform").form("clear");
-        // TODO: 为方便扫码使用,新增对话框显示后将焦点放到服务编号域
+        // TODO: 为方便扫码使用,新增对话框显示后将焦点放到RFID编号域
 
         $("#dpCertNo").textbox({
             onChange: function (newValue, oldValue) {
-                // console.log("通过逝者身份证号查询已绑定的安放袋编号");
+                // console.log("通过逝者身份证号查询已绑定的RFID编号");
                 if (newValue) {
                     $.ajax({
                         type: "POST",
@@ -194,7 +194,7 @@
                                     }
                                 })
                             } else {
-                                $.messager.alert(title, '没有找到安放袋领取信息', warning, function () {
+                                $.messager.alert(title, '没有找到RFID领取信息', warning, function () {
                                     $("#dpCertNo").textbox("clear");
                                     $("#dpCertType").combobox("clear");
                                     $("#dpName").textbox("clear");

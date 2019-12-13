@@ -39,7 +39,7 @@
                 <th data-options="field:'utCertNo',hidden:true">id</th>
                 <th data-options="field:'phone',hidden:true">id</th>
                 <th data-options="field:'serviceNo',width:150,halign:'center',align:'center'">
-                    安放袋编号
+                    业务编号
                 </th>
                 <th data-options="field:'dpName',width:100,halign:'center',align:'center'">
                     逝者姓名
@@ -61,6 +61,9 @@
                 </th>
                 <th data-options="field:'hPosition',width:150,halign:'center',align:'center'">
                     骨灰存放位置
+                </th>
+                <th data-options="field:'rfid',width:200,halign:'center',align:'center'">
+                    RFID编号
                 </th>
             </tr>
             </thead>
