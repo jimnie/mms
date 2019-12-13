@@ -76,7 +76,7 @@
             $.messager.alert(title, "二代证阅读机开启端口失败: " + openState, error);
         }
         $("#dlg")
-            .dialog("setTitle", "新增安放袋领取记录")
+            .dialog("setTitle", "新增RFID领取记录")
             .dialog("open");
         $("#dlg").window("maximize");
         $("#addform").form("clear");
@@ -146,7 +146,7 @@
                 .dialog("setTitle", "修改存放记录")
                 .dialog("open");
         } else {
-            $.messager.alert(title, "请选择您要修改的安放袋领取记录", warning);
+            $.messager.alert(title, "请选择您要修改的RFID领取记录", warning);
         }
     }
 
@@ -157,10 +157,10 @@
             $("#view-dialog").window("maximize");
             $("#viewform").form("load", row);
             $("#view-dialog")
-                .dialog("setTitle", "查看安放袋领取记录")
+                .dialog("setTitle", "查看RFID领取记录")
                 .dialog("open");
         } else {
-            $.messager.alert(title, "请选择您要查看的安放袋领取记录", warning);
+            $.messager.alert(title, "请选择您要查看的RFID领取记录", warning);
         }
     }
 

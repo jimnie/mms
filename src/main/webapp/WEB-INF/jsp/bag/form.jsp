@@ -19,14 +19,14 @@
                             name="serviceNo"
                             style="width:198px"
                             data-options="required:true,readonly:true,
-                    missingMessage:'请放置安放袋读取识别号码'"/>
+                    missingMessage:'请读取RFID识别号码'"/>
                     <a
                             id="readRfid"
                             href="#"
                             class="easyui-linkbutton"
                             data-options="iconCls:'icon-man'"
                             style="width:135px;margin-top:2px;"
-                    >读取安放袋编号</a>
+                    >读取RFID编号</a>
                 </td>
             </tr>
             <tr>
@@ -37,7 +37,7 @@
                             class="easyui-linkbutton"
                             data-options="iconCls:'icon-man'"
                             style="width:135px;margin-top:2px;"
-                    >读取安放袋编号</a>
+                    >读取RFID编号</a>
                 </td>
             </tr>
         </table>
