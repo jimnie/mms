@@ -13,7 +13,7 @@
                     <td>
                         <a href="javascript:void(0)" class="easyui-linkbutton"
                            data-options="iconCls:'icon-redo'" onclick="addDraw()">
-                            办理领取
+                            领取骨灰
                         </a>
                     </td>
                     <td style="text-align:right">
@@ -57,13 +57,13 @@
                     证件号码
                 </th>
                 <th data-options="field:'dPosition',width:150,halign:'center',align:'center'">
-                    盒存放位置
+                    骨灰盒存放位置
                 </th>
                 <th data-options="field:'hPosition',width:150,halign:'center',align:'center'">
                     骨灰存放位置
                 </th>
                 <th data-options="field:'rfid',width:200,halign:'center',align:'center'">
-                    RFID编号
+                    骨灰袋识别码
                 </th>
             </tr>
             </thead>
