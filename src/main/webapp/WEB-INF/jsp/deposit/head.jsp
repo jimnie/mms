@@ -142,7 +142,7 @@
                         success: function (data) {
                             console.log(data);
                             if (data.result) {
-                                $.messager.alert(title, '安放袋编号已登记', warning);
+                                $.messager.alert(title, 'RFID编号已登记', warning);
                             } else {
                                 $("#serviceNo").textbox("setValue", TID);
                             }
