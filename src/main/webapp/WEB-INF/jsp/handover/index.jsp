@@ -47,7 +47,7 @@
             <tr>
                 <th data-options="field:'id',hidden:true">id</th>
                 <th data-options="field:'serviceNo',width:150,halign:'center',align:'center',sortable:true">
-                    RFID编号
+                    业务编号
                 </th>
                 <th data-options="field:'dpName',width:100,halign:'center',align:'center'">
                     逝者姓名
@@ -58,10 +58,10 @@
                 <th data-options="field:'dpAge',width:80,halign:'center',align:'center'">
                     年龄
                 </th>
-                <th data-options="field:'rcpDate',width:130,halign:'center',align:'center',sortable:true">
+                <th data-options="field:'rcpDate',width:120,halign:'center',align:'center',sortable:true">
                     交接时间
                 </th>
-                <th data-options="field:'position',width:100,halign:'center',align:'center'">
+                <th data-options="field:'position',width:110,halign:'center',align:'center'">
                     骨灰存放位置
                 </th>
                 <th data-options="field:'drawDate',width:130,halign:'center',align:'center'">
@@ -69,6 +69,9 @@
                 </th>
                 <th data-options="field:'status',width:80,halign:'center',align:'center',sortable:true,formatter:stateFormatter">
                     状态
+                </th>
+                <th data-options="field:'rfid',width:180,halign:'center',align:'center',sortable:true">
+                    骨灰袋识别码
                 </th>
             </tr>
             </thead>
