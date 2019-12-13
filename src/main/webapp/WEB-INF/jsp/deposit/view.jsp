@@ -17,29 +17,11 @@
                            data-options="disabled:true">
                 </td>
                 <td style="width: 100px" class="title-bg">
+                    骨灰袋识别码
                 </td>
                 <td class="domain-bg">
-                </td>
-            </tr>
-            <tr>
-                <td style="width: 100px" class="title-bg">
-                    证件类型
-                </td>
-                <td class="domain-bg">
-                    <input class="easyui-combobox" id="dpCertType" name="dpCertType"
-                           style="width:198px"
-                           data-options="url:'${pageContext.request.contextPath}/dict/findDict/certType',
-                                                method:'get',
-                                                valueField:'value',
-                                                textField:'name',
-                                                disabled:true">
-                </td>
-                <td style="width: 100px" class="title-bg">
-                    证件号码
-                </td>
-                <td class="domain-bg">
-                    <input class="easyui-textbox" id="dpCertNo" name="dpCertNo"
-                           style="width:198px"
+                    <input class="easyui-textbox" id="rfid"
+                           name="rfid" style="width:198px"
                            data-options="disabled:true">
                 </td>
             </tr>
@@ -83,6 +65,28 @@
                            data-options="disabled:true">
                 </td>
             </tr>
+            <tr>
+                <td style="width: 100px" class="title-bg">
+                    证件类型
+                </td>
+                <td class="domain-bg">
+                    <input class="easyui-combobox" id="dpCertType" name="dpCertType"
+                           style="width:198px"
+                           data-options="url:'${pageContext.request.contextPath}/dict/findDict/certType',
+                                                method:'get',
+                                                valueField:'value',
+                                                textField:'name',
+                                                disabled:true">
+                </td>
+                <td style="width: 100px" class="title-bg">
+                    证件号码
+                </td>
+                <td class="domain-bg">
+                    <input class="easyui-textbox" id="dpCertNo" name="dpCertNo"
+                           style="width:198px"
+                           data-options="disabled:true">
+                </td>
+            </tr>
         </table>
     </fieldset>
 </div>
@@ -92,6 +96,24 @@
             承办人信息
         </legend>
         <table class="tab-border">
+            <tr>
+                <td style="width: 100px" class="title-bg">
+                    姓名
+                </td>
+                <td class="domain-bg">
+                    <input class="easyui-textbox" id="utName" name="utName"
+                           style="width:198px"
+                           data-options="disabled:true">
+                </td>
+                <td style="width: 100px" class="title-bg">
+                    联系电话
+                </td>
+                <td class="domain-bg">
+                    <input class="easyui-textbox" id="phone" name="phone"
+                           style="width:198px"
+                           data-options="disabled:true">
+                </td>
+            </tr>
             <tr>
                 <td style="width: 100px" class="title-bg">
                     证件类型
@@ -110,24 +132,6 @@
                 </td>
                 <td class="domain-bg">
                     <input class="easyui-textbox" id="utCertNo" name="utCertNo"
-                           style="width:198px"
-                           data-options="disabled:true">
-                </td>
-            </tr>
-            <tr>
-                <td style="width: 100px" class="title-bg">
-                    姓名
-                </td>
-                <td class="domain-bg">
-                    <input class="easyui-textbox" id="utName" name="utName"
-                           style="width:198px"
-                           data-options="disabled:true">
-                </td>
-                <td style="width: 100px" class="title-bg">
-                    联系电话
-                </td>
-                <td class="domain-bg">
-                    <input class="easyui-textbox" id="phone" name="phone"
                            style="width:198px"
                            data-options="disabled:true">
                 </td>

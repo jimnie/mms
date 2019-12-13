@@ -22,7 +22,7 @@
                     />
                 </td>
                 <td style="width: 100px" class="title-bg">
-                    RFID编号
+                    骨灰袋识别码
                 </td>
                 <td class="domain-bg">
                     <input
