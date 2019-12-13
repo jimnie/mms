@@ -5,7 +5,10 @@ import com.educonsulting.mms.Page;
 import com.educonsulting.mms.Pageable;
 import com.educonsulting.mms.entity.DHMatch;
 import com.educonsulting.mms.service.DHMatchService;
+import net.sf.json.JSONObject;
 import org.apache.commons.lang.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,6 +22,8 @@ import java.util.List;
 @Controller("dhMatchController")
 @RequestMapping("/dhmatch")
 public class DHMatchController extends BaseController {
+
+    private static final Logger logger = LogManager.getLogger(DHMatchController.class);
 
     @Resource(name = "dhMatchServiceImpl")
     private DHMatchService dhMatchService;
@@ -54,5 +59,16 @@ public class DHMatchController extends BaseController {
         pageable.setFilters(filters);
         Page<DHMatch> dhMatchPage = dhMatchService.findPage(pageable);
         return getPageResultMap(dhMatchPage);
+    }
+
+    @RequestMapping(value = "/isMatched", method = {RequestMethod.POST, RequestMethod.GET})
+    @ResponseBody
+    public Object isMatched(@RequestParam(value = "sno", required = true) String sno,
+                            @RequestParam(value = "rfid", required = true) String rfid) {
+        logger.info("开始核对逝者信息");
+        boolean exist = dhMatchService.exists(Filter.eq("serviceNo", sno), Filter.eq("rfid", rfid));
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("result", exist);
+        return jsonObject;
     }
 }
