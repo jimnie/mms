@@ -46,7 +46,7 @@
                 return;
             } else {
                 if (readState == -7) {
-                    $.messager.alert(title, '验证卡失败，没有找到卡或者需要将卡拿离验证区重新读卡', error);
+                    $.messager.alert(title, '验证卡失败，没有找到卡或将卡移开后重新放到验证区', error);
                 } else {
                     $.messager.alert(title, '读二代证失败: ' + readState, error);
                 }
@@ -62,6 +62,86 @@
             $('#phone').textbox('clear');
         });
 
+        $("#readRfid").bind("click", function () {
+            $("#rfid2").textbox("clear");
+            var port = 3; // 端口COM3
+            var baud = 5; // 波特率57600bps
+            var mem = 2 // 读TID区
+            var beginAddr = 2; // 起始地址
+            var wordNum = 5; // 字数
+            var connStatus = TUHFReader09.Open(port, baud);
+
+            if (connStatus == '00') {
+                console.log('设备连接成功');
+            } else if (connStatus == '35') {
+                console.log('设备已连接');
+            } else {
+                $.messager.alert(
+                    title,
+                    '电子标签设备连接失败',
+                    error
+                );
+            }
+
+            if (connStatus == '00' || connStatus == '35') {
+                var codeNum = TUHFReader09.Inventory();
+                if (codeNum == "") {
+                    $.messager.alert(
+                        title,
+                        '未询查到电子标签',
+                        error
+                    );
+                } else {
+                    console.log('询查到电子标签');
+                    console.log('EPC=' + codeNum)
+                    var epcLen = parseInt(codeNum.substr(0, 2), 16);
+                    var EPC = codeNum.substr(2, epcLen * 2);
+                    var TID = TUHFReader09.Read(EPC, beginAddr, wordNum, mem);
+                    if (TID == '') {
+                        $.messager.alert(
+                            title,
+                            '读数据失败',
+                            error
+                        );
+                    } else {
+                        console.log('读数据成功');
+                        console.log('TID=' + TID);
+                        $('#rfid2').textbox('setValue', TID);
+                    }
+                }
+
+                connStatus = TUHFReader09.Close();
+                if (connStatus == '00') {
+                    console.log('设备关闭成功');
+                } else {
+                    console.log('设备关闭失败');
+                }
+            }
+        });
+
+        $('#checkServiceNoRfid').bind('click', function () {
+            let sno = $('#serviceNo2').textbox('getValue');
+            let rfid = $('#rfid2').textbox('getValue');
+
+            $.ajax({
+                type: "POST",
+                url: base + "/dhmatch/isMatched",
+                data: {sno: sno, rfid: rfid},
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    console.log(data);
+                    if (data.result == true) {
+                        $.messager.alert(title, '逝者信息核对正确', info);
+                    } else {
+                        $.messager.alert(title, '逝者信息核对错误', error);
+                    }
+                },
+                error: function (e) {
+                    console.log(e);
+                }
+            })
+        });
     });
 </script>
 <script type="text/javascript">
@@ -129,11 +209,12 @@
         if (row) {
             $('#dlg').window('maximize');
             $('#addform').form('load', row);
-            $('#dlg').dialog('setTitle', '领取记录').dialog('open');
+            $('#dlg').dialog('setTitle', '领取骨灰记录').dialog('open');
             $('#cUtName').text("  " + row.utName + "  ");
             $('#cDpName1').text("  " + row.dpName + "  ");
             $('#cDpName2').text("  " + row.dpName + "  ");
             // $('#drawDate').datebox('setValue', formatterDate(new Date()));
+            $('#serviceNo2').textbox().next('span').find('input').focus();
             var openState = rdcard.openport();
             if (openState == 0) {
                 // $.messager.alert('提示', '开启端口成功', 'info');
@@ -141,7 +222,7 @@
                 $.messager.alert(title, '开启端口失败: ' + openState, error);
             }
         } else {
-            $.messager.alert(title, '请选择需要领取的记录', warning);
+            $.messager.alert(title, '请选中要领取骨灰的记录', warning);
         }
     }
 
@@ -279,4 +360,15 @@
 <OBJECT classid="clsid:F1317711-6BDE-4658-ABAA-39E31D3704D3"
         codebase="SDRdCard.cab#version=2,0,1,0" width="0"
         height="0" align="center" hspace="0" vspace="0" id="idcard" name="rdcard">
+</OBJECT>
+<OBJECT
+        id="TUHFReader09"
+        codebase="UHFReader09Proj.ocx"
+        classid="clsid:14428901-AF2B-4B45-ACBD-0B4779551E5D"
+        width="0"
+        height="0"
+        align="center"
+        hspace="0"
+        vspace="0"
+>
 </OBJECT>

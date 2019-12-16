@@ -3,12 +3,12 @@
 <div>
     <fieldset class="fieldset" style="width:1103px">
         <legend class="legend">
-            骨灰信息
+            业务信息核验
         </legend>
         <table class="tab-border">
             <tr>
                 <td style="width: 100px" class="title-bg">
-                    RFID编号
+                    业务编号
                 </td>
                 <td class="domain-bg">
                     <input type="hidden" id="dId" name="dId" value="">
@@ -18,6 +18,66 @@
                            data-options="readonly:true">
                 </td>
                 <td style="width: 100px" class="title-bg">
+                    骨灰袋识别码
+                </td>
+                <td class="domain-bg">
+                    <input class="easyui-textbox" id="rfid"
+                           name="rfid" style="width:198px"
+                           data-options="readonly:true">
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 100px" class="title-bg">
+                </td>
+                <td class="domain-bg">
+                    <input type="hidden" id="id" name="id" value=""/>
+                    <input
+                            class="easyui-textbox"
+                            id="serviceNo2"
+                            name="serviceNo2"
+                            style="width:198px"
+                            data-options="prompt:'请输入业务编号或扫码',required:true"
+                    />
+                </td>
+                <td style="width: 100px" class="title-bg">
+                </td>
+                <td class="domain-bg">
+                    <input class="easyui-textbox" id="rfid2"
+                           name="rfid2" style="width:198px"
+                           data-options="prompt:'请读取骨灰袋识别码',required:true">
+                </td>
+            </tr>
+            <tr>
+                <td align="right" colspan="4">
+                    <a
+                            id="readRfid"
+                            href="#"
+                            class="easyui-linkbutton"
+                            data-options="iconCls:'icon-search'"
+                            style="width:135px;margin-top:2px;"
+                    >读骨灰袋识别码</a>
+                    <a
+                            id="checkServiceNoRfid"
+                            href="#"
+                            class="easyui-linkbutton"
+                            data-options="iconCls:'icon-ok'"
+                            style="width:120px;margin-top:2px;"
+                    >核对逝者信息</a
+                    >
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+</div>
+
+<div style="padding-top: 20px;">
+    <fieldset class="fieldset" style="width:1103px">
+        <legend class="legend">
+            逝者信息
+        </legend>
+        <table class="tab-border">
+            <tr>
+                <td style="width: 100px" class="title-bg">
                     逝者姓名
                 </td>
                 <td class="domain-bg">
@@ -25,8 +85,6 @@
                            style="width:198px"
                            data-options="readonly:true">
                 </td>
-            </tr>
-            <tr>
                 <td style="width: 100px" class="title-bg">
                     性别
                 </td>
@@ -39,6 +97,8 @@
                                                 textField:'name',
                                                 readonly:true">
                 </td>
+            </tr>
+            <tr>
                 <td style="width: 100px" class="title-bg">
                     年龄
                 </td>
@@ -46,6 +106,10 @@
                     <input class="easyui-textbox" id="dpAge" name="dpAge"
                            style="width:198px"
                            data-options="readonly:true">
+                </td>
+                <td style="width: 100px" class="title-bg">
+                </td>
+                <td class="domain-bg">
                 </td>
             </tr>
             <td style="width: 100px" class="title-bg">
@@ -89,6 +153,7 @@
         </table>
     </fieldset>
 </div>
+
 <div style="padding-top: 20px;">
     <fieldset class="fieldset" style="width:1103px">
         <legend class="legend">
