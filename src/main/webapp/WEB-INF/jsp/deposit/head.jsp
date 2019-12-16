@@ -321,20 +321,7 @@
                 }
             })
         });
-
-        // 使业务编号获得焦点
         $('#serviceNo').textbox().next('span').find('input').focus();
-        /*$('#serviceNo').textbox('textbox').bind('keypress', function (e) {
-            let sno = $('#serviceNo').textbox('getValue');
-            console.log(e.keyCode);
-            if (sno.length == 11) {
-                // when press ENTER key, accept the inputed value.
-                // 调用查询业务登记信息
-
-
-
-            }
-        });*/
     }
 
     // 保存新增的存放信息
