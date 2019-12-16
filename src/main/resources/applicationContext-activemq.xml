@@ -6,16 +6,9 @@
 
     <!-- 本地MQ服务环境配置   -->
     <!-- ActiveMQ 真正产生Connection的ConnectionFactory,由对应的 JMS服务厂商提供 -->
-    <!--<bean id="activeMqConnectionFactory"
-          class="org.apache.activemq.ActiveMQConnectionFactory">
-        <property name="brokerURL" value="tcp://localhost:61616"/>
-        <property name="userName" value="admin"></property>
-        <property name="password" value="admin"></property>
-    </bean>-->
-
-    <!-- 服务器MQ服务环境配置   -->
     <bean id="activeMqConnectionFactory"
           class="org.apache.activemq.ActiveMQConnectionFactory">
+<!--        <property name="brokerURL" value="tcp://localhost:61616"/>-->
         <property name="brokerURL" value="tcp://192.168.2.11:61616"/>
         <property name="userName" value="admin"></property>
         <property name="password" value="admin"></property>
