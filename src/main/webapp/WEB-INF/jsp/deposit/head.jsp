@@ -556,7 +556,7 @@
                 if (data.result) {
                     if (data.result == true) {
                         $.messager.alert(title, '业务编号已存在', warning, function () {
-                            $("#serviceNo").textbox("setValue", "");
+                            $("#serviceNo").textbox("clear");
                             $("#serviceNo").textbox().next("span").find("input").focus();
                         });
                     }
