@@ -313,6 +313,7 @@
 
             if (TID != '') {
                 console.log('读数据成功,TID=' + TID);
+                window.clearTimeout(tout); // 清除上一次的读卡超时
                 window.clearInterval(timer);
                 $('#rfid').textbox('setValue', TID); // 设置识别码输入域的值
                 $('#readRfid').linkbutton({disabled: false}); // 读取到TID后启用该按钮

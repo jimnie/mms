@@ -86,7 +86,7 @@
             <%=SpringUtils.getMessage("page.action.save")%>
         </a>
         <a id="closeButton" href="#" class="easyui-linkbutton" iconCls="icon-cancel"
-           onclick="javascript:$('#dlg').dialog('close')">
+           onclick="closeAddDialog()">
             <%=SpringUtils.getMessage("page.action.close")%>
         </a>
     </div>
