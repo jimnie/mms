@@ -70,7 +70,7 @@
                 <th data-options="field:'status',width:80,halign:'center',align:'center',sortable:true,formatter:stateFormatter">
                     状态
                 </th>
-                <th data-options="field:'rfid',width:180,halign:'center',align:'center',sortable:true">
+                <th data-options="field:'rfid',width:180,halign:'center',align:'center'">
                     骨灰袋识别码
                 </th>
             </tr>
