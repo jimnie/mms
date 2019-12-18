@@ -414,9 +414,17 @@
     }
 </script>
 <div style="position:absolute;">
-    <OBJECT classid="clsid:F1317711-6BDE-4658-ABAA-39E31D3704D3"
-            codebase="SDRdCard.cab#version=2,0,1,0" width="0"
-            height="0" align="center" hspace="0" vspace="0" id="idcard" name="rdcard">
+    <OBJECT
+            classid="clsid:F1317711-6BDE-4658-ABAA-39E31D3704D3"
+            codebase="SDRdCard.cab#version=2,0,1,0"
+            width="0"
+            height="0"
+            align="center"
+            hspace="0"
+            vspace="0"
+            id="idcard"
+            name="rdcard"
+    >
     </OBJECT>
     <OBJECT
             id="TUHFReader09"
