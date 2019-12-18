@@ -1,8 +1,7 @@
 package com.educonsulting.mms.util;
 
+import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang.StringUtils;
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
 
 import java.io.*;
 import java.util.UUID;
@@ -13,10 +12,10 @@ public class ImageGenerator {
     public static boolean generateImage(String imgStr, String imgFilePath) {
         if (StringUtils.isEmpty(imgStr)) //图像数据为空
             return false;
-        BASE64Decoder decoder = new BASE64Decoder();
+        Base64 base64 = new Base64();
         try {
             //Base64解码
-            byte[] b = decoder.decodeBuffer(imgStr);
+            byte[] b = base64.decodeBase64(imgStr);
             for (int i = 0; i < b.length; ++i) {
                 if (b[i] < 0) {//调整异常数据
                     b[i] += 256;
@@ -45,8 +44,9 @@ public class ImageGenerator {
             e.printStackTrace();
         }
         // 加密
-        BASE64Encoder encoder = new BASE64Encoder();
-        return encoder.encode(data);
+        Base64 base64 = new Base64();
+
+        return base64.encodeAsString(data);
     }
 
     public static void main(String[] args) {
