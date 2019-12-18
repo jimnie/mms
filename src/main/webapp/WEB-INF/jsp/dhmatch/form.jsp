@@ -54,8 +54,8 @@
                             href="#"
                             class="easyui-linkbutton"
                             data-options="iconCls:'icon-search'"
-                            style="width:135px;margin-top:2px;"
-                    >读骨灰袋识别码</a>
+                            style="width:100px;margin-top:2px;"
+                    >重新识别</a>
                     <a
                             id="checkServiceNoRfid"
                             href="#"

@@ -14,7 +14,7 @@
                     <input type="hidden" id="id" name="id" value="">
                     <input class="easyui-textbox" id="rfid"
                            name="rfid" style="width:198px"
-                           data-options="prompt:'请读取骨灰袋识别码',required:true">
+                           data-options="prompt:'正在读取骨灰袋识别码...',required:true">
                 </td>
                 <td style="width: 100px" class="title-bg">
                     业务编号
@@ -77,8 +77,8 @@
                             href="#"
                             class="easyui-linkbutton"
                             data-options="iconCls:'icon-search'"
-                            style="width:135px;margin-top:2px;"
-                    >读骨灰袋识别码</a>
+                            style="width:100px;margin-top:2px;"
+                    >重新识别</a>
                 </td>
             </tr>
         </table>
