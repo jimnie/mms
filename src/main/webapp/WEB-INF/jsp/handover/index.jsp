@@ -6,7 +6,7 @@
     <jsp:include page="head.jsp"></jsp:include>
 </head>
 <body style="margin: 0px">
-<div class="easyui-layout" fit="true">
+<div class="easyui-layout" fit="true" style="z-index: auto">
     <div region="north" border="false" style="height: 39px">
         <div class="toolbar">
             <table cellpadding="0" cellspacing="0" style="width: 95%">
@@ -118,14 +118,3 @@
     </div>
 </div>
 </body>
-<OBJECT
-        id="TUHFReader09"
-        codebase="UHFReader09Proj.ocx"
-        classid="clsid:14428901-AF2B-4B45-ACBD-0B4779551E5D"
-        width="0"
-        height="0"
-        align="center"
-        hspace="0"
-        vspace="0"
->
-</OBJECT>
