@@ -198,7 +198,7 @@
             $.messager.alert(title, "开启端口失败: " + openState, error);
         }
         $("#dlg")
-            .dialog("setTitle", "新增存放记录")
+            .dialog("setTitle", "新增骨灰盒存放信息")
             .dialog("open");
         $("#dlg").window("maximize");
         $("#addform").form("clear");
