@@ -28,6 +28,7 @@
             </tr>
             <tr>
                 <td style="width: 100px" class="title-bg">
+                    验证编号
                 </td>
                 <td class="domain-bg">
                     <input type="hidden" id="id" name="id" value=""/>
@@ -40,6 +41,7 @@
                     />
                 </td>
                 <td style="width: 100px" class="title-bg">
+                    验证识别码
                 </td>
                 <td class="domain-bg">
                     <input class="easyui-textbox" id="rfid2"
