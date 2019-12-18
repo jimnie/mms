@@ -147,14 +147,14 @@
 
     // 显示新增存放对话框
     function addHandover() {
-        $('#dlg').dialog('setTitle', '新增交接记录').dialog('open');
+        $('#dlg').dialog('setTitle', '新增骨灰交接信息').dialog('open');
         $('#dlg').window('maximize')
         $('#addform').form('clear');
         $('#depositDate').datebox('setValue', formatterDate(new Date()));
         $('#position').combobox('reload', '${pageContext.request.contextPath}/shelf/list');
         $.getJSON(base + '/shelf/idel/', function (json) {
             if (json.length == 0) {
-                $.messager.alert(title, '当前没有可用的存放位置', warning);
+                $.messager.alert(title, '当前没有闲置的骨灰存放位置', warning);
             } else {
                 $('#position').combobox('setValue', json[0].code);
             }
@@ -178,7 +178,7 @@
             onChange: function (newValue, oldValue) {
                 $.getJSON(base + '/deposit/findDepositByServiceNo/' + newValue, function (json) {
                     if (json.length == 0) {
-                        $.messager.alert(title, '没有匹配的骨灰盒存放记录', warning, function () {
+                        $.messager.alert(title, '没有匹配的骨灰盒存放信息', warning, function () {
                             $("#serviceNo").textbox("clear");
                         });
                     } else {
@@ -192,7 +192,7 @@
                                 console.log(data);
                                 if (data.result) {
                                     if (data.result == true) {
-                                        $.messager.alert(title, '已办理交接业务', warning, function () {
+                                        $.messager.alert(title, '骨灰已办理交接', warning, function () {
                                             $("#serviceNo").textbox("clear");
                                         });
                                     } else {
