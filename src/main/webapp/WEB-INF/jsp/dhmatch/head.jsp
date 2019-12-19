@@ -193,7 +193,7 @@
     // 保存新增的存放信息
     function saveItem() {
         if (!passed) {
-            $.messager.alert(title, '逝者信息核对错误，不能办理骨灰领取！', error);
+            alert('逝者信息核对错误，不能办理骨灰领取！');
             return;
         }
         let sno = $("#serviceNo").textbox("getValue");
