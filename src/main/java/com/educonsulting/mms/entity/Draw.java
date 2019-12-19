@@ -26,6 +26,8 @@ public class Draw extends BaseEntity {
 
     private String dpCertNo;
 
+    private String dpAddr;
+
     private String utName;
 
     private Integer utCertType;
@@ -51,6 +53,8 @@ public class Draw extends BaseEntity {
     private String signPic;
     // 领取经办人
     private String createdBy;
+
+    private String rfid;
 
     @NotNull
     @Column(name = "service_no", nullable = false, unique = true, length = 16)
@@ -238,5 +242,25 @@ public class Draw extends BaseEntity {
 
     public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
+    }
+
+    @NotNull
+    @Column(name = "rfid", nullable = false, length = 50)
+    public String getRfid() {
+        return rfid;
+    }
+
+    public void setRfid(String rfid) {
+        this.rfid = rfid;
+    }
+
+    @NotNull
+    @Column(name = "dp_addr", nullable = false, length = 255)
+    public String getDpAddr() {
+        return dpAddr;
+    }
+
+    public void setDpAddr(String dpAddr) {
+        this.dpAddr = dpAddr;
     }
 }
