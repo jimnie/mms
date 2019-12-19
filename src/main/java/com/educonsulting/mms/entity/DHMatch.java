@@ -31,6 +31,9 @@ public class DHMatch implements Serializable {
     @Column(name = "dp_cert_type")
     private Integer dpCertType;
 
+    @Column(name = "dp_addr")
+    private String dpAddr;
+
     @Column(name = "ut_name")
     private String utName;
 
@@ -197,5 +200,13 @@ public class DHMatch implements Serializable {
 
     public void setRfid(String rfid) {
         this.rfid = rfid;
+    }
+
+    public String getDpAddr() {
+        return dpAddr;
+    }
+
+    public void setDpAddr(String dpAddr) {
+        this.dpAddr = dpAddr;
     }
 }
