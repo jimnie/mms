@@ -1,6 +1,5 @@
 package com.educonsulting.mms.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import com.educonsulting.mms.Filter;
 import com.educonsulting.mms.Message;
 import com.educonsulting.mms.Page;
@@ -12,7 +11,10 @@ import com.educonsulting.mms.entity.Shelf;
 import com.educonsulting.mms.service.*;
 import com.educonsulting.mms.util.Constants;
 import com.educonsulting.mms.util.ImageGenerator;
+import net.sf.json.JSONObject;
 import org.apache.commons.lang.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.joda.time.DateTime;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
@@ -35,6 +37,8 @@ import java.util.UUID;
 @Controller
 @RequestMapping("/draw")
 public class DrawController extends BaseController {
+
+    private static final Logger logger = LogManager.getLogger(DrawController.class);
 
     @Resource(name = "drawServiceImpl")
     private DrawService drawService;
@@ -177,6 +181,31 @@ public class DrawController extends BaseController {
         boolean isExist = drawService.isServiceNoExist(sno);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("result", isExist);
+        return jsonObject;
+    }
+
+    @RequestMapping(value = "/find", method = {RequestMethod.POST, RequestMethod.GET})
+    @ResponseBody
+    public Object findDrawByServiceNo(@RequestParam(value = "sno", required = true) String sno) {
+        List<Draw> drawList = drawService.findDepositByServiceNo(sno);
+        JSONObject jsonObject = new JSONObject();
+        if (drawList.size() == 1) {
+            jsonObject = JSONObject.fromObject(drawList.get(0));
+            jsonObject.put("result", true);
+        } else {
+            jsonObject.put("result", false);
+        }
+        return jsonObject;
+    }
+
+    @RequestMapping(value = "/isMatched", method = {RequestMethod.POST, RequestMethod.GET})
+    @ResponseBody
+    public Object isMatched(@RequestParam(value = "sno", required = true) String sno,
+                            @RequestParam(value = "rfid", required = true) String rfid) {
+        logger.info("开始核对逝者信息");
+        boolean exist = drawService.exists(Filter.eq("serviceNo", sno), Filter.eq("rfid", rfid));
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("result", exist);
         return jsonObject;
     }
 }
