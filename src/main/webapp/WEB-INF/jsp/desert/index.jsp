@@ -6,7 +6,7 @@
     <jsp:include page="head.jsp"></jsp:include>
 </head>
 <body style="margin: 0px">
-<div class="easyui-layout" fit="true">
+<div class="easyui-layout" fit="true" style="z-index: auto">
     <div region="north" border="false" style="height: 39px">
         <div class="toolbar">
             <table cellpadding="0" cellspacing="0" style="width: 95%">
@@ -101,6 +101,9 @@
                         data-options="field:'dpCertNo',width:140,halign:'center',align:'center'"
                 >
                     证件号码
+                </th>
+                <th data-options="field:'rfid',width:180,halign:'center',align:'center'">
+                    骨灰袋识别码
                 </th>
                 <th
                         data-options="field:'createDate',width:100,halign:'center',align:'center',sortable:true"

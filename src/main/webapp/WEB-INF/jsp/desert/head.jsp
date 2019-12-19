@@ -18,6 +18,8 @@
     var isSigned = false;
     var toSign = false;
 
+    var passed = false;
+
     // 页面加载成后设置签字区域属性
     window.onload = function () {
         signPanel = document.getElementById("HWPenSign");
@@ -105,6 +107,45 @@
                 return;
             }
         });
+
+        $("#readRfid").bind("click", function () {
+            $("#rfid2").textbox("clear");
+            openRfidReader();
+        });
+
+        $('#checkServiceNoRfid').bind('click', function () {
+            let sno = $('#serviceNo').textbox('getValue');
+            if (sno == '') {
+                $.messager.alert(title, '验证编号不能为空', error);
+                $("#serviceNo").textbox().next("span").find("input").focus();
+                return;
+            }
+
+            let rfid = $('#rfid2').textbox('getValue');
+            if (rfid == '') {
+                $.messager.alert(title, '验证识别码不能为空', error);
+                return;
+            }
+            $.ajax({
+                type: "POST",
+                url: base + "/draw/isMatched",
+                data: {sno: sno, rfid: rfid},
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    passed = data.result;
+                    console.log('逝者信息核对是否正确:' + passed);
+                    if (data.result == true) {
+                        $.messager.alert(title, '逝者信息核对正确', info);
+                    } else {
+                        $.messager.alert(title, '逝者信息核对错误', error);
+                    }
+                },
+                error: function (e) {
+                    console.log(e);
+                }
+            })
+        });
     });
 </script>
 <script type="text/javascript">
@@ -152,65 +193,6 @@
             .dialog("open");
         $("#dlg").window("maximize");
         $("#addform").form("clear");
-        // TODO: 为方便扫码使用,新增对话框显示后将焦点放到RFID编号域
-
-        $("#dpCertNo").textbox({
-            onChange: function (newValue, oldValue) {
-                // console.log("通过逝者身份证号查询已绑定的RFID编号");
-                if (newValue) {
-                    $.ajax({
-                        type: "POST",
-                        url: base + "/bag/findBag",
-                        data: {certNo: newValue},
-                        dataType: "json",
-                        async: false,
-                        success: function (data) {
-                            // console.log(data.result.serviceNo);
-                            if (data.result) {
-                                var sno = data.result.serviceNo;
-                                $.ajax({
-                                    type: "POST",
-                                    url: base + "/desert/exist",
-                                    data: {sno: sno},
-                                    dataType: "json",
-                                    async: false,
-                                    success: function (data) {
-                                        console.log(data);
-                                        if (data.result) {
-                                            $.messager.alert(title, '该业务信息已存在', warning, function () {
-                                                $("#dpCertNo").textbox("clear");
-                                                $("#dpCertType").combobox("clear");
-                                                $("#dpName").textbox("clear");
-                                                $("#dpSex").textbox("clear");
-                                                $("#dpAddr").textbox("clear");
-                                                $("#dpAge").numberspinner("clear");
-                                            });
-                                        } else {
-                                            $("#serviceNo").textbox("setValue", sno);
-                                        }
-                                    },
-                                    error: function (e) {
-                                        console.log(e);
-                                    }
-                                })
-                            } else {
-                                $.messager.alert(title, '没有找到RFID领取信息', warning, function () {
-                                    $("#dpCertNo").textbox("clear");
-                                    $("#dpCertType").combobox("clear");
-                                    $("#dpName").textbox("clear");
-                                    $("#dpSex").textbox("clear");
-                                    $("#dpAddr").textbox("clear");
-                                    $("#dpAge").numberspinner("clear");
-                                });
-                            }
-                        },
-                        error: function (e) {
-                            console.log(e);
-                        }
-                    })
-                }
-            }
-        });
 
         // 修改逝者证件类型,动态添加输入验证规则
         $("#dpCertType").combobox({
@@ -244,10 +226,95 @@
                 }
             }
         });
+
+        // 为方便扫码使用,新增对话框显示后将焦点放到业务编号域
+        $("#serviceNo").textbox({
+            icons: [{
+                iconCls: 'icon-clear',
+                handler: function (e) {
+                    $(e.data.target).textbox('clear');
+                    $('#serviceNo').textbox().next('span').find('input').focus();
+                }
+            }]
+        });
+
+        // 给业务编号扫码添加回车事件
+        $('#serviceNo').textbox({
+            inputEvents: $.extend({}, $.fn.textbox.defaults.inputEvents, {
+                keypress: function test() {
+                    console.log(event.keyCode);
+                    if (event.keyCode == 13) {
+                        let sno = $('#serviceNo').textbox('getValue');
+                        console.log("查询业务编号:" + sno);
+                        $.ajax({ // 查询业务编号是否已经做过放弃骨灰业务
+                            type: "POST",
+                            url: base + "/desert/exist",
+                            data: {sno: sno},
+                            dataType: "json",
+                            async: false,
+                            success: function (data) {
+                                console.log('是否已经做过放弃骨灰业务:' + data.result);
+                                if (data.result) {
+                                    $.messager.alert(title, '放弃骨灰业务信息已存在', warning);
+                                    $('#serviceNo').textbox('clear');
+                                    $('#serviceNo').textbox().next('span').find('input').focus
+                                } else {
+                                    $.ajax({ // 查询业务编号是否完成领取业务
+                                        type: "POST",
+                                        url: base + "/draw/find",
+                                        data: {sno: sno},
+                                        dataType: "json",
+                                        async: false,
+                                        success: function (rdata) {
+                                            console.log(rdata);
+                                            if (rdata.result == true) {
+                                                console.log(rdata.rfid);
+                                                console.log(rdata.dpName);
+                                                $("#rfid").textbox("setValue", rdata.rfid);
+                                                $("#dpName").textbox("setValue", rdata.dpName);
+                                                $("#dpAge").numberspinner('setValue', rdata.dpAge);
+                                                $('#dpSex').combobox('setValue', '' + rdata.dpSex);
+                                                $('#dpCertType').combobox('setValue', rdata.dpCertNo.length == 18 ? '0' : '');
+                                                $("#dpCertNo").textbox('setValue', rdata.dpCertNo);
+                                                $('#dpAddr').textbox('setValue', rdata.dpAddr);
+
+                                                $('#utName').textbox('setValue', rdata.utName);
+                                                $('#utCertType').combobox('setValue', rdata.utCertNo.length == 18 ? '0' : '');
+                                                $('#utCertNo').textbox('setValue', rdata.utCertNo);
+                                                $('#phone').textbox('setValue', rdata.phone);
+                                            } else {
+                                                console.log('骨灰领取业务信息不存在:' + sno);
+                                                $.messager.alert(title, '骨灰领取业务信息不存在', warning, function () {
+                                                    $("#serviceNo").textbox("setValue", "");
+                                                    $("#serviceNo").textbox().next("span").find("input").focus();
+                                                });
+                                            }
+                                        },
+                                        error: function (e) {
+                                            console.log(e);
+                                        }
+                                    })
+                                }
+                            },
+                            error: function (e) {
+                                console.log(e);
+                            }
+                        })
+                    }
+                }
+            })
+        });
+        $('#serviceNo').textbox().next('span').find('input').focus();
+        openRfidReader();
     }
 
     // 保存新增的存放信息
     function saveItem() {
+        console.log('提交存放信息，逝者信息核对是否正确:' + passed);
+        if (!passed) {
+            alert('逝者信息核对错误，不能办理放弃骨灰！');
+            return;
+        }
         let sno = $("#serviceNo").textbox("getValue");
         url = base + "/desert/save";
 
@@ -269,7 +336,9 @@
                         timeout: 2000,
                         showType: "slide"
                     });
-
+                    closeRfidReader();
+                    closeRdReader(); // 关闭二代证读卡器设备
+                    closeHandPad();
                     $("#dlg").dialog("close");
                     $("#deserts").datagrid("reload");
                     $.messager.confirm(title, "是否打印放弃骨灰确认书?", function (r) {
@@ -295,7 +364,7 @@
                 .dialog("setTitle", "修改记录")
                 .dialog("open");
         } else {
-            $.messager.alert(title, "请选择需要修改的记录", warning);
+            $.messager.alert(title, "请选中需要修改的记录", warning);
         }
     }
 
@@ -319,7 +388,7 @@
         if (row) {
             window.open(base + "/desert/viewPDF/" + row.serviceNo);
         } else {
-            $.messager.alert(title, "请选择需要查看的记录", warning);
+            $.messager.alert(title, "请选中需要查看的记录", warning);
         }
     }
 
@@ -361,20 +430,9 @@
             return;
         }
 
-        var closeState;
-        closeState = rdcard.closeport(); // 关闭端口
-        if (closeState == 0) {
-            // $.messager.alert('提示', '关闭端口成功', 'info');
-        } else {
-            $.messager.alert(title, "关闭端口失败: " + closeState, error);
-        }
-        var handPadState;
-        handPadState = signPanel.HWCloseC(); // 关闭手写板
-        if (handPadState == 0) {
-            signPanel.HWClearPenSign();
-        } else {
-            $.messager.alert(title, "关闭手写板设备失败: " + closeState, error);
-        }
+        closeRfidReader();
+        closeRdReader();
+        closeHandPad();
         $("#dlg").dialog("close");
     }
 
@@ -449,16 +507,132 @@
             }
         })
     }
+
+    var timer;
+    var tout;
+    var count = 60000;
+
+    function openRfidReader() {
+        $('#readRfid').linkbutton({disabled: true}); // 初始页面禁用linkbutton
+        var port = 3; // 端口COM3
+        var baud = 5; // 波特率57600bps
+        var connStatus = TUHFReader09.Open(port, baud);
+        if (connStatus == '00') {
+            console.log('RFID读卡设备连接成功');
+        } else if (connStatus == '35') {
+            console.log('RFID读卡设备已连接');
+            let closeState = TUHFReader09.Close(); // 关闭RFID读卡器
+            if (closeState == '00') {
+                console.log('RFID读卡设备关闭成功');
+            } else {
+                console.log('RFID读卡设备关闭失败');
+            }
+        } else {
+            $.messager.alert(
+                title,
+                'RFID读卡设备连接失败',
+                error
+            );
+        }
+        if (connStatus == '00' || connStatus == '35') {
+            window.clearTimeout(tout); // 清除上一次的读卡超时
+            $("#rfid2").textbox("clear");
+            timer = setInterval(readRfid, 100); // 尝试循环读取电子标签
+            tout = setTimeout(function () {
+                console.log('读电子标签超时');
+                window.clearInterval(timer);
+                $.messager.alert(title, '读电子标签超时', warning, function () {
+                    $('#readRfid').linkbutton({disabled: false}); // 读取到TID后启用该按钮
+                });
+            }, count);
+        }
+    }
+
+    function readRfid() {
+        let mem = 2 // 读TID区
+        let beginAddr = 2; // 起始地址
+        let wordNum = 5; // 字数
+        let codeNum = TUHFReader09.Inventory(); // 读取电子标签
+        if (codeNum != "") {
+            console.log('询查到电子标签,EPC=' + codeNum);
+            var epcLen = parseInt(codeNum.substr(0, 2), 16);
+            var EPC = codeNum.substr(2, epcLen * 2);
+            var TID = TUHFReader09.Read(EPC, beginAddr, wordNum, mem);
+
+            if (TID != '') {
+                console.log('读数据成功,TID=' + TID);
+                window.clearTimeout(tout); // 清除上一次的读卡超时
+                window.clearInterval(timer);
+                $('#rfid2').textbox('setValue', TID); // 设置识别码输入域的值
+                $('#readRfid').linkbutton({disabled: false}); // 读取到TID后启用该按钮
+                let closeState = TUHFReader09.Close(); // 关闭RFID读卡器
+                if (closeState == '00') {
+                    console.log('RFID读卡设备关闭成功');
+                } else {
+                    console.log('RFID读卡设备关闭失败');
+                }
+            } else {
+                console.log('TID读数据失败');
+            }
+        } else {
+            console.log('未询查到电子标签');
+        }
+    }
+
+    function closeRfidReader() {
+        window.clearInterval(timer);
+        window.clearTimeout(tout);
+        let closeState = TUHFReader09.Close(); // 关闭RFID读卡器
+        if (closeState == '00') {
+            console.log('RFID读卡设备关闭成功');
+        } else {
+            console.log('RFID读卡设备关闭失败');
+        }
+    }
+
+    function closeRdReader() {
+        var closeState;
+        closeState = rdcard.closeport(); // 关闭端口
+        if (closeState == 0) {
+            console.log('二代证读卡设备关闭成功');
+        } else {
+            console.log('二代证读卡设备关闭失败');
+        }
+    }
+
+    function closeHandPad() {
+        var handPadState;
+        handPadState = signPanel.HWCloseC(); // 关闭手写板
+        if (handPadState == 0) {
+            console.log('关闭手写板设备成功');
+            signPanel.HWClearPenSign();
+        } else {
+            console.log('关闭手写板设备失败');
+        }
+    }
 </script>
-<OBJECT
-        classid="clsid:F1317711-6BDE-4658-ABAA-39E31D3704D3"
-        codebase="SDRdCard.cab#version=2,0,1,0"
-        width="0"
-        height="0"
-        align="center"
-        hspace="0"
-        vspace="0"
-        id="idcard"
-        name="rdcard"
->
-</OBJECT>
+<div style="position: absolute">
+    <OBJECT
+            classid="clsid:F1317711-6BDE-4658-ABAA-39E31D3704D3"
+            codebase="SDRdCard.cab#version=2,0,1,0"
+            width="0"
+            height="0"
+            align="center"
+            hspace="0"
+            vspace="0"
+            id="idcard"
+            name="rdcard"
+    >
+    </OBJECT>
+    <OBJECT
+            id="TUHFReader09"
+            codebase="UHFReader09Proj.ocx"
+            classid="clsid:14428901-AF2B-4B45-ACBD-0B4779551E5D"
+            width="0"
+            height="0"
+            align="center"
+            hspace="0"
+            vspace="0"
+    >
+    </OBJECT>
+</div>

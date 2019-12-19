@@ -3,63 +3,79 @@
 <div>
     <fieldset class="fieldset" style="width:1103px">
         <legend class="legend">
-            逝者信息
+            业务信息核验
         </legend>
         <table class="tab-border">
             <tr>
-                <td style="width: 100px" class="title-bg">
-                    业务编号
-                </td>
-                <td class="domain-bg">
-                    <input type="hidden" id="id" name="id" value=""/>
-                    <input
-                            class="easyui-textbox"
-                            id="serviceNo"
-                            name="serviceNo"
-                            style="width:198px"
-                            data-options="required:true, readonly:true"
-                    />
-                </td>
                 <td style="width: 100px" class="title-bg">
                     业务类型
                 </td>
                 <td class="domain-bg">
                     放弃骨灰业务
-                </td>
-            </tr>
-            <tr>
-                <td style="width: 100px" class="title-bg">
-                    证件类型
-                </td>
-                <td class="domain-bg">
-                    <input
-                            class="easyui-combobox"
-                            id="dpCertType"
-                            name="dpCertType"
-                            style="width:198px"
-                            data-options="url:'${pageContext.request.contextPath}/dict/findDict/certType',
-                                                editable:false,
-                                                method:'get',
-                                                valueField:'value',
-                                                textField:'name',
-                                                panelHeight:'auto',
-                                                required:true,
-                                                missingMessage:'请选择逝者证件类型'"
-                    />
+                    <input type="hidden" id="id" name="id" value=""/>
                 </td>
                 <td style="width: 100px" class="title-bg">
-                    证件号码
+                    骨灰袋识别码
                 </td>
                 <td class="domain-bg">
                     <input
                             class="easyui-textbox"
-                            id="dpCertNo"
-                            name="dpCertNo"
+                            id="rfid"
+                            name="rfid"
                             style="width:198px"
-                            data-options="required:true,missingMessage:'请填入逝者证件号码'"
-                    />
+                            data-options="required:true,readonly:true"/>
                 </td>
             </tr>
+            <tr>
+                <td style="width: 100px" class="title-bg">
+                    业务编号
+                </td>
+                <td class="domain-bg">
+                    <input
+                            class="easyui-textbox"
+                            id="serviceNo"
+                            name="serviceNo"
+                            style="width:198px"
+                            data-options="prompt:'请输入业务编号或扫码',required:true"
+                    />
+                </td>
+                <td style="width: 100px" class="title-bg">
+                    验证识别码
+                </td>
+                <td class="domain-bg">
+                    <input class="easyui-textbox" id="rfid2"
+                           name="rfid2" style="width:198px"
+                           data-options="prompt:'请读取骨灰袋识别码',required:true">
+                </td>
+            </tr>
+            <tr>
+                <td align="right" colspan="4">
+                    <a
+                            id="readRfid"
+                            href="#"
+                            class="easyui-linkbutton"
+                            data-options="iconCls:'icon-search'"
+                            style="width:100px;margin-top:2px;"
+                    >重新识别</a>
+                    <a
+                            id="checkServiceNoRfid"
+                            href="#"
+                            class="easyui-linkbutton"
+                            data-options="iconCls:'icon-ok'"
+                            style="width:120px;margin-top:2px;"
+                    >核对逝者信息</a
+                    >
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+</div>
+<div style="padding-top: 20px;">
+    <fieldset class="fieldset" style="width:1103px">
+        <legend class="legend">
+            逝者信息
+        </legend>
+        <table class="tab-border">
             <tr>
                 <td style="width: 100px" class="title-bg">
                     姓名
@@ -124,6 +140,39 @@
                 </td>
             </tr>
             <tr>
+                <td style="width: 100px" class="title-bg">
+                    证件类型
+                </td>
+                <td class="domain-bg">
+                    <input
+                            class="easyui-combobox"
+                            id="dpCertType"
+                            name="dpCertType"
+                            style="width:198px"
+                            data-options="url:'${pageContext.request.contextPath}/dict/findDict/certType',
+                                                editable:false,
+                                                method:'get',
+                                                valueField:'value',
+                                                textField:'name',
+                                                panelHeight:'auto',
+                                                required:true,
+                                                missingMessage:'请选择逝者证件类型'"
+                    />
+                </td>
+                <td style="width: 100px" class="title-bg">
+                    证件号码
+                </td>
+                <td class="domain-bg">
+                    <input
+                            class="easyui-textbox"
+                            id="dpCertNo"
+                            name="dpCertNo"
+                            style="width:198px"
+                            data-options="required:true,missingMessage:'请填入逝者证件号码'"
+                    />
+                </td>
+            </tr>
+            <tr>
                 <td align="right" colspan="4">
                     <a
                             id="readDpIdCard"
@@ -144,6 +193,36 @@
             承办人信息
         </legend>
         <table class="tab-border">
+            <tr>
+                <td style="width: 100px" class="title-bg">
+                    姓名
+                </td>
+                <td class="domain-bg">
+                    <input
+                            class="easyui-textbox"
+                            id="utName"
+                            name="utName"
+                            style="width:198px"
+                            data-options="required:true,
+                           missingMessage:'请填入承办人姓名',
+                           validType:['chinese','length[2,5]']"
+                    />
+                </td>
+                <td style="width: 100px" class="title-bg">
+                    联系电话
+                </td>
+                <td class="domain-bg">
+                    <input
+                            class="easyui-textbox"
+                            id="phone"
+                            name="phone"
+                            style="width:198px"
+                            data-options="required:true,
+                           missingMessage:'请填入移动电话号码',
+                           validType:'mobile'"
+                    />
+                </td>
+            </tr>
             <tr>
                 <td style="width: 100px" class="title-bg">
                     证件类型
@@ -174,36 +253,6 @@
                             name="utCertNo"
                             style="width:198px"
                             data-options="required:true,missingMessage:'请填入承办人证件号码'"
-                    />
-                </td>
-            </tr>
-            <tr>
-                <td style="width: 100px" class="title-bg">
-                    姓名
-                </td>
-                <td class="domain-bg">
-                    <input
-                            class="easyui-textbox"
-                            id="utName"
-                            name="utName"
-                            style="width:198px"
-                            data-options="required:true,
-                           missingMessage:'请填入承办人姓名',
-                           validType:['chinese','length[2,5]']"
-                    />
-                </td>
-                <td style="width: 100px" class="title-bg">
-                    联系电话
-                </td>
-                <td class="domain-bg">
-                    <input
-                            class="easyui-textbox"
-                            id="phone"
-                            name="phone"
-                            style="width:198px"
-                            data-options="required:true,
-                           missingMessage:'请填入移动电话号码',
-                           validType:'mobile'"
                     />
                 </td>
             </tr>
