@@ -287,6 +287,39 @@
                         console.log("查询业务编号:" + sno);
                         $.ajax({
                             type: "POST",
+                            url: base + "/tmp/queryInf",
+                            data: {sno: sno},
+                            dataType: "json",
+                            async: false,
+                            success: function (data) {
+                                console.log(data);
+                                if (data.result == true) {
+                                    $("#rfid").textbox("setValue", data.rfid);
+                                    $("#dpName").textbox("setValue", data.dsName);
+                                    $("#dpAge").numberspinner('setValue', data.dsAge);
+                                    $('#dpSex').combobox('setValue', '' + data.dsSex);
+                                    $('#dpCertType').combobox('setValue', data.dsCertNo.length == 18 ? '0' : '');
+                                    $("#dpCertNo").textbox('setValue', data.dsCertNo);
+                                    $('#dpAddr').textbox('setValue', data.dsAddr);
+
+                                    $('#utName').textbox('setValue', data.name);
+                                    $('#utCertType').combobox('setValue', data.agentCertNo.length == 18 ? '0' : '');
+                                    $('#utCertNo').textbox('setValue', data.agentCertNo);
+                                    $('#phone').textbox('setValue', data.phone);
+                                } else {
+                                    console.log('业务登记信息不存在:' + sno);
+                                    $.messager.alert(title, '业务登记信息不存在', warning, function () {
+                                        $("#serviceNo").textbox("setValue", "");
+                                        $("#serviceNo").textbox().next("span").find("input").focus();
+                                    });
+                                }
+                            },
+                            error: function (e) {
+                                console.log(e);
+                            }
+                        })
+                        $.ajax({
+                            type: "POST",
                             url: base + "/deposit/exist",
                             data: {sno: sno},
                             dataType: "json",
@@ -294,6 +327,7 @@
                             success: function (data) {
                                 console.log(data);
                                 if (data.result) {
+
                                     if (data.result == true) {
                                         console.log('业务编号已办理寄存:' + sno);
                                         $.messager.alert(title, '业务编号已办理寄存', warning, function () {
@@ -301,40 +335,9 @@
                                             $("#serviceNo").textbox().next("span").find("input").focus();
                                         });
                                     } else {
-                                        $.ajax({
-                                            type: "POST",
-                                            url: base + "/tmp/queryInf",
-                                            data: {sno: sno},
-                                            dataType: "json",
-                                            async: false,
-                                            success: function (data) {
-                                                console.log(data);
-                                                if (data.result == true) {
-                                                    $("#rfid").textbox("setValue", data.rfid);
-                                                    $("#dpName").textbox("setValue", data.dsName);
-                                                    $("#dpAge").numberspinner('setValue', data.dsAge);
-                                                    $('#dpSex').combobox('setValue', '' + data.dsSex);
-                                                    $('#dpCertType').combobox('setValue', data.dsCertNo.length == 18 ? '0' : '');
-                                                    $("#dpCertNo").textbox('setValue', data.dsCertNo);
-                                                    $('#dpAddr').textbox('setValue', data.dsAddr);
 
-                                                    $('#utName').textbox('setValue', data.name);
-                                                    $('#utCertType').combobox('setValue', data.agentCertNo.length == 18 ? '0' : '');
-                                                    $('#utCertNo').textbox('setValue', data.agentCertNo);
-                                                    $('#phone').textbox('setValue', data.phone);
-                                                } else {
-                                                    console.log('业务登记信息不存在:' + sno);
-                                                    $.messager.alert(title, '业务登记信息不存在', warning, function () {
-                                                        $("#serviceNo").textbox("setValue", "");
-                                                        $("#serviceNo").textbox().next("span").find("input").focus();
-                                                    });
-                                                }
-                                            },
-                                            error: function (e) {
-                                                console.log(e);
-                                            }
-                                        })
                                     }
+
                                 }
                             },
                             error: function (e) {
