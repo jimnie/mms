@@ -545,7 +545,7 @@
             timer = setInterval(readRfid, 100); // 尝试循环读取电子标签
             tout = setTimeout(function () {
                 console.log('读电子标签超时');
-                window.clearInterval(timer);
+                closeRfidReader();
                 $.messager.alert(title, '读电子标签超时', warning, function () {
                     $('#readRfid').linkbutton({disabled: false}); // 读取到TID后启用该按钮
                 });
@@ -570,12 +570,7 @@
                 window.clearInterval(timer);
                 $('#rfid2').textbox('setValue', TID); // 设置识别码输入域的值
                 $('#readRfid').linkbutton({disabled: false}); // 读取到TID后启用该按钮
-                let closeState = TUHFReader09.Close(); // 关闭RFID读卡器
-                if (closeState == '00') {
-                    console.log('RFID读卡设备关闭成功');
-                } else {
-                    console.log('RFID读卡设备关闭失败');
-                }
+                closeRfidReader();
             } else {
                 console.log('TID读数据失败');
             }
