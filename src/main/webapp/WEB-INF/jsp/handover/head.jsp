@@ -109,40 +109,47 @@
                             openRfidReader();
                         });
                     } else {
-                        $.ajax({
-                            type: "POST",
-                            url: base + "/handover/exist",
-                            data: {sno: newValue},
-                            dataType: "json",
-                            async: false,
-                            success: function (data) {
-                                console.log(data);
-                                if (data.result) {
-                                    if (data.result == true) {
-                                        $.messager.alert(title, '骨灰已完成交接登记', warning, function () {
-                                            $('#rfid').textbox('clear');
-                                            $('#serviceNo').textbox('clear');
-                                            $('#dpName').textbox('clear');
-                                            $('#dpSex').combobox('clear');
-                                            $('#dpAge').numberspinner('clear');
-                                            openRfidReader();
-                                        });
-                                    } else {
-                                        $('#dpName').textbox('setValue', json[0].dpName);
-                                        $('#dpSex').combobox('setValue', json[0].dpSex);
-                                        $('#dpAge').numberspinner('setValue', json[0].dpAge);
-                                    }
-                                }
-                            },
-                            error: function (e) {
-                                console.log(e);
+                        let rt = queryHandover(newValue);
+                        if (rt) {
+                            if (rt == true) {
+                                $.messager.alert(title, '骨灰已完成交接登记', warning, function () {
+                                    $('#rfid').textbox('clear');
+                                    $('#serviceNo').textbox('clear');
+                                    $('#dpName').textbox('clear');
+                                    $('#dpSex').combobox('clear');
+                                    $('#dpAge').numberspinner('clear');
+                                    openRfidReader();
+                                });
+                            } else {
+                                $('#dpName').textbox('setValue', json[0].dpName);
+                                $('#dpSex').combobox('setValue', json[0].dpSex);
+                                $('#dpAge').numberspinner('setValue', json[0].dpAge);
                             }
-                        })
+                        }
                     }
                 });
             }
         });
         openRfidReader();
+    }
+
+    function queryHandover(sno) {
+        var rt = {};
+        $.ajax({
+            type: "POST",
+            url: base + "/handover/exist",
+            data: {sno: sno},
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                console.log(data);
+                rt = data.result;
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        })
+        return rt;
     }
 
     // 关闭新增寄存窗口时关闭读卡器端口
@@ -340,8 +347,8 @@
                             $('#dpSex').combobox('setValue', '' + data.dsSex);
                         } else {
                             $.messager.alert(title, '骨灰袋识别码不存在', warning, function () {
-                                $('#rfid').textbox('setValue', '');
-                                $('#rfid').textbox().next('span').find('input').focus();
+                                $('#rfid').textbox('clear');
+                                openRfidReader();
                             });
                         }
                     },
