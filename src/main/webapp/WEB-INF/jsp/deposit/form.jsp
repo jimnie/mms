@@ -237,6 +237,23 @@
         <table class="tab-border">
             <tr>
                 <td style="width: 100px" class="title-bg">
+                    存入日期
+                </td>
+                <td class="domain-bg">
+                    <input class="easyui-datebox" id="depositDate" name="depositDate"
+                           style="width:198px;">
+                </td>
+                <td style="width: 100px" class="title-bg">
+                    取出日期
+                </td>
+                <td class="domain-bg">
+                    <input class="easyui-datebox" id="preDrawDate" name="preDrawDate"
+                           style="width:198px;"
+                           data-options="required:true,editable:false">
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 100px" class="title-bg">
                     是否急取
                 </td>
                 <td class="domain-bg">
@@ -260,23 +277,6 @@
                            data-options="required:true,
                                          missingMessage:'请填入存放位置编号',
                                          validType:'position'">
-                </td>
-            </tr>
-            <tr>
-                <td style="width: 100px" class="title-bg">
-                    存入日期
-                </td>
-                <td class="domain-bg">
-                    <input class="easyui-datebox" id="depositDate" name="depositDate"
-                           style="width:198px;">
-                </td>
-                <td style="width: 100px" class="title-bg">
-                    取出日期
-                </td>
-                <td class="domain-bg">
-                    <input class="easyui-datebox" id="preDrawDate" name="preDrawDate"
-                           style="width:198px;"
-                           data-options="required:true,editable:false">
                 </td>
             </tr>
             <tr>

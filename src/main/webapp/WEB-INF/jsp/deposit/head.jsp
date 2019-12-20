@@ -284,66 +284,37 @@
                     console.log(event.keyCode);
                     if (event.keyCode == 13) {
                         let sno = $('#serviceNo').textbox('getValue');
-                        console.log("查询业务编号:" + sno);
-                        $.ajax({
-                            type: "POST",
-                            url: base + "/tmp/queryInf",
-                            data: {sno: sno},
-                            dataType: "json",
-                            async: false,
-                            success: function (data) {
-                                console.log(data);
-                                if (data.result == true) {
-                                    $("#rfid").textbox("setValue", data.rfid);
-                                    $("#dpName").textbox("setValue", data.dsName);
-                                    $("#dpAge").numberspinner('setValue', data.dsAge);
-                                    $('#dpSex').combobox('setValue', '' + data.dsSex);
-                                    $('#dpCertType').combobox('setValue', data.dsCertNo.length == 18 ? '0' : '');
-                                    $("#dpCertNo").textbox('setValue', data.dsCertNo);
-                                    $('#dpAddr').textbox('setValue', data.dsAddr);
+                        console.log('查询业务编号:' + sno);
+                        if (isServiceNoExist(sno)) {
+                            console.log('业务编号已办理寄存:' + sno);
+                            $.messager.alert(title, '业务编号已办理寄存', warning, function () {
+                                $('#serviceNo').textbox('clear');
+                                $('#serviceNo').textbox().next('span').find('input').focus();
+                            });
+                        } else {
+                            console.log('业务编号未办理寄存:' + sno);
+                            let inf = queryTmpInf(sno);
+                            if (inf.result == true) {
+                                $('#rfid').textbox('setValue', inf.rfid);
+                                $('#dpName').textbox('setValue', inf.dsName);
+                                $('#dpAge').numberspinner('setValue', inf.dsAge);
+                                $('#dpSex').combobox('setValue', '' + inf.dsSex);
+                                $('#dpCertType').combobox('setValue', inf.dsCertNo.length == 18 ? '0' : '');
+                                $('#dpCertNo').textbox('setValue', inf.dsCertNo);
+                                $('#dpAddr').textbox('setValue', inf.dsAddr);
 
-                                    $('#utName').textbox('setValue', data.name);
-                                    $('#utCertType').combobox('setValue', data.agentCertNo.length == 18 ? '0' : '');
-                                    $('#utCertNo').textbox('setValue', data.agentCertNo);
-                                    $('#phone').textbox('setValue', data.phone);
-                                } else {
-                                    console.log('业务登记信息不存在:' + sno);
-                                    $.messager.alert(title, '业务登记信息不存在', warning, function () {
-                                        $("#serviceNo").textbox("setValue", "");
-                                        $("#serviceNo").textbox().next("span").find("input").focus();
-                                    });
-                                }
-                            },
-                            error: function (e) {
-                                console.log(e);
+                                $('#utName').textbox('setValue', inf.name);
+                                $('#utCertType').combobox('setValue', inf.agentCertNo.length == 18 ? '0' : '');
+                                $('#utCertNo').textbox('setValue', inf.agentCertNo);
+                                $('#phone').textbox('setValue', inf.phone);
+                            } else {
+                                console.log('业务登记信息不存在:' + sno);
+                                $.messager.alert(title, '业务登记信息不存在', warning, function () {
+                                    $('#serviceNo').textbox('clear');
+                                    $('#serviceNo').textbox().next('span').find('input').focus();
+                                });
                             }
-                        })
-                        $.ajax({
-                            type: "POST",
-                            url: base + "/deposit/exist",
-                            data: {sno: sno},
-                            dataType: "json",
-                            async: false,
-                            success: function (data) {
-                                console.log(data);
-                                if (data.result) {
-
-                                    if (data.result == true) {
-                                        console.log('业务编号已办理寄存:' + sno);
-                                        $.messager.alert(title, '业务编号已办理寄存', warning, function () {
-                                            $("#serviceNo").textbox("setValue", "");
-                                            $("#serviceNo").textbox().next("span").find("input").focus();
-                                        });
-                                    } else {
-
-                                    }
-
-                                }
-                            },
-                            error: function (e) {
-                                console.log(e);
-                            }
-                        })
+                        }
                     }
                 }
             })
@@ -351,8 +322,53 @@
         $('#serviceNo').textbox().next('span').find('input').focus();
     }
 
+    // 检查业务编号是否已经办理了寄存业务
+    function isServiceNoExist(sno) {
+        var isExist = false;
+        $.ajax({
+            type: "POST",
+            url: base + "/deposit/exist",
+            data: {sno: sno},
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                console.log(data);
+                isExist = data.result;
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        })
+        return isExist;
+    }
+
+    // 查询登记信息
+    function queryTmpInf(sno) {
+        var rt = {};
+        $.ajax({
+            type: "POST",
+            url: base + "/tmp/queryInf",
+            data: {sno: sno},
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                console.log(data);
+                rt = data;
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        })
+        return rt;
+    }
+
     // 保存新增的存放信息
     function saveItem() {
+        if (toSign && !isSigned) {
+            alert('没有签名，不能办理骨灰盒存放业务！');
+            return;
+        }
+
         let sno = $("#serviceNo").textbox("getValue");
         url = base + "/deposit/save";
 
@@ -375,7 +391,8 @@
                         timeout: 2000,
                         showType: "slide"
                     });
-
+                    signPanel.HWClearPenSign(); // 清除内容
+                    rdcard.closeport();
                     $("#dlg").dialog("close");
                     $("#deposits").datagrid("reload");
                     $.messager.confirm(title, '是否打印寄存单？', function (r) {
@@ -476,7 +493,7 @@
     // 关闭新增寄存窗口时关闭读卡器端口
     function closeAddDialog() {
         if (toSign && !isSigned) {
-            $.messager.alert(title, "签名没有完成", warning);
+            alert('没有完成签字确认');
             return;
         }
 
@@ -488,6 +505,7 @@
             $.messager.alert(title, "关闭端口失败: " + closeState, error);
         }
         var handPadState;
+        signPanel.HWClearPenSign(); // 清除内容
         handPadState = signPanel.HWCloseC(); // 关闭手写板
         if (handPadState == 0) {
             signPanel.HWClearPenSign();

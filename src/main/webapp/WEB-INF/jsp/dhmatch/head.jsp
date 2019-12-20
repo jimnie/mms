@@ -168,6 +168,8 @@
 
     // 显示新增领取对话框
     function addDraw() {
+        $('#addform').form('clear');
+        signPanel.HWClearPenSign(); // 清除内容
         var row = $('#dhMatchList').datagrid('getSelected');
         if (row) {
             $('#dlg').window('maximize');
@@ -193,7 +195,11 @@
     // 保存新增的存放信息
     function saveItem() {
         if (!passed) {
-            alert('逝者信息核对错误，不能办理骨灰领取！');
+            alert('逝者信息核对错误，不能办理骨灰领取业务！');
+            return;
+        }
+        if (toSign && !isSigned) {
+            alert('没有签名，不能办理骨灰领取业务！');
             return;
         }
         let sno = $("#serviceNo").textbox("getValue");
@@ -205,11 +211,12 @@
                 return $('#addform').form('validate');
             },
             success: function (data) {
-                data = eval('(' + data + ')');
-                if (data.type == 'success') {
+                console.log(data);
+                var rdata = eval('(' + data + ')');
+                if (rdata.type == 'success') {
                     $.messager.show({
                         title: title,
-                        msg: data.content,
+                        msg: rdata.content,
                         timeout: 2000,
                         showType: 'slide'
                     });
@@ -221,12 +228,12 @@
                     $.messager.confirm(title, "是否打印骨灰装置服务确认书?", function (r) {
                         if (r) {
                             window.open(base + '/draw/viewPdf/' + sno + '/type/cert');
-                            $.messager.confirm(title, "是否打印领取业务证明单?", function (r) {
-                                window.open(base + '/draw/viewPdf/' + sno + '/type/conf');
-                            });
-                        }
-                    });
 
+                        }
+                        $.messager.confirm(title, "是否打印领取业务证明单?", function (r) {
+                            window.open(base + '/draw/viewPdf/' + sno + '/type/conf');
+                        });
+                    });
                 } else {
                     $.messager.alert(title, data.content, error);
                 }
@@ -238,12 +245,13 @@
     function closeAddDialog() {
         console.log('关闭领取骨灰窗口');
         if (toSign && !isSigned) {
-            $.messager.alert(title, "签名没有完成", warning);
+            alert('没有完成签字确认');
             return;
         }
         closeRfidReader();
         // closeRdReader();
         closeHandPad();
+        $('#addform').form('clear');
         $('#dlg').dialog('close');
     }
 
@@ -404,10 +412,10 @@
 
     function closeHandPad() {
         var handPadState;
+        signPanel.HWClearPenSign(); // 清除内容
         handPadState = signPanel.HWCloseC(); // 关闭手写板
         if (handPadState == 0) {
             console.log('关闭手写板设备成功');
-            signPanel.HWClearPenSign();
         } else {
             console.log('关闭手写板设备失败');
         }

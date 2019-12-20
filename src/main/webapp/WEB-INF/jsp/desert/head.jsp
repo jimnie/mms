@@ -312,9 +312,15 @@
     function saveItem() {
         console.log('提交存放信息，逝者信息核对是否正确:' + passed);
         if (!passed) {
-            alert('逝者信息核对错误，不能办理放弃骨灰！');
+            alert('逝者信息核对错误，不能办理放弃骨灰业务！');
             return;
         }
+
+        if (toSign && !isSigned) {
+            alert('没有签名，不能办理放弃骨灰业务！');
+            return;
+        }
+
         let sno = $("#serviceNo").textbox("getValue");
         url = base + "/desert/save";
 
@@ -426,10 +432,9 @@
     // 关闭新增寄存窗口时关闭读卡器端口
     function closeAddDialog() {
         if (toSign && !isSigned) {
-            $.messager.alert(title, "签名没有完成", warning);
+            alert('没有完成签字确认');
             return;
         }
-
         closeRfidReader();
         closeRdReader();
         closeHandPad();
@@ -602,10 +607,10 @@
 
     function closeHandPad() {
         var handPadState;
+        signPanel.HWClearPenSign();
         handPadState = signPanel.HWCloseC(); // 关闭手写板
         if (handPadState == 0) {
             console.log('关闭手写板设备成功');
-            signPanel.HWClearPenSign();
         } else {
             console.log('关闭手写板设备失败');
         }

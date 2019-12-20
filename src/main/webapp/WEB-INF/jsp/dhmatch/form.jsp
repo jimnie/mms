@@ -110,8 +110,18 @@
                            data-options="readonly:true">
                 </td>
                 <td style="width: 100px" class="title-bg">
+                    住址
                 </td>
                 <td class="domain-bg">
+                    <input
+                            class="easyui-textbox"
+                            id="dpAddr"
+                            name="dpAddr"
+                            style="width:198px"
+                            data-options="required:true,
+                           missingMessage:'请填入逝者住址',
+                           validType:'length[1,50]'"
+                    />
                 </td>
             </tr>
             <td style="width: 100px" class="title-bg">
@@ -220,6 +230,30 @@
         <table class="tab-border">
             <tr>
                 <td style="width: 100px" class="title-bg">
+                    领取类型
+                </td>
+                <td class="domain-bg">
+                    <input class="easyui-combobox" id="drawType" name="drawType"
+                           style="width:198px"
+                           data-options="url:'${pageContext.request.contextPath}/dict/findDict/drawType',
+                                                method:'get',
+                                                valueField:'value',
+                                                textField:'name',
+                                                panelHeight:'auto',
+                                                required:true,
+                                                editable:false,
+                                                missingMessage:'请选择领取类型'">
+                </td>
+                <td style="width: 100px" class="title-bg">
+                    领取时间
+                </td>
+                <td class="domain-bg">
+                    <input class="easyui-datebox" id="drawDate" name="drawDate"
+                           style="width:198px;" data-options="value:'currentText'">
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 100px" class="title-bg">
                     磁卡情况
                 </td>
                 <td class="domain-bg">
@@ -248,30 +282,6 @@
                                                 required:true,
                                                 editable:false,
                                                 missingMessage:'请选择单据状况'">
-                </td>
-            </tr>
-            <tr>
-                <td style="width: 100px" class="title-bg">
-                    领取类型
-                </td>
-                <td class="domain-bg">
-                    <input class="easyui-combobox" id="drawType" name="drawType"
-                           style="width:198px"
-                           data-options="url:'${pageContext.request.contextPath}/dict/findDict/drawType',
-                                                method:'get',
-                                                valueField:'value',
-                                                textField:'name',
-                                                panelHeight:'auto',
-                                                required:true,
-                                                editable:false,
-                                                missingMessage:'请选择领取类型'">
-                </td>
-                <td style="width: 100px" class="title-bg">
-                    领取时间
-                </td>
-                <td class="domain-bg">
-                    <input class="easyui-datebox" id="drawDate" name="drawDate"
-                           style="width:198px;" data-options="value:'currentText'">
                 </td>
             </tr>
         </table>
