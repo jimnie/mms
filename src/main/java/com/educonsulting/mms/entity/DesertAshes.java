@@ -38,6 +38,8 @@ public class DesertAshes extends BaseEntity {
     private String createdBy;
     // 签字图片名称
     private String signPic;
+    // 识别码
+    private String rfid;
 
     @NotNull
     @Column(name = "service_no", nullable = false, unique = true, length = 16)
@@ -176,5 +178,15 @@ public class DesertAshes extends BaseEntity {
 
     public void setSignPic(String signPic) {
         this.signPic = signPic;
+    }
+
+    @NotNull
+    @Column(name = "rfid", nullable = false, length = 50)
+    public String getRfid() {
+        return rfid;
+    }
+
+    public void setRfid(String rfid) {
+        this.rfid = rfid;
     }
 }
