@@ -160,8 +160,8 @@
   color: #000000;
 }
 .tree-node-disabled {
-    opacity: 0.5;
-    cursor: default;
+  opacity: 0.5;
+  cursor: default;
 }
 .tree-node-hidden {
   display: none;

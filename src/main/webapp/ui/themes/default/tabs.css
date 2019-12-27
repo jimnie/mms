@@ -76,8 +76,8 @@
 .tabs li .tabs-inner {
   display: inline-block;
   text-decoration: none;
-    cursor: hand;
-    cursor: pointer;
+  cursor: hand;
+  cursor: pointer;
   margin: 0;
   padding: 0 10px;
   height: 25px;
